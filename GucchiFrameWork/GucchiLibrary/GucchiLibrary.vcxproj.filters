@@ -12,22 +12,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Framework.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="DeviceResources.cpp">
+    <ClCompile Include="Common\DeviceResources.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Framework.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework.h">
+    <ClInclude Include="Common\DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SingletonDirector.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
       <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceResources.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="SingletonDirector.h">
-      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

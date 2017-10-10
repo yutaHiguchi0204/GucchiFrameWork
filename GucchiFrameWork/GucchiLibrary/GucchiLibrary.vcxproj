@@ -136,13 +136,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeviceResources.h" />
-    <ClInclude Include="Framework.h" />
-    <ClInclude Include="SingletonDirector.h" />
+    <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Framework.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DeviceResources.cpp" />
-    <ClCompile Include="Framework.cpp" />
+    <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Common\SingletonDirector.h" />
+    <ClInclude Include="Framework\Framework.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
