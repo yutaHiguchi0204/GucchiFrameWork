@@ -1,40 +1,43 @@
-//
-// Main.cpp
-//
+/* =====================================================================
+//! @param		Main
+//! @create		樋口 裕太
+//! @date		17/10/09
+===================================================================== */
 
-#include "pch.h"
+// ヘッダファイルのインクルード
+#include <windows.h>
+#include <wrl/client.h>
+#include <d3d11_1.h>
+#include <memory>
+
 #include "Game.h"
 
-using namespace DirectX;
+// 名前空間
+using namespace GucchiLibrary;
 
-namespace
-{
-    std::unique_ptr<Game> g_game;
-};
-
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-
-// Indicates to hybrid graphics systems to prefer the discrete part by default
+// ハイブリッドグラフィックスシステムが個々のパーツを優先するように設定（デフォルト）
 extern "C"
 {
     __declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
     __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 }
 
-// Entry point
+// ここから始まる
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    if (!XMVerifyCPUSupport())
-        return 1;
+	std::unique_ptr<Game> game;
 
     HRESULT hr = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED);
     if (FAILED(hr))
         return 1;
 
-    g_game = std::make_unique<Game>();
+	try
+	{
+		game = std::make_unique<Game>(hInstance, nCmdShow);
+	}
 
     // Register class and create window
     {
