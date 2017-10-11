@@ -133,16 +133,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Common\StepTimer.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common\Constant.h" />
+    <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="Common\SingletonDirector.h" />
+    <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Framework\Framework.h" />
+    <ClInclude Include="GucchiLibrary.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

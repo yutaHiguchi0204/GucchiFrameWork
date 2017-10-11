@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "StepTimer.h"
+#include "../GucchiLibrary/GucchiLibrary.h"
 
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
-class Game
+class Game : public GucchiLibrary::Framework
 {
 public:
 
