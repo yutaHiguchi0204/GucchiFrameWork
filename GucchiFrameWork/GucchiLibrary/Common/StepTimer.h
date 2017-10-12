@@ -109,7 +109,7 @@ namespace GucchiLibrary
 				// このクランプがなければ、59.94 NTSCディスプレイでvsyncを有効にして実行されている60 fpsの固定アップデートを要求したゲームは、最終的にフレームを落とすほどの小さなエラーを蓄積します。
 				// スムーズに動作させるために、小さな偏差をゼロに丸めるほうが良いです。
 
-				if (abs(static_cast<int64_t>(timeDelta - targetElapsedTicks_)) < TicksPerSecond / 4000)
+				if (abs(static_cast<int64_t>(timeDelta - targetElapsedTicks_)) < static_cast<int64_t>(TicksPerSecond) / 4000)
 				{
 					timeDelta = targetElapsedTicks_;
 				}

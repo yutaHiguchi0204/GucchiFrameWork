@@ -5,25 +5,28 @@
 ===================================================================== */
 #pragma once
 
-// クラスの定義
-template <class T> class SingletonDirector
+namespace GucchiLibrary
 {
-public:
-	// インスタンスの生成
-	static T& GetInstance()
+	// クラスの定義
+	template <class T> class SingletonDirector
 	{
-		static T object;
-		return object;
-	}
+	public:
+		// インスタンスの生成
+		static T& GetInstance()
+		{
+			static T object;
+			return object;
+		}
 
-protected:
-	// コンストラクタ
-	SingletonDirector() {};
+	protected:
+		// コンストラクタ
+		SingletonDirector() {};
 
-private:
-	// コピーと代入防止
-	SingletonDirector(const SingletonDirector &) = delete;
-	SingletonDirector& operator=(const SingletonDirector &) = delete;
-	SingletonDirector(SingletonDirector &&) = delete;
-	SingletonDirector& operator=(SingletonDirector &&) = delete;
-};
+	private:
+		// コピーと代入防止
+		SingletonDirector(const SingletonDirector &) = delete;
+		SingletonDirector& operator=(const SingletonDirector &) = delete;
+		SingletonDirector(SingletonDirector &&) = delete;
+		SingletonDirector& operator=(SingletonDirector &&) = delete;
+	};
+}

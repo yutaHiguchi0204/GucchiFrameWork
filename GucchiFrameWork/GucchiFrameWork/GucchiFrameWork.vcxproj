@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -71,16 +71,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\DirectXTK\Inc;$(ProjectDir)..\GucchiLibrary;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\Include\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Debug;$(ProjectDir)..\Debug;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib;C:\Program Files (x86)\Windows Kits\10\lib\10.0.14393.0\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\lib\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\Lib\um\x86;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\ucrt\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\DirectXTK\Inc;$(ProjectDir)..\GucchiLibrary;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\Include\um;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Release;$(ProjectDir)..\GucchiLibrary;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib;C:\Program Files (x86)\Windows Kits\10\lib\10.0.14393.0\ucrt\x86;C:\Program Files (x86)\Windows Kits\10\lib\10.0.14393.0\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\lib\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -99,7 +99,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DirectXTK.lib;d3d11.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;GucchiLibrary.Lib;DirectXTK.lib;d3d11.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -158,10 +158,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Classes\Master\GameMain.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\Master\GameMain.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">

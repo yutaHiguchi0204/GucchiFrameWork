@@ -9,8 +9,8 @@
 class GameMain
 {
 public:
-	GameMain();
-	virtual ~GameMain();
+	GameMain() {};
+	virtual ~GameMain() {};
 
 	void Initialize();			// ‰Šú‰»ˆ—
 	void Update();				// XVˆ—

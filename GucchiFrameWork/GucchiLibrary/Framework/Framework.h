@@ -13,6 +13,7 @@
 
 namespace GucchiLibrary
 {
+	// ƒNƒ‰ƒX‚Ì’è‹`
 	class Framework : public IDeviceNotify
 	{
 	public:
@@ -70,7 +71,7 @@ namespace GucchiLibrary
 		virtual void OnDeviceRestored() override;
 
 	protected:
-		virtual void Update(StepTimer const& timer) = 0;
+		virtual void Update(const StepTimer& timer) = 0;
 		virtual void PreRender();
 		virtual void PostRender();
 		virtual void Render() = 0;
