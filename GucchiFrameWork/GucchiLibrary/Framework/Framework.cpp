@@ -85,8 +85,8 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	break;
 
 	case WM_ACTIVATEAPP:
-		DirectX::Mouse::ProcessMessage(message, wParam, lParam);
-		DirectX::Keyboard::ProcessMessage(message, wParam, lParam);
+		Mouse::ProcessMessage(message, wParam, lParam);
+		Keyboard::ProcessMessage(message, wParam, lParam);
 
 		if (framework)
 		{
@@ -126,7 +126,7 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 		break;
 
 	case WM_SYSKEYDOWN:
-		DirectX::Keyboard::ProcessMessage(message, wParam, lParam);
+		Keyboard::ProcessMessage(message, wParam, lParam);
 		if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
 		{
 			// Implements the classic ALT+ENTER fullscreen toggle
@@ -174,12 +174,12 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	case WM_XBUTTONDOWN:
 	case WM_XBUTTONUP:
 	case WM_MOUSEHOVER:
-		DirectX::Mouse::ProcessMessage(message, wParam, lParam);
+		Mouse::ProcessMessage(message, wParam, lParam);
 		break;
 	case WM_KEYDOWN:
 	case WM_KEYUP:
 	case WM_SYSKEYUP:
-		DirectX::Keyboard::ProcessMessage(message, wParam, lParam);
+		Keyboard::ProcessMessage(message, wParam, lParam);
 		break;
 
 	}
