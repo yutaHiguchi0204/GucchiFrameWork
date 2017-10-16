@@ -14,6 +14,7 @@
 
 // 名前空間
 using namespace GucchiLibrary;
+using namespace std;
 
 // ハイブリッドグラフィックスシステムが個々のパーツを優先するように設定（デフォルト）
 extern "C"
@@ -28,7 +29,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-	std::unique_ptr<Framework> framework;
+	unique_ptr<Framework> framework;
 
     HRESULT hr = CoInitializeEx(nullptr, COINITBASE_MULTITHREADED);
     if (FAILED(hr))
@@ -36,7 +37,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	try
 	{
-		framework = std::make_unique<Game>(hInstance, nCmdShow);
+		framework = make_unique<Game>(hInstance, nCmdShow);
 	}
 	catch (...)
 	{

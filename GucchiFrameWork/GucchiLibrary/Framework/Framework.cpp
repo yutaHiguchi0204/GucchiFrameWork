@@ -181,7 +181,6 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	case WM_SYSKEYUP:
 		Keyboard::ProcessMessage(message, wParam, lParam);
 		break;
-
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
@@ -219,7 +218,7 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
-	hwnd_ = CreateWindowEx(0, wcex.lpszClassName, L"GucchiFramework", WS_OVERLAPPEDWINDOW,
+	hwnd_ = CreateWindowEx(0, wcex.lpszClassName, L"GucchiFrameWork", WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
 		nullptr);
 

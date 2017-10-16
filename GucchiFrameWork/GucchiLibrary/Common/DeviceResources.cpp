@@ -46,18 +46,18 @@ namespace
 };
 
 // コンストラクタ
-//DeviceResources::DeviceResources(DXGI_FORMAT backBufferFormat, DXGI_FORMAT depthBufferFormat, UINT backBufferCount, D3D_FEATURE_LEVEL minFeatureLevel)
-//	: screenViewport_{}
-//	, backBufferFormat_(backBufferFormat)
-//	, depthBufferFormat_(depthBufferFormat)
-//	, backBufferCount_(backBufferCount)
-//	, d3dMinFeatureLevel_(minFeatureLevel)
-//	, window_(0)
-//	, d3dFeatureLevel_(D3D_FEATURE_LEVEL_9_1)
-//	, outputSize_{ 0, 0, 1, 1 }
-//	, deviceNotify_(nullptr)
-//{
-//}
+DeviceResources::DeviceResources(DXGI_FORMAT backBufferFormat, DXGI_FORMAT depthBufferFormat, UINT backBufferCount, D3D_FEATURE_LEVEL minFeatureLevel)
+	: screenViewport_{}
+	, backBufferFormat_(backBufferFormat)
+	, depthBufferFormat_(depthBufferFormat)
+	, backBufferCount_(backBufferCount)
+	, d3dMinFeatureLevel_(minFeatureLevel)
+	, window_(0)
+	, d3dFeatureLevel_(D3D_FEATURE_LEVEL_9_1)
+	, outputSize_{ 0, 0, 1, 1 }
+	, deviceNotify_(nullptr)
+{
+}
 
 // 利用可能なハードウェアアダプタの設定
 void DeviceResources::GetHardwareAdapter(IDXGIAdapter1** ppAdapter)
@@ -345,7 +345,8 @@ void DeviceResources::CreateWindowSizeDependentResources()
 				window_,
 				&swapChainDesc,
 				&fsSwapChainDesc,
-				nullptr, swapChain1_.ReleaseAndGetAddressOf()
+				nullptr, 
+				swapChain1_.ReleaseAndGetAddressOf()
 			));
 
 			ThrowIfFailed(swapChain1_.As(&swapChain_));
