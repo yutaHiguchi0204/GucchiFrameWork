@@ -37,3 +37,8 @@
 
 # Other
 *.suo
+*.log
+*.pdb
+*.idb
+*.tlog
+*.ilk

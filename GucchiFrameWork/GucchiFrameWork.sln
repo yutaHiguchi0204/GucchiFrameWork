@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GucchiFrameWork", "GucchiFrameWork\GucchiFrameWork.vcxproj", "{63E8A88C-E367-410F-82E3-FC1B6A23C6E8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GucchiLibrary", "GucchiLibrary\GucchiLibrary.vcxproj", "{1AF2E08B-99B4-42D9-9004-3878F4092769}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{63E8A88C-E367-410F-82E3-FC1B6A23C6E8}.Release|x64.Build.0 = Release|x64
 		{63E8A88C-E367-410F-82E3-FC1B6A23C6E8}.Release|x86.ActiveCfg = Release|Win32
 		{63E8A88C-E367-410F-82E3-FC1B6A23C6E8}.Release|x86.Build.0 = Release|Win32
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Debug|x64.ActiveCfg = Debug|x64
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Debug|x64.Build.0 = Debug|x64
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Debug|x86.ActiveCfg = Debug|Win32
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Debug|x86.Build.0 = Debug|Win32
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Release|x64.ActiveCfg = Release|x64
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Release|x64.Build.0 = Release|x64
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Release|x86.ActiveCfg = Release|Win32
+		{1AF2E08B-99B4-42D9-9004-3878F4092769}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
