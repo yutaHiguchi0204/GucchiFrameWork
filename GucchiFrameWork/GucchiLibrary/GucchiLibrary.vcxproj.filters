@@ -39,5 +39,8 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="GucchiLibrary.h" />
+    <ClInclude Include="Common\ResourceRenderer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
