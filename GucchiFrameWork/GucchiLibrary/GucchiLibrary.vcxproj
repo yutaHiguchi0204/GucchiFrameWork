@@ -136,15 +136,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="2D\Sprite.cpp" />
+    <ClCompile Include="2D\SpriteRenderer.cpp" />
+    <ClCompile Include="2D\TextureCache.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2D\Sprite.h" />
+    <ClInclude Include="2D\SpriteRenderer.h" />
+    <ClInclude Include="2D\TextureCache.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
-    <ClInclude Include="Common\ResourceRenderer.h" />
     <ClInclude Include="Common\SingletonDirector.h" />
     <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Framework\Framework.h" />

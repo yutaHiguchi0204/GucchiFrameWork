@@ -6,4 +6,7 @@
 #pragma once
 
 // フレームワーク
-#include "Framework\Framework.h"
+#include "Framework/Framework.h"
+
+// ２Ｄリソース関係
+#include "2D/SpriteRenderer.h"

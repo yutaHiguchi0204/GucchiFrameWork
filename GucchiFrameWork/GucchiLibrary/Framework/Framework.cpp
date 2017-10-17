@@ -129,7 +129,7 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 		Keyboard::ProcessMessage(message, wParam, lParam);
 		if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
 		{
-			// Implements the classic ALT+ENTER fullscreen toggle
+			// フルスクリーンモード（alt + Enter）実装
 			if (s_fullscreen)
 			{
 				SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
@@ -159,8 +159,8 @@ LRESULT CALLBACK Framework::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 		break;
 
 	case WM_MENUCHAR:
-		// A menu is active and the user presses a key that does not correspond
-		// to any mnemonic or accelerator key. Ignore so we don't produce an error beep.
+		// メニューがアクティブ状態でかつユーザがキーを押した場合、アクセラレータキーに対応していないため、
+		// エラー音が鳴る仕様ですが、それを無視します。
 		return MAKELRESULT(0, MNC_CLOSE);
 	case WM_INPUT:
 	case WM_MOUSEMOVE:
@@ -241,6 +241,10 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 
 	deviceResources.CreateWindowSizeDependentResources();
 	CreateWindowSizeDependentResources();
+
+	// デバイスツール作成
+	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
+	dxtk.Initialize();
 
 	// FPS表示有効
 	isDispFPS_ = true;
@@ -388,10 +392,6 @@ void Framework::CreateDeviceDependentResources()
 	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
 
 	// TODO: デバイス依存のオブジェクトを初期化
-
-	// スプライトマネージャ生成、初期化
-	//spriteRenderer_ = SpriteRenderer::GetInstance();
-	//spriteRenderer_->Initialize(device, context);
 
 	// テクスチャキャッシュ生成
 	//textureCache_ = TextureCache::GetInstance();

@@ -29,7 +29,7 @@ namespace GucchiLibrary
 		virtual void OnDeviceRestored() = 0;
 	};
 
-	// クラスの定義
+	// クラスの定義（デバイス関連）
 	class DeviceResources : public SingletonDirector<DeviceResources>
 	{
 	private:
@@ -132,5 +132,24 @@ namespace GucchiLibrary
 				d3dAnnotation_->SetMarker(name);
 			}
 		}
+	};
+
+	// クラスの定義（ツール関連）
+	class DirectXToolKidResources : public SingletonDirector<DirectXToolKidResources>
+	{
+	private:
+		ID3D11Device*							device_;			// デバイス
+		ID3D11DeviceContext*					context_;			// コンテキスト
+		std::shared_ptr<DirectX::SpriteBatch>	spriteBatch_;		// スプライトバッチ
+
+	private:
+		friend class SingletonDirector<DirectXToolKidResources>;
+
+		DirectXToolKidResources(ID3D11Device* device, ID3D11DeviceContext* context);
+
+	public:
+		void Initialize();
+
+		inline DirectX::SpriteBatch* GetSpriteBatch() const { return spriteBatch_.get(); }
 	};
 }

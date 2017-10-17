@@ -8,6 +8,7 @@
 // ヘッダファイルのインクルード
 #include <DirectXMath.h>
 #include <DirectXColors.h>
+#include "../2D/SpriteRenderer.h"
 #include "../Common/DeviceResources.h"
 #include "../Common/StepTimer.h"
 
@@ -27,9 +28,6 @@ namespace GucchiLibrary
 
 		// デバッグテキスト
 		//std::unique_ptr<DebugText>			debugText_;
-
-		// スプライトレンダラー
-		//SpriteRenderer*						spriteRenderer_;
 
 		// プリミティブレンダラー
 		//PrimitiveRenderer*					primitiveRenderer_;

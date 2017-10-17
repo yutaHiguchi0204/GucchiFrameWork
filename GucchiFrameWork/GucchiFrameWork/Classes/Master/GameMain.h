@@ -5,9 +5,15 @@
 ===================================================================== */
 #pragma once
 
+// ヘッダファイルのインクルード
+#include "GucchiLibrary.h"
+
 // クラスの定義
 class GameMain
 {
+private:
+	std::unique_ptr<GucchiLibrary::Sprite> test_;
+
 public:
 	GameMain() {};
 	virtual ~GameMain() {};
