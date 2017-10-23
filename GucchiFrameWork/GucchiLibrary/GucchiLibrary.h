@@ -10,3 +10,6 @@
 
 // ‚Q‚cƒŠƒ\[ƒXŠÖŒW
 #include "2D/SpriteRenderer.h"
+
+// ’è”ƒwƒbƒ_
+#include "Common\Constant.h"

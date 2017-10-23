@@ -57,7 +57,7 @@ void SpriteRenderer::Draw()
 		// アクティブ状態のスプライトのみ表示
 		if (sprite.GetActive())
 		{
-			dxtk.GetSpriteBatch()->Draw(sprite.GetTexture()->GetShaderResourceView(), sprite.GetPos());
+			dxtk.GetSpriteBatch()->Draw(sprite.GetTexture()->GetShaderResourceView().Get(), sprite.GetPos());
 		}
 	}
 

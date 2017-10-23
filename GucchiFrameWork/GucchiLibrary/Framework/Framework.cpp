@@ -244,7 +244,7 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 
 	// デバイスツール作成
 	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
-	dxtk.Initialize();
+	dxtk.Initialize(deviceResources.GetD3DDevice(), deviceResources.GetD3DDeviceContext());
 
 	// FPS表示有効
 	isDispFPS_ = true;

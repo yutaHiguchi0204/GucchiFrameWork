@@ -19,21 +19,20 @@ using namespace GucchiLibrary;
 // コンストラクタ
 Sprite::Sprite()
 	: texture_(nullptr)
-	, pos_(Vector2(0.0f, 0.0f))
-	, scale_(1.0f)
 	, angle_(0.0f)
 	, isActive_(true)
 {
 }
 
 /*==============================================================
-// @brief		初期化処理
-// @param		位置（Vector2）、拡大率（float）、回転角（float）
+// @brief		初期化処理（位置とスプライトサイズの設定をするために必ず呼んでください）
+// @param		位置（Vector2）、サイズ（Vector2）、拡大率（float）、回転角（float）
 // @return		なし
 ===============================================================*/
-void Sprite::Initialize(const Vector2& pos, float scale, float angle)
+void Sprite::Initialize(const Vector2& pos, const Vector2& size, float scale, float angle)
 {
 	pos_ = pos;
+	size_ = size;
 	scale_ = scale;
 	angle_ = angle;
 }

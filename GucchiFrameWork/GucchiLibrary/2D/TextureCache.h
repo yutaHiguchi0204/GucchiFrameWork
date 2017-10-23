@@ -10,6 +10,7 @@
 #include <d3d11_1.h>
 #include <map>
 #include <string>
+#include <wrl/client.h>
 #include "../Common/SingletonDirector.h"
 
 namespace GucchiLibrary
@@ -19,14 +20,14 @@ namespace GucchiLibrary
 	{
 	private:
 		CD3D11_TEXTURE2D_DESC desc_;
-		ID3D11ShaderResourceView* shaderResourceView_;
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView_;
 
 	public:
 		void SetDesc(const CD3D11_TEXTURE2D_DESC& desc) { desc_ = desc; }
-		void SetShaderResourceView(ID3D11ShaderResourceView* shaderResourceView) { shaderResourceView_ = shaderResourceView; }
+		void SetShaderResourceView(Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView) { shaderResourceView_ = shaderResourceView; }
 
 		inline CD3D11_TEXTURE2D_DESC GetDesc() const { return desc_; }
-		inline ID3D11ShaderResourceView* GetShaderResourceView() const { return shaderResourceView_; }
+		inline Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetShaderResourceView() const { return shaderResourceView_; }
 	};
 
 	// クラスの定義（テクスチャ管理）

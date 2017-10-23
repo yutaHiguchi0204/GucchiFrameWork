@@ -145,10 +145,10 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<DirectXToolKidResources>;
 
-		DirectXToolKidResources(ID3D11Device* device, ID3D11DeviceContext* context);
+		DirectXToolKidResources() {};
 
 	public:
-		void Initialize();
+		void Initialize(ID3D11Device* device, ID3D11DeviceContext* context);
 
 		inline DirectX::SpriteBatch* GetSpriteBatch() const { return spriteBatch_.get(); }
 	};

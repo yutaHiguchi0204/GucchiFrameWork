@@ -8,7 +8,10 @@
 #include "GameMain.h"
 
 // –¼‘O‹óŠÔ
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
+using namespace std;
 
 /*==============================================================
 // @brief		‰Šú‰»ˆ—
@@ -18,12 +21,13 @@ using namespace GucchiLibrary;
 void GameMain::Initialize()
 {
 	// TODO: ƒQ[ƒ€ŠÖ˜A‚Ì‰Šú‰»
-	SpriteFactory& factory = SpriteFactory::GetInstance();
-	//test_ = factory.CreateSpriteFromFile(L"cat");
+
+	// ƒXƒvƒ‰ƒCƒg‰æ‘œ‚Ì“Ç‚İ‚İ
+	test_ = factory_.CreateSpriteFromFile(L"cat");
+	test_->Initialize(WINDOW_MIDDLE(test_->GetSize().x, test_->GetSize().y), Vector2(100.0f));
 
 	// “o˜^
-	SpriteRenderer& render = SpriteRenderer::GetInstance();
-	//render.RegisterSprite(test_.get());
+	renderer_.RegisterSprite(test_.get());
 }
 
 /*==============================================================
@@ -43,9 +47,10 @@ void GameMain::Update()
 ===============================================================*/
 void GameMain::Render()
 {
+	// “o˜^‚³‚ê‚½ƒXƒvƒ‰ƒCƒg‚Ì•`‰æ
+	renderer_.Draw();
+
 	// TODO: ƒQ[ƒ€ŠÖ˜A‚Ì•`‰æ
-	SpriteRenderer& render = SpriteRenderer::GetInstance();
-	//render.Draw();
 }
 
 /*==============================================================

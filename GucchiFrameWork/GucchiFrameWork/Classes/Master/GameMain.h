@@ -12,7 +12,13 @@
 class GameMain
 {
 private:
+	// TODO: ここに新しく追加
 	std::unique_ptr<GucchiLibrary::Sprite> test_;
+
+private:
+	// ライブラリインタフェース
+	GucchiLibrary::SpriteFactory& factory_ = GucchiLibrary::SpriteFactory::GetInstance();			// スプライト生成用
+	GucchiLibrary::SpriteRenderer& renderer_ = GucchiLibrary::SpriteRenderer::GetInstance();		// スプライト描画用
 
 public:
 	GameMain() {};

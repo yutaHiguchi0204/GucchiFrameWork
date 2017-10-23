@@ -535,16 +535,12 @@ void DeviceResources::Present()
 	}
 }
 
-// コンストラクタ
-DirectXToolKidResources::DirectXToolKidResources(ID3D11Device* device, ID3D11DeviceContext* context)
+// デバイスツールの初期化
+void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceContext* context)
 {
 	device_ = device;
 	context_ = context;
-}
 
-// デバイスツールの初期化
-void DirectXToolKidResources::Initialize()
-{
 	// スプライトバッチ
 	spriteBatch_ = make_shared<SpriteBatch>(context_);
 }
