@@ -13,11 +13,11 @@ const int WINDOW_WIDTH							= 800;
 const int WINDOW_HEIGHT							= 600;
 
 // ウインドウの場所
-#define WINDOW_LEFT								(0)
-#define WINDOW_TOP								(0)
-#define WINDOW_RIGHT(objSizeX)					((WINDOW_WIDTH) - (objSizeX))
-#define WINDOW_BOTTOM(objSizeY)					((WINDOW_HEIGHT) - (objSizeY))
-#define WINDOW_MIDDLE(objSizeX, objSizeY)		(DirectX::SimpleMath::Vector2((WINDOW_WIDTH / 2) - (objSizeX / 2), (WINDOW_HEIGHT / 2) - (objSizeY / 2)))
+#define WINDOW_LEFT(objSizeX)					((objSizeX) / (2))
+#define WINDOW_TOP(objSizeY)					((objSizeY) / (2))
+#define WINDOW_RIGHT(objSizeX)					((WINDOW_WIDTH) - ((objSizeX) / (2)))
+#define WINDOW_BOTTOM(objSizeY)					((WINDOW_HEIGHT) - ((objSizeY) / (2)))
+#define WINDOW_MIDDLE							(DirectX::SimpleMath::Vector2(((WINDOW_WIDTH) / (2)), ((WINDOW_HEIGHT) / (2))))
 
 // ハンドル
 const std::wstring FILE_PATH_SPRITE				= L"Resources/SpriteTexture/";			// スプライトハンドル

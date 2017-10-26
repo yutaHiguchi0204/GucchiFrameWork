@@ -10,6 +10,7 @@
 
 // 名前空間
 using namespace DirectX;
+using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -23,8 +24,23 @@ using namespace std;
 ===============================================================*/
 void SpriteRenderer::RegisterSprite(Sprite* sprite, int order)
 {
+	if (order != -1)
+	{
+		auto itr = spriteList_.begin();
+
+		// 指定場所に登録（これにより表示順が変わる）
+		int orderNum = 0;
+		while (orderNum < order - 1)
+		{
+			itr++;
+			orderNum++;
+		}
+
+		spriteList_.insert(itr, *sprite);
+		return;
+	}
+
 	// スプライトの登録
-	// ※現在は表示順関係なくただ後ろに追加するだけ
 	spriteList_.push_back(*sprite);
 }
 
@@ -36,6 +52,30 @@ void SpriteRenderer::RegisterSprite(Sprite* sprite, int order)
 void SpriteRenderer::SetActive(Sprite* sprite, bool active)
 {
 	sprite->SetActive(active);
+}
+
+/*==============================================================
+// @brief		スプライトの表示順
+// @param		スプライト（Sprite*）、表示順（int）
+// @return		なし
+===============================================================*/
+void SpriteRenderer::SetOrder(Sprite* sprite, int order)
+{
+	auto itr = spriteList_.begin();
+
+	// 指定位置を検索
+	int orderNum = 0;
+	while (orderNum <= order)
+	{
+		itr++;
+		orderNum++;
+	}
+
+	// 現在の位置を取得
+	auto now = find(spriteList_.begin(), spriteList_.end(), *sprite);
+
+	// 指定位置に移動
+	spriteList_.splice(itr, spriteList_, now);
 }
 
 /*==============================================================
@@ -57,7 +97,7 @@ void SpriteRenderer::Draw()
 		// アクティブ状態のスプライトのみ表示
 		if (sprite.GetActive())
 		{
-			dxtk.GetSpriteBatch()->Draw(sprite.GetTexture()->GetShaderResourceView().Get(), sprite.GetPos());
+			dxtk.GetSpriteBatch()->Draw(sprite.GetTexture()->GetShaderResourceView().Get(), sprite.GetPos(), sprite.GetRect(), Colors::White, sprite.GetAngle(), Vector2(sprite.GetSize().x / 2, sprite.GetSize().y / 2));
 		}
 	}
 
@@ -67,12 +107,12 @@ void SpriteRenderer::Draw()
 
 /*==============================================================
 // @brief		スプライトの生成
-// @param		ファイル名（wstring）
+// @param		ファイル名（wstring）、画像サイズ（Vector2）
 // @return		なし
 ===============================================================*/
-unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName)
+unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, const Vector2& size)
 {
-	unique_ptr<Sprite> sprite = make_unique<Sprite>();
+	unique_ptr<Sprite> sprite = make_unique<Sprite>(size);
 
 	// テクスチャの格納庫を準備
 	TextureCache& cache = TextureCache::GetInstance();

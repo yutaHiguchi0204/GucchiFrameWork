@@ -8,8 +8,5 @@
 // フレームワーク
 #include "Framework/Framework.h"
 
-// ２Ｄリソース関係
-#include "2D/SpriteRenderer.h"
-
 // 定数ヘッダ
-#include "Common\Constant.h"
+#include "Common/Constant.h"

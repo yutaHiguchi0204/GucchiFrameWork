@@ -14,11 +14,12 @@ class GameMain
 private:
 	// TODO: ここに新しく追加
 	std::unique_ptr<GucchiLibrary::Sprite> test_;
+	std::unique_ptr<GucchiLibrary::Sprite> test2_;
 
 private:
 	// ライブラリインタフェース
-	GucchiLibrary::SpriteFactory& factory_ = GucchiLibrary::SpriteFactory::GetInstance();			// スプライト生成用
-	GucchiLibrary::SpriteRenderer& renderer_ = GucchiLibrary::SpriteRenderer::GetInstance();		// スプライト描画用
+	std::unique_ptr<GucchiLibrary::SpriteRenderer> renderer_;									// スプライト描画用（描画したいスプライトをレンダラーに登録してください）
+	GucchiLibrary::SpriteFactory& factory_ = GucchiLibrary::SpriteFactory::GetInstance();		// スプライト生成用（スプライトを生成する際に使用してください、画像の使いまわし可）
 
 public:
 	GameMain() {};

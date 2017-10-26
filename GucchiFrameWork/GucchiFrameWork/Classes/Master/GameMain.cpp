@@ -20,14 +20,21 @@ using namespace std;
 ===============================================================*/
 void GameMain::Initialize()
 {
+	// ライブラリインタフェースの初期化
+	renderer_ = make_unique<SpriteRenderer>();
+
 	// TODO: ゲーム関連の初期化
 
 	// スプライト画像の読み込み
-	test_ = factory_.CreateSpriteFromFile(L"cat");
-	test_->Initialize(WINDOW_MIDDLE(test_->GetSize().x, test_->GetSize().y), Vector2(100.0f));
+	test_ = factory_.CreateSpriteFromFile(L"cat", Vector2(100.0f));
+	test_->Initialize(WINDOW_MIDDLE);
+	test2_ = factory_.CreateSpriteFromFile(L"cat", Vector2(100.0f));
+	test2_->Initialize(WINDOW_MIDDLE);
+	test2_->SetAngle(XMConvertToRadians(180.0f));
 
 	// 登録
-	renderer_.RegisterSprite(test_.get());
+	renderer_->RegisterSprite(test_.get());
+	renderer_->RegisterSprite(test2_.get(), 0);
 }
 
 /*==============================================================
@@ -38,6 +45,12 @@ void GameMain::Initialize()
 void GameMain::Update()
 {
 	// TODO: ゲーム関連の更新
+
+	StepTimer& timer = StepTimer::GetInstance();
+	if (timer.GetFrameCount() > 120)
+	{
+		renderer_->SetOrder(test2_.get(), 1);
+	}
 }
 
 /*==============================================================
@@ -48,7 +61,7 @@ void GameMain::Update()
 void GameMain::Render()
 {
 	// 登録されたスプライトの描画
-	renderer_.Draw();
+	renderer_->Draw();
 
 	// TODO: ゲーム関連の描画
 }

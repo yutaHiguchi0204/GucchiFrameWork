@@ -13,19 +13,18 @@
 namespace GucchiLibrary
 {
 	// クラスの定義（スプライト管理）
-	class SpriteRenderer : public SingletonDirector<SpriteRenderer>
+	class SpriteRenderer
 	{
 	private:
 		std::list<Sprite> spriteList_;
 
-	private:
-		friend class SingletonDirector<SpriteRenderer>;
-
-		SpriteRenderer() {};
-
 	public:
+		SpriteRenderer() {};
+		virtual ~SpriteRenderer() {};
+
 		void RegisterSprite(Sprite* sprite, int order = -1);		// スプライト登録
 		void SetActive(Sprite* sprite, bool active);				// アクティブ状態の変更
+		void SetOrder(Sprite* sprite, int order);					// 表示順の変更
 
 		void Draw();												// アクティブ状態のスプライトを描画
 	};
@@ -39,6 +38,6 @@ namespace GucchiLibrary
 		SpriteFactory() {};
 
 	public:
-		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName);
+		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName, const DirectX::SimpleMath::Vector2& size);
 	};
 }
