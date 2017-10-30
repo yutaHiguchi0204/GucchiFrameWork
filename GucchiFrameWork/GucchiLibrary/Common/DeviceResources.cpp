@@ -6,18 +6,20 @@
 
 // ヘッダファイルのインクルード
 #include "DeviceResources.h"
+#include "Constant.h"
 
 // 名前空間
 using namespace DirectX;
 using Microsoft::WRL::ComPtr;
 using namespace GucchiLibrary;
+using namespace std;
 
 inline void ThrowIfFailed(HRESULT hr)
 {
 	if (FAILED(hr))
 	{
 		// API エラーを捕捉する
-		throw std::exception();
+		throw exception();
 	}
 }
 
@@ -129,7 +131,7 @@ void DeviceResources::CreateDeviceResources()
 
 	if (!featLevelCount)
 	{
-		throw std::out_of_range("minFeatureLevel too high");
+		throw out_of_range("minFeatureLevel too high");
 	}
 
 	ComPtr<IDXGIAdapter1> adapter;
@@ -174,7 +176,7 @@ void DeviceResources::CreateDeviceResources()
 #if defined(NDEBUG)
 	else
 	{
-		throw std::exception("No Direct3D hardware device found");
+		throw exception("No Direct3D hardware device found");
 	}
 #else
 	if (FAILED(hr))
@@ -252,7 +254,7 @@ void DeviceResources::CreateDeviceResources()
 		(void)d3dContext_.As(&d3dAnnotation_);
 	}
 
-	commonStates_ = std::make_unique<CommonStates>(d3dDevice_.Get());
+	commonStates_ = make_unique<CommonStates>(d3dDevice_.Get());
 }
 
 // これらのリソースはウインドウサイズが変更されるたびに再設定する費用がある
@@ -260,7 +262,7 @@ void DeviceResources::CreateWindowSizeDependentResources()
 {
 	if (!window_)
 	{
-		throw std::exception("Call SetWindow with a valid Win32 window handle");
+		throw exception("Call SetWindow with a valid Win32 window handle");
 	}
 
 	// 前のウィンドウサイズに特有のコンテキストをクリアする
@@ -273,8 +275,8 @@ void DeviceResources::CreateWindowSizeDependentResources()
 	d3dContext_->Flush();
 
 	// Determine the render target size in pixels.
-	UINT backBufferWidth = std::max<UINT>(outputSize_.right - outputSize_.left, 1);
-	UINT backBufferHeight = std::max<UINT>(outputSize_.bottom - outputSize_.top, 1);
+	UINT backBufferWidth = max<UINT>(outputSize_.right - outputSize_.left, 1);
+	UINT backBufferHeight = max<UINT>(outputSize_.bottom - outputSize_.top, 1);
 
 	if (swapChain_)
 	{
@@ -532,4 +534,19 @@ void DeviceResources::Present()
 	{
 		ThrowIfFailed(hr);
 	}
+}
+
+// デバイスツールの初期化
+void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceContext* context)
+{
+	device_ = device;
+	context_ = context;
+
+	// スプライトバッチ
+	spriteBatch_ = make_shared<SpriteBatch>(context_);
+
+	// スプライトフォント
+	//wstring defaultFont = FILE_PATH_FONT + L"default_font" + EXT_SPRITEFONT;
+	wstring defaultFont = FILE_PATH_FONT + L"myfile" + EXT_SPRITEFONT;
+	spriteFont_ = make_shared<SpriteFont>(device_, defaultFont.c_str());
 }

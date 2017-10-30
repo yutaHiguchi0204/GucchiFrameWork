@@ -6,8 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include "../GucchiLibrary/GucchiLibrary.h"
-#include "../GucchiFrameWork/Classes/Master/GameMain.h"
+#include "GucchiLibrary.h"
+#include "Classes/Master/GameMain.h"
 
 // クラスの定義
 class Game : public GucchiLibrary::Framework

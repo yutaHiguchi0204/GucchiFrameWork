@@ -23,22 +23,13 @@ namespace GucchiLibrary
 		HWND								hwnd_;
 
 		// 描画用ループタイマー
-		StepTimer                           timer_;
+		StepTimer&							timer_ = StepTimer::GetInstance();
 
 		// デバッグテキスト
 		//std::unique_ptr<DebugText>			debugText_;
 
-		// スプライトレンダラー
-		//SpriteRenderer*						spriteRenderer_;
-
 		// プリミティブレンダラー
 		//PrimitiveRenderer*					primitiveRenderer_;
-
-		// テクスチャキャッシュ
-		//TextureCache*						textureCache_;
-
-		// スプライトファクトリー
-		//std::unique_ptr<SpriteFactory>		spriteFactory_;
 
 		// FPS表示
 		bool isDispFPS_;

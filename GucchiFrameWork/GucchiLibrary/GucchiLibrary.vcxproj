@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\DirectXTK\Inc;$(ProjectDir)..\GucchiLibrary;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\Include\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Debug;$(ProjectDir)..\GucchiLibrary;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib;C:\Program Files (x86)\Windows Kits\10\lib\10.0.14393.0\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\lib\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\Lib\um\x86;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\ucrt\x86</LibraryPath>
+    <IncludePath>C:\DirectXTK\Inc;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\Include\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Debug;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib;C:\Program Files (x86)\Windows Kits\10\lib\10.0.14393.0\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\lib\um\x86;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\Lib\um\x86;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\ucrt\x86</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,15 +136,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="2D\Sprite.cpp" />
+    <ClCompile Include="2D\SpriteRenderer.cpp" />
+    <ClCompile Include="2D\Text.cpp" />
+    <ClCompile Include="2D\TextRenderer.cpp" />
+    <ClCompile Include="2D\TextureCache.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2D\Sprite.h" />
+    <ClInclude Include="2D\SpriteRenderer.h" />
+    <ClInclude Include="2D\Text.h" />
+    <ClInclude Include="2D\TextRenderer.h" />
+    <ClInclude Include="2D\TextureCache.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
-    <ClInclude Include="Common\ResourceRenderer.h" />
     <ClInclude Include="Common\SingletonDirector.h" />
     <ClInclude Include="Common\StepTimer.h" />
     <ClInclude Include="Framework\Framework.h" />

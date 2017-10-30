@@ -7,6 +7,12 @@
 // ヘッダファイルのインクルード
 #include "GameMain.h"
 
+// 名前空間
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
+using namespace GucchiLibrary;
+using namespace std;
+
 /*==============================================================
 // @brief		初期化処理
 // @param		なし
@@ -15,6 +21,10 @@
 void GameMain::Initialize()
 {
 	// TODO: ゲーム関連の初期化
+	text_ = make_unique<Text>(L"Hello World!", WINDOW_MIDDLE);
+
+	// テキスト登録
+	textRenderer_.RegisterText(text_.get());
 }
 
 /*==============================================================
@@ -35,6 +45,10 @@ void GameMain::Update()
 void GameMain::Render()
 {
 	// TODO: ゲーム関連の描画
+
+	// ライブラリインタフェースを用いた描画
+	spriteRenderer_.Draw();				// スプライト
+	textRenderer_.Draw();				// テキスト
 }
 
 /*==============================================================
