@@ -13,15 +13,17 @@
 namespace GucchiLibrary
 {
 	// クラスの定義（スプライト管理）
-	class SpriteRenderer
+	class SpriteRenderer : public SingletonDirector<SpriteRenderer>
 	{
 	private:
 		std::list<Sprite> spriteList_;
 
-	public:
-		SpriteRenderer() {};
-		virtual ~SpriteRenderer() {};
+	private:
+		friend class SingletonDirector<SpriteRenderer>;
 
+		SpriteRenderer() {};
+
+	public:
 		void RegisterSprite(Sprite* sprite, int order = -1);		// スプライト登録
 		void SetActive(Sprite* sprite, bool active);				// アクティブ状態の変更
 		void SetOrder(Sprite* sprite, int order);					// 表示順の変更

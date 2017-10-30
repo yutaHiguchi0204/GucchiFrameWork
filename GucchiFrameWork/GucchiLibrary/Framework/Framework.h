@@ -8,7 +8,6 @@
 // ヘッダファイルのインクルード
 #include <DirectXMath.h>
 #include <DirectXColors.h>
-#include "../2D/SpriteRenderer.h"
 #include "../Common/DeviceResources.h"
 #include "../Common/StepTimer.h"
 

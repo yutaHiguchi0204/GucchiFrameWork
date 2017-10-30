@@ -138,6 +138,8 @@
   <ItemGroup>
     <ClCompile Include="2D\Sprite.cpp" />
     <ClCompile Include="2D\SpriteRenderer.cpp" />
+    <ClCompile Include="2D\Text.cpp" />
+    <ClCompile Include="2D\TextRenderer.cpp" />
     <ClCompile Include="2D\TextureCache.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
@@ -146,6 +148,8 @@
   <ItemGroup>
     <ClInclude Include="2D\Sprite.h" />
     <ClInclude Include="2D\SpriteRenderer.h" />
+    <ClInclude Include="2D\Text.h" />
+    <ClInclude Include="2D\TextRenderer.h" />
     <ClInclude Include="2D\TextureCache.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />

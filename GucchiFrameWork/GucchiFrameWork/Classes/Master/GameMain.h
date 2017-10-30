@@ -13,13 +13,14 @@ class GameMain
 {
 private:
 	// TODO: ここに新しく追加
-	std::unique_ptr<GucchiLibrary::Sprite> test_;
-	std::unique_ptr<GucchiLibrary::Sprite> test2_;
+	std::unique_ptr<GucchiLibrary::Text> text_;
 
 private:
 	// ライブラリインタフェース
-	std::unique_ptr<GucchiLibrary::SpriteRenderer> renderer_;									// スプライト描画用（描画したいスプライトをレンダラーに登録してください）
-	GucchiLibrary::SpriteFactory& factory_ = GucchiLibrary::SpriteFactory::GetInstance();		// スプライト生成用（スプライトを生成する際に使用してください、画像の使いまわし可）
+	GucchiLibrary::SpriteRenderer&	spriteRenderer_		= GucchiLibrary::SpriteRenderer::GetInstance();		// スプライト描画用（描画したいスプライトをレンダラーに登録してください）
+	GucchiLibrary::SpriteFactory&	factory_			= GucchiLibrary::SpriteFactory::GetInstance();		// スプライト生成用（スプライトを生成する際に使用してください、画像の使いまわし可）
+	GucchiLibrary::TextRenderer&	textRenderer_		= GucchiLibrary::TextRenderer::GetInstance();		// テキスト描画用（描画したい文字をレンダラーに登録してください）
+	GucchiLibrary::StepTimer&		timer_				= GucchiLibrary::StepTimer::GetInstance();			// 経過時間等タイマー用
 
 public:
 	GameMain() {};

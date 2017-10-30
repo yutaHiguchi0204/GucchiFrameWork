@@ -42,3 +42,10 @@
 [1024/130922:WARNING:resource_bundle.cc(269)] locale_file_path.empty()
 [1026/110320:WARNING:resource_bundle.cc(269)] locale_file_path.empty()
 [1026/110320:WARNING:resource_bundle.cc(269)] locale_file_path.empty()
+[1027/133038:WARNING:resource_bundle.cc(269)] locale_file_path.empty()
+[1027/133038:WARNING:resource_bundle.cc(269)] locale_file_path.empty()
+[1028/200739:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
+[1028/200741:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
+[1029/112219:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
+[1029/124007:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
+[1030/090933:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
