@@ -9,11 +9,12 @@
 #include <windows.h>
 #include <exception>
 #include <stdint.h>
+#include "SingletonDirector.h"
 
 namespace GucchiLibrary
 {
 	// アニメーションとシミュレーションのタイミングヘルパー
-	class StepTimer
+	class StepTimer : public SingletonDirector<StepTimer>
 	{
 	public:
 		// 10,000,000 Ticks/s
@@ -44,8 +45,12 @@ namespace GucchiLibrary
 		bool			isFixedTimeStep_;
 		uint64_t		targetElapsedTicks_;
 
-	public:
+	private:
+		friend class SingletonDirector<StepTimer>;
+
 		StepTimer();
+
+	public:
 
 		// Update情報から経過時間を取得
 		inline uint64_t GetElapsedTicks() const				{ return elapsedTicks_; }

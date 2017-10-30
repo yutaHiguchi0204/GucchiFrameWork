@@ -6,4 +6,13 @@
 #pragma once
 
 // フレームワーク
-#include "Framework\Framework.h"
+#include "Framework/Framework.h"
+
+// 定数ヘッダ
+#include "Common/Constant.h"
+
+// スプライト関連
+#include "2D/SpriteRenderer.h"
+
+// テキスト関連
+#include "2D/TextRenderer.h"
