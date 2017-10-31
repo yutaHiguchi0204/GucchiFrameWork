@@ -11,6 +11,9 @@
 // 定数ヘッダ
 #include "Common/Constant.h"
 
+// シーンマネージャ
+#include "Common/SceneManager.h"
+
 // スプライト関連
 #include "2D/SpriteRenderer.h"
 

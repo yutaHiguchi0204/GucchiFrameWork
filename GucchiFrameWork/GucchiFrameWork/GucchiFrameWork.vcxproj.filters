@@ -8,11 +8,17 @@
     <Filter Include="Master">
       <UniqueIdentifier>{acec3c42-015a-4ee6-8153-40576616a2d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{de4811e0-3b47-43f2-a7ce-19236379ff73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Classes\Master\GameMain.h">
       <Filter>Master</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Scene\PlayScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +26,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Classes\Master\GameMain.cpp">
       <Filter>Master</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Scene\PlayScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

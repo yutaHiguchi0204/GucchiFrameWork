@@ -546,7 +546,6 @@ void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceConte
 	spriteBatch_ = make_shared<SpriteBatch>(context_);
 
 	// スプライトフォント
-	//wstring defaultFont = FILE_PATH_FONT + L"default_font" + EXT_SPRITEFONT;
-	wstring defaultFont = FILE_PATH_FONT + L"myfile" + EXT_SPRITEFONT;
+	wstring defaultFont = FILE_PATH_FONT + L"default_font" + EXT_SPRITEFONT;
 	spriteFont_ = make_shared<SpriteFont>(device_, defaultFont.c_str());
 }

@@ -37,7 +37,7 @@ void Text::SetFont(const wstring font)
 	font_ = font;
 
 	// 新しいスプライトフォントを設定
-	wstring fontName = FILE_PATH_FONT + L"font" + EXT_SPRITEFONT;
+	wstring fontName = FILE_PATH_FONT + font + EXT_SPRITEFONT;
 
 	// リセット処理
 	DeviceResources& deviceResources = DeviceResources::GetInstance();

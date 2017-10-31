@@ -24,7 +24,7 @@ namespace GucchiLibrary
 		bool							isActive_;		// アクティブ状態
 
 	public:
-		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"myfile", int fontSize = 12, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
+		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"default_font", int fontSize = 12, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
 		virtual ~Text() {};
 
 		void SetString(std::wstring str)					{ str_ = str; }

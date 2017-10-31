@@ -10,6 +10,9 @@
     <Filter Include="2D">
       <UniqueIdentifier>{4c40dd50-e72e-45dd-b77e-edd20d64258a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dummy">
+      <UniqueIdentifier>{dfc01428-e6c8-4ebe-8e5b-0c2d91bbf2ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="2D\Text.cpp">
       <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy\DummyScene.cpp">
+      <Filter>Dummy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,5 +78,19 @@
     <ClInclude Include="2D\Text.h">
       <Filter>2D</Filter>
     </ClInclude>
+    <ClInclude Include="Common\SceneManager.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\Comments.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy\DummyScene.h">
+      <Filter>Dummy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dummy\Read me.md">
+      <Filter>Dummy</Filter>
+    </None>
   </ItemGroup>
 </Project>

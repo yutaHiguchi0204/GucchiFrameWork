@@ -143,6 +143,9 @@
     <ClCompile Include="2D\TextureCache.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
+    <ClCompile Include="Dummy\DummyScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Framework\Framework.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,10 +157,22 @@
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Common\SceneManager.h" />
     <ClInclude Include="Common\SingletonDirector.h" />
     <ClInclude Include="Common\StepTimer.h" />
+    <ClInclude Include="Dummy\Comments.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Dummy\DummyScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="GucchiLibrary.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dummy\Read me.md">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
