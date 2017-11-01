@@ -159,10 +159,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Classes\Master\GameMain.h" />
+    <ClInclude Include="Classes\Scenes\PlayScene.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\Master\GameMain.cpp" />
+    <ClCompile Include="Classes\Scenes\PlayScene.cpp" />
+    <ClCompile Include="Classes\Scenes\SceneManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>

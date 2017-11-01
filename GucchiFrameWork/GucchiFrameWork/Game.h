@@ -6,7 +6,6 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include "GucchiLibrary.h"
 #include "Classes/Master/GameMain.h"
 
 // クラスの定義
@@ -14,6 +13,10 @@ class Game : public GucchiLibrary::Framework
 {
 private:
 	std::unique_ptr<GameMain> main_;
+
+	// ライブラリインタフェース
+	GucchiLibrary::SpriteRenderer&	spriteRenderer_ = GucchiLibrary::SpriteRenderer::GetInstance();
+	GucchiLibrary::TextRenderer&	textRenderer_	= GucchiLibrary::TextRenderer::GetInstance();
 
 public:
     Game(HINSTANCE hInstance, int nCmdShow);

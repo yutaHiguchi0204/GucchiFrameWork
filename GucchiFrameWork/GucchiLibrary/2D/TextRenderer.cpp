@@ -66,3 +66,13 @@ void TextRenderer::Draw()
 	// バッチ処理終了
 	dxtk.GetSpriteBatch()->End();
 }
+
+/*==============================================================
+// @brief		リストリセット
+// @param		なし
+// @return		なし
+===============================================================*/
+void TextRenderer::Reset()
+{
+	textList_.clear();
+}

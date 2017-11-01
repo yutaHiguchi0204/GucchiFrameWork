@@ -21,10 +21,7 @@ using namespace std;
 void GameMain::Initialize()
 {
 	// TODO: ゲーム関連の初期化
-	text_ = make_unique<Text>(L"Hello World!", WINDOW_MIDDLE);
-
-	// テキスト登録
-	textRenderer_.RegisterText(text_.get());
+	sceneManager_.Initialize();
 }
 
 /*==============================================================
@@ -35,6 +32,7 @@ void GameMain::Initialize()
 void GameMain::Update()
 {
 	// TODO: ゲーム関連の更新
+	sceneManager_.Update();
 }
 
 /*==============================================================
@@ -42,13 +40,10 @@ void GameMain::Update()
 // @param		なし
 // @return		なし
 ===============================================================*/
-void GameMain::Render()
+void GameMain::Draw()
 {
 	// TODO: ゲーム関連の描画
-
-	// ライブラリインタフェースを用いた描画
-	spriteRenderer_.Draw();				// スプライト
-	textRenderer_.Draw();				// テキスト
+	sceneManager_.Draw();
 }
 
 /*==============================================================
@@ -59,4 +54,5 @@ void GameMain::Render()
 void GameMain::Finalize()
 {
 	// TODO: ゲーム関連の終了処理
+	sceneManager_.Finalize();
 }

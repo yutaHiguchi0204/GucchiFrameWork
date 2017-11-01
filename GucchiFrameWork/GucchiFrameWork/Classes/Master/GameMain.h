@@ -13,14 +13,9 @@ class GameMain
 {
 private:
 	// TODO: ここに新しく追加
-	std::unique_ptr<GucchiLibrary::Text> text_;
 
-private:
 	// ライブラリインタフェース
-	GucchiLibrary::SpriteRenderer&	spriteRenderer_		= GucchiLibrary::SpriteRenderer::GetInstance();		// スプライト描画用（描画したいスプライトをレンダラーに登録してください）
-	GucchiLibrary::SpriteFactory&	factory_			= GucchiLibrary::SpriteFactory::GetInstance();		// スプライト生成用（スプライトを生成する際に使用してください、画像の使いまわし可）
-	GucchiLibrary::TextRenderer&	textRenderer_		= GucchiLibrary::TextRenderer::GetInstance();		// テキスト描画用（描画したい文字をレンダラーに登録してください）
-	GucchiLibrary::StepTimer&		timer_				= GucchiLibrary::StepTimer::GetInstance();			// 経過時間等タイマー用
+	GucchiLibrary::SceneManager& sceneManager_ = GucchiLibrary::SceneManager::GetInstance();
 
 public:
 	GameMain() {};
@@ -28,6 +23,6 @@ public:
 
 	void Initialize();			// 初期化処理
 	void Update();				// 更新処理
-	void Render();				// 描画処理
+	void Draw();				// 描画処理
 	void Finalize();			// 終了処理
 };

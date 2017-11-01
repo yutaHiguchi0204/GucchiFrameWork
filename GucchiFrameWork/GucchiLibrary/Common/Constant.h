@@ -28,4 +28,4 @@ const std::wstring EXT_PNG						= L".png";								// .pngファイル
 const std::wstring EXT_SPRITEFONT				= L".spritefont";						// .spritefontファイル
 
 // サイズ
-const float DEFAULT_FONT_SIZE					= 12.0f;								// デフォルトフォントサイズ（新しいフォントを設定した際は、必ず"12"で作ってください）
+const float DEFAULT_FONT_SIZE					= 18.0f;								// デフォルトフォントサイズ（新しいフォントを設定した際は、必ず"12"で作ってください）

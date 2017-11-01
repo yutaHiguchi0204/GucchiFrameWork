@@ -289,16 +289,11 @@ void Framework::PreRender()
 
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
 	deviceResources.PIXBeginEvent(L"Render");
-
-	//SpriteRenderer_->Begin();
 }
 
 // 描画終了処理
 void Framework::PostRender()
 {
-	//m_SpriteRenderer->End();
-	//m_DebugText->Draw();
-
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
 	deviceResources.PIXEndEvent();
 
@@ -390,21 +385,5 @@ void Framework::CreateDeviceDependentResources()
 
 	ID3D11Device* device = deviceResources.GetD3DDevice();
 	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
-
-	// TODO: デバイス依存のオブジェクトを初期化
-
-	// テクスチャキャッシュ生成
-	//textureCache_ = TextureCache::GetInstance();
-	//textureCache_->Initialize(device);
-
-	// スプライトファクトリー生成
-	//spriteFactory_ = std::make_unique<SpriteFactory>(spriteRenderer_, textureCache_);
-
-	// プリミティブマネージャ生成、初期化
-	//primitiveRenderer_ = PrimitiveRenderer::GetInstance();
-	//primitiveRenderer_->Initialize(device, context);
-
-	// デバッグテキスト作成
-	//debugText_ = std::make_unique<DebugText>(device, context);
 }
 #pragma endregion
