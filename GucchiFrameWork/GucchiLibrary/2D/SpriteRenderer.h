@@ -29,6 +29,7 @@ namespace GucchiLibrary
 		void SetOrder(Sprite* sprite, int order);					// 表示順の変更
 
 		void Draw();												// アクティブ状態のスプライトを描画
+		void Reset();												// リストリセット
 	};
 
 	// クラスの定義（スプライトの生成）

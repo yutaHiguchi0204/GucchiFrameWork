@@ -20,12 +20,8 @@ using namespace std;
 ===============================================================*/
 void GameMain::Initialize()
 {
-	// 初期シーンを設定
-	SceneManager& sceneManager = SceneManager::GetInstance();
-	scene_ = sceneManager.ChangeScene(SceneManager::PLAY);
-
 	// TODO: ゲーム関連の初期化
-	scene_->Initialize();
+	sceneManager_.Initialize();
 }
 
 /*==============================================================
@@ -35,11 +31,8 @@ void GameMain::Initialize()
 ===============================================================*/
 void GameMain::Update()
 {
-	// シーン管理の更新（前フレーム更新）
-	sceneManager_.Update();
-
 	// TODO: ゲーム関連の更新
-	scene_->Update();
+	sceneManager_.Update();
 }
 
 /*==============================================================
@@ -50,10 +43,7 @@ void GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: ゲーム関連の描画
-	if (sceneManager_.CheckScene())
-	{
-		scene_->Draw();
-	}
+	sceneManager_.Draw();
 }
 
 /*==============================================================
@@ -64,5 +54,5 @@ void GameMain::Draw()
 void GameMain::Finalize()
 {
 	// TODO: ゲーム関連の終了処理
-	scene_->Finalize();
+	sceneManager_.Finalize();
 }

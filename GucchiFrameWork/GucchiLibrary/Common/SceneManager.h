@@ -8,6 +8,8 @@
 // ヘッダファイルのインクルード
 #include "SingletonDirector.h"
 #include <CommonStates.h>
+#include <map>
+#include <string>
 
 namespace GucchiLibrary
 {
@@ -22,20 +24,17 @@ namespace GucchiLibrary
 		virtual void Update() = 0;
 		virtual void Draw() = 0;
 		virtual void Finalize() = 0;
+
+		virtual void ResetDevice();
 	};
 
 	// シーンマネージャ
 	class SceneManager : public SingletonDirector<SceneManager>
 	{
-	public:
-		enum SCENE
-		{
-			PLAY
-		};
-
 	private:
-		SCENE nowScene_;
-		SCENE beforeFrameScene_;
+		std::map<std::string, std::unique_ptr<IScene>> sceneList_;			// 登録されたシーン
+		std::string nowScene_;												// 現在のシーン
+		std::string beforeScene_;											// 前フレームのシーン
 
 	private:
 		friend class SingletonDirector<SceneManager>;
@@ -43,8 +42,13 @@ namespace GucchiLibrary
 		SceneManager();
 
 	public:
-		std::unique_ptr<IScene> ChangeScene(SCENE scene);	// シーンの変更
-		void Update();										// シーン管理の更新
-		bool CheckScene();									// シーンチェック（前フレームとシーンが異なる場合は描画しない）
+		void Initialize();																// シーンの初期化
+		void Update();																	// シーンの更新
+		void Draw();																	// シーンの描画
+		void Finalize();																// シーンの終了処理
+
+		void RegisterScene(std::string scene, std::unique_ptr<IScene> newScene);		// シーンの登録
+		void ChangeScene(std::string scene);											// シーンの変更
+		bool CheckScene();																// シーンチェック（前フレームとシーンが異なる場合は描画しない）
 	};
 }

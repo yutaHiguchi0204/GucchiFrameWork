@@ -28,5 +28,6 @@ namespace GucchiLibrary
 		void SetActive(Text* text, bool active);			// アクティブ状態の変更
 
 		void Draw();										// テキスト描画
+		void Reset();										// リストリセット
 	};
 }

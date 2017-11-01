@@ -12,8 +12,7 @@
 class GameMain
 {
 private:
-	// シーン管理
-	std::unique_ptr<GucchiLibrary::IScene> scene_;
+	// TODO: ここに新しく追加
 
 	// ライブラリインタフェース
 	GucchiLibrary::SceneManager& sceneManager_ = GucchiLibrary::SceneManager::GetInstance();
