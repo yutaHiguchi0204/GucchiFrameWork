@@ -14,8 +14,15 @@
 // シーンマネージャ
 #include "Common/SceneManager.h"
 
+// カメラ
+#include "Camera/Camera.h"
+#include "Camera/DefaultCamera.h"
+
 // スプライト関連
 #include "2D/SpriteRenderer.h"
 
 // テキスト関連
 #include "2D/TextRenderer.h"
+
+// 補間ライブラリ
+#include "Utility/Interpolater.h"

@@ -10,6 +10,7 @@
 #include <DirectXColors.h>
 #include "../Common/DeviceResources.h"
 #include "../Common/StepTimer.h"
+#include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
 {
@@ -24,12 +25,6 @@ namespace GucchiLibrary
 
 		// 描画用ループタイマー
 		StepTimer&							timer_ = StepTimer::GetInstance();
-
-		// デバッグテキスト
-		//std::unique_ptr<DebugText>			debugText_;
-
-		// プリミティブレンダラー
-		//PrimitiveRenderer*					primitiveRenderer_;
 
 		// FPS表示
 		bool isDispFPS_;

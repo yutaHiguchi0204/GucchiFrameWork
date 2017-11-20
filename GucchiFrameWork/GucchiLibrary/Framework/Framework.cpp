@@ -6,11 +6,11 @@
 
 // ヘッダファイルのインクルード
 #include "Framework.h"
-#include <Mouse.h>
-#include <Keyboard.h>
 #include <string>
 #include "../Common/Constant.h"
 #include "../Common/DebugSwitch.h"
+#include "../InputTools/KeyboardUtil.h"
+#include "../InputTools/MouseUtil.h"
 
 // 名前空間
 using namespace DirectX;
@@ -246,6 +246,12 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
 	dxtk.Initialize(deviceResources.GetD3DDevice(), deviceResources.GetD3DDeviceContext());
 
+	// インプットツール作成
+	KeyboardUtil& keyboard = KeyboardUtil::GetInstance();
+	keyboard.Initialize();
+	MouseUtil& mouse = MouseUtil::GetInstance();
+	mouse.Initialize();
+
 	// FPS表示有効
 	isDispFPS_ = true;
 }
@@ -257,6 +263,12 @@ void Framework::Tick()
 	timer_.Tick([&]()
 	{
 		Update(timer_);
+
+		// インプットツールの更新
+		KeyboardUtil& keyboard = KeyboardUtil::GetInstance();
+		keyboard.Update();
+		MouseUtil& mouse = MouseUtil::GetInstance();
+		mouse.Update();
 	});
 
 #if DRAW_WINDOW_FPS == 1

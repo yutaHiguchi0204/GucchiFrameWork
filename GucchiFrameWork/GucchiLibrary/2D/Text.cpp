@@ -40,7 +40,6 @@ void Text::SetFont(const wstring font)
 	wstring fontName = FILE_PATH_FONT + font + EXT_SPRITEFONT;
 
 	// ÉäÉZÉbÉgèàóù
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
 	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
-	dxtk.GetSpriteFont().reset(new SpriteFont(deviceResources.GetD3DDevice(), fontName.c_str()));
+	dxtk.SetFont(font);
 }

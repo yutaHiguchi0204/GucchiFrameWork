@@ -14,6 +14,7 @@
 #include <assert.h>
 #include <memory>
 #include <stdexcept>
+#include <string>
 
 #include <CommonStates.h>
 #include <SpriteBatch.h>
@@ -141,8 +142,9 @@ namespace GucchiLibrary
 	private:
 		ID3D11Device*							device_;			// デバイス
 		ID3D11DeviceContext*					context_;			// コンテキスト
-		std::shared_ptr<DirectX::SpriteBatch>	spriteBatch_;		// スプライトバッチ
-		std::shared_ptr<DirectX::SpriteFont>	spriteFont_;		// スプライトフォント
+
+		std::unique_ptr<DirectX::SpriteBatch>	spriteBatch_;		// スプライトバッチ
+		std::unique_ptr<DirectX::SpriteFont>	spriteFont_;		// スプライトフォント
 
 	private:
 		friend class SingletonDirector<DirectXToolKidResources>;
@@ -152,7 +154,11 @@ namespace GucchiLibrary
 	public:
 		void Initialize(ID3D11Device* device, ID3D11DeviceContext* context);
 
-		inline std::shared_ptr<DirectX::SpriteBatch> GetSpriteBatch() const { return spriteBatch_; }
-		inline std::shared_ptr<DirectX::SpriteFont> GetSpriteFont() const	{ return spriteFont_; }
+		// フォント変更
+		void SetFont(std::wstring fontName);
+
+		// アクセッサ
+		inline DirectX::SpriteBatch* GetSpriteBatch() const		{ return spriteBatch_.get(); }
+		inline DirectX::SpriteFont* GetSpriteFont() const		{ return spriteFont_.get(); }
 	};
 }

@@ -25,8 +25,9 @@ using namespace std;
 void IScene::ResetDevice()
 {
 	// 全てのライブラリインタフェースをリセット
-	SpriteRenderer& spriteRenderer	= SpriteRenderer::GetInstance();	spriteRenderer.Reset();
-	TextRenderer&	textRenderer	= TextRenderer::GetInstance();		textRenderer.Reset();
+	objectRenderer_.Reset();
+	spriteRenderer_.Reset();
+	textRenderer_.Reset();
 }
 
 // コンストラクタ

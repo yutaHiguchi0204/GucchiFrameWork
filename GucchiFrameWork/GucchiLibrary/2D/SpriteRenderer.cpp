@@ -92,7 +92,7 @@ void SpriteRenderer::Draw()
 	dxtk.GetSpriteBatch()->Begin(SpriteSortMode::SpriteSortMode_Deferred, deviceResource.GetCommonStates()->NonPremultiplied());
 
 	// 描画処理
-	for (auto sprite : spriteList_)
+	for (auto& sprite : spriteList_)
 	{
 		// アクティブ状態のスプライトのみ表示
 		if (sprite.GetActive())

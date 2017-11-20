@@ -13,9 +13,6 @@ class PlayScene : public GucchiLibrary::IScene
 {
 private:
 	// TODO: PlaySceneのメンバ
-	std::unique_ptr<GucchiLibrary::Text> text_;
-
-	// ライブラリインタフェース（複数回使用する際はメンバとして持っといたほうがいいです）
 
 public:
 	PlayScene() {};

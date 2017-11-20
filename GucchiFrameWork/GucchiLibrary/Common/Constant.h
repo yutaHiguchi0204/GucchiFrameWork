@@ -21,10 +21,12 @@ const int WINDOW_HEIGHT							= 600;
 
 // ハンドル
 const std::wstring FILE_PATH_SPRITE				= L"Resources/SpriteTextures/";			// スプライト画像のファイルハンドル
+const std::wstring FILE_PATH_MODEL				= L"Resources/Models/";					// モデルのファイルハンドル
 const std::wstring FILE_PATH_FONT				= L"Resources/Fonts/";					// フォントのファイルハンドル
 
 // 拡張子
 const std::wstring EXT_PNG						= L".png";								// .pngファイル
+const std::wstring EXT_CMO						= L".cmo";								// .cmoファイル
 const std::wstring EXT_SPRITEFONT				= L".spritefont";						// .spritefontファイル
 
 // サイズ

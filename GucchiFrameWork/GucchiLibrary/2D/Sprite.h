@@ -26,10 +26,8 @@ namespace GucchiLibrary
 		bool							isActive_;			// アクティブ状態
 
 	public:
-		Sprite(const DirectX::SimpleMath::Vector2& size);
+		Sprite(const DirectX::SimpleMath::Vector2& size, const DirectX::SimpleMath::Vector2& pos = DirectX::SimpleMath::Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
 		virtual ~Sprite() {};
-
-		void Initialize(const DirectX::SimpleMath::Vector2& pos, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
 
 		void SetTexture(Texture* texture)							{ texture_ = texture; }
 		void SetPos(const DirectX::SimpleMath::Vector2& pos)		{ pos_ = pos; }
@@ -48,6 +46,7 @@ namespace GucchiLibrary
 		inline bool GetActive() const								{ return isActive_; }
 
 	public:
+		// 比較用オペレータ
 		bool operator==(const Sprite& sprite) const
 		{
 			if (texture_		== sprite.GetTexture()	&&

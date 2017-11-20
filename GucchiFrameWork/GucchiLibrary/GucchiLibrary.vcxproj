@@ -141,12 +141,21 @@
     <ClCompile Include="2D\Text.cpp" />
     <ClCompile Include="2D\TextRenderer.cpp" />
     <ClCompile Include="2D\TextureCache.cpp" />
+    <ClCompile Include="3D\Asset3D.cpp" />
+    <ClCompile Include="3D\ModelCache.cpp" />
+    <ClCompile Include="3D\Object.cpp" />
+    <ClCompile Include="3D\ObjectRenderer.cpp" />
+    <ClCompile Include="Camera\Camera.cpp" />
+    <ClCompile Include="Camera\DefaultCamera.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
     <ClCompile Include="Dummy\DummyScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Framework\Framework.cpp" />
+    <ClCompile Include="InputTools\KeyboardUtil.cpp" />
+    <ClCompile Include="InputTools\MouseUtil.cpp" />
+    <ClCompile Include="Utility\Interpolater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2D\Sprite.h" />
@@ -154,6 +163,12 @@
     <ClInclude Include="2D\Text.h" />
     <ClInclude Include="2D\TextRenderer.h" />
     <ClInclude Include="2D\TextureCache.h" />
+    <ClInclude Include="3D\Asset3D.h" />
+    <ClInclude Include="3D\ModelCache.h" />
+    <ClInclude Include="3D\Object.h" />
+    <ClInclude Include="3D\ObjectRenderer.h" />
+    <ClInclude Include="Camera\Camera.h" />
+    <ClInclude Include="Camera\DefaultCamera.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
@@ -168,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="GucchiLibrary.h" />
+    <ClInclude Include="InputTools\KeyboardUtil.h" />
+    <ClInclude Include="InputTools\MouseUtil.h" />
+    <ClInclude Include="Utility\Interpolater.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

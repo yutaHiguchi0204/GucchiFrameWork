@@ -72,6 +72,7 @@ void Game::Render()
 	// デバイス関連などの描画はここに記述
 
 	// ライブラリインタフェースでの描画処理
+	objectRenderer_.Draw();				// オブジェクト
 	spriteRenderer_.Draw();				// スプライト
 	textRenderer_.Draw();				// テキスト
 

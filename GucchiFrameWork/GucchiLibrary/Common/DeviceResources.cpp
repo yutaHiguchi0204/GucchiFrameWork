@@ -543,9 +543,15 @@ void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceConte
 	context_ = context;
 
 	// スプライトバッチ
-	spriteBatch_ = make_shared<SpriteBatch>(context_);
+	spriteBatch_ = make_unique<SpriteBatch>(context_);
 
 	// スプライトフォント
 	wstring defaultFont = FILE_PATH_FONT + L"default_font" + EXT_SPRITEFONT;
-	spriteFont_ = make_shared<SpriteFont>(device_, defaultFont.c_str());
+	spriteFont_ = make_unique<SpriteFont>(device_, defaultFont.c_str());
+}
+
+// フォント変更
+void DirectXToolKidResources::SetFont(wstring fontName)
+{
+	spriteFont_.reset(new SpriteFont(device_, fontName.c_str()));
 }

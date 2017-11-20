@@ -11,6 +11,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{de4811e0-3b47-43f2-a7ce-19236379ff73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Models">
+      <UniqueIdentifier>{9a8b72a7-a62b-4fc4-86fd-ae3e1117b2bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -46,5 +49,13 @@
     <Manifest Include="settings.manifest">
       <Filter>Assets</Filter>
     </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="Resources\Assets\ModelData\teaPot.FBX">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Resources\Assets\ModelData\skyDome.FBX">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
   </ItemGroup>
 </Project>

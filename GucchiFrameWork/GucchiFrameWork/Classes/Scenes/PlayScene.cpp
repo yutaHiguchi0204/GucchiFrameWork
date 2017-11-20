@@ -20,11 +20,21 @@ using namespace std;
 ===============================================================*/
 void PlayScene::Initialize()
 {
-	text_ = make_unique<Text>(L"あああ1234ABCDDDDDDDDDD", WINDOW_MIDDLE);
-	text_->SetFontSize(40);
+	// デフォルトカメラを設定
+	camera_ = std::make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
+	objectFactory_.SetCamera(camera_.get());
 
-	TextRenderer& textRenderer = TextRenderer::GetInstance();
-	textRenderer.RegisterText(text_.get());
+	unique_ptr<Object> object = objectFactory_.CreateObjectFromFile(L"skyDome");
+	unique_ptr<Object> teaPot = objectFactory_.CreateObjectFromFile(L"teaPot");
+
+	// オブジェクトの登録
+	objectRenderer_.RegisterObject(object.get());
+	objectRenderer_.RegisterObject(teaPot.get());
+
+	// 2Dテスト
+	unique_ptr<Sprite> sprite = spriteFactory_.CreateSpriteFromFile(L"cat", DirectX::SimpleMath::Vector2(100.0f, 100.0f));
+	sprite->SetPos(WINDOW_MIDDLE);
+	spriteRenderer_.RegisterSprite(sprite.get());
 }
 
 /*==============================================================
@@ -34,7 +44,8 @@ void PlayScene::Initialize()
 ===============================================================*/
 void PlayScene::Update()
 {
-	
+	// カメラの更新
+	camera_->Update();
 }
 
 /*==============================================================

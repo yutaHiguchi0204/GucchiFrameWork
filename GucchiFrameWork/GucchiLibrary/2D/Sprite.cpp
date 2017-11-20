@@ -17,24 +17,13 @@ using namespace GucchiLibrary;
 // メンバ関数の定義
 
 // コンストラクタ
-Sprite::Sprite(const Vector2& size)
+Sprite::Sprite(const Vector2& size, const Vector2& pos, RECT* rect, float scale, float angle)
 	: texture_(nullptr)
 	, size_(size)
+	, pos_(pos)
 	, textureRect_(nullptr)
-	, angle_(0.0f)
+	, scale_(scale)
+	, angle_(angle)
 	, isActive_(true)
 {
-}
-
-/*==============================================================
-// @brief		初期化処理（位置とスプライトサイズの設定をするために必ず呼んでください）
-// @param		位置（Vector2）、画像矩形（RECT*）、拡大率（float）、回転角（float）
-// @return		なし
-===============================================================*/
-void Sprite::Initialize(const Vector2& pos, RECT* rect, float scale, float angle)
-{
-	pos_ = pos;
-	textureRect_ = rect;
-	scale_ = scale;
-	angle_ = angle;
 }

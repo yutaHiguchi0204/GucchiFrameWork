@@ -13,6 +13,18 @@
     <Filter Include="Dummy">
       <UniqueIdentifier>{dfc01428-e6c8-4ebe-8e5b-0c2d91bbf2ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{59dce35b-ee29-4786-8ebd-a446c616d208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3D">
+      <UniqueIdentifier>{2e75e41a-fbf0-4daf-ad0d-f8c2f47e8429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{9b5dd824-fb55-4e05-8b7f-c354a8657878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputTools">
+      <UniqueIdentifier>{40deef89-7d7e-4dac-8ad8-3a6478905dfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -41,6 +53,33 @@
     </ClCompile>
     <ClCompile Include="Dummy\DummyScene.cpp">
       <Filter>Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Object.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\ObjectRenderer.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\Asset3D.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Interpolater.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="3D\ModelCache.cpp">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTools\KeyboardUtil.cpp">
+      <Filter>InputTools</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTools\MouseUtil.cpp">
+      <Filter>InputTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\DefaultCamera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +125,33 @@
     </ClInclude>
     <ClInclude Include="Dummy\DummyScene.h">
       <Filter>Dummy</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Object.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\ObjectRenderer.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\Asset3D.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Interpolater.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="3D\ModelCache.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTools\KeyboardUtil.h">
+      <Filter>InputTools</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTools\MouseUtil.h">
+      <Filter>InputTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\DefaultCamera.h">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

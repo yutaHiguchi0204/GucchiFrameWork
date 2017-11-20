@@ -12,8 +12,6 @@
 class GameMain
 {
 private:
-	// TODO: ここに新しく追加
-
 	// ライブラリインタフェース
 	GucchiLibrary::SceneManager& sceneManager_ = GucchiLibrary::SceneManager::GetInstance();
 
