@@ -39,7 +39,6 @@ namespace GucchiLibrary
 		void SetActive(Object* object, bool active);			// アクティブ状態の変更
 
 		void Draw();											// アクティブ状態のオブジェクトを描画
-		void DrawSubtractive();									// アクティブ状態のオブジェクトを減算描画
 		void Reset();											// リストリセット
 
 		void SetBlendState(Asset3D::BLEND_MODE mode);			// ブレンド設定

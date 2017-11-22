@@ -72,21 +72,22 @@ void ObjectRenderer::Draw()
 			// 描画前の準備
 			object.DrawApply();
 
-			// 描画
+			// カメラ
 			Camera* camera = object.GetCamera();
-			object.GetModel()->Draw(context, *states, object.GetWorld(), camera->GetView(), camera->GetProjection());
+
+			// 減算描画の場合は減算指定をする
+			if (object.GetBlendMode() == Asset3D::BLEND_MODE::SUBTRACTIVE)
+			{
+				object.GetModel()->Draw(context, *states, object.GetWorld(), camera->GetView(), camera->GetProjection(), false, [&]() { 
+					context->OMSetBlendState(object.GetBlendStateSubtract(), nullptr, 0xffffffff);
+				});
+			}
+			else
+			{
+				object.GetModel()->Draw(context, *states, object.GetWorld(), camera->GetView(), camera->GetProjection());
+			}
 		}
 	}
-}
-
-/*==============================================================
-// @brief		アクティブ状態のオブジェクトを減算描画
-// @param		なし
-// @return		なし
-===============================================================*/
-void ObjectRenderer::DrawSubtractive()
-{
-	
 }
 
 /*==============================================================
@@ -106,11 +107,25 @@ void ObjectRenderer::Reset()
 ===============================================================*/
 void ObjectRenderer::SetBlendState(Asset3D::BLEND_MODE mode)
 {
-	//switch (mode)
-	//{
-	//case Asset3D::BLEND_MODE::ALPHA:		// アルファブレンド
+	DeviceResources& deviceResources = DeviceResources::GetInstance();
+	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
+	CommonStates* states = deviceResources.GetCommonStates();
 
-	//}
+	// ブレンドモード設定
+	switch (mode)
+	{
+	case Asset3D::BLEND_MODE::ALPHA:		// アルファブレンド
+		context->OMSetBlendState(states->AlphaBlend(), nullptr, 0xffffffff);
+		break;
+
+	case Asset3D::BLEND_MODE::ADDITIVE:		// 加算ブレンド
+		context->OMSetBlendState(states->Additive(), nullptr, 0xffffffff);
+		break;
+
+	default:
+		context->OMSetBlendState(states->Opaque(), nullptr, 0xffffffff);
+		break;
+	}
 }
 
 /*==============================================================

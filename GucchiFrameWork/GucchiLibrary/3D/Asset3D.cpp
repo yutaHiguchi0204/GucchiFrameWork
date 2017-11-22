@@ -71,11 +71,11 @@ void Asset3D::DrawApply()
 	CommonStates* states = deviceResources.GetCommonStates();
 
 	// ブレンドモード設定
-	context->OMSetBlendState(states->Opaque(), nullptr, 0xffffffff);
+	ObjectRenderer& objectRenderer = ObjectRenderer::GetInstance();
+	objectRenderer.SetBlendState(blendMode_);
 
 	// 深度ステンシルを更新しない
-	//context->OMSetDepthStencilState(states->DepthRead(), 0);
-	context->OMSetDepthStencilState(states->DepthNone(), 0);
+	context->OMSetDepthStencilState(states->DepthRead(), 0);
 
 	// 描画設定
 	context->RSSetState(states->CullNone());

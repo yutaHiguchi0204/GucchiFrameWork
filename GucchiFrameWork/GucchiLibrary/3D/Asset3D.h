@@ -82,6 +82,7 @@ namespace GucchiLibrary
 		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
 		inline const DirectX::SimpleMath::Vector3& GetTranslate() const			{ return trans_; }
 		inline const DirectX::SimpleMath::Matrix& GetWorld() const				{ return world_; }
+		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtract_; }
 		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
 		inline bool GetActive()	const											{ return isActive_; }
 
