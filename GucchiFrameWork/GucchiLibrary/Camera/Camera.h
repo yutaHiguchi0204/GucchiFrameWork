@@ -11,11 +11,18 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		Camera クラス
+	// @content		カメラ
+	// @use			グローバル座標系の描画に使用
+	*/
 	class Camera
 	{
 	public:
-		// ビュー行列
+		/*
+		// @struct		View 構造体
+		// @content		ビュー行列関係
+		*/
 		struct View
 		{
 			DirectX::SimpleMath::Matrix viewMat;		// ビュー行列
@@ -24,7 +31,10 @@ namespace GucchiLibrary
 			DirectX::SimpleMath::Vector3 upVec;			// 上方向ベクトル
 		};
 
-		// プロジェクション行列
+		/*
+		// @struct		Projection 構造体
+		// @content		プロジェクション行列関係
+		*/
 		struct Projection
 		{
 			DirectX::SimpleMath::Matrix projMat;		// プロジェクション行列
@@ -39,13 +49,24 @@ namespace GucchiLibrary
 		Projection	proj_;								// プロジェクション行列関係
 
 	public:
+		/*
+		// @method		コンストラクタ
+		// @param		画面の幅（int）
+		// @param		画面の高さ（int）
+		*/
 		Camera(int width, int height);
+
+		// デストラクタ
 		virtual ~Camera() {};
 
-		// 更新
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
 		virtual void Update();
 
-		// アクセッサ
+		/* アクセッサ */
+
 		void SetEyePos(const DirectX::SimpleMath::Vector3& pos)		{ view_.eyePos = pos; }
 		void SetRefPos(const DirectX::SimpleMath::Vector3& pos)		{ view_.refPos = pos; }
 		void SetUpVec(const DirectX::SimpleMath::Vector3& vec)		{ view_.upVec = vec; }

@@ -26,3 +26,6 @@
 
 // 補間ライブラリ
 #include "Utility/Interpolater.h"
+
+// 数学ライブラリ
+#include "Utility/Math.h"

@@ -13,7 +13,13 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		Sprite クラス
+	// @content		2D用スプライトリソース
+	// @use			SpriteFactoryを使い生成する
+	// @use			テクスチャはTextureCacheによって管理される（SpriteFactory内）
+	// @use			SpriteRendererに登録することで描画可能（この時オーダー値を変えることで描画順を変更可能）
+	*/
 	class Sprite
 	{
 	private:
@@ -26,8 +32,20 @@ namespace GucchiLibrary
 		bool							isActive_;			// アクティブ状態
 
 	public:
+		/*
+		// @method		コンストラクタ
+		// @param		スプライトサイズ（Vector2）
+		// @param		初期座標（Vector2）　：　デフォルト（Vector2::Zero）
+		// @param		矩形取得（RECT*）　：　デフォルト（nullptr）
+		// @param		スケール（float）　：　デフォルト（1.0f）
+		// @param		回転角（float）　：　デフォルト（0.0f）
+		*/
 		Sprite(const DirectX::SimpleMath::Vector2& size, const DirectX::SimpleMath::Vector2& pos = DirectX::SimpleMath::Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
+
+		// デストラクタ
 		virtual ~Sprite() {};
+
+		/* アクセッサ */
 
 		void SetTexture(Texture* texture)							{ texture_ = texture; }
 		void SetPos(const DirectX::SimpleMath::Vector2& pos)		{ pos_ = pos; }

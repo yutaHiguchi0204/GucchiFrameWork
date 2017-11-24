@@ -186,6 +186,7 @@
     <ClInclude Include="InputTools\KeyboardUtil.h" />
     <ClInclude Include="InputTools\MouseUtil.h" />
     <ClInclude Include="Utility\Interpolater.h" />
+    <ClInclude Include="Utility\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

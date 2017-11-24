@@ -13,7 +13,10 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		KeyboardUtil クラス（Singleton）
+	// @content		キーボード
+	*/
 	class KeyboardUtil : public SingletonDirector<KeyboardUtil>
 	{
 	private:
@@ -25,7 +28,16 @@ namespace GucchiLibrary
 		KeyboardUtil() {}
 
 	public:
+		/*
+		// @method		Initialize
+		// @content		初期化処理
+		*/
 		void Initialize();
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
 		void Update();
 	};
 }

@@ -17,11 +17,33 @@ private:
 	// ライブラリインタフェース（複数回使用する際はメンバとして持っといたほうがいいです）
 
 public:
-	DummyScene() {};
-	virtual ~DummyScene() {};
+	// コンストラクタ
+	DummyScene() {}
 
+	// デストラクタ
+	virtual ~DummyScene() {}
+
+	/*
+	// @method		Initialize
+	// @content		初期化処理
+	*/
 	void Initialize() override;
+
+	/*
+	// @method		Update
+	// @content		更新処理
+	*/
 	void Update() override;
+
+	/*
+	// @method		Draw
+	// @content		描画処理
+	*/
 	void Draw() override;
+
+	/*
+	// @method		Finalize
+	// @content		終了処理
+	*/
 	void Finalize() override;
 };

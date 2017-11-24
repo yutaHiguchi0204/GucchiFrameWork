@@ -14,6 +14,9 @@ using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
+// 静的メンバの定義
+const float Text::DEFAULT_FONT_SIZE = 18.0f;		// フォントサイズの初期設定（フォントを新規で作成する際は、フォントサイズを"18"で作ってください）
+
 // メンバ関数の定義
 
 // コンストラクタ

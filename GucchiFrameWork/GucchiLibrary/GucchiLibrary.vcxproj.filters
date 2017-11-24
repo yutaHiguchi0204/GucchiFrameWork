@@ -153,6 +153,9 @@
     <ClInclude Include="Camera\DefaultCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Math.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

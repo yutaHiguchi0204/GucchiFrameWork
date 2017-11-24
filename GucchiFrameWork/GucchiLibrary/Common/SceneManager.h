@@ -16,7 +16,10 @@
 
 namespace GucchiLibrary
 {
-	// シーンインタフェース
+	/*
+	// @class		IScene クラス
+	// @content		シーンの基底クラス
+	*/
 	class IScene
 	{
 	protected:
@@ -31,18 +34,48 @@ namespace GucchiLibrary
 		TextRenderer&		textRenderer_		= TextRenderer::GetInstance();				// テキスト描画用
 
 	public:
+		// コンストラクタ
 		IScene() {}
+
+		// デストラクタ
 		virtual ~IScene() {};
 
+		/*
+		// @method		Initialize（pure）
+		// @content		初期化処理
+		*/
 		virtual void Initialize() = 0;
+
+		/*
+		// @method		Update（pure）
+		// @content		更新処理
+		*/
 		virtual void Update() = 0;
+
+		/*
+		// @method		Draw（pure）
+		// @content		描画処理
+		*/
 		virtual void Draw() = 0;
+
+		/*
+		// @method		Finalize（pure）
+		// @content		終了処理
+		*/
 		virtual void Finalize() = 0;
 
+		/*
+		// @method		ResetDevice
+		// @content		ライブラリインタフェースのリセット
+		*/
 		virtual void ResetDevice();
 	};
 
-	// シーンマネージャ
+	/*
+	// @class		SceneManager クラス（Singleton）
+	// @content		シーンマネージャ
+	// @use			RegisterScene関数でシーンを登録しておくことによって、登録されたシーンに容易に変更ができる
+	*/
 	class SceneManager : public SingletonDirector<SceneManager>
 	{
 	private:

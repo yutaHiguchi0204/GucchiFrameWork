@@ -15,10 +15,21 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		Asset3D クラス
+	// @content		3Dリソース
+	// @use			スプライトやモデルのテクスチャに使用
+	// @use			TextureCacheによって管理される
+	*/
 	class Asset3D
 	{
 	public:
+		/*
+		// @content		ブレンドモード
+		// @mode		ALPHA　：　アルファブレンド
+		// @mode		ADDITIVE　：　加算ブレンド
+		// @mode		SUBTRACTIVE　：　減算ブレンド
+		*/
 		enum class BLEND_MODE : int
 		{
 			ALPHA,
@@ -59,13 +70,27 @@ namespace GucchiLibrary
 		bool										isActive_;					// アクティブ状態
 
 	public:
+		/*
+		// @method		コンストラクタ
+		// @param		平行移動（Vector3）　：　デフォルト（Vector3::Zero）
+		// @param		スケール（Vector3）　：　デフォルト（Vector3::One）
+		// @param		回転角（Vector3）　：　デフォルト（Vector3::Zero）
+		// @param		クォータニオン（Quaternion）　：　デフォルト（Quaternion::Identity）
+		// @param		ブレンドモード（BLEND_MODE）　：　デフォルト（ALPHA）
+		*/
 		Asset3D(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
+
+		// デストラクタ
 		virtual ~Asset3D() {};
 
-		// 描画前の準備
+		/*
+		// @method		DrawApply
+		// @content		描画前設定
+		*/
 		void DrawApply();
 
-		// アクセッサ
+		/* アクセッサ */
+
 		void SetCamera(Camera* camera)											{ camera_ = camera; }
 		void SetModel(DirectX::Model* model)									{ model_ = model; }
 		void SetScale(DirectX::SimpleMath::Vector3 scale)						{ scale_ = scale; }

@@ -14,7 +14,10 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		Framework クラス
+	// @content		アプリを制御するフレームワーク
+	*/
 	class Framework : public IDeviceNotify
 	{
 	public:

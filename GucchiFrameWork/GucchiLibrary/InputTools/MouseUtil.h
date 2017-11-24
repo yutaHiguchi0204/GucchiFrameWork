@@ -13,7 +13,10 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		MouseUtil クラス（Singleton）
+	// @content		マウス
+	*/
 	class MouseUtil : public SingletonDirector<MouseUtil>
 	{
 	private:
@@ -29,10 +32,20 @@ namespace GucchiLibrary
 		MouseUtil() {}
 
 	public:
+		/*
+		// @method		Initialize
+		// @content		初期化処理
+		*/
 		void Initialize();
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
 		void Update();
 
-		// アクセッサ
+		/* アクセッサ */
+
 		inline DirectX::Mouse* GetMouse() const { return mouse_.get(); }
 		inline const DirectX::Mouse::State& GetState() const { return state_; }
 		inline const DirectX::Mouse::ButtonStateTracker& GetTracker() const { return tracker_; }

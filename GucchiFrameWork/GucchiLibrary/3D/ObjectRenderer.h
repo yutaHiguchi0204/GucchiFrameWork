@@ -10,22 +10,22 @@
 #include <CommonStates.h>
 #include <Effects.h>
 #include <list>
-#include <PrimitiveBatch.h>
 #include <string>
-#include <VertexTypes.h>
 #include <wrl/client.h>
 #include "Object.h"
 
 namespace GucchiLibrary
 {
-	// クラスの定義（オブジェクト管理）
+	/*
+	// @class		ObjectRenderer クラス（Singleton）
+	// @content		オブジェクト管理用
+	// @use			RegisterObject関数によって登録されたオブジェクトを描画する
+	// @use			シーン遷移時などにReset関数を呼ぶことで登録したオブジェクトを解放する
+	*/
 	class ObjectRenderer : public SingletonDirector<ObjectRenderer>
 	{
 	private:
 		std::list<Object> objectList_;
-
-		// プリミティブバッチ
-		std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionNormal>> primitiveBatch_;
 
 	private:
 		friend class SingletonDirector<ObjectRenderer>;
@@ -33,21 +33,60 @@ namespace GucchiLibrary
 		ObjectRenderer() {}
 
 	public:
-		void Initialize();										// 初期化処理
+		/*
+		// @method		RegisterObject
+		// @content		オブジェクトの登録
+		// @param		登録するオブジェクト（Object*）
+		*/
+		void RegisterObject(Object* object);
 
-		void RegisterObject(Object* object);					// オブジェクトの登録
-		void SetActive(Object* object, bool active);			// アクティブ状態の変更
+		/*
+		// @method		SetActive
+		// @content		オブジェクトのアクティブ状態の変更
+		// @param		オブジェクト（Object*）
+		// @param		アクティブ状態（bool）
+		*/
+		void SetActive(Object* object, bool active);
 
-		void Draw();											// アクティブ状態のオブジェクトを描画
-		void Reset();											// リストリセット
+		/*
+		// @method		Draw
+		// @content		アクティブ状態のオブジェクトを描画
+		*/
+		void Draw();
 
-		void SetBlendState(Asset3D::BLEND_MODE mode);			// ブレンド設定
-		void SetSubtractive(ID3D11BlendState* blendState);		// 減算描画設定
+		/*
+		// @method		Reset
+		// @content		登録されたオブジェクトのリストをリセット
+		*/
+		void Reset();
 
-		void DisableLighting(DirectX::Model* model);			// オブジェクトのライティングを無効にする
+		/*
+		// @method		SetBlendState
+		// @content		ブレンドモード設定
+		// @param		ブレンドモード（BLEND_MODE）
+		*/
+		void SetBlendState(Asset3D::BLEND_MODE mode);
+
+		/*
+		// @method		SetSubtractive
+		// @content		減算描画設定
+		// @param		減算描画用ステート（ID3D11BlendState*）
+		*/
+		void SetSubtractive(ID3D11BlendState* blendState);
+
+		/*
+		// @method		DisableLighting
+		// @content		モデルのライティングを無効にする
+		// @param		モデル（Model*）
+		*/
+		void DisableLighting(DirectX::Model* model);
 	};
 
-	// クラスの定義（オブジェクトの生成）
+	/*
+	// @class		ObjectFactory クラス（Singleton）
+	// @content		オブジェクト生成用
+	// @use			CreateObjectFromFile関数を呼ぶことでオブジェクトを生成する
+	*/
 	class ObjectFactory : public SingletonDirector<ObjectFactory>
 	{
 	private:
@@ -59,9 +98,15 @@ namespace GucchiLibrary
 		ObjectFactory() {};
 
 	public:
+		/*
+		// @method		CreateObjectFromFile
+		// @content		指定したcmoファイルからオブジェクトを生成する
+		// @param		モデルファイル名（拡張子を除く）（wstring）
+		*/
 		std::unique_ptr<Object> CreateObjectFromFile(const std::wstring fileName);
 
-		// アクセッサ
+		/* アクセッサ */
+
 		void SetCamera(Camera* camera) { camera_ = camera; }
 	};
 }

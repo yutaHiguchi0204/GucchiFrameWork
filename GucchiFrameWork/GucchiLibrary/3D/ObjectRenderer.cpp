@@ -18,19 +18,6 @@ using namespace std;
 // メンバ関数の定義
 
 /*==============================================================
-// @brief		初期化処理
-// @param		なし
-// @return		なし
-===============================================================*/
-void ObjectRenderer::Initialize()
-{
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
-
-	// プリミティブバッチの作成
-	primitiveBatch_ = make_unique<PrimitiveBatch<VertexPositionNormal>>(deviceResources.GetD3DDeviceContext());
-}
-
-/*==============================================================
 // @brief		オブジェクトの登録
 // @param		オブジェクト（Object*）
 // @return		なし

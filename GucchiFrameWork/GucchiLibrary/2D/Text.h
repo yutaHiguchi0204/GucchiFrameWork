@@ -12,9 +12,16 @@
 
 namespace GucchiLibrary
 { 
-	// クラスの定義
+	/*
+	// @class		Text クラス
+	// @content		テキストリソース
+	// @use			TextRendererに登録することで描画可能
+	*/
 	class Text
 	{
+	public:
+		static const float DEFAULT_FONT_SIZE;
+
 	private:
 		std::wstring					str_;			// テキスト
 		DirectX::SimpleMath::Vector2	pos_;			// 位置
@@ -24,8 +31,20 @@ namespace GucchiLibrary
 		bool							isActive_;		// アクティブ状態
 
 	public:
-		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"default_font", int fontSize = 12, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
+		/*
+		// @method		コンストラクタ
+		// @param		文字列（wstring）
+		// @param		表示位置（Vector2）
+		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（L"default_font"）
+		// @param		フォントサイズ（int）　：　デフォルト（DEFAULT_FONT_SIZE）
+		// @param		フォントの色（Color）　：　デフォルト（Color(1, 1, 1)）
+		*/
+		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"default_font", int fontSize = DEFAULT_FONT_SIZE, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
+
+		// デストラクタ
 		virtual ~Text() {};
+
+		/* アクセッサ */
 
 		void SetString(std::wstring str)					{ str_ = str; }
 		void SetPos(DirectX::SimpleMath::Vector2 pos)		{ pos_ = pos; }

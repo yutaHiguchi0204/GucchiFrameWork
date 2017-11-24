@@ -15,7 +15,11 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		ModelCache クラス（Singleton）
+	// @content		モデル管理用
+	// @use			LoadModel関数でロードしたモデルを管理する
+	*/
 	class ModelCache : public SingletonDirector<ModelCache>
 	{
 	private:
@@ -28,6 +32,12 @@ namespace GucchiLibrary
 		ModelCache() {}
 
 	public:
+		/*
+		// @method		LoadModel
+		// @content		モデルのロード
+		// @param		モデルファイル名（wstring）
+		// @param		エフェクトファクトリ（EffectFactory*）
+		*/
 		DirectX::Model* LoadModel(const std::wstring cmoFileName, DirectX::EffectFactory* factory);
 	};
 }

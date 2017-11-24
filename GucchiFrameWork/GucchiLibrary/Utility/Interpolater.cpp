@@ -12,6 +12,11 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 
+// 静的メンバの定義
+float Interpolater::startTime_ = 0.0f;
+float Interpolater::nowTime_ = 0.0f;
+bool Interpolater::isNowLerp_ = false;
+
 // メンバ関数の定義
 
 /*==============================================================

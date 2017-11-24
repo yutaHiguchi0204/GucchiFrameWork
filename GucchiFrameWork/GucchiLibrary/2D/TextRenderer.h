@@ -12,7 +12,12 @@
 
 namespace GucchiLibrary
 {
-	// テキスト描画用クラス
+	/*
+	// @class		TextRenderer クラス（Singleton）
+	// @content		テキスト管理用
+	// @use			RegisterText関数によって登録されたテキストを描画する
+	// @use			シーン遷移時などにReset関数を呼ぶことで登録したテキストを解放する
+	*/
 	class TextRenderer : public SingletonDirector<TextRenderer>
 	{
 	private:
@@ -24,10 +29,31 @@ namespace GucchiLibrary
 		TextRenderer() {};
 
 	public:
-		void RegisterText(Text* text);						// テキスト登録
-		void SetActive(Text* text, bool active);			// アクティブ状態の変更
+		/*
+		// @method		RegisterText
+		// @content		テキストの登録
+		// @param		登録するテキスト（Text*）
+		*/
+		void RegisterText(Text* text);
 
-		void Draw();										// テキスト描画
-		void Reset();										// リストリセット
+		/*
+		// @method		SetActive
+		// @content		テキストのアクティブ状態の変更
+		// @param		テキスト（Text*）
+		// @param		アクティブ状態（bool）
+		*/
+		void SetActive(Text* text, bool active);
+
+		/*
+		// @method		Draw
+		// @content		アクティブ状態のテキストを描画
+		*/
+		void Draw();
+
+		/*
+		// @method		Reset
+		// @content		登録されたテキストのリストをリセット
+		*/
+		void Reset();
 	};
 }

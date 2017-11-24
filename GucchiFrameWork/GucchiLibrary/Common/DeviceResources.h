@@ -17,21 +17,30 @@
 #include <string>
 
 #include <CommonStates.h>
+#include <PrimitiveBatch.h>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>
+#include <VertexTypes.h>
 
 #include "SingletonDirector.h"
 
 namespace GucchiLibrary
 {
-	// DeviceResourcesを所有するデバイス作成・削除検知用インタフェース
+	/*
+	// @class		IDeviceNotify クラス（interface）
+	// @content		DeviceResourcesを所有するデバイス作成・削除検知用インタフェース
+	*/
 	interface IDeviceNotify
 	{
 		virtual void OnDeviceLost() = 0;
 		virtual void OnDeviceRestored() = 0;
 	};
 
-	// クラスの定義（デバイス関連）
+	/*
+	// @class		DeviceResources クラス（Singleton）
+	// @content		デバイスリソース関連
+	// @use			デバイスやコンテキスト、コモンステート等が必要な場合これを用いる
+	*/
 	class DeviceResources : public SingletonDirector<DeviceResources>
 	{
 	private:
@@ -136,15 +145,22 @@ namespace GucchiLibrary
 		}
 	};
 
-	// クラスの定義（ツール関連）
+	/*
+	// @class		DeviceXToolKidResources クラス（Singleton）
+	// @content		DirectXTKの機能関連
+	// @use			スプライトバッチやプリミティブバッチなどが必要な場合はこれを用いる
+	*/
 	class DirectXToolKidResources : public SingletonDirector<DirectXToolKidResources>
 	{
 	private:
-		ID3D11Device*							device_;			// デバイス
-		ID3D11DeviceContext*					context_;			// コンテキスト
+		ID3D11Device*																	device_;				// デバイス
+		ID3D11DeviceContext*															context_;				// コンテキスト
 
-		std::unique_ptr<DirectX::SpriteBatch>	spriteBatch_;		// スプライトバッチ
-		std::unique_ptr<DirectX::SpriteFont>	spriteFont_;		// スプライトフォント
+		std::unique_ptr<DirectX::SpriteBatch>											spriteBatch_;			// スプライトバッチ
+		std::unique_ptr<DirectX::SpriteFont>											spriteFont_;			// スプライトフォント
+
+		std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionNormal>>			primitiveBatchVPN_;		// プリミティブバッチ
+		std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColorTexture>>	primitiveBatchVPCT_;	// プリミティブバッチ
 
 	private:
 		friend class SingletonDirector<DirectXToolKidResources>;
@@ -152,12 +168,23 @@ namespace GucchiLibrary
 		DirectXToolKidResources() {};
 
 	public:
+		/*
+		// @method		Initialize
+		// @content		初期化処理
+		// @param		デバイス（ID3D11Device*）
+		// @param		コンテキスト（ID3D11DeviceContext*）
+		*/
 		void Initialize(ID3D11Device* device, ID3D11DeviceContext* context);
 
-		// フォント変更
+		/*
+		// @method		SetFont
+		// @content		フォント変更
+		// @param		フォント名（拡張子を除く）（wstring）
+		*/
 		void SetFont(std::wstring fontName);
 
-		// アクセッサ
+		/* アクセッサ */
+
 		inline DirectX::SpriteBatch* GetSpriteBatch() const		{ return spriteBatch_.get(); }
 		inline DirectX::SpriteFont* GetSpriteFont() const		{ return spriteFont_.get(); }
 	};

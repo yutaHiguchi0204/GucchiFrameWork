@@ -11,7 +11,12 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		DefaultCamera クラス
+	// @content		カメラ
+	// @use			グローバル座標系の描画に使用
+	// @use			ホイール操作で画面の拡縮、ドラッグ操作でカメラの回転を行う
+	*/
 	class DefaultCamera : public Camera
 	{
 	protected:
@@ -29,13 +34,27 @@ namespace GucchiLibrary
 		int wheelValue_;									// 拡大率
 
 	public:
+		/*
+		// @method		コンストラクタ
+		// @param		画面の幅（int）
+		// @param		画面の高さ（int）
+		*/
 		DefaultCamera(int width, int height);
-		virtual ~DefaultCamera() {};
 
-		// 更新処理
+		// デストラクタ
+		virtual ~DefaultCamera() {}
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
 		virtual void Update() override;
 
-		// カメラ回転モーション
+		/*
+		// @method		Motion
+		// @content		ドラッグによる回転モーション
+		// @param		マウスの座標（Vector2）
+		*/
 		virtual void Motion(DirectX::SimpleMath::Vector2 mousePos);
 	};
 }
