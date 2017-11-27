@@ -16,6 +16,20 @@ namespace GucchiLibrary
 	{
 	public:
 		/*
+		// @method		SwapInt
+		// @content		値を入れ替える
+		// @param		値１つ目（int）
+		// @param		値２つ目（int）
+		*/
+		static void SwapInt(int* _1, int* _2)
+		{
+			// ビット演算（XOR）を用いてスワップ
+			*_1 ^= *_2;
+			*_2 ^= *_1;
+			*_1 ^= *_2;
+		}
+
+		/*
 		// @method		RandomRange（template）
 		// @content		指定した範囲内でランダムの値を返す
 		// @param		最小値（T）
