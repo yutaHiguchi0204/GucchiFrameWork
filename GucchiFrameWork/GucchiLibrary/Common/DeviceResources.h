@@ -165,7 +165,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<DirectXToolKidResources>;
 
-		DirectXToolKidResources() {};
+		DirectXToolKidResources() {}
 
 	public:
 		/*

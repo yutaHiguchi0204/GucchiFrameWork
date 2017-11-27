@@ -42,7 +42,7 @@ namespace GucchiLibrary
 		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"default_font", int fontSize = DEFAULT_FONT_SIZE, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
 
 		// デストラクタ
-		virtual ~Text() {};
+		virtual ~Text() {}
 
 		/* アクセッサ */
 

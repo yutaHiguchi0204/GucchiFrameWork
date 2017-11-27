@@ -20,3 +20,45 @@ Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, c
 	: Asset3D(trans, scale, rot, quat, mode)
 {
 }
+
+/*==============================================================
+// @brief		更新処理
+// @param		なし
+// @return		なし
+===============================================================*/
+void Object::Update()
+{
+	// 行列の更新
+	Asset3D::Update();
+
+	// 子がいた場合は子も更新する
+	if (childObject_.size() != 0)
+	{
+		for (auto& child : childObject_)
+		{
+			child->Update();
+		}
+	}
+}
+
+/*==============================================================
+// @brief		親子関係構築（親設定）
+// @param		親オブジェクト（Object*）
+// @return		なし
+===============================================================*/
+void Object::SetParent(Object* object)
+{
+	parentObject_ = object;
+	object->childObject_.push_back(this);
+}
+
+/*==============================================================
+// @brief		親子関係構築（子設定）
+// @param		子オブジェクト（Object*）
+// @return		なし
+===============================================================*/
+void Object::AddChild(Object* object)
+{
+	childObject_.push_back(object);
+	object->parentObject_ = this;
+}

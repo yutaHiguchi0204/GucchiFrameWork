@@ -38,11 +38,47 @@ void ObjectRenderer::SetActive(Object* object, bool active)
 }
 
 /*==============================================================
+// @brief		アクティブ状態のオブジェクトを更新
+// @param		なし
+// @return		なし
+===============================================================*/
+void ObjectRenderer::Update()
+{
+	// 更新処理
+	for (auto& object : objectList_)
+	{
+		// アクティブ状態のオブジェクトのみ更新
+		if (object.GetActive())
+		{
+			object.Update();
+		}
+	}
+}
+
+/*==============================================================
 // @brief		アクティブ状態のオブジェクトを描画
 // @param		なし
 // @return		なし
 ===============================================================*/
 void ObjectRenderer::Draw()
+{
+	// 描画処理
+	for (auto& object : objectList_)
+	{
+		// アクティブ状態のオブジェクトのみ描画
+		if (object.GetActive())
+		{
+			DrawObject(&object);
+		}
+	}
+}
+
+/*==============================================================
+// @brief		オブジェクトの描画
+// @param		オブジェクト（Object*）
+// @return		なし
+===============================================================*/
+void ObjectRenderer::DrawObject(Object* object)
 {
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
 
@@ -50,31 +86,60 @@ void ObjectRenderer::Draw()
 	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
 	CommonStates* states = deviceResources.GetCommonStates();
 
-	// 描画処理
-	for (auto& object : objectList_)
+	// 親からの座標設定
+	Matrix worldMat = object->GetWorld();
+	if (object->GetParent())
 	{
-		// アクティブ状態のオブジェクトのみ表示
-		if (object.GetActive())
+		worldMat *= GetParentObjectMatrix(object->GetParent());
+	}
+
+	// 描画前の準備
+	object->DrawApply();
+
+	// カメラの準備
+	Camera* camera = object->GetCamera();
+
+	// 減算描画の場合は減算指定をする
+	if (object->GetBlendMode() == Asset3D::BLEND_MODE::SUBTRACTIVE)
+	{
+		object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection(), false, [&]() {
+			context->OMSetBlendState(object->GetBlendStateSubtract(), nullptr, 0xffffffff);
+		});
+	}
+	else
+	{
+		object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection());
+	}
+
+	// 子スプライトがいるなら子どもも描画
+	if (object->GetChildren().size() != 0)
+	{
+		for (auto& child : object->GetChildren())
 		{
-			// 描画前の準備
-			object.DrawApply();
-
-			// カメラ
-			Camera* camera = object.GetCamera();
-
-			// 減算描画の場合は減算指定をする
-			if (object.GetBlendMode() == Asset3D::BLEND_MODE::SUBTRACTIVE)
+			if (child->GetActive())
 			{
-				object.GetModel()->Draw(context, *states, object.GetWorld(), camera->GetView(), camera->GetProjection(), false, [&]() { 
-					context->OMSetBlendState(object.GetBlendStateSubtract(), nullptr, 0xffffffff);
-				});
-			}
-			else
-			{
-				object.GetModel()->Draw(context, *states, object.GetWorld(), camera->GetView(), camera->GetProjection());
+				DrawObject(child);
 			}
 		}
 	}
+}
+
+/*==============================================================
+// @brief		親の位置を辿る
+// @param		親オブジェクト（Object*）
+// @return		最終位置（Matrix）
+===============================================================*/
+Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
+{
+	Matrix worldMat = object->GetWorld();
+
+	// もしさらに親がいるならさらに辿る
+	if (object->GetParent())
+	{
+		worldMat *= GetParentObjectMatrix(object->GetParent());
+	}
+
+	return worldMat;
 }
 
 /*==============================================================
@@ -190,7 +255,7 @@ void ObjectRenderer::DisableLighting(Model* model)
 /*==============================================================
 // @brief		オブジェクトの生成
 // @param		ファイル名（wstring）
-// @return		なし
+// @return		オブジェクト（unique_ptr<Object>）
 ===============================================================*/
 unique_ptr<Object> ObjectFactory::CreateObjectFromFile(const wstring fileName)
 {

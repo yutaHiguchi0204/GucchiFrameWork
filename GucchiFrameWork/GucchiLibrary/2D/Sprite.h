@@ -9,6 +9,7 @@
 #include <d3d11_1.h>
 #include <SimpleMath.h>
 #include <string>
+#include <vector>
 #include "TextureCache.h"
 
 namespace GucchiLibrary
@@ -31,6 +32,9 @@ namespace GucchiLibrary
 		float							angle_;				// 回転角
 		bool							isActive_;			// アクティブ状態
 
+		Sprite*							parentSprite_;		// 親スプライト
+		std::vector<Sprite*>			childSprite_;		// 子スプライト
+
 	public:
 		/*
 		// @method		コンストラクタ
@@ -43,7 +47,21 @@ namespace GucchiLibrary
 		Sprite(const DirectX::SimpleMath::Vector2& size, const DirectX::SimpleMath::Vector2& pos = DirectX::SimpleMath::Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
 
 		// デストラクタ
-		virtual ~Sprite() {};
+		virtual ~Sprite() {}
+
+		/*
+		// @method		SetParent
+		// @content		親子関係構築（親設定）
+		// @param		親スプライト（Sprite*）
+		*/
+		void SetParent(Sprite* sprite);
+
+		/*
+		// @method		AddChild
+		// @content		親子関係構築（子設定）
+		// @param		子スプライト（Sprite*）
+		*/
+		void AddChild(Sprite* sprite);
 
 		/* アクセッサ */
 
@@ -62,6 +80,8 @@ namespace GucchiLibrary
 		inline float GetScale() const								{ return scale_; }
 		inline float GetAngle() const								{ return angle_; }
 		inline bool GetActive() const								{ return isActive_; }
+		inline Sprite* GetParent() const							{ return parentSprite_; }
+		inline std::vector<Sprite*> GetChildren() const				{ return childSprite_; }
 
 	public:
 		// 比較用オペレータ

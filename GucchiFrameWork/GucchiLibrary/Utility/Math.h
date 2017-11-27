@@ -20,6 +20,7 @@ namespace GucchiLibrary
 		// @content		指定した範囲内でランダムの値を返す
 		// @param		最小値（T）
 		// @param		最大値（T）
+		// @return		乱数値（T）
 		*/
 		template<class T> static T RandomRange(T min, T max)
 		{

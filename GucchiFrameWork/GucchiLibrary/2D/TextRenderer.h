@@ -26,7 +26,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<TextRenderer>;
 
-		TextRenderer() {};
+		TextRenderer() {}
 
 	public:
 		/*

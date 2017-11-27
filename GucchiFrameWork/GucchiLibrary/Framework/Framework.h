@@ -34,10 +34,10 @@ namespace GucchiLibrary
 
 	public:
 		Framework(HINSTANCE hInstance, int nCmdShow);
-		virtual ~Framework() {};
+		virtual ~Framework() {}
 
-		virtual void Initialize() {};
-		virtual void Finalize() {};
+		virtual void Initialize() {}
+		virtual void Finalize() {}
 
 		// ゲームループ用
 		virtual void Tick();
@@ -56,7 +56,7 @@ namespace GucchiLibrary
 		void SetIsDispFPS(bool flag) { isDispFPS_ = flag; }
 
 		// IDeviceNotify override
-		virtual void OnDeviceLost() override {};
+		virtual void OnDeviceLost() override {}
 		virtual void OnDeviceRestored() override;
 
 	protected:
@@ -67,6 +67,6 @@ namespace GucchiLibrary
 		virtual void Clear();
 
 		virtual void CreateDeviceDependentResources();
-		virtual void CreateWindowSizeDependentResources() {};
+		virtual void CreateWindowSizeDependentResources() {}
 	};
 }

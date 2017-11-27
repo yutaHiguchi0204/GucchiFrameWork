@@ -37,6 +37,7 @@ namespace GucchiLibrary
 		// @content		モデルのロード
 		// @param		モデルファイル名（wstring）
 		// @param		エフェクトファクトリ（EffectFactory*）
+		// @return		モデル（Model*）
 		*/
 		DirectX::Model* LoadModel(const std::wstring cmoFileName, DirectX::EffectFactory* factory);
 	};

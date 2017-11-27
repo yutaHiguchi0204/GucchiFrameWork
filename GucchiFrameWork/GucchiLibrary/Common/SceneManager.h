@@ -38,7 +38,7 @@ namespace GucchiLibrary
 		IScene() {}
 
 		// デストラクタ
-		virtual ~IScene() {};
+		virtual ~IScene() {}
 
 		/*
 		// @method		Initialize（pure）
@@ -89,13 +89,50 @@ namespace GucchiLibrary
 		SceneManager();
 
 	public:
-		void Initialize();																// シーンの初期化
-		void Update();																	// シーンの更新
-		void Draw();																	// シーンの描画
-		void Finalize();																// シーンの終了処理
+		/*
+		// @method		Initialize
+		// @content		初期化処理
+		*/
+		void Initialize();
 
-		void RegisterScene(std::string scene, std::unique_ptr<IScene> newScene);		// シーンの登録
-		void ChangeScene(std::string scene);											// シーンの変更
-		bool CheckScene();																// シーンチェック（前フレームとシーンが異なる場合は描画しない）
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
+		void Update();
+
+		/*
+		// @method		Draw
+		// @content		描画処理
+		*/
+		void Draw();
+
+		/*
+		// @method		Finalize
+		// @content		終了処理
+		*/
+		void Finalize();
+
+		/*
+		// @method		RegisterScene
+		// @content		シーンの登録
+		// @param		シーン名（string）
+		// @param		シーン（unique_ptr<IScene>）
+		*/
+		void RegisterScene(std::string scene, std::unique_ptr<IScene> newScene);
+
+		/*
+		// @method		ChangeScene
+		// @content		シーンの変更
+		// @param		シーン名（string）
+		*/
+		void ChangeScene(std::string scene);
+
+		/*
+		// @method		CheckScene
+		// @content		前フレームとシーンが同じかどうかをチェックする（異なる場合はDrawを呼ばない）
+		// @return		結果（bool）
+		*/
+		bool CheckScene();
 	};
 }

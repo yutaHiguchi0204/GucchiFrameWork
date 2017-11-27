@@ -25,5 +25,28 @@ Sprite::Sprite(const Vector2& size, const Vector2& pos, RECT* rect, float scale,
 	, scale_(scale)
 	, angle_(angle)
 	, isActive_(true)
+	, parentSprite_(nullptr)
 {
+}
+
+/*==============================================================
+// @brief		親子関係構築（親設定）
+// @param		親スプライト（Sprite*）
+// @return		なし
+===============================================================*/
+void Sprite::SetParent(Sprite* sprite)
+{
+	parentSprite_ = sprite;
+	sprite->childSprite_.push_back(this);
+}
+
+/*==============================================================
+// @brief		親子関係構築（子設定）
+// @param		子スプライト（Sprite*）
+// @return		なし
+===============================================================*/
+void Sprite::AddChild(Sprite* sprite)
+{
+	childSprite_.push_back(sprite);
+	sprite->parentSprite_ = this;
 }

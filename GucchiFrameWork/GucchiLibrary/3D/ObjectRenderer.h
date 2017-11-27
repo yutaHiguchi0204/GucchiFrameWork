@@ -49,10 +49,31 @@ namespace GucchiLibrary
 		void SetActive(Object* object, bool active);
 
 		/*
+		// @method		Update
+		// @content		アクティブ状態のオブジェクトを更新
+		*/
+		void Update();
+
+		/*
 		// @method		Draw
 		// @content		アクティブ状態のオブジェクトを描画
 		*/
 		void Draw();
+
+		/*
+		// @method		DrawObject
+		// @content		オブジェクトの描画
+		// @param		オブジェクト（Object*）
+		*/
+		void DrawObject(Object* sprite);
+
+		/*
+		// @method		GetParentObjectPos
+		// @content		親の位置を辿る
+		// @param		親オブジェクト（Sprite*）
+		// @return		最終位置（Matrix）
+		*/
+		DirectX::SimpleMath::Matrix GetParentObjectMatrix(Object* sprite);
 
 		/*
 		// @method		Reset
@@ -95,13 +116,14 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<ObjectFactory>;
 
-		ObjectFactory() {};
+		ObjectFactory() {}
 
 	public:
 		/*
 		// @method		CreateObjectFromFile
 		// @content		指定したcmoファイルからオブジェクトを生成する
 		// @param		モデルファイル名（拡張子を除く）（wstring）
+		// @return		オブジェクト（unique_ptr<Object>）
 		*/
 		std::unique_ptr<Object> CreateObjectFromFile(const std::wstring fileName);
 

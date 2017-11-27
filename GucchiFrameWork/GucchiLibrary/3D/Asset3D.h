@@ -68,6 +68,7 @@ namespace GucchiLibrary
 		BLEND_MODE									blendMode_;					// ブレンドモード
 
 		bool										isActive_;					// アクティブ状態
+		bool										isUseQuaternion_;			// クォータニオンを使用するかどうか
 
 	public:
 		/*
@@ -81,7 +82,13 @@ namespace GucchiLibrary
 		Asset3D(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
 
 		// デストラクタ
-		virtual ~Asset3D() {};
+		virtual ~Asset3D() {}
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
+		virtual void Update();
 
 		/*
 		// @method		DrawApply
@@ -98,6 +105,7 @@ namespace GucchiLibrary
 		void SetTranslate(DirectX::SimpleMath::Vector3 trans)					{ trans_ = trans; }
 		void SetBlendMode(BLEND_MODE mode)										{ blendMode_ = mode; }
 		void SetActive(bool active)												{ isActive_ = active; }
+		void SetUseQuaternion(bool use)											{ isUseQuaternion_ = use; }
 
 		inline DirectX::EffectFactory* GetEffectFactory() const					{ return effectFactory_.get(); }
 		inline Camera* GetCamera() const										{ return camera_; }

@@ -50,13 +50,14 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<TextureCache>;
 
-		TextureCache() {};
+		TextureCache() {}
 
 	public:
 		/*
 		// @method		LoadTexture
 		// @content		テクスチャのロード
 		// @param		テクスチャファイル名（wstring）
+		// @return		テクスチャ（Texture*）
 		*/
 		Texture* LoadTexture(const std::wstring fileName);
 	};

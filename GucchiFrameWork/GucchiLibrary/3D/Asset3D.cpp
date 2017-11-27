@@ -27,6 +27,7 @@ Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot,
 	, world_(Matrix::Identity)
 	, blendMode_(mode)
 	, isActive_(true)
+	, isUseQuaternion_(false)
 {
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
 
@@ -57,6 +58,36 @@ Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot,
 	// 減算描画設定
 	ObjectRenderer& objectRenderer = ObjectRenderer::GetInstance();
 	objectRenderer.SetSubtractive(blendStateSubtract_);
+}
+
+/*==============================================================
+// @brief		更新処理
+// @param		なし
+// @return		なし
+===============================================================*/
+void Asset3D::Update()
+{
+	// スケーリング行列の計算
+	Matrix scaleMat = Matrix::CreateScale(scale_);
+
+	// 回転行列の計算
+	Matrix rotMat = Matrix::Identity;
+	if (isUseQuaternion_)
+	{
+		// クォータニオンで計算
+		rotMat = Matrix::CreateFromQuaternion(quat_);
+	}
+	else
+	{
+		// オイラー角で計算
+		rotMat = Matrix::CreateFromYawPitchRoll(rot_.y, rot_.x, rot_.z);
+	}
+
+	// 平行移動行列の計算
+	Matrix transMat = Matrix::CreateTranslation(trans_);
+
+	// ワールド行列の計算
+	world_ = scaleMat * rotMat * transMat;
 }
 
 /*==============================================================

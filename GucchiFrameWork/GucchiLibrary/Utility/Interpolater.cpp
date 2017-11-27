@@ -22,7 +22,7 @@ bool Interpolater::isNowLerp_ = false;
 /*==============================================================
 // @brief		線形補間（float）
 // @param		開始（float）、終了（float）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（float）
 ===============================================================*/
 float Interpolater::LinearLerp(float start, float end, float time, float* objTimer)
 {
@@ -57,7 +57,7 @@ float Interpolater::LinearLerp(float start, float end, float time, float* objTim
 /*==============================================================
 // @brief		線形補間（Vector2）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector2）
 ===============================================================*/
 Vector2 Interpolater::LinearLerp(Vector2 start, Vector2 end, float time, float* objTimer)
 {
@@ -92,7 +92,7 @@ Vector2 Interpolater::LinearLerp(Vector2 start, Vector2 end, float time, float* 
 /*==============================================================
 // @brief		線形補間（Vector3）
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector3）
 ===============================================================*/
 Vector3 Interpolater::LinearLerp(Vector3 start, Vector3 end, float time, float* objTimer)
 {
@@ -127,7 +127,7 @@ Vector3 Interpolater::LinearLerp(Vector3 start, Vector3 end, float time, float* 
 /*==============================================================
 // @brief		線形補間（Vector4）
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector4）
 ===============================================================*/
 Vector4 Interpolater::LinearLerp(Vector4 start, Vector4 end, float time, float* objTimer)
 {
@@ -162,7 +162,7 @@ Vector4 Interpolater::LinearLerp(Vector4 start, Vector4 end, float time, float* 
 /*==============================================================
 // @brief		二次補間（後が速い）（float）
 // @param		開始（float）、終了（float）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（float）
 ===============================================================*/
 float Interpolater::EaseInLerp(float start, float end, float time, float* objTimer)
 {
@@ -197,7 +197,7 @@ float Interpolater::EaseInLerp(float start, float end, float time, float* objTim
 /*==============================================================
 // @brief		二次補間（後が速い）（Vector2）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector2）
 ===============================================================*/
 Vector2 Interpolater::EaseInLerp(Vector2 start, Vector2 end, float time, float* objTimer)
 {
@@ -232,7 +232,7 @@ Vector2 Interpolater::EaseInLerp(Vector2 start, Vector2 end, float time, float* 
 /*==============================================================
 // @brief		二次補間（後が速い）（Vector3）
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector3）
 ===============================================================*/
 Vector3 Interpolater::EaseInLerp(Vector3 start, Vector3 end, float time, float* objTimer)
 {
@@ -267,7 +267,7 @@ Vector3 Interpolater::EaseInLerp(Vector3 start, Vector3 end, float time, float* 
 /*==============================================================
 // @brief		二次補間（後が速い）（Vector4）
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector4）
 ===============================================================*/
 Vector4 Interpolater::EaseInLerp(Vector4 start, Vector4 end, float time, float* objTimer)
 {
@@ -302,7 +302,7 @@ Vector4 Interpolater::EaseInLerp(Vector4 start, Vector4 end, float time, float* 
 /*==============================================================
 // @brief		二次補間（先が速い）（float）
 // @param		開始（float）、終了（float）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（float）
 ===============================================================*/
 float Interpolater::EaseOutLerp(float start, float end, float time, float* objTimer)
 {
@@ -337,7 +337,7 @@ float Interpolater::EaseOutLerp(float start, float end, float time, float* objTi
 /*==============================================================
 // @brief		二次補間（先が速い）（Vector2）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector2）
 ===============================================================*/
 Vector2 Interpolater::EaseOutLerp(Vector2 start, Vector2 end, float time, float* objTimer)
 {
@@ -372,7 +372,7 @@ Vector2 Interpolater::EaseOutLerp(Vector2 start, Vector2 end, float time, float*
 /*==============================================================
 // @brief		二次補間（先が速い）（Vector3）
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector3）
 ===============================================================*/
 Vector3 Interpolater::EaseOutLerp(Vector3 start, Vector3 end, float time, float* objTimer)
 {
@@ -407,7 +407,7 @@ Vector3 Interpolater::EaseOutLerp(Vector3 start, Vector3 end, float time, float*
 /*==============================================================
 // @brief		二次補間（先が速い）（Vector4）
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector4）
 ===============================================================*/
 Vector4 Interpolater::EaseOutLerp(Vector4 start, Vector4 end, float time, float* objTimer)
 {
@@ -442,7 +442,7 @@ Vector4 Interpolater::EaseOutLerp(Vector4 start, Vector4 end, float time, float*
 /*==============================================================
 // @brief		三次補間（float）
 // @param		開始（float）、終了（float）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（float）
 ===============================================================*/
 float Interpolater::EaseInOutLerp(float start, float end, float time, float* objTimer)
 {
@@ -477,7 +477,7 @@ float Interpolater::EaseInOutLerp(float start, float end, float time, float* obj
 /*==============================================================
 // @brief		三次補間（Vector2）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector2）
 ===============================================================*/
 Vector2 Interpolater::EaseInOutLerp(Vector2 start, Vector2 end, float time, float* objTimer)
 {
@@ -512,7 +512,7 @@ Vector2 Interpolater::EaseInOutLerp(Vector2 start, Vector2 end, float time, floa
 /*==============================================================
 // @brief		三次補間（Vector3）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector3）
 ===============================================================*/
 Vector3 Interpolater::EaseInOutLerp(Vector3 start, Vector3 end, float time, float* objTimer)
 {
@@ -547,7 +547,7 @@ Vector3 Interpolater::EaseInOutLerp(Vector3 start, Vector3 end, float time, floa
 /*==============================================================
 // @brief		三次補間（Vector4）
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、オブジェクト個別のタイマー（float*）
-// @return		なし
+// @return		補間値（Vector4）
 ===============================================================*/
 Vector4 Interpolater::EaseInOutLerp(Vector4 start, Vector4 end, float time, float* objTimer)
 {

@@ -8,6 +8,8 @@
 #include "PlayScene.h"
 
 // 名前空間
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -25,16 +27,23 @@ void PlayScene::Initialize()
 	objectFactory_.SetCamera(camera_.get());
 
 	unique_ptr<Object> object = objectFactory_.CreateObjectFromFile(L"skyDome");
-	unique_ptr<Object> teaPot = objectFactory_.CreateObjectFromFile(L"teaPot");
+	teaPot_ = objectFactory_.CreateObjectFromFile(L"teaPot");
+	teaPot_->SetTranslate(Vector3(-1.f, 0.f, 0.f));
+	teaPot2_ = objectFactory_.CreateObjectFromFile(L"teaPot");
+	teaPot2_->SetTranslate(Vector3(-1.f, 0.f, 0.f));
+	teaPot2_->SetParent(teaPot_.get());
 
 	// オブジェクトの登録
 	objectRenderer_.RegisterObject(object.get());
-	objectRenderer_.RegisterObject(teaPot.get());
+	objectRenderer_.RegisterObject(teaPot_.get());
 
 	// 2Dテスト
-	unique_ptr<Sprite> sprite = spriteFactory_.CreateSpriteFromFile(L"cat", DirectX::SimpleMath::Vector2(100.0f, 100.0f));
-	sprite->SetPos(WINDOW_MIDDLE);
-	spriteRenderer_.RegisterSprite(sprite.get());
+	sprite_ = spriteFactory_.CreateSpriteFromFile(L"cat", DirectX::SimpleMath::Vector2(100.0f, 100.0f));
+	sprite_->SetPos(WINDOW_MIDDLE);
+	sprite2_ = spriteFactory_.CreateSpriteFromFile(L"cat", DirectX::SimpleMath::Vector2(100.0f, 100.0f));
+	sprite2_->SetPos(Vector2(100.0f, 100.0f));
+	sprite2_->SetParent(sprite_.get());
+	spriteRenderer_.RegisterSprite(sprite_.get());
 }
 
 /*==============================================================

@@ -26,7 +26,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<SpriteRenderer>;
 
-		SpriteRenderer() {};
+		SpriteRenderer() {}
 
 	public:
 		/*
@@ -60,6 +60,21 @@ namespace GucchiLibrary
 		void Draw();
 
 		/*
+		// @method		DrawSprite
+		// @content		スプライトの描画
+		// @param		スプライト（Sprite*）
+		*/
+		void DrawSprite(Sprite* sprite);
+
+		/*
+		// @method		GetParentSpritePos
+		// @content		親の位置を辿る
+		// @param		親スプライト（Sprite*）
+		// @return		最終位置（Vector2）
+		*/
+		DirectX::SimpleMath::Vector2 GetParentSpritePos(Sprite* sprite);
+
+		/*
 		// @method		Reset
 		// @content		登録されたスプライトのリストをリセット
 		*/
@@ -76,7 +91,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<SpriteFactory>;
 
-		SpriteFactory() {};
+		SpriteFactory() {}
 
 	public:
 		/*
@@ -84,6 +99,7 @@ namespace GucchiLibrary
 		// @content		指定したテクスチャからスプライトを生成する
 		// @param		テクスチャ名（拡張子を除く）（wstring）
 		// @param		テクスチャサイズ（Vector2）
+		// @return		スプライト（std::unique_ptr<Sprite>）
 		*/
 		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName, const DirectX::SimpleMath::Vector2& size);
 	};

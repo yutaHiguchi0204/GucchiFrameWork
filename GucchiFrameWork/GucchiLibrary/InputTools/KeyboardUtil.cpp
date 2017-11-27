@@ -32,5 +32,6 @@ void KeyboardUtil::Initialize()
 ===============================================================*/
 void KeyboardUtil::Update()
 {
-
+	// ステート情報の更新
+	
 }
