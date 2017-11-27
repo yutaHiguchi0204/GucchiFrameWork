@@ -13,13 +13,15 @@ class PlayScene : public GucchiLibrary::IScene
 {
 private:
 	// TODO: PlaySceneのメンバ
-	std::unique_ptr<GucchiLibrary::Text> text_;
+	std::unique_ptr<GucchiLibrary::Object> teaPot_;
+	std::unique_ptr<GucchiLibrary::Object> teaPot2_;
 
-	// ライブラリインタフェース（複数回使用する際はメンバとして持っといたほうがいいです）
+	std::unique_ptr<GucchiLibrary::Sprite> sprite_;
+	std::unique_ptr<GucchiLibrary::Sprite> sprite2_;
 
 public:
-	PlayScene() {};
-	virtual ~PlayScene() {};
+	PlayScene() {}
+	virtual ~PlayScene() {}
 
 	void Initialize() override;
 	void Update() override;

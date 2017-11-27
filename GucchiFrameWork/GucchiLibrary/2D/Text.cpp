@@ -14,6 +14,9 @@ using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
+// 静的メンバの定義
+const float Text::DEFAULT_FONT_SIZE = 18.0f;		// フォントサイズの初期設定（フォントを新規で作成する際は、フォントサイズを"18"で作ってください）
+
 // メンバ関数の定義
 
 // コンストラクタ
@@ -40,7 +43,6 @@ void Text::SetFont(const wstring font)
 	wstring fontName = FILE_PATH_FONT + font + EXT_SPRITEFONT;
 
 	// リセット処理
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
 	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
-	dxtk.GetSpriteFont().reset(new SpriteFont(deviceResources.GetD3DDevice(), fontName.c_str()));
+	dxtk.SetFont(font);
 }

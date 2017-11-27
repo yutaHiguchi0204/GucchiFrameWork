@@ -21,7 +21,7 @@ using namespace std;
 /*==============================================================
 // @brief		テクスチャ読み込み
 // @param		ファイル名（wstring）
-// @return		なし
+// @return		テクスチャ（Texture*）
 ===============================================================*/
 Texture* TextureCache::LoadTexture(const wstring fileName)
 {

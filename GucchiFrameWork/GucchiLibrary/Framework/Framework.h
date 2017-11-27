@@ -10,10 +10,14 @@
 #include <DirectXColors.h>
 #include "../Common/DeviceResources.h"
 #include "../Common/StepTimer.h"
+#include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		Framework クラス
+	// @content		アプリを制御するフレームワーク
+	*/
 	class Framework : public IDeviceNotify
 	{
 	public:
@@ -25,21 +29,15 @@ namespace GucchiLibrary
 		// 描画用ループタイマー
 		StepTimer&							timer_ = StepTimer::GetInstance();
 
-		// デバッグテキスト
-		//std::unique_ptr<DebugText>			debugText_;
-
-		// プリミティブレンダラー
-		//PrimitiveRenderer*					primitiveRenderer_;
-
 		// FPS表示
 		bool isDispFPS_;
 
 	public:
 		Framework(HINSTANCE hInstance, int nCmdShow);
-		virtual ~Framework() {};
+		virtual ~Framework() {}
 
-		virtual void Initialize() {};
-		virtual void Finalize() {};
+		virtual void Initialize() {}
+		virtual void Finalize() {}
 
 		// ゲームループ用
 		virtual void Tick();
@@ -58,7 +56,7 @@ namespace GucchiLibrary
 		void SetIsDispFPS(bool flag) { isDispFPS_ = flag; }
 
 		// IDeviceNotify override
-		virtual void OnDeviceLost() override {};
+		virtual void OnDeviceLost() override {}
 		virtual void OnDeviceRestored() override;
 
 	protected:
@@ -69,6 +67,6 @@ namespace GucchiLibrary
 		virtual void Clear();
 
 		virtual void CreateDeviceDependentResources();
-		virtual void CreateWindowSizeDependentResources() {};
+		virtual void CreateWindowSizeDependentResources() {}
 	};
 }

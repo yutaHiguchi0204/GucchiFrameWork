@@ -13,7 +13,10 @@
 
 namespace GucchiLibrary
 {
-	// アニメーションとシミュレーションのタイミングヘルパー
+	/*
+	// @class		StepTimer クラス（Singleton）
+	// @content		アニメーションとシミュレーションのタイミングヘルパー
+	*/
 	class StepTimer : public SingletonDirector<StepTimer>
 	{
 	public:

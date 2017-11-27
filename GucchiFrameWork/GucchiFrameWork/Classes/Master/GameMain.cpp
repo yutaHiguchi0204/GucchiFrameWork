@@ -8,8 +8,6 @@
 #include "GameMain.h"
 
 // –¼‘O‹óŠÔ
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 

@@ -79,7 +79,7 @@ void SpriteRenderer::SetOrder(Sprite* sprite, int order)
 }
 
 /*==============================================================
-// @brief		アクティブ状態のスプライトを表示
+// @brief		アクティブ状態のスプライトを描画
 // @param		なし
 // @return		なし
 ===============================================================*/
@@ -92,17 +92,67 @@ void SpriteRenderer::Draw()
 	dxtk.GetSpriteBatch()->Begin(SpriteSortMode::SpriteSortMode_Deferred, deviceResource.GetCommonStates()->NonPremultiplied());
 
 	// 描画処理
-	for (auto sprite : spriteList_)
+	for (auto& sprite : spriteList_)
 	{
 		// アクティブ状態のスプライトのみ表示
 		if (sprite.GetActive())
 		{
-			dxtk.GetSpriteBatch()->Draw(sprite.GetTexture()->GetShaderResourceView().Get(), sprite.GetPos(), sprite.GetRect(), Colors::White, sprite.GetAngle(), Vector2(sprite.GetSize().x / 2, sprite.GetSize().y / 2));
+			DrawSprite(&sprite);
 		}
 	}
 
 	// バッチ処理終了
 	dxtk.GetSpriteBatch()->End();
+}
+
+/*==============================================================
+// @brief		スプライトの描画
+// @param		スプライト（Sprite*）
+// @return		なし
+===============================================================*/
+void SpriteRenderer::DrawSprite(Sprite* sprite)
+{
+	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
+
+	// 親からの座標設定
+	Vector2 position = sprite->GetPos();
+	if (sprite->GetParent())
+	{
+		position += GetParentSpritePos(sprite->GetParent());
+	}
+
+	// 描画
+	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, sprite->GetAngle(), Vector2(sprite->GetSize().x / 2, sprite->GetSize().y / 2));
+
+	// 子スプライトがいるなら子どもも描画
+	if (sprite->GetChildren().size() != 0)
+	{
+		for (auto& child : sprite->GetChildren())
+		{
+			if (child->GetActive())
+			{
+				DrawSprite(child);
+			}
+		}
+	}
+}
+
+/*==============================================================
+// @brief		親の位置を辿る
+// @param		親スプライト（Sprite*）
+// @return		最終位置（Vector2）
+===============================================================*/
+Vector2 SpriteRenderer::GetParentSpritePos(Sprite* sprite)
+{
+	Vector2 localPos = sprite->GetPos();
+
+	// もしさらに親がいるならさらに辿る
+	if (sprite->GetParent())
+	{
+		localPos += GetParentSpritePos(sprite->GetParent());
+	}
+
+	return localPos;
 }
 
 /*==============================================================
@@ -118,7 +168,7 @@ void SpriteRenderer::Reset()
 /*==============================================================
 // @brief		スプライトの生成
 // @param		ファイル名（wstring）、画像サイズ（Vector2）
-// @return		なし
+// @return		スプライト（unique_ptr<Sprite>）
 ===============================================================*/
 unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, const Vector2& size)
 {

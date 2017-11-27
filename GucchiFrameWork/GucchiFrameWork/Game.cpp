@@ -57,6 +57,7 @@ void Game::Finalize()
 void Game::Update(const StepTimer& timer)
 {
 	// デバイス関連などの更新はここに記述
+	objectRenderer_.Update();			// オブジェクト
 
 	// ゲーム内関連の更新処理はGameMainの更新に書いてください（基本的にここはいじらない）
 	main_->Update();
@@ -72,6 +73,7 @@ void Game::Render()
 	// デバイス関連などの描画はここに記述
 
 	// ライブラリインタフェースでの描画処理
+	objectRenderer_.Draw();				// オブジェクト
 	spriteRenderer_.Draw();				// スプライト
 	textRenderer_.Draw();				// テキスト
 

@@ -7,7 +7,10 @@
 
 namespace GucchiLibrary
 {
-	// クラスの定義
+	/*
+	// @class		SingletonDirector クラス（templete）
+	// @content		シングルトンクラス化
+	*/
 	template <class T> class SingletonDirector
 	{
 	public:
@@ -20,7 +23,7 @@ namespace GucchiLibrary
 
 	protected:
 		// コンストラクタ
-		SingletonDirector() {};
+		SingletonDirector() {}
 
 	private:
 		// コピーと代入防止

@@ -59,7 +59,7 @@ void TextRenderer::Draw()
 			Vector2 origin = dxtk.GetSpriteFont()->MeasureString(text.GetString().c_str()) / 2.f;
 
 			// •`‰æ
-			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch().get(), text.GetString().c_str(), text.GetPos(), text.GetColor(), 0.f, origin, text.GetFontSize() / DEFAULT_FONT_SIZE);
+			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch(), text.GetString().c_str(), text.GetPos(), text.GetColor(), 0.f, origin, text.GetFontSize() / Text::DEFAULT_FONT_SIZE);
 		}
 	}
 
