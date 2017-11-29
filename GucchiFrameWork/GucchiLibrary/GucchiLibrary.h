@@ -24,6 +24,12 @@
 // テキスト関連
 #include "2D/TextRenderer.h"
 
+// バイナリファイル管理
+#include "Utility/BinaryFileDirector.h"
+
+// CSVファイル管理
+#include "Utility/CSVFileDirector.h"
+
 // 補間ライブラリ
 #include "Utility/Interpolater.h"
 

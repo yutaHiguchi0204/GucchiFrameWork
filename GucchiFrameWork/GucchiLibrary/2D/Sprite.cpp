@@ -37,7 +37,7 @@ Sprite::Sprite(const Vector2& size, const Vector2& pos, RECT* rect, float scale,
 void Sprite::SetParent(Sprite* sprite)
 {
 	parentSprite_ = sprite;
-	sprite->childSprite_.push_back(this);
+	sprite->childSprite_.emplace_back(this);
 }
 
 /*==============================================================
@@ -47,6 +47,6 @@ void Sprite::SetParent(Sprite* sprite)
 ===============================================================*/
 void Sprite::AddChild(Sprite* sprite)
 {
-	childSprite_.push_back(sprite);
+	childSprite_.emplace_back(sprite);
 	sprite->parentSprite_ = this;
 }

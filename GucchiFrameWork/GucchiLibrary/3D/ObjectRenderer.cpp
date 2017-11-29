@@ -24,7 +24,7 @@ using namespace std;
 ===============================================================*/
 void ObjectRenderer::RegisterObject(Object* object)
 {
-	objectList_.push_back(*object);
+	objectList_.emplace_back(object);
 }
 
 /*==============================================================
@@ -48,9 +48,9 @@ void ObjectRenderer::Update()
 	for (auto& object : objectList_)
 	{
 		// アクティブ状態のオブジェクトのみ更新
-		if (object.GetActive())
+		if (object->GetActive())
 		{
-			object.Update();
+			object->Update();
 		}
 	}
 }
@@ -66,9 +66,9 @@ void ObjectRenderer::Draw()
 	for (auto& object : objectList_)
 	{
 		// アクティブ状態のオブジェクトのみ描画
-		if (object.GetActive())
+		if (object->GetActive())
 		{
-			DrawObject(&object);
+			DrawObject(object);
 		}
 	}
 }

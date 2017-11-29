@@ -36,12 +36,12 @@ void SpriteRenderer::RegisterSprite(Sprite* sprite, int order)
 			orderNum++;
 		}
 
-		spriteList_.insert(itr, *sprite);
+		spriteList_.insert(itr, sprite);
 		return;
 	}
 
 	// スプライトの登録
-	spriteList_.push_back(*sprite);
+	spriteList_.emplace_back(sprite);
 }
 
 /*==============================================================
@@ -72,7 +72,7 @@ void SpriteRenderer::SetOrder(Sprite* sprite, int order)
 	}
 
 	// 現在の位置を取得
-	auto now = find(spriteList_.begin(), spriteList_.end(), *sprite);
+	auto now = find(spriteList_.begin(), spriteList_.end(), sprite);
 
 	// 指定位置に移動
 	spriteList_.splice(itr, spriteList_, now);
@@ -95,9 +95,9 @@ void SpriteRenderer::Draw()
 	for (auto& sprite : spriteList_)
 	{
 		// アクティブ状態のスプライトのみ表示
-		if (sprite.GetActive())
+		if (sprite->GetActive())
 		{
-			DrawSprite(&sprite);
+			DrawSprite(sprite);
 		}
 	}
 

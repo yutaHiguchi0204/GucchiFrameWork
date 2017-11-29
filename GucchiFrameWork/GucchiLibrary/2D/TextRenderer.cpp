@@ -23,7 +23,7 @@ using namespace GucchiLibrary;
 ===============================================================*/
 void TextRenderer::RegisterText(Text* text)
 {
-	textList_.push_back(*text);
+	textList_.emplace_back(*text);
 }
 
 /*==============================================================

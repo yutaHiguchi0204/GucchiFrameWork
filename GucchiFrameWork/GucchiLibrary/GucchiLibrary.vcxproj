@@ -155,6 +155,8 @@
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="InputTools\KeyboardUtil.cpp" />
     <ClCompile Include="InputTools\MouseUtil.cpp" />
+    <ClCompile Include="Utility\BinaryFileDirector.cpp" />
+    <ClCompile Include="Utility\CSVFileDirector.cpp" />
     <ClCompile Include="Utility\Interpolater.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +187,8 @@
     <ClInclude Include="GucchiLibrary.h" />
     <ClInclude Include="InputTools\KeyboardUtil.h" />
     <ClInclude Include="InputTools\MouseUtil.h" />
+    <ClInclude Include="Utility\BinaryFileDirector.h" />
+    <ClInclude Include="Utility\CSVFileDirector.h" />
     <ClInclude Include="Utility\Interpolater.h" />
     <ClInclude Include="Utility\Math.h" />
   </ItemGroup>

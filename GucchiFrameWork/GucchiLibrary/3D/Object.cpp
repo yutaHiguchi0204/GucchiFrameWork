@@ -49,7 +49,7 @@ void Object::Update()
 void Object::SetParent(Object* object)
 {
 	parentObject_ = object;
-	object->childObject_.push_back(this);
+	object->childObject_.emplace_back(this);
 }
 
 /*==============================================================
@@ -59,6 +59,6 @@ void Object::SetParent(Object* object)
 ===============================================================*/
 void Object::AddChild(Object* object)
 {
-	childObject_.push_back(object);
+	childObject_.emplace_back(object);
 	object->parentObject_ = this;
 }
