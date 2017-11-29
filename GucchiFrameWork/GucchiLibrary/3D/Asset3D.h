@@ -118,19 +118,21 @@ namespace GucchiLibrary
 		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtract_; }
 		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
 		inline bool GetActive()	const											{ return isActive_; }
+		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
 
 	public:
 		// 比較用オペレータ
 		bool operator==(const Asset3D& asset) const
 		{
-			if (model_			== asset.GetModel()			&&
-				scale_			== asset.GetScale()			&&
-				rot_			== asset.GetRotate()		&&
-				quat_			== asset.GetQuaternion()	&&
-				trans_			== asset.GetTranslate()		&&
-				world_			== asset.GetWorld()			&&
-				blendMode_		== asset.GetBlendMode()		&&
-				isActive_		== asset.GetActive()
+			if (model_				== asset.GetModel()				&&
+				scale_				== asset.GetScale()				&&
+				rot_				== asset.GetRotate()			&&
+				quat_				== asset.GetQuaternion()		&&
+				trans_				== asset.GetTranslate()			&&
+				world_				== asset.GetWorld()				&&
+				blendMode_			== asset.GetBlendMode()			&&
+				isActive_			== asset.GetActive()			&&
+				isUseQuaternion_	== asset.GetUseQuaternion()
 				)
 			{
 				return true;

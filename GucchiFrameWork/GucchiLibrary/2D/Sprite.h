@@ -87,13 +87,15 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Sprite& sprite) const
 		{
-			if (texture_		== sprite.GetTexture()	&&
-				pos_			== sprite.GetPos()		&&
-				size_			== sprite.GetSize()		&&
-				textureRect_	== sprite.GetRect()		&&
-				scale_			== sprite.GetScale()	&&
-				angle_			== sprite.GetAngle()	&&
-				isActive_		== sprite.GetActive()
+			if (texture_		== sprite.GetTexture()		&&
+				pos_			== sprite.GetPos()			&&
+				size_			== sprite.GetSize()			&&
+				textureRect_	== sprite.GetRect()			&&
+				scale_			== sprite.GetScale()		&&
+				angle_			== sprite.GetAngle()		&&
+				isActive_		== sprite.GetActive()		&&
+				parentSprite_	== sprite.GetParent()		&&
+				childSprite_	== sprite.GetChildren()
 				)
 			{
 				return true;

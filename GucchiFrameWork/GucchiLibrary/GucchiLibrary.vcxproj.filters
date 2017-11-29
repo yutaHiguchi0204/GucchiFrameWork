@@ -81,6 +81,12 @@
     <ClCompile Include="Camera\DefaultCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\BinaryFileDirector.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\CSVFileDirector.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h">
@@ -154,6 +160,12 @@
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Math.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\BinaryFileDirector.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\CSVFileDirector.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>

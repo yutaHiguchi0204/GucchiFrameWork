@@ -13,11 +13,9 @@ class PlayScene : public GucchiLibrary::IScene
 {
 private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
-	std::unique_ptr<GucchiLibrary::Object> teaPot_;
-	std::unique_ptr<GucchiLibrary::Object> teaPot2_;
+	std::unique_ptr<GucchiLibrary::Object> skyDome_;
 
-	std::unique_ptr<GucchiLibrary::Sprite> sprite_;
-	std::unique_ptr<GucchiLibrary::Sprite> sprite2_;
+	std::vector<std::vector<int>> data_;
 
 public:
 	PlayScene() {}

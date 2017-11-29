@@ -25,7 +25,7 @@ namespace GucchiLibrary
 	class ObjectRenderer : public SingletonDirector<ObjectRenderer>
 	{
 	private:
-		std::list<Object> objectList_;
+		std::list<Object*> objectList_;
 
 	private:
 		friend class SingletonDirector<ObjectRenderer>;

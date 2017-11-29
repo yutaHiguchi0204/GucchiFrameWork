@@ -21,7 +21,7 @@ namespace GucchiLibrary
 	class SpriteRenderer : public SingletonDirector<SpriteRenderer>
 	{
 	private:
-		std::list<Sprite> spriteList_;
+		std::list<Sprite*> spriteList_;
 
 	private:
 		friend class SingletonDirector<SpriteRenderer>;
