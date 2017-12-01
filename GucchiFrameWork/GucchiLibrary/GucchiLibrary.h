@@ -24,6 +24,10 @@
 // テキスト関連
 #include "2D/TextRenderer.h"
 
+// マップチップ関連
+#include "MapTip/MapTip2D.h"
+#include "MapTip/MapTip3D.h"
+
 // バイナリファイル管理
 #include "Utility/BinaryFileDirector.h"
 

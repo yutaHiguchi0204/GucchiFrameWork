@@ -147,6 +147,7 @@
     <ClCompile Include="3D\ObjectRenderer.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Camera\DefaultCamera.cpp" />
+    <ClCompile Include="Collision\CollisionManager.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
     <ClCompile Include="Dummy\DummyScene.cpp">
@@ -155,6 +156,9 @@
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="InputTools\KeyboardUtil.cpp" />
     <ClCompile Include="InputTools\MouseUtil.cpp" />
+    <ClCompile Include="MapTip\MapTip.cpp" />
+    <ClCompile Include="MapTip\MapTip2D.cpp" />
+    <ClCompile Include="MapTip\MapTip3D.cpp" />
     <ClCompile Include="Utility\BinaryFileDirector.cpp" />
     <ClCompile Include="Utility\CSVFileDirector.cpp" />
     <ClCompile Include="Utility\Interpolater.cpp" />
@@ -171,6 +175,7 @@
     <ClInclude Include="3D\ObjectRenderer.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Camera\DefaultCamera.h" />
+    <ClInclude Include="Collision\CollisionManager.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
@@ -187,6 +192,9 @@
     <ClInclude Include="GucchiLibrary.h" />
     <ClInclude Include="InputTools\KeyboardUtil.h" />
     <ClInclude Include="InputTools\MouseUtil.h" />
+    <ClInclude Include="MapTip\MapTip.h" />
+    <ClInclude Include="MapTip\MapTip2D.h" />
+    <ClInclude Include="MapTip\MapTip3D.h" />
     <ClInclude Include="Utility\BinaryFileDirector.h" />
     <ClInclude Include="Utility\CSVFileDirector.h" />
     <ClInclude Include="Utility\Interpolater.h" />

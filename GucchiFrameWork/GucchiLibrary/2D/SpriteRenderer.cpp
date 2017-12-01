@@ -167,10 +167,10 @@ void SpriteRenderer::Reset()
 
 /*==============================================================
 // @brief		スプライトの生成
-// @param		ファイル名（wstring）、画像サイズ（Vector2）
+// @param		ファイル名（wstring）、画像サイズ（Vector2）、テクスチャの矩形（RECT*）
 // @return		スプライト（unique_ptr<Sprite>）
 ===============================================================*/
-unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, const Vector2& size)
+unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, const Vector2& size, RECT* rect)
 {
 	unique_ptr<Sprite> sprite = make_unique<Sprite>(size);
 
@@ -180,6 +180,10 @@ unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, c
 	// テクスチャの読み込み
 	Texture* texture = cache.LoadTexture(fileName);
 	sprite->SetTexture(texture);
+	if (rect)
+	{
+		sprite->SetRect(rect);
+	}
 
 	return std::move(sprite);
 }

@@ -99,8 +99,9 @@ namespace GucchiLibrary
 		// @content		指定したテクスチャからスプライトを生成する
 		// @param		テクスチャ名（拡張子を除く）（wstring）
 		// @param		テクスチャサイズ（Vector2）
+		// @param		テクスチャの矩形（RECT*）
 		// @return		スプライト（std::unique_ptr<Sprite>）
 		*/
-		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName, const DirectX::SimpleMath::Vector2& size);
+		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName, const DirectX::SimpleMath::Vector2& size, RECT* rect = nullptr);
 	};
 }

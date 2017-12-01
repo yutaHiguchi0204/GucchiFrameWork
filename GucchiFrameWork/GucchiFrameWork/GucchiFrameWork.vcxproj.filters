@@ -57,5 +57,11 @@
     <MeshContentTask Include="Resources\Assets\ModelData\skyDome.FBX">
       <Filter>Assets\Models</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Resources\Assets\ModelData\block.FBX">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Resources\Assets\ModelData\block2.FBX">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
   </ItemGroup>
 </Project>

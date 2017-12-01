@@ -27,10 +27,10 @@ namespace GucchiLibrary
 		virtual ~BinaryFile() {}
 
 		/*
-		// @method		DataReset
+		// @method		ResetData
 		// @content		バイナリデータのリセット
 		*/
-		void DataReset();
+		void ResetData();
 
 		/* アクセッサ */
 

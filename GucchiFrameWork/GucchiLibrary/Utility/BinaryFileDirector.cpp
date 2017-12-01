@@ -34,7 +34,7 @@ BinaryFile::BinaryFile(BinaryFile&& _in)
 // @param		なし
 // @return		なし
 ===============================================================*/
-void BinaryFile::DataReset()
+void BinaryFile::ResetData()
 {
 	data_.reset(new char[size_]);
 }
@@ -70,7 +70,7 @@ BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName)
 	bin.SetSize(static_cast<unsigned int>(eofPos - begPos));
 
 	// メモリ確保
-	bin.DataReset();
+	bin.ResetData();
 
 	// ファイルの先頭からバッファへデータをコピー
 	ifs.read(bin.GetData(), bin.GetSize());
@@ -108,7 +108,7 @@ BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName, int part)
 	bin.SetSize(sizeof(unsigned int));
 
 	// メモリ確保
-	bin.DataReset();
+	bin.ResetData();
 
 	// ファイルの先頭からバッファへデータをコピー
 	ifs.read(bin.GetData(), bin.GetSize());

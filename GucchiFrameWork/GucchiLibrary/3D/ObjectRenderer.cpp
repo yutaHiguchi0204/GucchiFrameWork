@@ -80,38 +80,41 @@ void ObjectRenderer::Draw()
 ===============================================================*/
 void ObjectRenderer::DrawObject(Object* object)
 {
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
-
-	// 各項目の準備
-	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
-	CommonStates* states = deviceResources.GetCommonStates();
-
-	// 親からの座標設定
-	Matrix worldMat = object->GetWorld();
-	if (object->GetParent())
+	if (object->GetModel())
 	{
-		worldMat *= GetParentObjectMatrix(object->GetParent());
+		DeviceResources& deviceResources = DeviceResources::GetInstance();
+
+		// 各項目の準備
+		ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
+		CommonStates* states = deviceResources.GetCommonStates();
+
+		// 親からの座標設定
+		Matrix worldMat = object->GetWorld();
+		if (object->GetParent())
+		{
+			worldMat *= GetParentObjectMatrix(object->GetParent());
+		}
+
+		// 描画前の準備
+		object->DrawApply();
+
+		// カメラの準備
+		Camera* camera = object->GetCamera();
+
+		// 減算描画の場合は減算指定をする
+		if (object->GetBlendMode() == Asset3D::BLEND_MODE::SUBTRACTIVE)
+		{
+			object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection(), false, [&]() {
+				context->OMSetBlendState(object->GetBlendStateSubtract(), nullptr, 0xffffffff);
+			});
+		}
+		else
+		{
+			object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection());
+		}
 	}
 
-	// 描画前の準備
-	object->DrawApply();
-
-	// カメラの準備
-	Camera* camera = object->GetCamera();
-
-	// 減算描画の場合は減算指定をする
-	if (object->GetBlendMode() == Asset3D::BLEND_MODE::SUBTRACTIVE)
-	{
-		object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection(), false, [&]() {
-			context->OMSetBlendState(object->GetBlendStateSubtract(), nullptr, 0xffffffff);
-		});
-	}
-	else
-	{
-		object->GetModel()->Draw(context, *states, worldMat, camera->GetView(), camera->GetProjection());
-	}
-
-	// 子スプライトがいるなら子どもも描画
+	// 子オブジェクトがいるなら子どもも描画
 	if (object->GetChildren().size() != 0)
 	{
 		for (auto& child : object->GetChildren())
@@ -275,5 +278,5 @@ unique_ptr<Object> ObjectFactory::CreateObjectFromFile(const wstring fileName)
 	object->SetModel(model);
 	object->SetCamera(camera_);
 
-	return std::move(object);
+	return move(object);
 }

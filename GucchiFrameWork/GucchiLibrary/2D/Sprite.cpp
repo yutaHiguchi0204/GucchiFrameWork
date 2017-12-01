@@ -29,6 +29,20 @@ Sprite::Sprite(const Vector2& size, const Vector2& pos, RECT* rect, float scale,
 {
 }
 
+// コピーコンストラクタ
+Sprite::Sprite(const Sprite& sprite)
+{
+	texture_      = sprite.texture_;
+	pos_          = sprite.pos_;
+	size_         = sprite.size_;
+	textureRect_  = sprite.textureRect_;
+	scale_        = sprite.scale_;
+	angle_        = sprite.angle_;
+	isActive_     = sprite.isActive_;
+	parentSprite_ = sprite.parentSprite_;
+	childSprite_  = sprite.childSprite_;
+}
+
 /*==============================================================
 // @brief		親子関係構築（親設定）
 // @param		親スプライト（Sprite*）
