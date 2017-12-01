@@ -15,7 +15,7 @@ private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
 	std::unique_ptr<GucchiLibrary::Object> skyDome_;
 
-	std::vector<std::vector<int>> data_;
+	std::unique_ptr<GucchiLibrary::MapTip3D> stage_;
 
 public:
 	PlayScene() {}

@@ -46,6 +46,9 @@ namespace GucchiLibrary
 		*/
 		Sprite(const DirectX::SimpleMath::Vector2& size, const DirectX::SimpleMath::Vector2& pos = DirectX::SimpleMath::Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
 
+		// コピーコンストラクタ
+		Sprite(const Sprite& sprite);
+
 		// デストラクタ
 		virtual ~Sprite() {}
 
@@ -84,6 +87,22 @@ namespace GucchiLibrary
 		inline std::vector<Sprite*> GetChildren() const				{ return childSprite_; }
 
 	public:
+		// 代入オペレータ
+		Sprite& operator=(const Sprite& sprite)
+		{
+			texture_      = sprite.texture_;
+			pos_          = sprite.pos_;
+			size_         = sprite.size_;
+			textureRect_  = sprite.textureRect_;
+			scale_        = sprite.scale_;
+			angle_        = sprite.angle_;
+			isActive_     = sprite.isActive_;
+			parentSprite_ = sprite.parentSprite_;
+			childSprite_  = sprite.childSprite_;
+
+			return (*this);
+		}
+
 		// 比較用オペレータ
 		bool operator==(const Sprite& sprite) const
 		{

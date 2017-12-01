@@ -26,9 +26,9 @@ namespace GucchiLibrary
 	public:
 		/*
 		// @content		ブレンドモード
-		// @mode		ALPHA　：　アルファブレンド
-		// @mode		ADDITIVE　：　加算ブレンド
-		// @mode		SUBTRACTIVE　：　減算ブレンド
+		// @mode		ALPHA		：　アルファブレンド
+		// @mode		ADDITIVE	：　加算ブレンド
+		// @mode		SUBTRACTIVE	：　減算ブレンド
 		*/
 		enum class BLEND_MODE : int
 		{
@@ -81,6 +81,9 @@ namespace GucchiLibrary
 		*/
 		Asset3D(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
 
+		// コピーコンストラクタ
+		Asset3D(const Asset3D& asset);
+
 		// デストラクタ
 		virtual ~Asset3D() {}
 
@@ -121,18 +124,39 @@ namespace GucchiLibrary
 		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
 
 	public:
+		// 代入オペレータ
+		Asset3D& operator=(const Asset3D& asset)
+		{
+			basicEffect_        = asset.basicEffect_;
+			inputLayout_        = asset.inputLayout_;
+			effectFactory_      = asset.effectFactory_;
+			camera_             = asset.camera_;
+			model_              = asset.model_;
+			scale_              = asset.scale_;
+			rot_                = asset.rot_;
+			quat_               = asset.quat_;
+			trans_              = asset.trans_;
+			world_              = asset.world_;
+			blendStateSubtract_ = asset.blendStateSubtract_;
+			blendMode_          = asset.blendMode_;
+			isActive_           = asset.isActive_;
+			isUseQuaternion_    = asset.isUseQuaternion_;
+
+			return (*this);
+		}
+
 		// 比較用オペレータ
 		bool operator==(const Asset3D& asset) const
 		{
-			if (model_				== asset.GetModel()				&&
-				scale_				== asset.GetScale()				&&
-				rot_				== asset.GetRotate()			&&
-				quat_				== asset.GetQuaternion()		&&
-				trans_				== asset.GetTranslate()			&&
-				world_				== asset.GetWorld()				&&
-				blendMode_			== asset.GetBlendMode()			&&
-				isActive_			== asset.GetActive()			&&
-				isUseQuaternion_	== asset.GetUseQuaternion()
+			if (model_				== asset.model_				&&
+				scale_				== asset.scale_				&&
+				rot_				== asset.rot_				&&
+				quat_				== asset.quat_				&&
+				trans_				== asset.trans_				&&
+				world_				== asset.world_				&&
+				blendMode_			== asset.blendMode_			&&
+				isActive_			== asset.isActive_			&&
+				isUseQuaternion_	== asset.isUseQuaternion_
 				)
 			{
 				return true;

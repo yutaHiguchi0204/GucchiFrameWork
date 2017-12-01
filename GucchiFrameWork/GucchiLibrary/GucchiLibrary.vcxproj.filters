@@ -25,6 +25,12 @@
     <Filter Include="InputTools">
       <UniqueIdentifier>{40deef89-7d7e-4dac-8ad8-3a6478905dfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{12a9a941-fc48-4061-8419-6d5c2a99521f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapTip">
+      <UniqueIdentifier>{4520c1c5-161f-4bdc-8aa6-1776b41dcae9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -86,6 +92,18 @@
     </ClCompile>
     <ClCompile Include="Utility\CSVFileDirector.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\CollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTip\MapTip2D.cpp">
+      <Filter>MapTip</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTip\MapTip3D.cpp">
+      <Filter>MapTip</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTip\MapTip.cpp">
+      <Filter>MapTip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +185,18 @@
     </ClInclude>
     <ClInclude Include="Utility\CSVFileDirector.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\CollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTip\MapTip.h">
+      <Filter>MapTip</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTip\MapTip2D.h">
+      <Filter>MapTip</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTip\MapTip3D.h">
+      <Filter>MapTip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

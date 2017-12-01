@@ -39,7 +39,7 @@ Model* ModelCache::LoadModel(const wstring cmoFileName, EffectFactory* factory)
 		model = Model::CreateFromCMO(deviceResources.GetD3DDevice(), fullPath.c_str(), *factory);
 
 		// ƒ‚ƒfƒ‹Ši”[
-		models_[cmoFileName] = std::move(model);
+		models_[cmoFileName] = move(model);
 	}
 
 	return models_[cmoFileName].get();

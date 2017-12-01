@@ -23,7 +23,7 @@ using namespace std;
 void PlayScene::Initialize()
 {
 	// デフォルトカメラを設定
-	camera_ = std::make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
+	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	objectFactory_.SetCamera(camera_.get());
 
 	skyDome_ = objectFactory_.CreateObjectFromFile(L"skyDome");
@@ -32,7 +32,11 @@ void PlayScene::Initialize()
 	objectRenderer_.RegisterObject(skyDome_.get());
 
 	// データ取得
-	data_ = CSVFileDirector::LoadCSVFile(L"test");
+	wstring wstr[2] = { L"block", L"block2" };
+	TipData::TIP_TYPE type[2] = { TipData::TIP_TYPE::NONE, TipData::TIP_TYPE::SOLID };
+	vector<vector<int>> data = CSVFileDirector::LoadCSVFile(L"test");
+	stage_ = make_unique<MapTip3D>(data, Vector3::One, wstr, 2, type);
+	stage_->SetTranslate(Vector3(-2.f, 0.f, -2.f));
 }
 
 /*==============================================================

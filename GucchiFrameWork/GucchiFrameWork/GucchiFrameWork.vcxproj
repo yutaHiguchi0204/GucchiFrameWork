@@ -187,6 +187,8 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Resources\Assets\ModelData\block.FBX" />
+    <MeshContentTask Include="Resources\Assets\ModelData\block2.FBX" />
     <MeshContentTask Include="Resources\Assets\ModelData\skyDome.FBX" />
     <MeshContentTask Include="Resources\Assets\ModelData\teaPot.FBX" />
   </ItemGroup>
