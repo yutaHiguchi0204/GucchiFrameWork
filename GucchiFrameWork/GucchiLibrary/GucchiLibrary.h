@@ -29,10 +29,10 @@
 #include "MapTip/MapTip3D.h"
 
 // バイナリファイル管理
-#include "Utility/BinaryFileDirector.h"
+#include "Utility/BinaryFileManager.h"
 
 // CSVファイル管理
-#include "Utility/CSVFileDirector.h"
+#include "Utility/CSVFileManager.h"
 
 // 補間ライブラリ
 #include "Utility/Interpolater.h"

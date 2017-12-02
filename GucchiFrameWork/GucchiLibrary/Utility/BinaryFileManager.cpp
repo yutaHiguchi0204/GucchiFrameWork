@@ -1,11 +1,11 @@
 /* =====================================================================
-//! @param		「BinaryFileDirector」ソース（バイナリファイル管理）
+//! @param		「BinaryFileManager」ソース（バイナリファイル管理）
 //! @create		樋口 裕太
 //! @date		17/11/27
 ===================================================================== */
 
 // ヘッダファイルのインクルード
-#include "BinaryFileDirector.h"
+#include "BinaryFileManager.h"
 #include <cassert>
 #include <d3d11_1.h>
 #include <fstream>
@@ -44,7 +44,7 @@ void BinaryFile::ResetData()
 // @param		ファイル名（wstring）
 // @return		バイナリファイル（BinaryFile）
 ===============================================================*/
-BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName)
+BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
 {
 	BinaryFile bin;
 
@@ -86,7 +86,7 @@ BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName)
 // @param		ファイル名（wstring）
 // @return		バイナリファイル（BinaryFile）
 ===============================================================*/
-BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName, int part)
+BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
 {
 	BinaryFile bin;
 
@@ -124,7 +124,7 @@ BinaryFile BinaryFileDirector::LoadBinaryFile(const wstring fileName, int part)
 // @param		ファイル名（wstring）、バイナリデータ（BinaryFile）
 // @return		なし
 ===============================================================*/
-void BinaryFileDirector::SaveBinaryFile(const wstring fileName, const BinaryFile& data)
+void BinaryFileManager::SaveBinaryFile(const wstring fileName, const BinaryFile& data)
 {
 	// ファイル読み込み準備
 	ifstream ifs;

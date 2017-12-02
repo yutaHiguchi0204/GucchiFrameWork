@@ -13,8 +13,6 @@ class PlayScene : public GucchiLibrary::IScene
 {
 private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
-	std::unique_ptr<GucchiLibrary::Object> skyDome_;
-
 	std::unique_ptr<GucchiLibrary::MapTip3D> stage_;
 
 public:

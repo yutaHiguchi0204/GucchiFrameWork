@@ -24,7 +24,8 @@ namespace GucchiLibrary
 	{
 	protected:
 		// TODO: 共通メンバ
-		std::unique_ptr<Camera> camera_;
+		std::unique_ptr<Object> skyDome_;		// 天球
+		std::unique_ptr<Camera> camera_;		// カメラ
 
 		// ライブラリインタフェース
 		ObjectRenderer&		objectRenderer_		= ObjectRenderer::GetInstance();			// オブジェクト描画用
@@ -63,6 +64,30 @@ namespace GucchiLibrary
 		// @content		終了処理
 		*/
 		virtual void Finalize() = 0;
+
+		/*
+		// @method		CommonInitialize
+		// @content		全シーン共通の初期化処理
+		*/
+		virtual void CommonInitialize();
+
+		/*
+		// @method		CommonUpdate
+		// @content		全シーン共通の更新処理
+		*/
+		virtual void CommonUpdate();
+
+		/*
+		// @method		CommonDraw
+		// @content		全シーン共通の描画処理
+		*/
+		virtual void CommonDraw();
+
+		/*
+		// @method		CommonFinalize
+		// @content		全シーン共通の終了処理
+		*/
+		virtual void CommonFinalize();
 
 		/*
 		// @method		ResetDevice

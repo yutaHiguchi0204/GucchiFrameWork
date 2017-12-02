@@ -1,5 +1,5 @@
 /* =====================================================================
-//! @param		「CSVFileDirector」ヘッダ（CSVファイル管理）
+//! @param		「CSVFileManager」ヘッダ（CSVファイル管理）
 //! @create		樋口 裕太
 //! @date		17/11/29
 ===================================================================== */
@@ -13,10 +13,10 @@
 namespace GucchiLibrary
 {
 	/*
-	// @class		CSVFileDirector クラス
+	// @class		CSVFileManager クラス
 	// @content		CSVファイルを扱うクラス
 	*/
-	class CSVFileDirector
+	class CSVFileManager
 	{
 	public:
 		static const std::wstring FILE_PATH_DATA;

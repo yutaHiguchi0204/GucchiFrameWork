@@ -1,5 +1,5 @@
 /* =====================================================================
-//! @param		「BinaryFileDirector」ヘッダ（バイナリファイル管理）
+//! @param		「BinaryFileManager」ヘッダ（バイナリファイル管理）
 //! @create		樋口 裕太
 //! @date		17/11/27
 ===================================================================== */
@@ -34,17 +34,17 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetSize(unsigned int size)			{ size_ = size; }
+		void SetSize(unsigned int size) { size_ = size; }
 
-		inline char* GetData() const			{ return data_.get(); }
-		inline unsigned int GetSize() const		{ return size_; }
+		inline char* GetData() const { return data_.get(); }
+		inline unsigned int GetSize() const { return size_; }
 	};
 
 	/*
-	// @class		BinaryFileDirector クラス
+	// @class		BinaryFileManager クラス
 	// @content		バイナリファイルを扱うクラス
 	*/
-	class BinaryFileDirector
+	class BinaryFileManager
 	{
 	public:
 		/*
