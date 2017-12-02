@@ -90,12 +90,6 @@
     <ClCompile Include="Camera\DefaultCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\BinaryFileDirector.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\CSVFileDirector.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="Collision\CollisionManager.cpp">
       <Filter>Collision</Filter>
     </ClCompile>
@@ -110,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="Sound\ADX2Le.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\BinaryFileManager.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\CSVFileManager.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,12 +186,6 @@
     <ClInclude Include="Utility\Math.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\BinaryFileDirector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\CSVFileDirector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Collision\CollisionManager.h">
       <Filter>Collision</Filter>
     </ClInclude>
@@ -209,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="Sound\ADX2Le.h">
       <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\BinaryFileManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\CSVFileManager.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

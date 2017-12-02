@@ -1,11 +1,11 @@
 /* =====================================================================
-//! @param		「CSVFileDirector」ソース（CSVファイル管理）
+//! @param		「CSVFileManager」ソース（CSVファイル管理）
 //! @create		樋口 裕太
 //! @date		17/11/29
 ===================================================================== */
 
 // ヘッダファイルのインクルード
-#include "CSVFileDirector.h"
+#include "CSVFileManager.h"
 #include <cassert>
 #include <d3d11_1.h>
 #include <fstream>
@@ -16,8 +16,8 @@ using namespace GucchiLibrary;
 using namespace std;
 
 // 静的メンバの定義
-const wstring CSVFileDirector::FILE_PATH_DATA = L"Resources/Data/";
-const wstring CSVFileDirector::EXT_CSV = L".csv";
+const wstring CSVFileManager::FILE_PATH_DATA = L"Resources/Data/";
+const wstring CSVFileManager::EXT_CSV = L".csv";
 
 // メンバ関数の定義
 
@@ -26,7 +26,7 @@ const wstring CSVFileDirector::EXT_CSV = L".csv";
 // @param		CSVファイル名（wstring）
 // @return		データ（vector<vector<int>>）
 ===============================================================*/
-vector<vector<int>> CSVFileDirector::LoadCSVFile(const wstring csvFile)
+vector<vector<int>> CSVFileManager::LoadCSVFile(const wstring csvFile)
 {
 	// ファイル読み込み
 	wstring fileName = FILE_PATH_DATA + csvFile + EXT_CSV;
@@ -63,6 +63,6 @@ vector<vector<int>> CSVFileDirector::LoadCSVFile(const wstring csvFile)
 
 	// ファイルを閉じる
 	ifs.close();
-	
+
 	return data;
 }

@@ -22,19 +22,13 @@ using namespace std;
 ===============================================================*/
 void PlayScene::Initialize()
 {
-	// デフォルトカメラを設定
-	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
-	objectFactory_.SetCamera(camera_.get());
-
-	skyDome_ = objectFactory_.CreateObjectFromFile(L"skyDome");
-
-	// オブジェクトの登録
-	objectRenderer_.RegisterObject(skyDome_.get());
+	// 全シーン共通初期化処理
+	IScene::CommonInitialize();
 
 	// データ取得
 	wstring wstr[2] = { L"block", L"block2" };
 	TipData::TIP_TYPE type[2] = { TipData::TIP_TYPE::NONE, TipData::TIP_TYPE::SOLID };
-	vector<vector<int>> data = CSVFileDirector::LoadCSVFile(L"test");
+	vector<vector<int>> data = CSVFileManager::LoadCSVFile(L"test");
 	stage_ = make_unique<MapTip3D>(data, Vector3::One, wstr, 2, type);
 	stage_->SetTranslate(Vector3(-2.f, 0.f, -2.f));
 }
@@ -46,8 +40,8 @@ void PlayScene::Initialize()
 ===============================================================*/
 void PlayScene::Update()
 {
-	// カメラの更新
-	camera_->Update();
+	// 全シーン共通更新処理
+	IScene::CommonUpdate();
 }
 
 /*==============================================================
@@ -57,7 +51,8 @@ void PlayScene::Update()
 ===============================================================*/
 void PlayScene::Draw()
 {
-	
+	// 全シーン共通描画処理
+	IScene::CommonDraw();
 }
 
 /*==============================================================
@@ -67,5 +62,6 @@ void PlayScene::Draw()
 ===============================================================*/
 void PlayScene::Finalize()
 {
-	
+	// 全シーン共通終了処理
+	IScene::CommonFinalize();
 }
