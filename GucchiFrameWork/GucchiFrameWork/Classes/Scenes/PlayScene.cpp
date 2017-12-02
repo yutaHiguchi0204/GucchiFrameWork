@@ -24,13 +24,6 @@ void PlayScene::Initialize()
 {
 	// 全シーン共通初期化処理
 	IScene::CommonInitialize();
-
-	// データ取得
-	wstring wstr[2] = { L"block", L"block2" };
-	TipData::TIP_TYPE type[2] = { TipData::TIP_TYPE::NONE, TipData::TIP_TYPE::SOLID };
-	vector<vector<int>> data = CSVFileManager::LoadCSVFile(L"test");
-	stage_ = make_unique<MapTip3D>(data, Vector3::One, wstr, 2, type);
-	stage_->SetTranslate(Vector3(-2.f, 0.f, -2.f));
 }
 
 /*==============================================================
