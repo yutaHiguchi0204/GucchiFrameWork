@@ -111,6 +111,9 @@
     <ClCompile Include="Utility\CSVFileManager.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\Action.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h">
@@ -208,6 +211,9 @@
       <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Utility\CSVFileManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Action.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
