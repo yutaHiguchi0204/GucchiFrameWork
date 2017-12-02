@@ -160,6 +160,7 @@
     <ClCompile Include="MapTip\MapTip2D.cpp" />
     <ClCompile Include="MapTip\MapTip3D.cpp" />
     <ClCompile Include="Sound\ADX2Le.cpp" />
+    <ClCompile Include="Utility\Action.cpp" />
     <ClCompile Include="Utility\BinaryFileManager.cpp" />
     <ClCompile Include="Utility\CSVFileManager.cpp" />
     <ClCompile Include="Utility\Interpolater.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="MapTip\MapTip3D.h" />
     <ClInclude Include="Sound\ADX2Le.h" />
     <ClInclude Include="Sound\SoundManager.h" />
+    <ClInclude Include="Utility\Action.h" />
     <ClInclude Include="Utility\BinaryFileManager.h" />
     <ClInclude Include="Utility\CSVFileManager.h" />
     <ClInclude Include="Utility\Interpolater.h" />
