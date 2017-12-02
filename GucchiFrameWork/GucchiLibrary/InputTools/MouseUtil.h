@@ -46,8 +46,8 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		inline DirectX::Mouse* GetMouse() const { return mouse_.get(); }
-		inline const DirectX::Mouse::State& GetState() const { return state_; }
+		inline DirectX::Mouse* GetMouse() const								{ return mouse_.get(); }
+		inline const DirectX::Mouse::State& GetState() const				{ return state_; }
 		inline const DirectX::Mouse::ButtonStateTracker& GetTracker() const { return tracker_; }
 	};
 }
