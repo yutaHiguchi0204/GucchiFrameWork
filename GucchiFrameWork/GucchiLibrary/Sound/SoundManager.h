@@ -45,8 +45,8 @@ namespace GucchiLibrary
 			std::string filePathAwb = FILE_PATH_SOUND + awb + EXT_AWB;
 
 			// サウンドデータの読み込み
-			GucchiLibrary::ADX2Le::Initialize(filePathAcf.c_str());
-			GucchiLibrary::ADX2Le::LoadAcb(filePathAcb.c_str(), filePathAwb.c_str());
+			ADX2Le::Initialize(filePathAcf.c_str());
+			ADX2Le::LoadAcb(filePathAcb.c_str(), filePathAwb.c_str());
 		}
 
 		/*
@@ -55,7 +55,7 @@ namespace GucchiLibrary
 		*/
 		void Update()
 		{
-			GucchiLibrary::ADX2Le::Update();
+			ADX2Le::Update();
 		}
 
 		/*
@@ -65,7 +65,7 @@ namespace GucchiLibrary
 		*/
 		void PlayAudio(int audioID)
 		{
-			GucchiLibrary::ADX2Le::Play(audioID);
+			ADX2Le::Play(audioID);
 		}
 
 		/*
@@ -74,7 +74,7 @@ namespace GucchiLibrary
 		*/
 		void StopAudio()
 		{
-			GucchiLibrary::ADX2Le::Stop();
+			ADX2Le::Stop();
 		}
 
 		/*
@@ -83,7 +83,7 @@ namespace GucchiLibrary
 		*/
 		void Dispose()
 		{
-			GucchiLibrary::ADX2Le::Finalize();
+			ADX2Le::Finalize();
 		}
 	};
 }

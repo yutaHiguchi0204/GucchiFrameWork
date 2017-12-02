@@ -35,6 +35,9 @@ namespace GucchiLibrary
 		Sprite*							parentSprite_;		// 親スプライト
 		std::vector<Sprite*>			childSprite_;		// 子スプライト
 
+		int								frameTimer_;		// ローカルタイマー
+		bool							isAction_;			// アクション中かどうか
+
 	public:
 		/*
 		// @method		コンストラクタ
@@ -75,6 +78,7 @@ namespace GucchiLibrary
 		void SetScale(float scale)									{ scale_ = scale; }
 		void SetAngle(float angle)									{ angle_ = angle; }
 		void SetActive(bool active)									{ isActive_ = active; }
+		void SetIsAction(bool isAction)								{ isAction_ = isAction; }
 
 		inline Texture* GetTexture() const							{ return texture_; }
 		inline DirectX::SimpleMath::Vector2 GetPos() const			{ return pos_; }
@@ -85,6 +89,8 @@ namespace GucchiLibrary
 		inline bool GetActive() const								{ return isActive_; }
 		inline Sprite* GetParent() const							{ return parentSprite_; }
 		inline std::vector<Sprite*> GetChildren() const				{ return childSprite_; }
+		inline int GetFrameTimer() const							{ return frameTimer_; }
+		inline bool IsAction() const								{ return isAction_; }
 
 	public:
 		// 代入オペレータ
@@ -99,6 +105,8 @@ namespace GucchiLibrary
 			isActive_     = sprite.isActive_;
 			parentSprite_ = sprite.parentSprite_;
 			childSprite_  = sprite.childSprite_;
+			frameTimer_   = sprite.frameTimer_;
+			isAction_     = sprite.isAction_;
 
 			return (*this);
 		}
@@ -106,15 +114,17 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Sprite& sprite) const
 		{
-			if (texture_		== sprite.GetTexture()		&&
-				pos_			== sprite.GetPos()			&&
-				size_			== sprite.GetSize()			&&
-				textureRect_	== sprite.GetRect()			&&
-				scale_			== sprite.GetScale()		&&
-				angle_			== sprite.GetAngle()		&&
-				isActive_		== sprite.GetActive()		&&
-				parentSprite_	== sprite.GetParent()		&&
-				childSprite_	== sprite.GetChildren()
+			if (texture_		== sprite.texture_		&&
+				pos_			== sprite.pos_			&&
+				size_			== sprite.size_			&&
+				textureRect_	== sprite.textureRect_	&&
+				scale_			== sprite.scale_		&&
+				angle_			== sprite.angle_		&&
+				isActive_		== sprite.isActive_		&&
+				parentSprite_	== sprite.parentSprite_	&&
+				childSprite_	== sprite.childSprite_	&&
+				frameTimer_		== sprite.frameTimer_	&&
+				isAction_		== sprite.isAction_
 				)
 			{
 				return true;
