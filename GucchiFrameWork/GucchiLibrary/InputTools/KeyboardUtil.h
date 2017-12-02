@@ -22,6 +22,10 @@ namespace GucchiLibrary
 	private:
 		std::unique_ptr<DirectX::Keyboard> keyboard_;
 
+		// ステート
+		DirectX::Keyboard::State state_;
+		DirectX::Keyboard::KeyboardStateTracker tracker_;
+
 	private:
 		friend class SingletonDirector<KeyboardUtil>;
 
@@ -39,5 +43,11 @@ namespace GucchiLibrary
 		// @content		更新処理
 		*/
 		void Update();
+
+		/* アクセッサ */
+
+		inline DirectX::Keyboard* GetKeyboard() const								{ return keyboard_.get(); }
+		inline const DirectX::Keyboard::State& GetState() const						{ return state_; }
+		inline const DirectX::Keyboard::KeyboardStateTracker& GetTracker() const	{ return tracker_; }
 	};
 }

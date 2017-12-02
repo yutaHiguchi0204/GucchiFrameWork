@@ -31,6 +31,9 @@
     <Filter Include="MapTip">
       <UniqueIdentifier>{4520c1c5-161f-4bdc-8aa6-1776b41dcae9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{26e1a500-284d-46b0-8083-55d5ff69eb4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="MapTip\MapTip.cpp">
       <Filter>MapTip</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\ADX2Le.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="MapTip\MapTip3D.h">
       <Filter>MapTip</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\ADX2Le.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
