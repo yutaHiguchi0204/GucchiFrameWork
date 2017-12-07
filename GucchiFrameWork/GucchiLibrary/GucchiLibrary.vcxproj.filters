@@ -216,6 +216,9 @@
     <ClInclude Include="Utility\Action.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\InterpolateState.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

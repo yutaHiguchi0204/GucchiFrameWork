@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include "TextureCache.h"
+#include "../Utility/InterpolateState.h"
 
 namespace GucchiLibrary
 {
@@ -24,19 +25,19 @@ namespace GucchiLibrary
 	class Sprite
 	{
 	private:
-		Texture*						texture_;			// テクスチャハンドル
-		DirectX::SimpleMath::Vector2	pos_;				// 位置
-		DirectX::SimpleMath::Vector2	size_;				// サイズ
-		RECT*							textureRect_;		// 画像矩形
-		float							scale_;				// 拡大率
-		float							angle_;				// 回転角
-		bool							isActive_;			// アクティブ状態
+		Texture*							texture_;			// テクスチャハンドル
+		DirectX::SimpleMath::Vector2		pos_;				// 位置
+		DirectX::SimpleMath::Vector2		size_;				// サイズ
+		RECT*								textureRect_;		// 画像矩形
+		float								scale_;				// 拡大率
+		float								angle_;				// 回転角
+		bool								isActive_;			// アクティブ状態
 
-		Sprite*							parentSprite_;		// 親スプライト
-		std::vector<Sprite*>			childSprite_;		// 子スプライト
+		Sprite*								parentSprite_;		// 親スプライト
+		std::vector<Sprite*>				childSprite_;		// 子スプライト
 
-		int								frameTimer_;		// ローカルタイマー
-		bool							isAction_;			// アクション中かどうか
+		int									frameTimer_;		// ローカルタイマー
+		bool								isAction_;			// アクション中かどうか
 
 	public:
 		/*
