@@ -6,7 +6,7 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include "../Common/SingletonDirector.h"
+#include <vector>
 
 namespace GucchiLibrary
 {
@@ -14,7 +14,7 @@ namespace GucchiLibrary
 	// @class		CollisionManager クラス
 	// @content		当たり判定チェック用
 	*/
-	class CollisionManager : public SingletonDirector<CollisionManager>
+	class CollisionManager
 	{
 	public:
 		/*
@@ -34,16 +34,15 @@ namespace GucchiLibrary
 			BOTTOM
 		};
 
-	private:
-		friend class SingletonDirector<CollisionManager>;
-
-		CollisionManager() {}
-
 	public:
 		/*
 		// @method		CheckCollisionMapTip
 		// @content		指定した場所のマップチップをチェック
+		// @param		マップデータ（vector<vector<int>>）
+		// @param		現在のチップX（int）
+		// @param		現在のチップY（int）
+		// @param		チェックする方向（COLLISION）
 		*/
-		//bool CheckCollisionMapTip()
+		static bool CheckCollisionMapTip(std::vector<std::vector<int>> data, int nowX, int nowY, COLLISION col);
 	};
 }

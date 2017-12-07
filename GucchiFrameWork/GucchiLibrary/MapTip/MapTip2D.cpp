@@ -18,8 +18,8 @@ using namespace std;
 // メンバ関数の定義
 
 // コンストラクタ（テクスチャ１つから均等に矩形分割し、読み込む）
-MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring textureName, int typeNum, TipData::TIP_TYPE type[])
-	: MapTip(data, typeNum, type)
+MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring textureName, int typeNum, TipData::TIP_TYPE* type)
+	: MapTip(data, typeNum)
 {
 	if (dataTypeNum_ <= 0)
 	{
@@ -65,8 +65,8 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring 
 }
 
 // コンストラクタ（個々のテクスチャを読み込む）
-MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring textureName[], int typeNum, TipData::TIP_TYPE type[])
-	: MapTip(data, typeNum, type)
+MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring* textureName, int typeNum, TipData::TIP_TYPE* type)
+	: MapTip(data, typeNum)
 {
 	if (dataTypeNum_ <= 0)
 	{
@@ -121,16 +121,6 @@ void MapTip2D::ResetData()
 }
 
 /*==============================================================
-// @brief		アクティブ状態の変更
-// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、アクティブ状態（bool）
-// @return		なし
-===============================================================*/
-void MapTip2D::SetActive(int noX, int noY, bool active)
-{
-	sprite_.at(noY).at(noX).SetActive(active);
-}
-
-/*==============================================================
 // @brief		マップチップデータの変更
 // @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、新データ（int）
 // @return		なし
@@ -141,4 +131,54 @@ void MapTip2D::ChangeTip(int noX, int noY, int newData)
 
 	// 新しいスプライトデータに書き換える
 	sprite_.at(noY).at(noX) = *masterSprite_.at(data_.at(noY).at(noX).GetData()).get();
+}
+
+/*==============================================================
+// @brief		指定したスプライトの位置設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、位置（Vector2）
+// @return		なし
+===============================================================*/
+void MapTip2D::SetSpritePos(int noX, int noY, const Vector2& pos)
+{
+	sprite_.at(noY).at(noX).SetPos(pos);
+}
+
+/*==============================================================
+// @brief		指定したスプライトのスケール設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、スケール（float）
+// @return		なし
+===============================================================*/
+void MapTip2D::SetSpriteScale(int noX, int noY, float scale)
+{
+	sprite_.at(noY).at(noX).SetScale(scale);
+}
+
+/*==============================================================
+// @brief		指定したスプライトの回転角設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、回転角（float）
+// @return		なし
+===============================================================*/
+void MapTip2D::SetSpriteAngle(int noX, int noY, float angle)
+{
+	sprite_.at(noY).at(noX).SetAngle(angle);
+}
+
+/*==============================================================
+// @brief		指定したスプライトのアクティブ状態の変更
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、アクティブ状態（bool）
+// @return		なし
+===============================================================*/
+void MapTip2D::SetSpriteActive(int noX, int noY, bool active)
+{
+	sprite_.at(noY).at(noX).SetActive(active);
+}
+
+/*==============================================================
+// @brief		マップチップとの親子関係構築
+// @param		子にしたいスプライト（Sprite*）
+// @return		なし
+===============================================================*/
+void MapTip2D::AddChild(Sprite* sprite)
+{
+	dummySprite_->AddChild(sprite);
 }

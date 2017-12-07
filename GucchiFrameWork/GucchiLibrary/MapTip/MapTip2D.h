@@ -29,8 +29,9 @@ namespace GucchiLibrary
 		// @param		マップチップデータ１つのスプライトサイズ（Vector2）
 		// @param		テクスチャ名（横長の均等にテクスチャが割り振られてるものにしてください）（wstring）
 		// @param		データの種類数（int）
+		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring textureName, int typeNum, TipData::TIP_TYPE type[]);
+		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		/*
 		// @method		コンストラクタ（個々のテクスチャを読み込む）
@@ -38,8 +39,9 @@ namespace GucchiLibrary
 		// @param		マップチップデータ１つのスプライトサイズ（Vector2）
 		// @param		テクスチャ（wstring[]）
 		// @param		データの種類数（int）
+		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring textureName[], int typeNum, TipData::TIP_TYPE type[]);
+		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring* textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		// デストラクタ
 		virtual ~MapTip2D() {}
@@ -51,15 +53,6 @@ namespace GucchiLibrary
 		void ResetData() override;
 
 		/*
-		// @method		SetActive
-		// @content		アクティブ状態の変更
-		// @param		変えたいデータの番号x（int）
-		// @param		変えたいデータの番号y（int）
-		// @param		アクティブ状態（bool）
-		*/
-		void SetActive(int noX, int noY, bool active) override;
-
-		/*
 		// @method		ChangeTip（pure）
 		// @content		マップチップデータの変更
 		// @param		変えたいデータの番号x（int）
@@ -68,8 +61,53 @@ namespace GucchiLibrary
 		*/
 		void ChangeTip(int noX, int noY, int newData) override;
 
+		/*
+		// @method		SetSpritePos
+		// @content		指定したスプライトの位置設定
+		// @param		変えたいデータの番号x（int）
+		// @param		変えたいデータの番号y（int）
+		// @param		位置（Vector2）
+		*/
+		void SetSpritePos(int noX, int noY, const DirectX::SimpleMath::Vector2& pos);
+
+		/*
+		// @method		SetSpriteScale
+		// @content		指定したスプライトのスケール設定
+		// @param		変えたいデータの番号x（int）
+		// @param		変えたいデータの番号y（int）
+		// @param		スケール（float）
+		*/
+		void SetSpriteScale(int noX, int noY, float scale);
+
+		/*
+		// @method		SetSpriteAngle
+		// @content		指定したスプライトの回転角設定
+		// @param		変えたいデータの番号x（int）
+		// @param		変えたいデータの番号y（int）
+		// @param		回転角（float）
+		*/
+		void SetSpriteAngle(int noX, int noY, float angle);
+
+		/*
+		// @method		SetSpriteActive
+		// @content		指定したスプライトのアクティブ状態の変更
+		// @param		変えたいデータの番号x（int）
+		// @param		変えたいデータの番号y（int）
+		// @param		アクティブ状態（bool）
+		*/
+		void SetSpriteActive(int noX, int noY, bool active);
+
+		/*
+		// @method		AddChild
+		// @content		マップチップとの親子関係構築
+		// @param		子にしたいスプライト（Sprite*）
+		*/
+		void AddChild(Sprite* sprite);
+
 		/* アクセッサ */
 
-		void SetPos(const DirectX::SimpleMath::Vector2& pos) { dummySprite_->SetPos(pos); }
+		void SetPos(const DirectX::SimpleMath::Vector2& pos)	{ dummySprite_->SetPos(pos); }
+
+		inline DirectX::SimpleMath::Vector2& GetPos() const		{ return dummySprite_->GetPos(); }
 	};
 }

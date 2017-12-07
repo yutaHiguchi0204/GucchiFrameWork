@@ -86,6 +86,9 @@ Asset3D::Asset3D(const Asset3D& asset)
 ===============================================================*/
 void Asset3D::Update()
 {
+	// 補間ステートの更新
+	interpolateState_.Update();
+
 	// スケーリング行列の計算
 	Matrix scaleMat = Matrix::CreateScale(scale_);
 

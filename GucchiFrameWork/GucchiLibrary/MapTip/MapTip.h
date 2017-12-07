@@ -7,6 +7,7 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
+#include <map>
 #include <vector>
 
 namespace GucchiLibrary
@@ -23,12 +24,14 @@ namespace GucchiLibrary
 		// @mode		NONE	：　特に何もなし
 		// @mode		SOLID	：　ブロック
 		// @mode		DAMAGE	：　ダメージチップ
+		// @mode		GOAL	：　ゴール
 		*/
-		enum class TIP_TYPE
+		enum class TIP_TYPE : int
 		{
 			NONE,
 			SOLID,
 			DAMAGE,
+			GOAL,
 
 			TYPE_NUM
 		};
@@ -61,17 +64,16 @@ namespace GucchiLibrary
 	{
 	protected:
 		std::vector<std::vector<TipData>>	data_;				// データ
-		std::vector<TipData::TIP_TYPE>		typeNum_;			// チップの属性
 		int									dataTypeNum_;		// データの種類数
+		bool								isActive_;			// アクティブ状態
 
 	public:
 		/*
 		// @method		コンストラクタ
 		// @param		データ（vector<vector<int>>）
 		// @param		データの種類数（int）
-		// @param		チップの属性（TIP_TYPE）
 		*/
-		MapTip(std::vector<std::vector<int>> data, int dataTypeNum, TipData::TIP_TYPE type[]);
+		MapTip(std::vector<std::vector<int>> data, int dataTypeNum);
 
 		// デストラクタ
 		virtual ~MapTip() {}
@@ -83,15 +85,6 @@ namespace GucchiLibrary
 		virtual void ResetData() = 0;
 
 		/*
-		// @method		SetActive
-		// @content		アクティブ状態の変更
-		// @param		変えたいデータの番号x（int）
-		// @param		変えたいデータの番号y（int）
-		// @param		アクティブ状態（bool）
-		*/
-		virtual void SetActive(int noX, int noY, bool active) = 0;
-
-		/*
 		// @method		ChangeTip（pure）
 		// @content		マップチップデータの変更
 		// @param		変えたいデータの番号x（int）
@@ -99,5 +92,9 @@ namespace GucchiLibrary
 		// @param		新データ（int）
 		*/
 		virtual void ChangeTip(int noX, int noY, int newData) = 0;
+
+		/* アクセッサ */
+
+		void SetActive(bool active) { isActive_ = active; }
 	};
 }

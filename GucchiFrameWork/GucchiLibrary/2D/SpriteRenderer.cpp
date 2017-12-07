@@ -79,6 +79,24 @@ void SpriteRenderer::SetOrder(Sprite* sprite, int order)
 }
 
 /*==============================================================
+// @brief		アクティブ状態のスプライトを更新
+// @param		なし
+// @return		なし
+===============================================================*/
+void SpriteRenderer::Update()
+{
+	// 更新処理
+	for (auto& sprite : spriteList_)
+	{
+		// アクティブ状態のスプライトのみ表示
+		if (sprite->GetActive())
+		{
+			sprite->Update();
+		}
+	}
+}
+
+/*==============================================================
 // @brief		アクティブ状態のスプライトを描画
 // @param		なし
 // @return		なし
