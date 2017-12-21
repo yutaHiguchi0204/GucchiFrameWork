@@ -39,37 +39,39 @@ namespace GucchiLibrary
 		};
 
 	protected:
+		static ID3D11BlendState*					blendStateSubtract_;		// 減算描画用ブレンドステート
+
+	protected:
 		// エフェクト
-		std::shared_ptr<DirectX::BasicEffect>							basicEffect_;
+		std::shared_ptr<DirectX::BasicEffect>		basicEffect_;
 
 		// 入力レイアウト
-		Microsoft::WRL::ComPtr<ID3D11InputLayout>						inputLayout_;
+		Microsoft::WRL::ComPtr<ID3D11InputLayout>	inputLayout_;
 
 		// エフェクトファクトリ
-		std::shared_ptr<DirectX::EffectFactory>							effectFactory_;
+		std::shared_ptr<DirectX::EffectFactory>		effectFactory_;
 
 		// カメラ
 		Camera* camera_;
 
 	protected:
-		DirectX::Model*													model_;						// モデル
+		DirectX::Model*								model_;						// モデル
 
-		DirectX::SimpleMath::Vector3									scale_;						// スケール
+		DirectX::SimpleMath::Vector3				scale_;						// スケール
 		union {
-			DirectX::SimpleMath::Vector3								rot_;						// 回転角
-			DirectX::SimpleMath::Quaternion								quat_;						// クォータニオン
+			DirectX::SimpleMath::Vector3			rot_;						// 回転角
+			DirectX::SimpleMath::Quaternion			quat_;						// クォータニオン
 		};
-		DirectX::SimpleMath::Vector3									trans_;						// 平行移動
+		DirectX::SimpleMath::Vector3				trans_;						// 平行移動
 
-		DirectX::SimpleMath::Matrix										world_;						// ワールド行列
+		DirectX::SimpleMath::Matrix					world_;						// ワールド行列
 
-		ID3D11BlendState*												blendStateSubtract_;		// 減算描画用ブレンドステート
-		BLEND_MODE														blendMode_;					// ブレンドモード
+		BLEND_MODE									blendMode_;					// ブレンドモード
 
-		bool															isActive_;					// アクティブ状態
-		bool															isUseQuaternion_;			// クォータニオンを使用するかどうか
+		bool										isActive_;					// アクティブ状態
+		bool										isUseQuaternion_;			// クォータニオンを使用するかどうか
 
-		GucchiLibrary::InterpolateState<DirectX::SimpleMath::Vector3>	interpolateState_;			// 補間ステート
+		std::unique_ptr<InterpolateDirector>		interpolateDirector_;		// 補間ステート
 
 	public:
 		/*
@@ -102,28 +104,28 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetCamera(Camera* camera)																		{ camera_ = camera; }
-		void SetModel(DirectX::Model* model)																{ model_ = model; }
-		void SetScale(DirectX::SimpleMath::Vector3 scale)													{ scale_ = scale; }
-		void SetRotate(DirectX::SimpleMath::Vector3 rot)													{ rot_ = rot; }
-		void SetTranslate(DirectX::SimpleMath::Vector3 trans)												{ trans_ = trans; }
-		void SetBlendMode(BLEND_MODE mode)																	{ blendMode_ = mode; }
-		void SetActive(bool active)																			{ isActive_ = active; }
-		void SetUseQuaternion(bool use)																		{ isUseQuaternion_ = use; }
+		void SetCamera(Camera* camera)											{ camera_ = camera; }
+		void SetModel(DirectX::Model* model)									{ model_ = model; }
+		void SetScale(DirectX::SimpleMath::Vector3 scale)						{ scale_ = scale; }
+		void SetRotate(DirectX::SimpleMath::Vector3 rot)						{ rot_ = rot; }
+		void SetTranslate(DirectX::SimpleMath::Vector3 trans)					{ trans_ = trans; }
+		void SetBlendMode(BLEND_MODE mode)										{ blendMode_ = mode; }
+		void SetActive(bool active)												{ isActive_ = active; }
+		void SetUseQuaternion(bool use)											{ isUseQuaternion_ = use; }
 
-		inline DirectX::EffectFactory* GetEffectFactory() const												{ return effectFactory_.get(); }
-		inline Camera* GetCamera() const																	{ return camera_; }
-		inline DirectX::Model* GetModel() const																{ return model_; }
-		inline const DirectX::SimpleMath::Vector3& GetScale() const											{ return scale_; }
-		inline const DirectX::SimpleMath::Vector3& GetRotate() const										{ return rot_; }
-		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const									{ return quat_; }
-		inline const DirectX::SimpleMath::Vector3& GetTranslate() const										{ return trans_; }
-		inline const DirectX::SimpleMath::Matrix& GetWorld() const											{ return world_; }
-		inline ID3D11BlendState* GetBlendStateSubtract() const												{ return blendStateSubtract_; }
-		inline BLEND_MODE GetBlendMode() const																{ return blendMode_; }
-		inline bool GetActive()	const																		{ return isActive_; }
-		inline bool GetUseQuaternion() const																{ return isUseQuaternion_; }
-		inline GucchiLibrary::InterpolateState<DirectX::SimpleMath::Vector3> GetInterpolateState() const	{ return interpolateState_; }
+		inline DirectX::EffectFactory* GetEffectFactory() const					{ return effectFactory_.get(); }
+		inline Camera* GetCamera() const										{ return camera_; }
+		inline DirectX::Model* GetModel() const									{ return model_; }
+		inline const DirectX::SimpleMath::Vector3& GetScale() const				{ return scale_; }
+		inline const DirectX::SimpleMath::Vector3& GetRotate() const			{ return rot_; }
+		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
+		inline const DirectX::SimpleMath::Vector3& GetTranslate() const			{ return trans_; }
+		inline const DirectX::SimpleMath::Matrix& GetWorld() const				{ return world_; }
+		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtract_; }
+		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
+		inline bool GetActive()	const											{ return isActive_; }
+		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
+		inline InterpolateDirector* GetInterpolateDirector() const				{ return interpolateDirector_.get(); }
 
 	public:
 		// 代入オペレータ

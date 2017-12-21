@@ -15,194 +15,6 @@
 namespace GucchiLibrary
 {
 	/*
-	// @class		Interpolater クラス
-	// @content		補間ライブラリ
-	*/
-	class Interpolater
-	{
-	private:
-		static float startTime_;
-		static float nowTime_;
-		static bool isNowInterpolate_;
-
-	public:
-		/* 線形補間 */
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static float Lerp(float start, float end, float time, float objTimer);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector2 Lerp(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector4 Lerp(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, float objTimer);
-
-		/* 二次補間（後が速い） */
-
-		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static float EaseIn(float start, float end, float time, float objTimer);
-
-		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector2 EaseIn(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-
-		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector3 EaseIn(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-
-		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector4 EaseIn(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, float objTimer);
-
-		/* 二次補間（先が速い） */
-
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static float EaseOut(float start, float end, float time, float objTimer);
-
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector2 EaseOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector3 EaseOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector4 EaseOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, float objTimer);
-
-		/* 三次補間 */
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static float EaseInOut(float start, float end, float time, float objTimer);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector2 EaseInOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector3 EaseInOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		ローカルタイマー（float）
-		*/
-		static DirectX::SimpleMath::Vector4 EaseInOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, float objTimer);
-
-		/*
-		// @method		IsInterpolate（static）
-		// @content		補間中かどうか
-		// @return		結果（bool）
-		*/
-		static bool IsInterpolate();
-	};
-
-	/*
 	// @content		状態
 	// @mode		NONE	：　何もしていない状態
 	// @mode		NOW		：　補間中
@@ -255,6 +67,10 @@ namespace GucchiLibrary
 		{
 			timer_.clear();
 			state_.clear();
+			start_.clear();
+			end_.clear();
+			runTime_.clear();
+			mode_.clear();
 		}
 
 		/*
@@ -299,25 +115,22 @@ namespace GucchiLibrary
 		*/
 		T GetResult(std::wstring action)
 		{
-			if (state_[action] == INTERPOLATE_STATE::NONE)
-			{
-				state_[action] = INTERPOLATE_STATE::NOW;
-			}
-
-			// 結果を取得
 			T result;
-			switch (mode_[action])
-			{
-			case INTERPOLATE_MODE::LERP:		result = Interpolater::Lerp(start_[action], end_[action], runTime_[action], timer_[action]);		break;
-			case INTERPOLATE_MODE::EASE_IN:		result = Interpolater::EaseIn(start_[action], end_[action], runTime_[action], timer_[action]);		break;
-			case INTERPOLATE_MODE::EASE_OUT:	result = Interpolater::EaseOut(start_[action], end_[action], runTime_[action], timer_[action]);		break;
-			case INTERPOLATE_MODE::EASE_INOUT:	result = Interpolater::EaseInOut(start_[action], end_[action], runTime_[action], timer_[action]);	break;
-			}
 
-			// 補間が終了していたらステートを終了に変える
-			if (!Interpolater::IsLerp())
+			if (state_[action] != INTERPOLATE_STATE::FINISH)
 			{
-				state_[action] = INTERPOLATE_STATE::FINISH;
+				// 結果を取得
+				switch (mode_[action])
+				{
+				case INTERPOLATE_MODE::LERP:		result = Interpolater::Lerp(start_[action], end_[action], runTime_[action], action, this);			break;
+				case INTERPOLATE_MODE::EASE_IN:		result = Interpolater::EaseIn(start_[action], end_[action], runTime_[action], action, this);		break;
+				case INTERPOLATE_MODE::EASE_OUT:	result = Interpolater::EaseOut(start_[action], end_[action], runTime_[action], action, this);		break;
+				case INTERPOLATE_MODE::EASE_INOUT:	result = Interpolater::EaseInOut(start_[action], end_[action], runTime_[action], action, this);		break;
+				}
+			}
+			else
+			{
+				result = end_[action];
 			}
 
 			return result;
@@ -332,7 +145,7 @@ namespace GucchiLibrary
 		{
 			for (auto& state : state_)
 			{
-				if (!state == INTERPOLATE_STATE::FINISH)
+				if (state.second != INTERPOLATE_STATE::FINISH)
 				{
 					return false;
 				}
@@ -343,8 +156,206 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
+		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
+
 		inline const float				GetTimer(std::wstring action) { return timer_[action]; }
 		inline const INTERPOLATE_STATE	GetState(std::wstring action) { return state_[action]; }
+	};
+
+	/*
+	// @class		Interpolater クラス
+	// @content		補間ライブラリ
+	*/
+	class Interpolater
+	{
+	private:
+		static float startTime_;
+		static float nowTime_;
+
+	public:
+		/* 線形補間 */
+
+		/*
+		// @method		Lerp（static）
+		// @content		線形補間
+		// @param		始点（float）
+		// @param		終点（float）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<float>*）
+		*/
+		static float Lerp(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+
+		/*
+		// @method		Lerp（static）
+		// @content		線形補間
+		// @param		始点（Vector2）
+		// @param		終点（Vector2）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector2>*）
+		*/
+		static DirectX::SimpleMath::Vector2 Lerp(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+
+		/*
+		// @method		Lerp（static）
+		// @content		線形補間
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector3>*）
+		*/
+		static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+
+		/*
+		// @method		Lerp（static）
+		// @content		線形補間
+		// @param		始点（Vector4）
+		// @param		終点（Vector4）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector4>*）
+		*/
+		static DirectX::SimpleMath::Vector4 Lerp(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+
+		/* 二次補間（後が速い） */
+
+		/*
+		// @method		EaseIn（static）
+		// @content		二次補間（後が速い）
+		// @param		始点（float）
+		// @param		終点（float）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<float>*）
+		*/
+		static float EaseIn(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+
+		/*
+		// @method		EaseIn（static）
+		// @content		二次補間（後が速い）
+		// @param		始点（Vector2）
+		// @param		終点（Vector2）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector2>*）
+		*/
+		static DirectX::SimpleMath::Vector2 EaseIn(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+
+		/*
+		// @method		EaseIn（static）
+		// @content		二次補間（後が速い）
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector3>*）
+		*/
+		static DirectX::SimpleMath::Vector3 EaseIn(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+
+		/*
+		// @method		EaseIn（static）
+		// @content		二次補間（後が速い）
+		// @param		始点（Vector4）
+		// @param		終点（Vector4）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector4>*）
+		*/
+		static DirectX::SimpleMath::Vector4 EaseIn(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+
+		/* 二次補間（先が速い） */
+
+		/*
+		// @method		EaseOut（static）
+		// @content		二次補間（先が速い）
+		// @param		始点（float）
+		// @param		終点（float）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<float>*）
+		*/
+		static float EaseOut(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+
+		/*
+		// @method		EaseOut（static）
+		// @content		二次補間（先が速い）
+		// @param		始点（Vector2）
+		// @param		終点（Vector2）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector2>*）
+		*/
+		static DirectX::SimpleMath::Vector2 EaseOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+
+		/*
+		// @method		EaseOut（static）
+		// @content		二次補間（先が速い）
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector3>*）
+		*/
+		static DirectX::SimpleMath::Vector3 EaseOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+
+		/*
+		// @method		EaseOut（static）
+		// @content		二次補間（先が速い）
+		// @param		始点（Vector4）
+		// @param		終点（Vector4）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector4>*）
+		*/
+		static DirectX::SimpleMath::Vector4 EaseOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+
+		/* 三次補間 */
+
+		/*
+		// @method		EaseInOut（static）
+		// @content		三次補間
+		// @param		始点（float）
+		// @param		終点（float）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<float>*）
+		*/
+		static float EaseInOut(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+
+		/*
+		// @method		EaseInOut（static）
+		// @content		三次補間
+		// @param		始点（Vector2）
+		// @param		終点（Vector2）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector2>*）
+		*/
+		static DirectX::SimpleMath::Vector2 EaseInOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+
+		/*
+		// @method		EaseInOut（static）
+		// @content		三次補間
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector3>*）
+		*/
+		static DirectX::SimpleMath::Vector3 EaseInOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+
+		/*
+		// @method		EaseInOut（static）
+		// @content		三次補間
+		// @param		始点（Vector4）
+		// @param		終点（Vector4）
+		// @param		実行時間（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector4>*）
+		*/
+		static DirectX::SimpleMath::Vector4 EaseInOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
 	};
 
 	/*

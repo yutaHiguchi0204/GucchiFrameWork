@@ -18,6 +18,7 @@ using namespace std;
 // コンストラクタ
 Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, const Quaternion& quat, Asset3D::BLEND_MODE mode)
 	: Asset3D(trans, scale, rot, quat, mode)
+	, parentObject_(nullptr)
 {
 }
 

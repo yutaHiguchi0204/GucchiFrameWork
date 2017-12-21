@@ -97,14 +97,14 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetTranslate(const DirectX::SimpleMath::Vector3& trans)												{ dummyObject_->SetTranslate(trans); }
+		void SetTranslate(const DirectX::SimpleMath::Vector3& trans)								{ dummyObject_->SetTranslate(trans); }
 
-		inline const DirectX::SimpleMath::Vector3& GetTranslate() const												{ return dummyObject_->GetTranslate(); }
-		inline int GetObjectsRowNum() const																			{ return (int)object_.size(); }
-		inline int GetObjectsColumnNum(int row) const																{ return (int)object_[row].size(); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectTranslate(int noX, int noY) const						{ return object_[noX].at(noY).GetTranslate(); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectScale(int noX, int noY) const							{ return object_[noX].at(noY).GetScale(); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectRotate(int noX, int noY) const							{ return object_[noX].at(noY).GetRotate(); }
-		inline InterpolateState<DirectX::SimpleMath::Vector3> GetObjectInterpolateState(int noX, int noY) const		{ return object_[noX].at(noY).GetInterpolateState(); }
+		inline const DirectX::SimpleMath::Vector3& GetTranslate() const								{ return dummyObject_->GetTranslate(); }
+		inline int GetObjectsRowNum() const															{ return (int)object_.size(); }
+		inline int GetObjectsColumnNum(int row) const												{ return (int)object_[row].size(); }
+		inline const DirectX::SimpleMath::Vector3& GetObjectTranslate(int noX, int noY) const		{ return object_[noX].at(noY).GetTranslate(); }
+		inline const DirectX::SimpleMath::Vector3& GetObjectScale(int noX, int noY) const			{ return object_[noX].at(noY).GetScale(); }
+		inline const DirectX::SimpleMath::Vector3& GetObjectRotate(int noX, int noY) const			{ return object_[noX].at(noY).GetRotate(); }
+		inline InterpolateDirector* GetObjectInterpolateState(int noX, int noY) const				{ return object_[noX].at(noY).GetInterpolateDirector(); }
 	};
 }
