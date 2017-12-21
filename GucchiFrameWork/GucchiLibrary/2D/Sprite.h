@@ -6,7 +6,6 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <SimpleMath.h>
 #include <vector>
 #include "TextureCache.h"
 #include "../Utility/Interpolater.h"
@@ -23,20 +22,21 @@ namespace GucchiLibrary
 	class Sprite
 	{
 	private:
-		Texture*														texture_;			// テクスチャハンドル
-		DirectX::SimpleMath::Vector2									pos_;				// 位置
-		DirectX::SimpleMath::Vector2									size_;				// サイズ
-		RECT*															textureRect_;		// 画像矩形
-		float															scale_;				// 拡大率
-		float															angle_;				// 回転角
-		bool															isActive_;			// アクティブ状態
+		Texture*									texture_;				// テクスチャハンドル
+		DirectX::SimpleMath::Vector2				pos_;					// 位置
+		DirectX::SimpleMath::Vector2				size_;					// サイズ
+		RECT*										textureRect_;			// 画像矩形
+		DirectX::SimpleMath::Vector2				anchor_;				// アンカーポイント
+		float										scale_;					// 拡大率
+		float										angle_;					// 回転角
+		bool										isActive_;				// アクティブ状態
 
-		Sprite*															parentSprite_;		// 親スプライト
-		std::vector<Sprite*>											childSprite_;		// 子スプライト
+		Sprite*										parentSprite_;			// 親スプライト
+		std::vector<Sprite*>						childSprite_;			// 子スプライト
 
-		bool															isAction_;			// アクション中かどうか
+		bool										isAction_;				// アクション中かどうか
 
-		GucchiLibrary::InterpolateState<DirectX::SimpleMath::Vector2>	interpolateState_;	// 補間ステート
+		std::unique_ptr<InterpolateDirector>		interpolateDirector_;	// 補間ステート
 
 	public:
 		/*
@@ -77,26 +77,28 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetTexture(Texture* texture)																	{ texture_ = texture; }
-		void SetPos(const DirectX::SimpleMath::Vector2& pos)												{ pos_ = pos; }
-		void SetSize(const DirectX::SimpleMath::Vector2& size)												{ size_ = size; }
-		void SetRect(RECT* rect)																			{ textureRect_ = rect; }
-		void SetScale(float scale)																			{ scale_ = scale; }
-		void SetAngle(float angle)																			{ angle_ = angle; }
-		void SetActive(bool active)																			{ isActive_ = active; }
-		void SetIsAction(bool isAction)																		{ isAction_ = isAction; }
+		void SetTexture(Texture* texture)								{ texture_ = texture; }
+		void SetPos(const DirectX::SimpleMath::Vector2& pos)			{ pos_ = pos; }
+		void SetSize(const DirectX::SimpleMath::Vector2& size)			{ size_ = size; }
+		void SetRect(RECT* rect)										{ textureRect_ = rect; }
+		void SetAnchor(const DirectX::SimpleMath::Vector2& anchor)		{ anchor_ = anchor; }
+		void SetScale(float scale)										{ scale_ = scale; }
+		void SetAngle(float angle)										{ angle_ = angle; }
+		void SetActive(bool active)										{ isActive_ = active; }
+		void SetIsAction(bool isAction)									{ isAction_ = isAction; }
 
-		inline Texture* GetTexture() const																	{ return texture_; }
-		inline DirectX::SimpleMath::Vector2 GetPos() const													{ return pos_; }
-		inline DirectX::SimpleMath::Vector2 GetSize() const													{ return size_; }
-		inline RECT* GetRect() const																		{ return textureRect_; }
-		inline float GetScale() const																		{ return scale_; }
-		inline float GetAngle() const																		{ return angle_; }
-		inline bool GetActive() const																		{ return isActive_; }
-		inline Sprite* GetParent() const																	{ return parentSprite_; }
-		inline std::vector<Sprite*> GetChildren() const														{ return childSprite_; }
-		inline bool IsAction() const																		{ return isAction_; }
-		inline GucchiLibrary::InterpolateState<DirectX::SimpleMath::Vector2> GetInterpolateState() const	{ return interpolateState_; }
+		inline Texture* GetTexture() const								{ return texture_; }
+		inline DirectX::SimpleMath::Vector2 GetPos() const				{ return pos_; }
+		inline DirectX::SimpleMath::Vector2 GetSize() const				{ return size_; }
+		inline RECT* GetRect() const									{ return textureRect_; }
+		inline DirectX::SimpleMath::Vector2 GetAnchor() const			{ return anchor_; }
+		inline float GetScale() const									{ return scale_; }
+		inline float GetAngle() const									{ return angle_; }
+		inline bool GetActive() const									{ return isActive_; }
+		inline Sprite* GetParent() const								{ return parentSprite_; }
+		inline std::vector<Sprite*> GetChildren() const					{ return childSprite_; }
+		inline bool IsAction() const									{ return isAction_; }
+		inline InterpolateDirector* GetInterpolateDirector() const		{ return interpolateDirector_.get(); }
 
 	public:
 		// 代入オペレータ
@@ -106,6 +108,7 @@ namespace GucchiLibrary
 			pos_          = sprite.pos_;
 			size_         = sprite.size_;
 			textureRect_  = sprite.textureRect_;
+			anchor_       = sprite.anchor_;
 			scale_        = sprite.scale_;
 			angle_        = sprite.angle_;
 			isActive_     = sprite.isActive_;
@@ -123,6 +126,7 @@ namespace GucchiLibrary
 				pos_			== sprite.pos_			&&
 				size_			== sprite.size_			&&
 				textureRect_	== sprite.textureRect_	&&
+				anchor_			== sprite.anchor_		&&
 				scale_			== sprite.scale_		&&
 				angle_			== sprite.angle_		&&
 				isActive_		== sprite.isActive_		&&

@@ -203,7 +203,6 @@
     <ClInclude Include="Utility\BinaryFileManager.h" />
     <ClInclude Include="Utility\CSVFileManager.h" />
     <ClInclude Include="Utility\Interpolater.h" />
-    <ClInclude Include="Utility\InterpolateState.h" />
     <ClInclude Include="Utility\Math.h" />
   </ItemGroup>
   <ItemGroup>

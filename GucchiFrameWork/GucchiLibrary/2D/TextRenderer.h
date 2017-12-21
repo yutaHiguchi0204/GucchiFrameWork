@@ -21,7 +21,7 @@ namespace GucchiLibrary
 	class TextRenderer : public SingletonDirector<TextRenderer>
 	{
 	private:
-		std::list<Text> textList_;
+		std::list<Text*> textList_;
 
 	private:
 		friend class SingletonDirector<TextRenderer>;

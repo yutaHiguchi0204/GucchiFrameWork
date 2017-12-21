@@ -139,8 +139,12 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 		position += GetParentSpritePos(sprite->GetParent());
 	}
 
+	// アンカーポイントの設定
+	Vector2 origin = sprite->GetSize();
+	origin *= sprite->GetAnchor();
+
 	// 描画
-	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, sprite->GetAngle(), Vector2(sprite->GetSize().x / 2, sprite->GetSize().y / 2));
+	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, sprite->GetAngle(), origin);
 
 	// 子スプライトがいるなら子どもも描画
 	if (sprite->GetChildren().size() != 0)

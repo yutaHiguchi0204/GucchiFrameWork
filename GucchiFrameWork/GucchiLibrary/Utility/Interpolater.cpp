@@ -11,6 +11,7 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
+using namespace std;
 
 // 静的メンバの定義
 float Interpolater::startTime_ = 0.0f;
@@ -587,4 +588,27 @@ Vector4 Interpolater::EaseInOut(Vector4 start, Vector4 end, float time, float ob
 bool Interpolater::IsInterpolate()
 {
 	return isNowInterpolate_;
+}
+
+// コンストラクタ
+InterpolateDirector::InterpolateDirector()
+{
+	// 実体化
+	stateF_ = make_unique<InterpolateState<float>>();
+	stateV2_ = make_unique<InterpolateState<Vector2>>();
+	stateV3_ = make_unique<InterpolateState<Vector3>>();
+	stateV4_ = make_unique<InterpolateState<Vector4>>();
+}
+
+/*==============================================================
+// @brief		更新処理
+// @param		なし
+// @return		なし
+===============================================================*/
+void InterpolateDirector::Update()
+{
+	stateF_->Update();
+	stateV2_->Update();
+	stateV3_->Update();
+	stateV4_->Update();
 }

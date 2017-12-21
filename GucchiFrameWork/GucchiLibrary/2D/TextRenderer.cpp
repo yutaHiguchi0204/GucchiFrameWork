@@ -23,7 +23,7 @@ using namespace GucchiLibrary;
 ===============================================================*/
 void TextRenderer::RegisterText(Text* text)
 {
-	textList_.emplace_back(*text);
+	textList_.emplace_back(text);
 }
 
 /*==============================================================
@@ -53,13 +53,14 @@ void TextRenderer::Draw()
 	for (auto text : textList_)
 	{
 		// アクティブ状態のスプライトのみ表示
-		if (text.GetActive())
+		if (text->GetActive())
 		{
-			// 原点設定
-			Vector2 origin = dxtk.GetSpriteFont()->MeasureString(text.GetString().c_str()) / 2.f;
+			// アンカーポイントの設定
+			Vector2 origin = dxtk.GetSpriteFont()->MeasureString(text->GetString().c_str());
+			origin *= text->GetAnchor();
 
 			// 描画
-			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch(), text.GetString().c_str(), text.GetPos(), text.GetColor(), 0.f, origin, text.GetFontSize() / Text::DEFAULT_FONT_SIZE);
+			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch(), text->GetString().c_str(), text->GetPos(), text->GetColor(), 0.f, origin, text->GetFontSize() / Text::DEFAULT_FONT_SIZE);
 		}
 	}
 

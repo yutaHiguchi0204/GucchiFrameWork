@@ -6,8 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
+#include <CommonStates.h>
 #include <d3d11_1.h>
-#include <functional>
 #include <map>
 #include <SimpleMath.h>
 #include <string>
@@ -57,7 +57,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-		
+
 		/*
 		// @method		Lerp（static）
 		// @content		線形補間
@@ -89,7 +89,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector2 EaseIn(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseIn（static）
 		// @content		二次補間（後が速い）
@@ -99,7 +99,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector3 EaseIn(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseIn（static）
 		// @content		二次補間（後が速い）
@@ -131,7 +131,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector2 EaseOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseOut（static）
 		// @content		二次補間（先が速い）
@@ -141,7 +141,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector3 EaseOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseOut（static）
 		// @content		二次補間（先が速い）
@@ -173,7 +173,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector2 EaseInOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseInOut（static）
 		// @content		三次補間
@@ -183,7 +183,7 @@ namespace GucchiLibrary
 		// @param		ローカルタイマー（float）
 		*/
 		static DirectX::SimpleMath::Vector3 EaseInOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, float objTimer);
-		
+
 		/*
 		// @method		EaseInOut（static）
 		// @content		三次補間
@@ -205,14 +205,29 @@ namespace GucchiLibrary
 	/*
 	// @content		状態
 	// @mode		NONE	：　何もしていない状態
-	// @mode		LERP	：　補間中
-	// @mode		OUT		：　補間終了
+	// @mode		NOW		：　補間中
+	// @mode		FINISH	：　補間終了
 	*/
 	enum class INTERPOLATE_STATE : int
 	{
 		NONE,
 		NOW,
 		FINISH
+	};
+
+	/*
+	// @content		使用する補間関数
+	// @mode		LERP		：	線形補間
+	// @mode		EASE_IN		：	二次補間（後が速い）
+	// @mode		EASE_OUT	：	二次補間（先が速い）
+	// @mode		EASE_INOUT	：	三次補間
+	*/
+	enum class INTERPOLATE_MODE : int
+	{
+		LERP,
+		EASE_IN,
+		EASE_OUT,
+		EASE_INOUT
 	};
 
 	/*
@@ -223,12 +238,13 @@ namespace GucchiLibrary
 	class InterpolateState
 	{
 	private:
-		std::map<std::wstring, float>				timer_;			// ローカルタイマー
-		std::map<std::wstring, INTERPOLATE_STATE>	state_;			// 補間中かどうか
+		std::map<std::wstring, float>									timer_;			// ローカルタイマー
+		std::map<std::wstring, INTERPOLATE_STATE>						state_;			// 補間中かどうか
 
-		std::map<std::wstring, T>					start_;			// 始点
-		std::map<std::wstring, T>					end_;			// 終点
-		std::map<std::wstring, float>				runTime_;		// 実行時間
+		std::map<std::wstring, T>										start_;			// 始点
+		std::map<std::wstring, T>										end_;			// 終点
+		std::map<std::wstring, float>									runTime_;		// 実行時間
+		std::map<std::wstring, INTERPOLATE_MODE>						mode_;			// 補間モード
 
 	public:
 		// コンストラクタ
@@ -250,7 +266,7 @@ namespace GucchiLibrary
 			// タイマー計測
 			for (auto& timer : timer_)
 			{
-				timer++;
+				timer.second++;
 			}
 		}
 
@@ -258,8 +274,12 @@ namespace GucchiLibrary
 		// @method		Entry
 		// @content		補間開始
 		// @param		補間アクション名（wstring）
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		実行時間（float）
+		// @param		補間モード（INTERPOLATE_MODE）
 		*/
-		void Entry(std::wstring action, T start, T end, float runTime)
+		void Entry(std::wstring action, T start, T end, float runTime, INTERPOLATE_MODE mode)
 		{
 			timer_[action] = 0;
 			state_[action] = INTERPOLATE_STATE::NONE;
@@ -267,15 +287,17 @@ namespace GucchiLibrary
 			start_[action] = start;
 			end_[action] = end;
 			runTime_[action] = runTime;
+			mode_[action] = mode;
 		}
 
 		/*
 		// @method		GetResult
 		// @content		補間結果の取得
 		// @param		補間アクション名（wstring）
+		// @param		始点（T）
 		// @result		補間結果（T）
 		*/
-		T GetResult(std::wstring action, std::function<T(T, T, float, float)> func)
+		T GetResult(std::wstring action)
 		{
 			if (state_[action] == INTERPOLATE_STATE::NONE)
 			{
@@ -283,13 +305,22 @@ namespace GucchiLibrary
 			}
 
 			// 結果を取得
-			T result = func(start_[action], end_[action], runTime_[action], timer[action]);
+			T result;
+			switch (mode_[action])
+			{
+			case INTERPOLATE_MODE::LERP:		result = Interpolater::Lerp(start_[action], end_[action], runTime_[action], timer_[action]);		break;
+			case INTERPOLATE_MODE::EASE_IN:		result = Interpolater::EaseIn(start_[action], end_[action], runTime_[action], timer_[action]);		break;
+			case INTERPOLATE_MODE::EASE_OUT:	result = Interpolater::EaseOut(start_[action], end_[action], runTime_[action], timer_[action]);		break;
+			case INTERPOLATE_MODE::EASE_INOUT:	result = Interpolater::EaseInOut(start_[action], end_[action], runTime_[action], timer_[action]);	break;
+			}
 
 			// 補間が終了していたらステートを終了に変える
 			if (!Interpolater::IsLerp())
 			{
 				state_[action] = INTERPOLATE_STATE::FINISH;
 			}
+
+			return result;
 		}
 
 		/*
@@ -314,5 +345,31 @@ namespace GucchiLibrary
 
 		inline const float				GetTimer(std::wstring action) { return timer_[action]; }
 		inline const INTERPOLATE_STATE	GetState(std::wstring action) { return state_[action]; }
+	};
+
+	/*
+	// @class		InterpolateDirector クラス
+	// @content		全タイプの補間をするための倉庫
+	*/
+	class InterpolateDirector
+	{
+	public:
+		std::unique_ptr<InterpolateState<float>>							stateF_;
+		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector2>>		stateV2_;
+		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector3>>		stateV3_;
+		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector4>>		stateV4_;
+
+	public:
+		// コンストラクタ
+		InterpolateDirector();
+
+		// デストラクタ
+		virtual ~InterpolateDirector() {}
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
+		void Update();
 	};
 }

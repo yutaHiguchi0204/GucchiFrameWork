@@ -24,6 +24,14 @@ void PlayScene::Initialize()
 {
 	// ‘SƒV[ƒ“‹¤’Ê‰Šú‰»ˆ—
 	IScene::CommonInitialize();
+
+	spr_ = spriteFactory_.CreateSpriteFromFile(L"cat", Vector2(100.0f, 100.0f));
+	spr_->SetPos(WINDOW_MIDDLE);
+	spriteRenderer_.RegisterSprite(spr_.get());
+
+	t_ = make_unique<Text>(L"‚Ä‚·‚Æ", WINDOW_MIDDLE);
+	t_->SetAnchor(ANCHOR_MM);
+	textRenderer_.RegisterText(t_.get());
 }
 
 /*==============================================================

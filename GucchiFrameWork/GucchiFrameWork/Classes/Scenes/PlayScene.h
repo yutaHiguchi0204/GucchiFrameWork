@@ -13,6 +13,8 @@ class PlayScene : public GucchiLibrary::IScene
 {
 private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
+	std::unique_ptr<GucchiLibrary::Sprite> spr_;
+	std::unique_ptr<GucchiLibrary::Text> t_;
 
 public:
 	PlayScene() {}
