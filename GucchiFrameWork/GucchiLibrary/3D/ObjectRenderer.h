@@ -91,9 +91,9 @@ namespace GucchiLibrary
 		/*
 		// @method		SetSubtractive
 		// @content		減算描画設定
-		// @param		減算描画用ステート（ID3D11BlendState*）
+		// @return		減算描画用ブレンドステート（ID3D11BlendState*）
 		*/
-		void SetSubtractive(ID3D11BlendState* blendState);
+		ID3D11BlendState* SetSubtractive();
 
 		/*
 		// @method		DisableLighting

@@ -79,6 +79,24 @@ void SpriteRenderer::SetOrder(Sprite* sprite, int order)
 }
 
 /*==============================================================
+// @brief		アクティブ状態のスプライトを更新
+// @param		なし
+// @return		なし
+===============================================================*/
+void SpriteRenderer::Update()
+{
+	// 更新処理
+	for (auto& sprite : spriteList_)
+	{
+		// アクティブ状態のスプライトのみ表示
+		if (sprite->GetActive())
+		{
+			sprite->Update();
+		}
+	}
+}
+
+/*==============================================================
 // @brief		アクティブ状態のスプライトを描画
 // @param		なし
 // @return		なし
@@ -121,8 +139,12 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 		position += GetParentSpritePos(sprite->GetParent());
 	}
 
+	// アンカーポイントの設定
+	Vector2 origin = sprite->GetSize();
+	origin *= sprite->GetAnchor();
+
 	// 描画
-	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, sprite->GetAngle(), Vector2(sprite->GetSize().x / 2, sprite->GetSize().y / 2));
+	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, -sprite->GetAngle(), origin, sprite->GetScale());
 
 	// 子スプライトがいるなら子どもも描画
 	if (sprite->GetChildren().size() != 0)

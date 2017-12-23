@@ -16,6 +16,9 @@ using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
+// 静的メンバの定義
+ID3D11BlendState* Asset3D::blendStateSubtract_;
+
 // メンバ関数の定義
 
 // コンストラクタ
@@ -57,26 +60,30 @@ Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot,
 
 	// 減算描画設定
 	ObjectRenderer& objectRenderer = ObjectRenderer::GetInstance();
-	objectRenderer.SetSubtractive(blendStateSubtract_);
+	blendStateSubtract_ = objectRenderer.SetSubtractive();
+
+	// 補間ステートの準備
+	interpolateDirector_ = make_unique<InterpolateDirector>();
 }
 
 // コピーコンストラクタ
 Asset3D::Asset3D(const Asset3D& asset)
 {
-	basicEffect_        = asset.basicEffect_;
-	inputLayout_        = asset.inputLayout_;
-	effectFactory_      = asset.effectFactory_;
-	camera_             = asset.camera_;
-	model_              = asset.model_;
-	scale_              = asset.scale_;
-	rot_                = asset.rot_;
-	quat_               = asset.quat_;
-	trans_              = asset.trans_;
-	world_              = asset.world_;
-	blendStateSubtract_ = asset.blendStateSubtract_;
-	blendMode_          = asset.blendMode_;
-	isActive_           = asset.isActive_;
-	isUseQuaternion_    = asset.isUseQuaternion_;
+	basicEffect_         = asset.basicEffect_;
+	inputLayout_         = asset.inputLayout_;
+	effectFactory_       = asset.effectFactory_;
+	camera_              = asset.camera_;
+	model_               = asset.model_;
+	scale_               = asset.scale_;
+	rot_                 = asset.rot_;
+	quat_                = asset.quat_;
+	trans_               = asset.trans_;
+	world_               = asset.world_;
+	blendStateSubtract_  = asset.blendStateSubtract_;
+	blendMode_           = asset.blendMode_;
+	isActive_            = asset.isActive_;
+	isUseQuaternion_     = asset.isUseQuaternion_;
+	interpolateDirector_ = make_unique<InterpolateDirector>();
 }
 
 /*==============================================================
@@ -86,6 +93,9 @@ Asset3D::Asset3D(const Asset3D& asset)
 ===============================================================*/
 void Asset3D::Update()
 {
+	// 補間ステートの更新
+	interpolateDirector_->Update();
+
 	// スケーリング行列の計算
 	Matrix scaleMat = Matrix::CreateScale(scale_);
 

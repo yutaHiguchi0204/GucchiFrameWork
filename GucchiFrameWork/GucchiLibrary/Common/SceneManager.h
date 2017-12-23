@@ -13,6 +13,7 @@
 #include "../2D/SpriteRenderer.h"
 #include "../2D/TextRenderer.h"
 #include "../3D/ObjectRenderer.h"
+#include "../Sound/SoundManager.h"
 
 namespace GucchiLibrary
 {
@@ -33,6 +34,7 @@ namespace GucchiLibrary
 		SpriteRenderer&		spriteRenderer_		= SpriteRenderer::GetInstance();			// スプライト描画用
 		SpriteFactory&		spriteFactory_		= SpriteFactory::GetInstance();				// スプライト生成用
 		TextRenderer&		textRenderer_		= TextRenderer::GetInstance();				// テキスト描画用
+		SoundManager&		soundManager_		= SoundManager::GetInstance();				// サウンドマネージャ
 
 	public:
 		// コンストラクタ
@@ -142,7 +144,7 @@ namespace GucchiLibrary
 		// @method		RegisterScene
 		// @content		シーンの登録
 		// @param		シーン名（string）
-		// @param		シーン（unique_ptr<IScene>）
+		// @param		シーンインスタンス（unique_ptr<IScene>）
 		*/
 		void RegisterScene(std::string scene, std::unique_ptr<IScene> newScene);
 
@@ -150,8 +152,9 @@ namespace GucchiLibrary
 		// @method		ChangeScene
 		// @content		シーンの変更
 		// @param		シーン名（string）
+		// @param		シーンインスタンス（unique_ptr<IScene>）
 		*/
-		void ChangeScene(std::string scene);
+		void ChangeScene(std::string scene, std::unique_ptr<IScene> newScene);
 
 		/*
 		// @method		CheckScene

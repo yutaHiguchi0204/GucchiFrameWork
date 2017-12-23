@@ -23,6 +23,7 @@ const float Text::DEFAULT_FONT_SIZE = 18.0f;		// ƒtƒHƒ“ƒgƒTƒCƒY‚Ì‰Šúİ’èiƒtƒHƒ
 Text::Text(wstring str, Vector2 pos, wstring font, int fontSize, Color color)
 	: str_(str)
 	, pos_(pos)
+	, anchor_(ANCHOR_LM)
 	, font_(font)
 	, fontSize_(fontSize)
 	, color_(color)

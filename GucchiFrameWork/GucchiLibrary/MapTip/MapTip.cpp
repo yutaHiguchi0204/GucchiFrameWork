@@ -14,15 +14,9 @@ using namespace std;
 // メンバ関数の定義
 
 // コンストラクタ
-MapTip::MapTip(vector<vector<int>> data, int dataTypeNum, TipData::TIP_TYPE type[])
+MapTip::MapTip(vector<vector<int>> data, int dataTypeNum)
 	: dataTypeNum_(dataTypeNum)
 {
-	// 属性の保存
-	for (int i = 0; i < dataTypeNum_; i++)
-	{
-		typeNum_.emplace_back(type[i]);
-	}
-
 	// チップデータに挿入
 	for (int i = 0; i < (int)data.size(); i++)
 	{
@@ -33,7 +27,7 @@ MapTip::MapTip(vector<vector<int>> data, int dataTypeNum, TipData::TIP_TYPE type
 		{
 			data_[i].emplace_back();
 			data_[i].at(j).SetData(data);
-			data_[i].at(j).SetType(typeNum_.at(data));
+			data_[i].at(j).SetType(static_cast<TipData::TIP_TYPE>(data));
 			j++;
 		}
 	}

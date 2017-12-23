@@ -7,11 +7,10 @@
 
 // ヘッダファイルのインクルード
 #include <CommonStates.h>
-#include <d3d11_1.h>
 #include <Effects.h>
 #include <Model.h>
-#include <SimpleMath.h>
 #include "../Camera/Camera.h"
+#include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
 {
@@ -40,6 +39,9 @@ namespace GucchiLibrary
 		};
 
 	protected:
+		static ID3D11BlendState*					blendStateSubtract_;		// 減算描画用ブレンドステート
+
+	protected:
 		// エフェクト
 		std::shared_ptr<DirectX::BasicEffect>		basicEffect_;
 
@@ -64,11 +66,12 @@ namespace GucchiLibrary
 
 		DirectX::SimpleMath::Matrix					world_;						// ワールド行列
 
-		ID3D11BlendState*							blendStateSubtract_;		// 減算描画用ブレンドステート
 		BLEND_MODE									blendMode_;					// ブレンドモード
 
 		bool										isActive_;					// アクティブ状態
 		bool										isUseQuaternion_;			// クォータニオンを使用するかどうか
+
+		std::unique_ptr<InterpolateDirector>		interpolateDirector_;		// 補間ステート
 
 	public:
 		/*
@@ -122,6 +125,7 @@ namespace GucchiLibrary
 		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
 		inline bool GetActive()	const											{ return isActive_; }
 		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
+		inline InterpolateDirector* GetInterpolateDirector() const				{ return interpolateDirector_.get(); }
 
 	public:
 		// 代入オペレータ

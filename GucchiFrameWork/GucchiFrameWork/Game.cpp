@@ -58,6 +58,7 @@ void Game::Update(const StepTimer& timer)
 {
 	// デバイス関連などの更新はここに記述
 	objectRenderer_.Update();			// オブジェクト
+	spriteRenderer_.Update();			// スプライト
 
 	// ゲーム内関連の更新処理はGameMainの更新に書いてください（基本的にここはいじらない）
 	main_->Update();

@@ -185,10 +185,10 @@ void ObjectRenderer::SetBlendState(Asset3D::BLEND_MODE mode)
 
 /*==============================================================
 // @brief		減算描画設定
-// @param		ブレンドステート（ID3D11BlendState*）
-// @return		なし
+// @param		なし
+// @return		減算描画用ブレンドステート（ID3D11BlendState*）
 ===============================================================*/
-void ObjectRenderer::SetSubtractive(ID3D11BlendState* blendState)
+ID3D11BlendState* ObjectRenderer::SetSubtractive()
 {
 	// 減算描画用のブレンドステートを作成
 	D3D11_BLEND_DESC desc;
@@ -205,11 +205,14 @@ void ObjectRenderer::SetSubtractive(ID3D11BlendState* blendState)
 
 	// ブレンドステートの作成
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
+	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
 		OutputDebugString(L"Create blend state is failed.");
 		assert(0);
 	}
+
+	return blendState;
 }
 
 /*==============================================================

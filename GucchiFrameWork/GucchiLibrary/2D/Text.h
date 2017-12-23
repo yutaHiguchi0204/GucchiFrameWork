@@ -25,6 +25,7 @@ namespace GucchiLibrary
 	private:
 		std::wstring					str_;			// テキスト
 		DirectX::SimpleMath::Vector2	pos_;			// 位置
+		DirectX::SimpleMath::Vector2	anchor_;		// アンカーポイント
 		std::wstring					font_;			// 使用フォント
 		int								fontSize_;		// フォントサイズ
 		DirectX::SimpleMath::Color		color_;			// 色
@@ -44,20 +45,28 @@ namespace GucchiLibrary
 		// デストラクタ
 		virtual ~Text() {}
 
+		/*
+		// @method		SetFont
+		// @content		フォントの変更
+		// @param		スプライトフォントハンドル（wstring）
+		*/
+		void SetFont(std::wstring font);
+
 		/* アクセッサ */
 
-		void SetString(std::wstring str)					{ str_ = str; }
-		void SetPos(DirectX::SimpleMath::Vector2 pos)		{ pos_ = pos; }
-		void SetFont(std::wstring font);
-		void SetFontSize(int fontSize)						{ fontSize_ = fontSize; }
-		void SetColor(DirectX::SimpleMath::Color color)		{ color_ = color; }
-		void SetActive(bool active)							{ isActive_ = active; }
+		void SetString(std::wstring str)						{ str_ = str; }
+		void SetPos(DirectX::SimpleMath::Vector2 pos)			{ pos_ = pos; }
+		void SetAnchor(DirectX::SimpleMath::Vector2 anchor)		{ anchor_ = anchor; }
+		void SetFontSize(int fontSize)							{ fontSize_ = fontSize; }
+		void SetColor(DirectX::SimpleMath::Color color)			{ color_ = color; }
+		void SetActive(bool active)								{ isActive_ = active; }
 
-		inline std::wstring GetString() const				{ return str_; }
-		inline DirectX::SimpleMath::Vector2 GetPos() const	{ return pos_; }
-		inline std::wstring GetFont() const					{ return font_; }
-		inline int GetFontSize() const						{ return fontSize_; }
-		inline DirectX::SimpleMath::Color GetColor() const	{ return color_; }
-		inline bool GetActive() const						{ return isActive_; }
+		inline std::wstring GetString() const					{ return str_; }
+		inline DirectX::SimpleMath::Vector2 GetPos() const		{ return pos_; }
+		inline DirectX::SimpleMath::Vector2 GetAnchor() const	{ return anchor_; }
+		inline std::wstring GetFont() const						{ return font_; }
+		inline int GetFontSize() const							{ return fontSize_; }
+		inline DirectX::SimpleMath::Color GetColor() const		{ return color_; }
+		inline bool GetActive() const							{ return isActive_; }
 	};
 }

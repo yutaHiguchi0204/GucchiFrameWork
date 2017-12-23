@@ -18,8 +18,8 @@ using namespace std;
 // メンバ関数の定義
 
 // コンストラクタ
-MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring modelFileName[], int typeNum, TipData::TIP_TYPE type[])
-	: MapTip(data, typeNum, type)
+MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* modelFileName, int typeNum, TipData::TIP_TYPE* type)
+	: MapTip(data, typeNum)
 {
 	if (dataTypeNum_ <= 0)
 	{
@@ -34,10 +34,19 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring mod
 
 	// オブジェクト設定
 	ObjectFactory& factory = ObjectFactory::GetInstance();
-	for (int i = 0; i < dataTypeNum_; i++)
+	int typeNo = 0;
+	for (int i = 0; i < static_cast<int>(TipData::TIP_TYPE::TYPE_NUM); i++)
 	{
-		// オブジェクト生成・登録
-		masterObject_.emplace_back(factory.CreateObjectFromFile(modelFileName[i]));
+		if (i == static_cast<int>(type[typeNo]))
+		{
+			// オブジェクト生成・登録
+			masterObject_.emplace_back(factory.CreateObjectFromFile(modelFileName[typeNo]));
+			typeNo++;
+		}
+		else
+		{
+			masterObject_.emplace_back(nullptr);
+		}
 	}
 
 	// オブジェクトデータに反映
@@ -85,16 +94,6 @@ void MapTip3D::ResetData()
 }
 
 /*==============================================================
-// @brief		アクティブ状態の変更
-// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、アクティブ状態（bool）
-// @return		なし
-===============================================================*/
-void MapTip3D::SetActive(int noX, int noY, bool active)
-{
-	object_.at(noY).at(noX).SetActive(active);
-}
-
-/*==============================================================
 // @brief		マップチップデータの変更
 // @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、新データ（int）
 // @return		なし
@@ -105,4 +104,54 @@ void MapTip3D::ChangeTip(int noX, int noY, int newData)
 
 	// 新しいスプライトデータに書き換える
 	object_.at(noY).at(noX) = *masterObject_.at(data_.at(noY).at(noX).GetData()).get();
+}
+
+/*==============================================================
+// @brief		指定したオブジェクトの平行移動設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、平行移動（Vector3）
+// @return		なし
+===============================================================*/
+void MapTip3D::SetObjectTranslate(int noX, int noY, const Vector3& trans)
+{
+	object_.at(noY).at(noX).SetTranslate(trans);
+}
+
+/*==============================================================
+// @brief		指定したオブジェクトのスケール設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、スケール（Vector3）
+// @return		なし
+===============================================================*/
+void MapTip3D::SetObjectScale(int noX, int noY, const Vector3& scale)
+{
+	object_.at(noY).at(noX).SetScale(scale);
+}
+
+/*==============================================================
+// @brief		指定したオブジェクトの回転角設定
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、回転角（Vector3）
+// @return		なし
+===============================================================*/
+void MapTip3D::SetObjectRotate(int noX, int noY, const Vector3& rot)
+{
+	object_.at(noY).at(noX).SetRotate(rot);
+}
+
+/*==============================================================
+// @brief		指定したオブジェクトのアクティブ状態の変更
+// @param		変えたいデータの番号x（int）、変えたいデータの番号y（int）、アクティブ状態（bool）
+// @return		なし
+===============================================================*/
+void MapTip3D::SetObjectActive(int noX, int noY, bool active)
+{
+	object_.at(noY).at(noX).SetActive(active);
+}
+
+/*==============================================================
+// @brief		マップチップとの親子関係構築
+// @param		子にしたいオブジェクト（Object*）
+// @return		なし
+===============================================================*/
+void MapTip3D::AddChild(Object* object)
+{
+	dummyObject_->AddChild(object);
 }

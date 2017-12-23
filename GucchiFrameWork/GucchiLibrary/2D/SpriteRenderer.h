@@ -54,6 +54,12 @@ namespace GucchiLibrary
 		void SetOrder(Sprite* sprite, int order);
 
 		/*
+		// @method		Update
+		// @content		アクティブ状態のスプライトを更新
+		*/
+		void Update();
+
+		/*
 		// @method		Draw
 		// @content		アクティブ状態のスプライトを描画
 		*/

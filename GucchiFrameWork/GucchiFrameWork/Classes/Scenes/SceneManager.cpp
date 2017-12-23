@@ -63,7 +63,8 @@ void IScene::CommonDraw()
 ===============================================================*/
 void IScene::CommonFinalize()
 {
-
+	// サウンドの解放
+	soundManager_.Dispose();
 }
 
 /*==============================================================
@@ -86,6 +87,10 @@ SceneManager::SceneManager()
 	RegisterScene("PLAY", move(make_unique<PlayScene>()));
 	nowScene_ = "PLAY";
 	beforeScene_ = "PLAY";
+
+	// サウンドの初期設定
+	SoundManager& soundManager = SoundManager::GetInstance();
+	//soundManager.Initialize("Acfファイル", "Acbファイル", "Awbファイル");
 }
 
 /*==============================================================
@@ -137,25 +142,27 @@ void SceneManager::Finalize()
 	sceneList_[nowScene_]->ResetDevice();
 
 	sceneList_[nowScene_]->Finalize();
-	sceneList_[nowScene_].reset();
 }
 
 /*==============================================================
 // @brief		シーンの登録
-// @param		シーン名（string）、シーンインスタンス
+// @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
 void SceneManager::RegisterScene(string scene, unique_ptr<IScene> newScene)
 {
-	sceneList_[scene] = move(newScene);
+	if (sceneList_.count(scene) == 0)
+	{
+		sceneList_[scene] = move(newScene);
+	}
 }
 
 /*==============================================================
 // @brief		シーンの変更
-// @param		シーン名（string）
+// @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
-void SceneManager::ChangeScene(string scene)
+void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
 {
 	// 前フレームと同じシーンだった場合は無視する
 	if (scene == beforeScene_)
@@ -175,6 +182,7 @@ void SceneManager::ChangeScene(string scene)
 
 	// シーン切り替え
 	nowScene_ = scene;
+	sceneList_[nowScene_] = move(newScene);
 
 	// 新しいシーンの初期化処理を行う
 	Initialize();
