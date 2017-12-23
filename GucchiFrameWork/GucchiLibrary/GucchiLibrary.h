@@ -28,6 +28,9 @@
 #include "MapTip/MapTip2D.h"
 #include "MapTip/MapTip3D.h"
 
+// アクション関連
+#include "Utility/Action.h"
+
 // バイナリファイル管理
 #include "Utility/BinaryFileManager.h"
 

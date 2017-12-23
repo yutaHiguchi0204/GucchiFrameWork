@@ -144,7 +144,7 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 	origin *= sprite->GetAnchor();
 
 	// 描画
-	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, sprite->GetAngle(), origin);
+	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, -sprite->GetAngle(), origin, sprite->GetScale());
 
 	// 子スプライトがいるなら子どもも描画
 	if (sprite->GetChildren().size() != 0)

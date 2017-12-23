@@ -154,12 +154,26 @@ namespace GucchiLibrary
 			return true;
 		}
 
+		/*
+		// @method		GetState
+		// @content		補間状態の取得（アクションが無ければNONEを返す）
+		// @result		補間状態（INTERPOLATE_STATE）
+		*/
+		const INTERPOLATE_STATE GetState(std::wstring action)
+		{
+			if (state_.count(action) == 0)
+			{
+				return INTERPOLATE_STATE::NONE;
+			}
+
+			return state_[action];
+		}
+
 		/* アクセッサ */
 
 		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
 
-		inline const float				GetTimer(std::wstring action) { return timer_[action]; }
-		inline const INTERPOLATE_STATE	GetState(std::wstring action) { return state_[action]; }
+		inline const float GetTimer(std::wstring action) { return timer_[action]; }
 	};
 
 	/*

@@ -17,22 +17,21 @@ namespace GucchiLibrary
 	// @class		Action クラス
 	// @content		移動関係の共通クラス
 	*/
-	class Action
+	class ActionManager
 	{
-	protected:
-		DirectX::SimpleMath::Vector2 startPosV2;			// 始点（スプライト用）
-		DirectX::SimpleMath::Vector3 startPosV3;			// 始点（オブジェクト用）
-
 	public:
-		Action() {}
-		virtual ~Action() {}
+		// コンストラクタ
+		ActionManager() {}
+
+		// デストラクタ
+		virtual ~ActionManager() {}
 	};
 
 	/*
 	// @class		MoveTo クラス
 	// @content		線形移動（絶対移動）
 	*/
-	class MoveTo : public Action
+	class MoveTo : public ActionManager
 	{
 	public:
 		/*
@@ -41,8 +40,9 @@ namespace GucchiLibrary
 		// @param		スプライト（Sprite*）
 		// @param		移動にかける時間（float）
 		// @param		終点（Vector2）
+		// @return		補間値（Vector2）
 		*/
-		static void Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& pos);
+		static DirectX::SimpleMath::Vector2 Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& pos);
 
 		/*
 		// @method		Action
@@ -50,15 +50,16 @@ namespace GucchiLibrary
 		// @param		オブジェクト（Object*）
 		// @param		移動にかける時間（float）
 		// @param		終点（Vector3）
+		// @return		補間値（Vector3）
 		*/
-		static void Action(Object* object, float time, const DirectX::SimpleMath::Vector3& pos);
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& trans);
 	};
 
 	/*
 	// @class		MoveBy クラス
 	// @content		線形移動（相対移動）
 	*/
-	class MoveBy : public Action
+	class MoveBy : public ActionManager
 	{
 	public:
 		/*
@@ -66,17 +67,131 @@ namespace GucchiLibrary
 		// @content		移動アクション
 		// @param		スプライト（Sprite*）
 		// @param		移動にかける時間（float）
-		// @param		終点（Vector2）
+		// @param		移動距離（Vector2）
+		// @return		補間値（Vector2）
 		*/
-		static void Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& distance);
+		static DirectX::SimpleMath::Vector2 Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& distance);
 		
 		/*
 		// @method		Action
 		// @content		移動アクション
 		// @param		オブジェクト（Object*）
 		// @param		移動にかける時間（float）
-		// @param		終点（Vector3）
+		// @param		移動距離（Vector3）
+		// @return		補間値（Vector3）
 		*/
-		static void Action(Object* object, float time, const DirectX::SimpleMath::Vector3& distance);
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& distance);
+	};
+
+	/*
+	// @class		ScaleTo クラス
+	// @content		スケール変化（絶対変化）
+	*/
+	class ScaleTo : public ActionManager
+	{
+	public:
+		/*
+		// @method		Action
+		// @content		スケール変化アクション
+		// @param		スプライト（Sprite*）
+		// @param		変化にかける時間（float）
+		// @param		スケール値（float）
+		// @return		補間値（float）
+		*/
+		static float Action(Sprite* sprite, float time, float scale);
+
+		/*
+		// @method		Action
+		// @content		スケール変化アクション
+		// @param		オブジェクト（Object*）
+		// @param		変化にかける時間（float）
+		// @param		スケール値（Vector3）
+		// @return		補間値（Vector3）
+		*/
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& scale);
+	};
+
+	/*
+	// @class		ScaleBy クラス
+	// @content		スケール変化（相対移動）
+	*/
+	class ScaleBy : public ActionManager
+	{
+	public:
+		/*
+		// @method		Action
+		// @content		スケール変化アクション
+		// @param		スプライト（Sprite*）
+		// @param		変化にかける時間（float）
+		// @param		現在のスケールからの倍率（float）
+		// @return		補間値（float）
+		*/
+		static float Action(Sprite* sprite, float time, const float scale);
+
+		/*
+		// @method		Action
+		// @content		スケール変化アクション
+		// @param		オブジェクト（Object*）
+		// @param		変化にかける時間（float）
+		// @param		現在のスケールからの倍率（Vector3）
+		// @return		補間値（Vector3）
+		*/
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& scale);
+	};
+
+	/*
+	// @class		RotateTo クラス
+	// @content		回転運動（絶対回転）
+	*/
+	class RotateTo : public ActionManager
+	{
+	public:
+		/*
+		// @method		Action
+		// @content		回転アクション
+		// @param		スプライト（Sprite*）
+		// @param		回転にかける時間（float）
+		// @param		回転角（float）
+		// @return		補間値（float）
+		*/
+		static float Action(Sprite* sprite, float time, float angle);
+
+		/*
+		// @method		Action
+		// @content		回転アクション
+		// @param		オブジェクト（Object*）
+		// @param		回転にかける時間（float）
+		// @param		回転角（Vector3）
+		// @return		補間値（Vector3）
+		*/
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& rot);
+	};
+
+	/*
+	// @class		RotateBy クラス
+	// @content		回転運動（相対回転）
+	*/
+	class RotateBy : public ActionManager
+	{
+	public:
+		/*
+		// @method		Action
+		// @content		回転アクション
+		// @param		スプライト（Sprite*）
+		// @param		回転にかける時間（float）
+		// @param		現在の角度からの回転角（float）
+		// @return		補間値（float）
+		*/
+		static float Action(Sprite* sprite, float time, float angle);
+
+		/*
+		// @method		Action
+		// @content		回転アクション
+		// @param		オブジェクト（Object*）
+		// @param		回転にかける時間（float）
+		// @param		現在の角度からの回転角（Vector3）
+		// @return		補間値（Vector3）
+		*/
+		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& rot);
 	};
 }
