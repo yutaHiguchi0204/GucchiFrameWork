@@ -86,7 +86,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawCircle(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color, const DirectX::SimpleMath::Vector2& center, float radius);
+		void DrawCircle(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color);
 
 		/*
 		// @method		RegisterPrimitive

@@ -18,8 +18,6 @@ using namespace std;
 // コンストラクタ
 Primitive::Primitive()
 	: isFill_(true)
-	, center_(Vector2::Zero)
-	, radius_(0.0f)
 {
 }
 
@@ -79,26 +77,26 @@ void Primitive::Entry(bool fillFlag, const Vector2& topLeft, const Vector2& bott
 
 /*==============================================================
 // @brief		プリミティブ作成（円）
-// @param		塗りつぶすかどうか（bool）, 中心座標（Vector2）、半径（float）、分割数（int）、色（Color）
+// @param		塗りつぶすかどうか（bool）、中心座標（Vector2）、半径（float）、分割数（int）、色（Color）
 // @return		なし
 ===============================================================*/
 void Primitive::Entry(bool fillFlag, const Vector2& center, float radius, int div, const Color& color)
 {
+	// ポイントの１番目と２番目をデータ保存用とする
+	point_["center"] = center;
+	point_["rad&div"].x = radius;
+	point_["rad&div"].y = (float)div;
+
 	for (int i = 0; i < div; i++)
 	{
-		string key = "Rad" + i;
-
+		string key = "Rad" + to_string(i);
 		point_[key].x = center.x + cosf(XM_2PI / div * i) * radius;
 		point_[key].y = center.y + sinf(XM_2PI / div * i) * radius;
 	}
 
 	color_ = color;
 
-	// 中心座標と半径を保存
-	center_ = center;
-	radius_ = radius;
-
-	// タイプを円に設定
+	// タイプを四角に設定
 	type_ = PRIMITIVE_TYPE::CIRCLE;
 
 	// 塗りつぶすかどうか

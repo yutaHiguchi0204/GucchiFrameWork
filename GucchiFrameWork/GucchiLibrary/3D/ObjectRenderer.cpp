@@ -7,6 +7,7 @@
 // ヘッダファイルのインクルード
 #include "ObjectRenderer.h"
 #include "ModelCache.h"
+#include "../Common/DebugSwitch.h"
 #include "../Common/DeviceResources.h"
 
 // 名前空間
@@ -208,7 +209,9 @@ ID3D11BlendState* ObjectRenderer::SetSubtractive()
 	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
+#if MODE_DEBUG == 1
 		OutputDebugString(L"Create blend state is failed.");
+#endif
 		assert(0);
 	}
 

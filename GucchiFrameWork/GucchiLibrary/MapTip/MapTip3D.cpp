@@ -8,6 +8,7 @@
 #include "MapTip3D.h"
 #include <cassert>
 #include "../3D/ObjectRenderer.h"
+#include "../Common/DebugSwitch.h"
 
 // –¼‘O‹óŠÔ
 using namespace DirectX;
@@ -23,7 +24,9 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 {
 	if (dataTypeNum_ <= 0)
 	{
+#if MODE_DEBUG == 1
 		OutputDebugString(L"No object type. Please configuration \"typeNum\".");
+#endif
 		assert(0);
 	}
 

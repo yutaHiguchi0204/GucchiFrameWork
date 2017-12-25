@@ -28,11 +28,13 @@ void IScene::CommonInitialize()
 	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	objectFactory_.SetCamera(camera_.get());
 
+#if DRAW_DEFAULT_SKYDOME == 1
 	// 天球の生成
 	skyDome_ = objectFactory_.CreateObjectFromFile(L"skyDome");
 
 	// オブジェクトの登録
 	objectRenderer_.RegisterObject(skyDome_.get());		// 天球
+#endif
 }
 
 /*==============================================================
@@ -174,7 +176,9 @@ void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
 	// 登録されているシーンかチェック
 	if (sceneList_.count(scene) == 0)
 	{
+#if MODE_DEBUG == 1
 		OutputDebugString("This scene is not register. Please register this scene for \"RegisterScene()\"");
+#endif
 		assert(0);
 	}
 

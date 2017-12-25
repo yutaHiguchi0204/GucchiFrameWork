@@ -342,22 +342,30 @@ void Framework::Clear()
 // メッセージ関連
 void Framework::OnActivated()
 {
+#if MODE_DEBUG == 1
 	OutputDebugString(L"Framework is becoming active window.");
+#endif
 }
 
 void Framework::OnDeactivated()
 {
+#if MODE_DEBUG == 1
 	OutputDebugString(L"Framework is becoming background window.");
+#endif
 }
 
 void Framework::OnSuspending()
 {
+#if MODE_DEBUG == 1
 	OutputDebugString(L"Framework is being power-suspended (or minimized).");
+#endif
 }
 
 void Framework::OnResuming()
 {
+#if MODE_DEBUG == 1
 	OutputDebugString(L"Framework is being power-resumed (or returning from minimize).");
+#endif
 	timer_.ResetElapsedTime();
 }
 
@@ -368,7 +376,9 @@ void Framework::OnWindowSizeChanged(int width, int height)
 	if (!deviceResources.WindowSizeChanged(width, height))
 		return;
 
+#if MODE_DEBUG == 1
 	OutputDebugString(L"Framework window is being resized.");
+#endif
 
 	CreateWindowSizeDependentResources();
 }

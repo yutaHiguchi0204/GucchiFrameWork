@@ -24,24 +24,23 @@ namespace GucchiLibrary
 		// @content		プリミティブタイプ
 		// @mode		LINE		：	線
 		// @mode		TRIANGLE	：	三角
+		// @mode		SQUARE		：　四角
+		// @mode		CIRCLE		：　円
 		*/
 		enum class PRIMITIVE_TYPE
 		{
+			POINT,
 			LINE,
 			TRIANGLE,
 			SQUARE,
 			CIRCLE
 		};
 
-	private:
+	protected:
 		PRIMITIVE_TYPE											type_;
 		std::map<std::string, DirectX::SimpleMath::Vector2>		point_;
 		DirectX::SimpleMath::Color								color_;
 		bool													isFill_;
-
-		// 円プリミティブ用
-		DirectX::SimpleMath::Vector2							center_;
-		float													radius_;
 
 	public:
 		// コンストラクタ
@@ -100,7 +99,5 @@ namespace GucchiLibrary
 		inline std::map<std::string, DirectX::SimpleMath::Vector2> GetPoints() const 	{ return point_; }
 		inline DirectX::SimpleMath::Color GetColor() const								{ return color_; }
 		inline bool GetFillFlag() const													{ return isFill_; }
-		inline DirectX::SimpleMath::Vector2 GetCircleCenterPos() const					{ return center_; }
-		inline float GetCircleRadius() const											{ return radius_; }
 	};
 }

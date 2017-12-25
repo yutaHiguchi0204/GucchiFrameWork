@@ -106,15 +106,23 @@ void PrimitiveRenderer::Draw()
 				break;
 
 			case Primitive::PRIMITIVE_TYPE::CIRCLE:			// 円
-				DrawCircle(primitive->GetPoints(), primitive->GetColor(), primitive->GetCircleCenterPos(), primitive->GetCircleRadius());
+				DrawCircle(primitive->GetPoints(), primitive->GetColor());
 				break;
 			}
 
 			continue;
 		}
 
-		// 頂点データの設定
+		// 頂点数の取得
 		int vertexNum = GetNumVertex(primitive->GetPoints());
+
+		// 円の場合は頂点数を[分割数+1]にする
+		if (type == Primitive::PRIMITIVE_TYPE::CIRCLE)
+		{
+			vertexNum = (int)(primitive->GetPoints()["rad&div"].y) + 1;
+		}
+
+		// 頂点データの設定
 		VertexPositionColor* vertices = SetVertices(type, primitive->GetPoints(), primitive->GetColor(), vertexNum);
 
 		// プリミティブの描画
@@ -214,19 +222,53 @@ void PrimitiveRenderer::DrawSquare(map<string, Vector2> vertices, const Color& c
 
 /*==============================================================
 // @brief		円の描画
-// @param		頂点データ（VertexPositionColor*）、色（Color）、中心座標（Vector2）、半径（float）
+// @param		頂点データ（VertexPositionColor*）、色（Color）
 // @return		なし
 ===============================================================*/
-void PrimitiveRenderer::DrawCircle(map<string, Vector2> vertices, const Color& color, const Vector2& center, float radius)
+void PrimitiveRenderer::DrawCircle(map<string, Vector2> vertices, const Color& color)
 {
 	// 分割数
-	int div = (int)vertices.size();
+	const int div = (int)vertices["rad&div"].y;
 
 	// 中心座標
-	Vector3 center3D = Vector3(center.x, center.y, 0);
+	Vector3 center3D = Vector3(vertices["center"].x, vertices["center"].y, 0);
 
 	// インデックスデータ準備
-	
+	uint16_t* indices = new uint16_t[div * 3];
+	VertexPositionColor* v = new VertexPositionColor[div + 1];
+
+	// インデックスデータの設定
+	for (int i = 0; i < div; i++)
+	{
+		indices[i * 3 + 0] = div;
+		indices[i * 3 + 1] = i;
+		indices[i * 3 + 2] = i + 1;
+	}
+	indices[(div - 1) * 3 + 2] = 0;
+
+	// 頂点座標を一旦全て中心点の座標で設定
+	for (int i = 0; i < div + 1; i++)
+	{
+		v[i].position = center3D;
+		v[i].color = color;
+	}
+
+	// 円の外周分ずらす
+	for (int i = 0; i < div; i++)
+	{
+		string key = "Rad" + to_string(i);
+		v[i].position.x += vertices[key].x - vertices["center"].x;
+		v[i].position.y += vertices[key].y - vertices["center"].y;
+	}
+
+	// 描画
+	primitiveBatch_->Begin();
+	primitiveBatch_->DrawIndexed(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST, indices, div * 3, v, div + 1);
+	primitiveBatch_->End();
+
+	// データの解放
+	delete indices;
+	delete v;
 }
 
 /*==============================================================
@@ -277,6 +319,14 @@ VertexPositionColor* PrimitiveRenderer::SetVertices(Primitive::PRIMITIVE_TYPE ty
 		break;
 
 	case Primitive::PRIMITIVE_TYPE::CIRCLE:			// 円
+		for (int i = 0; i < vertexNum - 1; i++)
+		{
+			string key = "Rad" + to_string(i);
+			vertex[i].position = Vector3(vertices[key].x, vertices[key].y, 0);
+		}
+		vertex[vertexNum - 1].position = vertex[0].position;
+
+		return vertex;
 		break;
 
 	default:

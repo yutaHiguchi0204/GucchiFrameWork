@@ -33,9 +33,9 @@ void PlayScene::Initialize()
 	t_->SetAnchor(ANCHOR_MM);
 	textRenderer_.RegisterText(t_.get());
 
-	square_ = make_unique<Primitive>();
-	square_->Entry(Vector2(100.0f, 100.0f), Vector2(400.0f, 400.0f), Color(0, 0, 0));
-	primitiveRenderer_.RegisterPrimitive(square_.get());
+	//circle_ = make_unique<Primitive>();
+	//circle_->Entry(true, WINDOW_MIDDLE, 200.0f, 6, Color(0, 0, 0));
+	//primitiveRenderer_.RegisterPrimitive(circle_.get());
 }
 
 /*==============================================================

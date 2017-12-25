@@ -8,6 +8,7 @@
 #include "MapTip2D.h"
 #include <cassert>
 #include "../2D/SpriteRenderer.h"
+#include "../Common/DebugSwitch.h"
 
 // –¼‘O‹óŠÔ
 using namespace DirectX;
@@ -23,7 +24,9 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring 
 {
 	if (dataTypeNum_ <= 0)
 	{
+#if MODE_DEBUG == 1
 		OutputDebugString(L"No sprite type. Please configuration \"typeNum\".");
+#endif
 		assert(0);
 	}
 
@@ -70,7 +73,9 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring*
 {
 	if (dataTypeNum_ <= 0)
 	{
+#if MODE_DEBUG == 1
 		OutputDebugString(L"No sprite type. Please configuration \"typeNum\".");
+#endif
 		assert(0);
 	}
 

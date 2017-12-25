@@ -11,6 +11,9 @@
 // 定数ヘッダ
 #include "Common/Constant.h"
 
+// デバッグスイッチ
+#include "Common/DebugSwitch.h"
+
 // シーンマネージャ
 #include "Common/SceneManager.h"
 
