@@ -73,7 +73,6 @@ Asset3D::Asset3D(const Asset3D& asset)
 	inputLayout_         = asset.inputLayout_;
 	effectFactory_       = asset.effectFactory_;
 	camera_              = asset.camera_;
-	model_               = asset.model_;
 	scale_               = asset.scale_;
 	rot_                 = asset.rot_;
 	quat_                = asset.quat_;

@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <d3d11_1.h>
 #include <map>
+#include <memory>
 #include <string>
 #include <wrl/client.h>
 #include "../Common/SingletonDirector.h"

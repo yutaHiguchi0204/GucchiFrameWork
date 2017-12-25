@@ -31,6 +31,7 @@ Game::Game(HINSTANCE hInstance, int nCmdShow)
 void Game::Initialize()
 {
 	// デバイス関連などの初期化はここに記述
+	primitiveRenderer_.Initialize();
 
 	// その他ゲーム内関連はGameMainの初期化に書いてください（基本的にここはいじらない）
 	main_->Initialize();
@@ -76,6 +77,7 @@ void Game::Render()
 	// ライブラリインタフェースでの描画処理
 	objectRenderer_.Draw();				// オブジェクト
 	spriteRenderer_.Draw();				// スプライト
+	primitiveRenderer_.Draw();			// プリミティブ
 	textRenderer_.Draw();				// テキスト
 
     // ゲーム内関連の描画処理はGameMainの描画に書いてください（基本的にここはいじらない）

@@ -6,8 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <d3d11_1.h>
+#include <memory>
 #include <Mouse.h>
 #include "../Common/SingletonDirector.h"
 

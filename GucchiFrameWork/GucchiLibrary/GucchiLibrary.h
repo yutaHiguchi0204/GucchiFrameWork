@@ -18,12 +18,6 @@
 #include "Camera/Camera.h"
 #include "Camera/DefaultCamera.h"
 
-// スプライト関連
-#include "2D/SpriteRenderer.h"
-
-// テキスト関連
-#include "2D/TextRenderer.h"
-
 // マップチップ関連
 #include "MapTip/MapTip2D.h"
 #include "MapTip/MapTip3D.h"

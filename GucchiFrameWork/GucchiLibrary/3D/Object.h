@@ -7,6 +7,7 @@
 
 // ヘッダファイルのインクルード
 #include "Asset3D.h"
+#include <Model.h>
 
 namespace GucchiLibrary
 {
@@ -19,8 +20,10 @@ namespace GucchiLibrary
 	class Object : public Asset3D
 	{
 	private:
-		Object* parentObject_;							// 親オブジェクト
-		std::vector<Object*> childObject_;				// 子オブジェクト
+		DirectX::Model*			model_;						// モデル
+
+		Object*					parentObject_;				// 親オブジェクト
+		std::vector<Object*>	childObject_;				// 子オブジェクト
 
 	public:
 		/*
@@ -32,6 +35,9 @@ namespace GucchiLibrary
 		// @param		ブレンドモード（BLEND_MODE）　：　デフォルト（ALPHA）
 		*/
 		Object(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, Asset3D::BLEND_MODE mode = Asset3D::BLEND_MODE::ALPHA);
+
+		// コピーコンストラクタ
+		Object(const Object& object);
 
 		// デストラクタ
 		virtual ~Object() {}
@@ -58,7 +64,55 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
+		void SetModel(DirectX::Model* model) { model_ = model; }
+
+		inline DirectX::Model* GetModel() const { return model_; }
 		inline Object* GetParent() const { return parentObject_; }
 		inline std::vector<Object*> GetChildren() const { return childObject_; }
+
+	public:
+		// 代入オペレータ
+		Object& operator=(const Object& object)
+		{
+			basicEffect_        = object.basicEffect_;
+			inputLayout_        = object.inputLayout_;
+			effectFactory_      = object.effectFactory_;
+			camera_             = object.camera_;
+			scale_              = object.scale_;
+			rot_                = object.rot_;
+			quat_               = object.quat_;
+			trans_              = object.trans_;
+			world_              = object.world_;
+			blendStateSubtract_ = object.blendStateSubtract_;
+			blendMode_          = object.blendMode_;
+			isActive_           = object.isActive_;
+			isUseQuaternion_    = object.isUseQuaternion_;
+			model_              = object.model_;
+			parentObject_       = object.parentObject_;
+			childObject_        = object.childObject_;
+
+			return (*this);
+		}
+
+		// 比較用オペレータ
+		bool operator==(const Object& object) const
+		{
+			if (scale_           == object.scale_				&&
+				rot_             == object.rot_					&&
+				quat_            == object.quat_				&&
+				trans_           == object.trans_				&&
+				world_           == object.world_				&&
+				blendMode_       == object.blendMode_			&&
+				isActive_        == object.isActive_			&&
+				isUseQuaternion_ == object.isUseQuaternion_		&&
+				model_           == object.model_				&&
+				parentObject_    == object.parentObject_
+				)
+			{
+				return true;
+			}
+
+			return false;
+		}
 	};
 }

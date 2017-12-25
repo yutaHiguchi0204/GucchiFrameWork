@@ -7,9 +7,9 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <CommonStates.h>
 #include <Effects.h>
 #include <list>
+#include <memory>
 #include <string>
 #include <wrl/client.h>
 #include "Object.h"

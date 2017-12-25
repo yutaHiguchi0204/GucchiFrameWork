@@ -15,9 +15,10 @@ private:
 	std::unique_ptr<GameMain> main_;
 
 	// ライブラリインタフェース
-	GucchiLibrary::ObjectRenderer&	objectRenderer_ = GucchiLibrary::ObjectRenderer::GetInstance();
-	GucchiLibrary::SpriteRenderer&	spriteRenderer_ = GucchiLibrary::SpriteRenderer::GetInstance();
-	GucchiLibrary::TextRenderer&	textRenderer_	= GucchiLibrary::TextRenderer::GetInstance();
+	GucchiLibrary::ObjectRenderer&		objectRenderer_		= GucchiLibrary::ObjectRenderer::GetInstance();
+	GucchiLibrary::SpriteRenderer&		spriteRenderer_		= GucchiLibrary::SpriteRenderer::GetInstance();
+	GucchiLibrary::PrimitiveRenderer&	primitiveRenderer_	= GucchiLibrary::PrimitiveRenderer::GetInstance();
+	GucchiLibrary::TextRenderer&		textRenderer_		= GucchiLibrary::TextRenderer::GetInstance();
 
 public:
     Game(HINSTANCE hInstance, int nCmdShow);

@@ -77,6 +77,7 @@ void IScene::ResetDevice()
 	// 全てのライブラリインタフェースをリセット
 	objectRenderer_.Reset();
 	spriteRenderer_.Reset();
+	primitiveRenderer_.Reset();
 	textRenderer_.Reset();
 }
 
@@ -88,7 +89,7 @@ SceneManager::SceneManager()
 	nowScene_ = "PLAY";
 	beforeScene_ = "PLAY";
 
-	// サウンドの初期設定
+	// サウンドの初期設定（TODO: サウンドを導入する際は、Initializeのコメントをはずしてファイルを設定してください）
 	SoundManager& soundManager = SoundManager::GetInstance();
 	//soundManager.Initialize("Acfファイル", "Acbファイル", "Awbファイル");
 }

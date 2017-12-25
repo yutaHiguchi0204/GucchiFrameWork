@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <Effects.h>
-#include <Model.h>
+#include <memory>
+#include <wrl/client.h>
 #include "../Camera/Camera.h"
 #include "../Utility/Interpolater.h"
 
@@ -55,8 +55,6 @@ namespace GucchiLibrary
 		Camera* camera_;
 
 	protected:
-		DirectX::Model*								model_;						// モデル
-
 		DirectX::SimpleMath::Vector3				scale_;						// スケール
 		union {
 			DirectX::SimpleMath::Vector3			rot_;						// 回転角
@@ -105,7 +103,6 @@ namespace GucchiLibrary
 		/* アクセッサ */
 
 		void SetCamera(Camera* camera)											{ camera_ = camera; }
-		void SetModel(DirectX::Model* model)									{ model_ = model; }
 		void SetScale(DirectX::SimpleMath::Vector3 scale)						{ scale_ = scale; }
 		void SetRotate(DirectX::SimpleMath::Vector3 rot)						{ rot_ = rot; }
 		void SetTranslate(DirectX::SimpleMath::Vector3 trans)					{ trans_ = trans; }
@@ -115,7 +112,6 @@ namespace GucchiLibrary
 
 		inline DirectX::EffectFactory* GetEffectFactory() const					{ return effectFactory_.get(); }
 		inline Camera* GetCamera() const										{ return camera_; }
-		inline DirectX::Model* GetModel() const									{ return model_; }
 		inline const DirectX::SimpleMath::Vector3& GetScale() const				{ return scale_; }
 		inline const DirectX::SimpleMath::Vector3& GetRotate() const			{ return rot_; }
 		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
@@ -135,7 +131,6 @@ namespace GucchiLibrary
 			inputLayout_        = asset.inputLayout_;
 			effectFactory_      = asset.effectFactory_;
 			camera_             = asset.camera_;
-			model_              = asset.model_;
 			scale_              = asset.scale_;
 			rot_                = asset.rot_;
 			quat_               = asset.quat_;
@@ -152,8 +147,7 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Asset3D& asset) const
 		{
-			if (model_				== asset.model_				&&
-				scale_				== asset.scale_				&&
+			if (scale_				== asset.scale_				&&
 				rot_				== asset.rot_				&&
 				quat_				== asset.quat_				&&
 				trans_				== asset.trans_				&&

@@ -136,6 +136,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="2D\Primitive.cpp" />
+    <ClCompile Include="2D\PrimitiveRenderer.cpp" />
     <ClCompile Include="2D\Sprite.cpp" />
     <ClCompile Include="2D\SpriteRenderer.cpp" />
     <ClCompile Include="2D\Text.cpp" />
@@ -166,6 +168,8 @@
     <ClCompile Include="Utility\Interpolater.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2D\Primitive.h" />
+    <ClInclude Include="2D\PrimitiveRenderer.h" />
     <ClInclude Include="2D\Sprite.h" />
     <ClInclude Include="2D\SpriteRenderer.h" />
     <ClInclude Include="2D\Text.h" />
