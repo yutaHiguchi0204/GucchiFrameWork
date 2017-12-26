@@ -228,6 +228,9 @@
     <ClInclude Include="2D\PrimitiveRenderer.h">
       <Filter>2D</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\MemoryLeakDetector.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

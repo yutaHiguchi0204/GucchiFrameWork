@@ -7,6 +7,7 @@
 
 // ヘッダファイルのインクルード
 #include <d3d11_1.h>
+#include <list>
 #include <map>
 #include <SimpleMath.h>
 #include <string>
@@ -90,8 +91,16 @@ namespace GucchiLibrary
 		*/
 		void Entry(bool fillFlag, const DirectX::SimpleMath::Vector2& center, float radius, int div, const DirectX::SimpleMath::Color& color = DirectX::SimpleMath::Color(1, 1, 1, 1));
 
+		/*
+		// @method		GetKeys
+		// @content		キーの取得
+		// @return		全てのキー（list<string>）
+		*/
+		std::list<std::string> GetKeys() const;
+
 		/* アクセッサ */
 
+		void SetPoint(std::string key, const DirectX::SimpleMath::Vector2& point)		{ point_[key] = point; }
 		void SetColor(const DirectX::SimpleMath::Color& color)							{ color_ = color; }
 		void SetFillFlag(bool fillFlag)													{ isFill_ = fillFlag; }
 

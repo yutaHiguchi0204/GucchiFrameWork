@@ -58,7 +58,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
 	// エラー処理
 	if (!ifs)
 	{
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"BinaryFile opening failed.");
 #endif
 		assert(ifs);
@@ -102,7 +102,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
 	// エラー処理
 	if (!ifs)
 	{
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"BinaryFile opening failed.");
 #endif
 		assert(ifs);
@@ -140,7 +140,7 @@ void BinaryFileManager::SaveBinaryFile(const wstring fileName, const BinaryFile&
 	// エラー処理
 	if (!ifs)
 	{
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"BinaryFile opening failed.");
 #endif
 		assert(ifs);

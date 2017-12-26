@@ -36,7 +36,7 @@ vector<vector<int>> CSVFileManager::LoadCSVFile(const wstring csvFile)
 	// ƒGƒ‰[ˆ—
 	if (!ifs)
 	{
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"CSV file load failed.");
 #endif
 		assert(ifs);

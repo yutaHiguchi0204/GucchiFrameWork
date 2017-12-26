@@ -209,7 +209,7 @@ ID3D11BlendState* ObjectRenderer::SetSubtractive()
 	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"Create blend state is failed.");
 #endif
 		assert(0);

@@ -8,7 +8,6 @@
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
 #include <Effects.h>
-#include <list>
 #include <memory>
 #include <PrimitiveBatch.h>
 #include <VertexTypes.h>

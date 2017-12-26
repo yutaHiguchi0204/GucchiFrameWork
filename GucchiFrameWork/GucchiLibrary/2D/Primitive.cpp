@@ -102,3 +102,21 @@ void Primitive::Entry(bool fillFlag, const Vector2& center, float radius, int di
 	// 塗りつぶすかどうか
 	isFill_ = fillFlag;
 }
+
+/*==============================================================
+// @brief		キーの取得
+// @param		なし
+// @return		全てのキー（list<string>）
+===============================================================*/
+list<string> Primitive::GetKeys() const
+{
+	list<string> keys;
+
+	// キーを取得
+	for (auto& point : point_)
+	{
+		keys.emplace_back(point.first);
+	}
+
+	return keys;
+}

@@ -11,6 +11,7 @@
 #include "../Common/DebugSwitch.h"
 #include "../InputTools/KeyboardUtil.h"
 #include "../InputTools/MouseUtil.h"
+#include "../Utility/MemoryLeakDetector.h"
 
 // 名前空間
 using namespace DirectX;
@@ -254,6 +255,11 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 
 	// FPS表示有効
 	isDispFPS_ = true;
+
+	// メモリリーク検出準備
+#if defined(MODE_DEBUG)
+	SetUpMemoryLeakDetector();
+#endif
 }
 
 #pragma region Frame Update
@@ -342,28 +348,28 @@ void Framework::Clear()
 // メッセージ関連
 void Framework::OnActivated()
 {
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 	OutputDebugString(L"Framework is becoming active window.");
 #endif
 }
 
 void Framework::OnDeactivated()
 {
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 	OutputDebugString(L"Framework is becoming background window.");
 #endif
 }
 
 void Framework::OnSuspending()
 {
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 	OutputDebugString(L"Framework is being power-suspended (or minimized).");
 #endif
 }
 
 void Framework::OnResuming()
 {
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 	OutputDebugString(L"Framework is being power-resumed (or returning from minimize).");
 #endif
 	timer_.ResetElapsedTime();
@@ -376,7 +382,7 @@ void Framework::OnWindowSizeChanged(int width, int height)
 	if (!deviceResources.WindowSizeChanged(width, height))
 		return;
 
-#if MODE_DEBUG == 1
+#if defined(MODE_DEBUG)
 	OutputDebugString(L"Framework window is being resized.");
 #endif
 
