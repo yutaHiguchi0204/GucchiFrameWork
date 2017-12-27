@@ -43,4 +43,57 @@ void Camera::Update()
 
 	// プロジェクション行列の計算
 	proj_.projMat = Matrix::CreatePerspectiveFieldOfView(proj_.fov, proj_.aspect, proj_.nearClip, proj_.farClip);
+	
+	// ビルボード行列を計算
+	CalcBillboard();
+}
+
+/*==============================================================
+// @brief		ビルボード行列の計算
+// @param		なし
+// @return		なし
+===============================================================*/
+void Camera::CalcBillboard()
+{
+	// 視線方向
+	Vector3 eyeDir = view_.eyePos - view_.refPos;
+
+	// Y軸
+	Vector3 axisY = Vector3::UnitY;
+
+	// X軸
+	Vector3 axisX = axisY.Cross(eyeDir);
+	axisX.Normalize();
+
+	// Z軸
+	Vector3 axisZ = axisX.Cross(axisY);
+	axisZ.Normalize();
+
+	// Y軸周りビルボード行列（右手系の為Z方向反転）
+	billboardConstrainY_ = Matrix::Identity;
+	billboardConstrainY_.m[0][0] = axisX.x;
+	billboardConstrainY_.m[0][1] = axisX.y;
+	billboardConstrainY_.m[0][2] = axisX.z;
+	billboardConstrainY_.m[1][0] = axisY.x;
+	billboardConstrainY_.m[1][1] = axisY.y;
+	billboardConstrainY_.m[1][2] = axisY.z;
+	billboardConstrainY_.m[2][0] = -axisZ.x;
+	billboardConstrainY_.m[2][1] = -axisZ.y;
+	billboardConstrainY_.m[2][2] = -axisZ.z;
+
+	axisY = eyeDir.Cross(axisX);
+	axisY.Normalize();
+	eyeDir.Normalize();
+
+	// ビルボード行列（右手系の為Z方向反転）
+	billboard_ = Matrix::Identity;
+	billboard_.m[0][0] = axisX.x;
+	billboard_.m[0][1] = axisX.y;
+	billboard_.m[0][2] = axisX.z;
+	billboard_.m[1][0] = axisY.x;
+	billboard_.m[1][1] = axisY.y;
+	billboard_.m[1][2] = axisY.z;
+	billboard_.m[2][0] = -eyeDir.x;
+	billboard_.m[2][1] = -eyeDir.y;
+	billboard_.m[2][2] = -eyeDir.z;
 }

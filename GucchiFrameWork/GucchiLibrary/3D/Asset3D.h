@@ -39,7 +39,22 @@ namespace GucchiLibrary
 		};
 
 	protected:
-		static ID3D11BlendState*					blendStateSubtract_;		// 減算描画用ブレンドステート
+		static ID3D11BlendState*					blendStateSubtractive_;		// 減算描画用ブレンドステート
+
+	public:
+		/*
+		// @method		SetBlendState（static）
+		// @content		ブレンドモード設定
+		// @param		ブレンドモード（BLEND_MODE）
+		*/
+		static void SetBlendState(BLEND_MODE mode);
+
+		/*
+		// @method		SetSubtractive（static）
+		// @content		減算描画設定
+		// @return		減算描画用ブレンドステート（ID3D11BlendState*）
+		*/
+		static ID3D11BlendState* SetSubtractive();
 
 	protected:
 		// エフェクト
@@ -117,7 +132,7 @@ namespace GucchiLibrary
 		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
 		inline const DirectX::SimpleMath::Vector3& GetTranslate() const			{ return trans_; }
 		inline const DirectX::SimpleMath::Matrix& GetWorld() const				{ return world_; }
-		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtract_; }
+		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtractive_; }
 		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
 		inline bool GetActive()	const											{ return isActive_; }
 		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
@@ -127,19 +142,19 @@ namespace GucchiLibrary
 		// 代入オペレータ
 		Asset3D& operator=(const Asset3D& asset)
 		{
-			basicEffect_        = asset.basicEffect_;
-			inputLayout_        = asset.inputLayout_;
-			effectFactory_      = asset.effectFactory_;
-			camera_             = asset.camera_;
-			scale_              = asset.scale_;
-			rot_                = asset.rot_;
-			quat_               = asset.quat_;
-			trans_              = asset.trans_;
-			world_              = asset.world_;
-			blendStateSubtract_ = asset.blendStateSubtract_;
-			blendMode_          = asset.blendMode_;
-			isActive_           = asset.isActive_;
-			isUseQuaternion_    = asset.isUseQuaternion_;
+			basicEffect_           = asset.basicEffect_;
+			inputLayout_           = asset.inputLayout_;
+			effectFactory_         = asset.effectFactory_;
+			camera_                = asset.camera_;
+			scale_                 = asset.scale_;
+			rot_                   = asset.rot_;
+			quat_                  = asset.quat_;
+			trans_                 = asset.trans_;
+			world_                 = asset.world_;
+			blendStateSubtractive_ = asset.blendStateSubtractive_;
+			blendMode_             = asset.blendMode_;
+			isActive_              = asset.isActive_;
+			isUseQuaternion_       = asset.isUseQuaternion_;
 
 			return (*this);
 		}

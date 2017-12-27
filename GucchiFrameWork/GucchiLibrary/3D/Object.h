@@ -74,22 +74,22 @@ namespace GucchiLibrary
 		// 代入オペレータ
 		Object& operator=(const Object& object)
 		{
-			basicEffect_        = object.basicEffect_;
-			inputLayout_        = object.inputLayout_;
-			effectFactory_      = object.effectFactory_;
-			camera_             = object.camera_;
-			scale_              = object.scale_;
-			rot_                = object.rot_;
-			quat_               = object.quat_;
-			trans_              = object.trans_;
-			world_              = object.world_;
-			blendStateSubtract_ = object.blendStateSubtract_;
-			blendMode_          = object.blendMode_;
-			isActive_           = object.isActive_;
-			isUseQuaternion_    = object.isUseQuaternion_;
-			model_              = object.model_;
-			parentObject_       = object.parentObject_;
-			childObject_        = object.childObject_;
+			basicEffect_           = object.basicEffect_;
+			inputLayout_           = object.inputLayout_;
+			effectFactory_         = object.effectFactory_;
+			camera_                = object.camera_;
+			scale_                 = object.scale_;
+			rot_                   = object.rot_;
+			quat_                  = object.quat_;
+			trans_                 = object.trans_;
+			world_                 = object.world_;
+			blendStateSubtractive_ = object.blendStateSubtractive_;
+			blendMode_             = object.blendMode_;
+			isActive_              = object.isActive_;
+			isUseQuaternion_       = object.isUseQuaternion_;
+			model_                 = object.model_;
+			parentObject_          = object.parentObject_;
+			childObject_           = object.childObject_;
 
 			return (*this);
 		}

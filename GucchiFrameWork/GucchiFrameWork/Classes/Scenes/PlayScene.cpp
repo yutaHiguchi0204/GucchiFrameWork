@@ -37,7 +37,8 @@ void PlayScene::Initialize()
 	triangle_->Entry(false, Vector2(400.0f, 100.0f), Vector2(200.0f, 400.0f), Vector2(600.0f, 400.0f), Color(0, 1, 1));
 	primitiveRenderer_.RegisterPrimitive(triangle_.get());
 
-	list<string> str = triangle_->GetKeys();
+	emitter_ = make_unique<Emitter>();
+	particleRenderer_.RegisterEmitter(emitter_.get(), L"test", L"effect1");
 }
 
 /*==============================================================
@@ -49,6 +50,14 @@ void PlayScene::Update()
 {
 	// 全シーン共通更新処理
 	IScene::CommonUpdate();
+
+	// エミッターの更新
+	emitter_->Entry(
+		1.0f,
+		VertexPositionColorTexture(Vector3(0.0f, 0.5f, 0.0f), Color(2.0f, 0.0f, 0.0f, 1.0f), Vector2(0.3f, 0.0f)),
+		VertexPositionColorTexture(Vector3(0.0f, 0.0f, 0.0f), Color(2.0f, 1.0f, 0.0f, 1.0f), Vector2(0.0f, 0.0f)),
+		Asset3D::BLEND_MODE::ADDITIVE
+	);
 }
 
 /*==============================================================

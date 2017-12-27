@@ -30,6 +30,21 @@ namespace GucchiLibrary
 		}
 
 		/*
+		// @method		SwapData（template、static）
+		// @content		値を入れ替える
+		// @param		値１つ目（T）
+		// @param		値２つ目（T）
+		*/
+		template<class T>
+		static void SwapData(T* _1, T* _2)
+		{
+			// tmpを用いてスワップ
+			T tmp = *_1;
+			*_1 = *_2;
+			*_2 = tmp;
+		}
+
+		/*
 		// @method		Factorial（static）
 		// @content		階乗
 		// @param		自然数（int）

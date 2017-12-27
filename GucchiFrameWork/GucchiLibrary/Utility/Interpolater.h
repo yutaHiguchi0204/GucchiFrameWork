@@ -169,6 +169,20 @@ namespace GucchiLibrary
 			return state_[action];
 		}
 
+		/*
+		// @method		Reset
+		// @content		リセット
+		*/
+		void Reset()
+		{
+			timer_.clear();
+			state_.clear();
+			start_.clear();
+			end_.clear();
+			runTime_.clear();
+			mode_.clear();
+		}
+
 		/* アクセッサ */
 
 		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
@@ -396,5 +410,11 @@ namespace GucchiLibrary
 		// @content		更新処理
 		*/
 		void Update();
+
+		/*
+		// @method		Reset
+		// @content		全ステートのリセット
+		*/
+		void Reset();
 	};
 }

@@ -18,6 +18,8 @@ private:
 
 	std::unique_ptr<GucchiLibrary::Primitive> triangle_;
 
+	std::unique_ptr<GucchiLibrary::Emitter> emitter_;
+
 public:
 	PlayScene() {}
 	virtual ~PlayScene() {}

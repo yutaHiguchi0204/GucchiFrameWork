@@ -601,3 +601,16 @@ void InterpolateDirector::Update()
 	stateV3_->Update();
 	stateV4_->Update();
 }
+
+/*==============================================================
+// @brief		ƒŠƒZƒbƒg
+// @param		‚È‚µ
+// @return		‚È‚µ
+===============================================================*/
+void InterpolateDirector::Reset()
+{
+	stateF_->Reset();
+	stateV2_->Reset();
+	stateV3_->Reset();
+	stateV4_->Reset();
+}

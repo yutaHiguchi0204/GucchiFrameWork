@@ -7,13 +7,11 @@
 
 // ヘッダファイルのインクルード
 #include "SingletonDirector.h"
-#include <map>
-#include <memory>
-#include <string>
 #include "../2D/PrimitiveRenderer.h"
 #include "../2D/SpriteRenderer.h"
 #include "../2D/TextRenderer.h"
 #include "../3D/ObjectRenderer.h"
+#include "../Particle/ParticleRenderer.h"
 #include "../Sound/SoundManager.h"
 
 namespace GucchiLibrary
@@ -32,6 +30,7 @@ namespace GucchiLibrary
 		// ライブラリインタフェース
 		ObjectRenderer&		objectRenderer_		= ObjectRenderer::GetInstance();			// オブジェクト描画用
 		ObjectFactory&		objectFactory_		= ObjectFactory::GetInstance();				// オブジェクト生成用
+		ParticleRenderer&	particleRenderer_	= ParticleRenderer::GetInstance();			// パーティクル描画用
 		SpriteRenderer&		spriteRenderer_		= SpriteRenderer::GetInstance();			// スプライト描画用
 		SpriteFactory&		spriteFactory_		= SpriteFactory::GetInstance();				// スプライト生成用
 		PrimitiveRenderer&	primitiveRenderer_	= PrimitiveRenderer::GetInstance();			// プリミティブ描画用

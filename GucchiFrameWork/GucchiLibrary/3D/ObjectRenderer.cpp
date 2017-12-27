@@ -7,7 +7,6 @@
 // ヘッダファイルのインクルード
 #include "ObjectRenderer.h"
 #include "ModelCache.h"
-#include "../Common/DebugSwitch.h"
 #include "../Common/DeviceResources.h"
 
 // 名前空間
@@ -154,68 +153,6 @@ Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
 void ObjectRenderer::Reset()
 {
 	objectList_.clear();
-}
-
-/*==============================================================
-// @brief		ブレンド設定
-// @param		ブレンドモード（BLEND_MODE）
-// @return		なし
-===============================================================*/
-void ObjectRenderer::SetBlendState(Asset3D::BLEND_MODE mode)
-{
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
-	ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
-	CommonStates* states = deviceResources.GetCommonStates();
-
-	// ブレンドモード設定
-	switch (mode)
-	{
-	case Asset3D::BLEND_MODE::ALPHA:		// アルファブレンド
-		context->OMSetBlendState(states->AlphaBlend(), nullptr, 0xffffffff);
-		break;
-
-	case Asset3D::BLEND_MODE::ADDITIVE:		// 加算ブレンド
-		context->OMSetBlendState(states->Additive(), nullptr, 0xffffffff);
-		break;
-
-	default:
-		context->OMSetBlendState(states->Opaque(), nullptr, 0xffffffff);
-		break;
-	}
-}
-
-/*==============================================================
-// @brief		減算描画設定
-// @param		なし
-// @return		減算描画用ブレンドステート（ID3D11BlendState*）
-===============================================================*/
-ID3D11BlendState* ObjectRenderer::SetSubtractive()
-{
-	// 減算描画用のブレンドステートを作成
-	D3D11_BLEND_DESC desc;
-	desc.AlphaToCoverageEnable = false;
-	desc.IndependentBlendEnable = false;
-	desc.RenderTarget[0].BlendEnable = true;
-	desc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
-	desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
-	desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_REV_SUBTRACT;
-	desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-	desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_REV_SUBTRACT;
-	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-	// ブレンドステートの作成
-	DeviceResources& deviceResources = DeviceResources::GetInstance();
-	ID3D11BlendState* blendState;
-	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
-	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"Create blend state is failed.");
-#endif
-		assert(0);
-	}
-
-	return blendState;
 }
 
 /*==============================================================

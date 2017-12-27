@@ -82,20 +82,6 @@ namespace GucchiLibrary
 		void Reset();
 
 		/*
-		// @method		SetBlendState
-		// @content		ブレンドモード設定
-		// @param		ブレンドモード（BLEND_MODE）
-		*/
-		void SetBlendState(Asset3D::BLEND_MODE mode);
-
-		/*
-		// @method		SetSubtractive
-		// @content		減算描画設定
-		// @return		減算描画用ブレンドステート（ID3D11BlendState*）
-		*/
-		ID3D11BlendState* SetSubtractive();
-
-		/*
 		// @method		DisableLighting
 		// @content		モデルのライティングを無効にする
 		// @param		モデル（Model*）

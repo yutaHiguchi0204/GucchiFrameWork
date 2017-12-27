@@ -34,6 +34,9 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{26e1a500-284d-46b0-8083-55d5ff69eb4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Particle">
+      <UniqueIdentifier>{fff2ea6a-83cb-4d2b-b0e5-5da313c07d8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -119,6 +122,15 @@
     </ClCompile>
     <ClCompile Include="2D\PrimitiveRenderer.cpp">
       <Filter>2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\Emitter.cpp">
+      <Filter>Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\Particle.cpp">
+      <Filter>Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle\ParticleRenderer.cpp">
+      <Filter>Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +242,15 @@
     </ClInclude>
     <ClInclude Include="Utility\MemoryLeakDetector.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\Emitter.h">
+      <Filter>Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\Particle.h">
+      <Filter>Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle\ParticleRenderer.h">
+      <Filter>Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -27,6 +27,7 @@ void IScene::CommonInitialize()
 	// カメラ設定
 	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	objectFactory_.SetCamera(camera_.get());
+	particleRenderer_.SetCamera(camera_.get());
 
 #if DRAW_DEFAULT_SKYDOME == 1
 	// 天球の生成
@@ -78,6 +79,7 @@ void IScene::ResetDevice()
 {
 	// 全てのライブラリインタフェースをリセット
 	objectRenderer_.Reset();
+	particleRenderer_.Reset();
 	spriteRenderer_.Reset();
 	primitiveRenderer_.Reset();
 	textRenderer_.Reset();
