@@ -33,6 +33,10 @@ void PlayScene::Initialize()
 	t_->SetAnchor(ANCHOR_MM);
 	textRenderer_.RegisterText(t_.get());
 
+	point_ = make_unique<Primitive>();
+	point_->Entry(Vector2(64.0f, 64.0f), Color(1, 1, 0));
+	primitiveRenderer_.RegisterPrimitive(point_.get());
+
 	triangle_ = make_unique<Primitive>();
 	triangle_->Entry(false, Vector2(400.0f, 100.0f), Vector2(200.0f, 400.0f), Vector2(600.0f, 400.0f), Color(0, 1, 1));
 	primitiveRenderer_.RegisterPrimitive(triangle_.get());

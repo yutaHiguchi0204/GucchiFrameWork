@@ -22,6 +22,20 @@ Primitive::Primitive()
 }
 
 /*==============================================================
+// @brief		プリミティブ作成（点）
+// @param		座標（Vector2）、色（Color）
+// @return		なし
+===============================================================*/
+void Primitive::Entry(const Vector2& point, const Color color)
+{
+	point_["point"] = point;
+	color_ = color;
+
+	// タイプを点に設定
+	type_ = PRIMITIVE_TYPE::POINT;
+}
+
+/*==============================================================
 // @brief		プリミティブ作成（線）
 // @param		始点（Vector2）、終点（Vector2）、色（Color）
 // @return		なし

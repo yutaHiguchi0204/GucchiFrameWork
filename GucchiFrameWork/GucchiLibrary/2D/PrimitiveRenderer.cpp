@@ -93,6 +93,10 @@ void PrimitiveRenderer::Draw()
 		{
 			switch (type)
 			{
+			case Primitive::PRIMITIVE_TYPE::POINT:			// 点
+				DrawPoint(primitive->GetPoints(), primitive->GetColor());
+				break;
+
 			case Primitive::PRIMITIVE_TYPE::LINE:			// 線
 				DrawLine(primitive->GetPoints(), primitive->GetColor());
 				break;
@@ -142,6 +146,27 @@ void PrimitiveRenderer::DrawPrimitive(const VertexPositionColor* vertices, int v
 {
 	primitiveBatch_->Begin();
 	primitiveBatch_->Draw(D3D_PRIMITIVE_TOPOLOGY_LINESTRIP, vertices, vertexCount);
+	primitiveBatch_->End();
+}
+
+/*==============================================================
+// @brief		点の描画
+// @param		頂点データ（VertexPositionColor*）、色（Color）
+// @return		なし
+===============================================================*/
+void PrimitiveRenderer::DrawPoint(map<string, Vector2> vertex, const Color& color)
+{
+	VertexPositionColor point;
+
+	// 位置設定
+	point.position = Vector3(vertex["point"].x, vertex["point"].y, 0);
+
+	// 色設定
+	point.color = color;
+
+	// 描画
+	primitiveBatch_->Begin();
+	primitiveBatch_->Draw(D3D_PRIMITIVE_TOPOLOGY_POINTLIST, &point, 1);
 	primitiveBatch_->End();
 }
 

@@ -56,6 +56,14 @@ namespace GucchiLibrary
 		void DrawPrimitive(const DirectX::VertexPositionColor* vertices, int vertexCount);
 
 		/*
+		// @method		DrawPoint
+		// @content		点の描画
+		// @param		頂点データ（map<string, Vector2>）
+		// @param		色（Color）
+		*/
+		void DrawPoint(std::map<std::string, DirectX::SimpleMath::Vector2> vertex, const DirectX::SimpleMath::Color& color);
+
+		/*
 		// @method		DrawLine
 		// @content		線の描画
 		// @param		頂点データ（map<string, Vector2>）

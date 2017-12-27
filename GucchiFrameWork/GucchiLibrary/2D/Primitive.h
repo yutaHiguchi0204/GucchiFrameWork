@@ -23,6 +23,7 @@ namespace GucchiLibrary
 	public:
 		/*
 		// @content		プリミティブタイプ
+		// @mode		POINT		：	点
 		// @mode		LINE		：	線
 		// @mode		TRIANGLE	：	三角
 		// @mode		SQUARE		：　四角
@@ -49,6 +50,14 @@ namespace GucchiLibrary
 
 		// デストラクタ
 		virtual ~Primitive() {}
+
+		/*
+		// @method		Entry
+		// @content		プリミティブ作成（点）
+		// @param		座標（Vector2）
+		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
+		*/
+		void Entry(const DirectX::SimpleMath::Vector2& point, const DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1, 1));
 
 		/*
 		// @method		Entry
