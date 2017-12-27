@@ -10,6 +10,7 @@
 #include <d3d11_1.h>
 #include <fstream>
 #include <sstream>
+#include "../Common/DebugSwitch.h"
 
 // –¼‘O‹óŠÔ
 using namespace GucchiLibrary;
@@ -35,7 +36,9 @@ vector<vector<int>> CSVFileManager::LoadCSVFile(const wstring csvFile)
 	// ƒGƒ‰[ˆ—
 	if (!ifs)
 	{
+#if defined(MODE_DEBUG)
 		OutputDebugString(L"CSV file load failed.");
+#endif
 		assert(ifs);
 	}
 

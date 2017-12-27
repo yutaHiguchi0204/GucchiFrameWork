@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <d3d11_1.h>
 #include <Keyboard.h>
+#include <memory>
 #include "../Common/SingletonDirector.h"
 
 namespace GucchiLibrary

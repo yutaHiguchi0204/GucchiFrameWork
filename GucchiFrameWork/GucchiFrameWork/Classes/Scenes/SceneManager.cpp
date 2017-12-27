@@ -27,12 +27,15 @@ void IScene::CommonInitialize()
 	// カメラ設定
 	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	objectFactory_.SetCamera(camera_.get());
+	particleRenderer_.SetCamera(camera_.get());
 
+#if DRAW_DEFAULT_SKYDOME == 1
 	// 天球の生成
 	skyDome_ = objectFactory_.CreateObjectFromFile(L"skyDome");
 
 	// オブジェクトの登録
 	objectRenderer_.RegisterObject(skyDome_.get());		// 天球
+#endif
 }
 
 /*==============================================================
@@ -76,7 +79,9 @@ void IScene::ResetDevice()
 {
 	// 全てのライブラリインタフェースをリセット
 	objectRenderer_.Reset();
+	particleRenderer_.Reset();
 	spriteRenderer_.Reset();
+	primitiveRenderer_.Reset();
 	textRenderer_.Reset();
 }
 
@@ -88,7 +93,7 @@ SceneManager::SceneManager()
 	nowScene_ = "PLAY";
 	beforeScene_ = "PLAY";
 
-	// サウンドの初期設定
+	// サウンドの初期設定（TODO: サウンドを導入する際は、Initializeのコメントをはずしてファイルを設定してください）
 	SoundManager& soundManager = SoundManager::GetInstance();
 	//soundManager.Initialize("Acfファイル", "Acbファイル", "Awbファイル");
 }
@@ -173,7 +178,9 @@ void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
 	// 登録されているシーンかチェック
 	if (sceneList_.count(scene) == 0)
 	{
+#if defined(MODE_DEBUG)
 		OutputDebugString("This scene is not register. Please register this scene for \"RegisterScene()\"");
+#endif
 		assert(0);
 	}
 

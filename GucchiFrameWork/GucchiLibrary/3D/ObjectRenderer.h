@@ -7,9 +7,9 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <CommonStates.h>
 #include <Effects.h>
 #include <list>
+#include <memory>
 #include <string>
 #include <wrl/client.h>
 #include "Object.h"
@@ -80,20 +80,6 @@ namespace GucchiLibrary
 		// @content		登録されたオブジェクトのリストをリセット
 		*/
 		void Reset();
-
-		/*
-		// @method		SetBlendState
-		// @content		ブレンドモード設定
-		// @param		ブレンドモード（BLEND_MODE）
-		*/
-		void SetBlendState(Asset3D::BLEND_MODE mode);
-
-		/*
-		// @method		SetSubtractive
-		// @content		減算描画設定
-		// @return		減算描画用ブレンドステート（ID3D11BlendState*）
-		*/
-		ID3D11BlendState* SetSubtractive();
 
 		/*
 		// @method		DisableLighting

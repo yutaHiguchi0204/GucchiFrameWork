@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <Effects.h>
 #include <map>
+#include <memory>
 #include <Model.h>
 #include <string>
 #include "../Common/SingletonDirector.h"

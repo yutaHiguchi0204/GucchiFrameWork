@@ -16,6 +16,11 @@ private:
 	std::unique_ptr<GucchiLibrary::Sprite> spr_;
 	std::unique_ptr<GucchiLibrary::Text> t_;
 
+	std::unique_ptr<GucchiLibrary::Primitive> point_;
+	std::unique_ptr<GucchiLibrary::Primitive> triangle_;
+
+	std::unique_ptr<GucchiLibrary::Emitter> emitter_;
+
 public:
 	PlayScene() {}
 	virtual ~PlayScene() {}

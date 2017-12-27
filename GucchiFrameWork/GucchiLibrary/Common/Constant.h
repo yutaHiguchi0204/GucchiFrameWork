@@ -13,6 +13,7 @@
 // ƒ}ƒXƒ^[
 const int								WINDOW_WIDTH			= 800;															// ‰æ–Ê‚Ì•
 const int								WINDOW_HEIGHT			= 600;															// ‰æ–Ê‚Ì‚‚³
+const int								FRAME_PER_SECOND		= 60;															// ‚P•b‚U‚OƒtƒŒ[ƒ€
 
 // ƒEƒCƒ“ƒhƒE‚ÌêŠ
 #define WINDOW_LEFT(objSizeX)			((objSizeX) / (2))																		// ‰æ–Ê‚Ì¶’[
@@ -42,4 +43,5 @@ const std::wstring						FILE_PATH_FONT			= L"Resources/Fonts/";											// ƒtƒ
 // Šg’£q
 const std::wstring						EXT_PNG					= L".png";														// .pngƒtƒ@ƒCƒ‹
 const std::wstring						EXT_CMO					= L".cmo";														// .cmoƒtƒ@ƒCƒ‹
+const std::wstring						EXT_CSO					= L".cso";														// .csoƒtƒ@ƒCƒ‹
 const std::wstring						EXT_SPRITEFONT			= L".spritefont";												// .spritefontƒtƒ@ƒCƒ‹

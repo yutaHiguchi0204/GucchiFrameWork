@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <Effects.h>
-#include <Model.h>
+#include <memory>
+#include <wrl/client.h>
 #include "../Camera/Camera.h"
 #include "../Utility/Interpolater.h"
 
@@ -39,7 +39,22 @@ namespace GucchiLibrary
 		};
 
 	protected:
-		static ID3D11BlendState*					blendStateSubtract_;		// 減算描画用ブレンドステート
+		static ID3D11BlendState*					blendStateSubtractive_;		// 減算描画用ブレンドステート
+
+	public:
+		/*
+		// @method		SetBlendState（static）
+		// @content		ブレンドモード設定
+		// @param		ブレンドモード（BLEND_MODE）
+		*/
+		static void SetBlendState(BLEND_MODE mode);
+
+		/*
+		// @method		SetSubtractive（static）
+		// @content		減算描画設定
+		// @return		減算描画用ブレンドステート（ID3D11BlendState*）
+		*/
+		static ID3D11BlendState* SetSubtractive();
 
 	protected:
 		// エフェクト
@@ -55,8 +70,6 @@ namespace GucchiLibrary
 		Camera* camera_;
 
 	protected:
-		DirectX::Model*								model_;						// モデル
-
 		DirectX::SimpleMath::Vector3				scale_;						// スケール
 		union {
 			DirectX::SimpleMath::Vector3			rot_;						// 回転角
@@ -105,7 +118,6 @@ namespace GucchiLibrary
 		/* アクセッサ */
 
 		void SetCamera(Camera* camera)											{ camera_ = camera; }
-		void SetModel(DirectX::Model* model)									{ model_ = model; }
 		void SetScale(DirectX::SimpleMath::Vector3 scale)						{ scale_ = scale; }
 		void SetRotate(DirectX::SimpleMath::Vector3 rot)						{ rot_ = rot; }
 		void SetTranslate(DirectX::SimpleMath::Vector3 trans)					{ trans_ = trans; }
@@ -115,13 +127,12 @@ namespace GucchiLibrary
 
 		inline DirectX::EffectFactory* GetEffectFactory() const					{ return effectFactory_.get(); }
 		inline Camera* GetCamera() const										{ return camera_; }
-		inline DirectX::Model* GetModel() const									{ return model_; }
 		inline const DirectX::SimpleMath::Vector3& GetScale() const				{ return scale_; }
 		inline const DirectX::SimpleMath::Vector3& GetRotate() const			{ return rot_; }
 		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
 		inline const DirectX::SimpleMath::Vector3& GetTranslate() const			{ return trans_; }
 		inline const DirectX::SimpleMath::Matrix& GetWorld() const				{ return world_; }
-		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtract_; }
+		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtractive_; }
 		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
 		inline bool GetActive()	const											{ return isActive_; }
 		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
@@ -131,20 +142,19 @@ namespace GucchiLibrary
 		// 代入オペレータ
 		Asset3D& operator=(const Asset3D& asset)
 		{
-			basicEffect_        = asset.basicEffect_;
-			inputLayout_        = asset.inputLayout_;
-			effectFactory_      = asset.effectFactory_;
-			camera_             = asset.camera_;
-			model_              = asset.model_;
-			scale_              = asset.scale_;
-			rot_                = asset.rot_;
-			quat_               = asset.quat_;
-			trans_              = asset.trans_;
-			world_              = asset.world_;
-			blendStateSubtract_ = asset.blendStateSubtract_;
-			blendMode_          = asset.blendMode_;
-			isActive_           = asset.isActive_;
-			isUseQuaternion_    = asset.isUseQuaternion_;
+			basicEffect_           = asset.basicEffect_;
+			inputLayout_           = asset.inputLayout_;
+			effectFactory_         = asset.effectFactory_;
+			camera_                = asset.camera_;
+			scale_                 = asset.scale_;
+			rot_                   = asset.rot_;
+			quat_                  = asset.quat_;
+			trans_                 = asset.trans_;
+			world_                 = asset.world_;
+			blendStateSubtractive_ = asset.blendStateSubtractive_;
+			blendMode_             = asset.blendMode_;
+			isActive_              = asset.isActive_;
+			isUseQuaternion_       = asset.isUseQuaternion_;
 
 			return (*this);
 		}
@@ -152,8 +162,7 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Asset3D& asset) const
 		{
-			if (model_				== asset.model_				&&
-				scale_				== asset.scale_				&&
+			if (scale_				== asset.scale_				&&
 				rot_				== asset.rot_				&&
 				quat_				== asset.quat_				&&
 				trans_				== asset.trans_				&&

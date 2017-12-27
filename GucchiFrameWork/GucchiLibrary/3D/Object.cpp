@@ -22,6 +22,14 @@ Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, c
 {
 }
 
+// コピーコンストラクタ
+Object::Object(const Object& object)
+{
+	model_        = object.model_;
+	parentObject_ = object.parentObject_;
+	childObject_  = object.childObject_;
+}
+
 /*==============================================================
 // @brief		更新処理
 // @param		なし

@@ -10,5 +10,13 @@
 // ここで切り替えるマクロは0でOFF、1でONとする
 // スイッチを使う部分で必ず [マクロ == 1] とする
 
+// デバッグモード
+#if defined(_DEBUG)
+#define MODE_DEBUG
+#endif
+
 // ウインドウにFPSを表示する
-#define DRAW_WINDOW_FPS		(0)
+#define DRAW_WINDOW_FPS			(0)
+
+// デフォルト天球の描画
+#define DRAW_DEFAULT_SKYDOME	(0)

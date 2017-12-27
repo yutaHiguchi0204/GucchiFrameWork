@@ -31,6 +31,8 @@ Game::Game(HINSTANCE hInstance, int nCmdShow)
 void Game::Initialize()
 {
 	// デバイス関連などの初期化はここに記述
+	particleRenderer_.Initialize();
+	primitiveRenderer_.Initialize();
 
 	// その他ゲーム内関連はGameMainの初期化に書いてください（基本的にここはいじらない）
 	main_->Initialize();
@@ -58,6 +60,7 @@ void Game::Update(const StepTimer& timer)
 {
 	// デバイス関連などの更新はここに記述
 	objectRenderer_.Update();			// オブジェクト
+	particleRenderer_.Update();			// パーティクル
 	spriteRenderer_.Update();			// スプライト
 
 	// ゲーム内関連の更新処理はGameMainの更新に書いてください（基本的にここはいじらない）
@@ -75,7 +78,9 @@ void Game::Render()
 
 	// ライブラリインタフェースでの描画処理
 	objectRenderer_.Draw();				// オブジェクト
+	particleRenderer_.Draw();			// パーティクル
 	spriteRenderer_.Draw();				// スプライト
+	primitiveRenderer_.Draw();			// プリミティブ
 	textRenderer_.Draw();				// テキスト
 
     // ゲーム内関連の描画処理はGameMainの描画に書いてください（基本的にここはいじらない）

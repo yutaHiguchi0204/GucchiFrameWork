@@ -6,9 +6,9 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <CommonStates.h>
 #include <d3d11_1.h>
 #include <map>
+#include <memory>
 #include <SimpleMath.h>
 #include <string>
 
@@ -167,6 +167,20 @@ namespace GucchiLibrary
 			}
 
 			return state_[action];
+		}
+
+		/*
+		// @method		Reset
+		// @content		リセット
+		*/
+		void Reset()
+		{
+			timer_.clear();
+			state_.clear();
+			start_.clear();
+			end_.clear();
+			runTime_.clear();
+			mode_.clear();
 		}
 
 		/* アクセッサ */
@@ -396,5 +410,11 @@ namespace GucchiLibrary
 		// @content		更新処理
 		*/
 		void Update();
+
+		/*
+		// @method		Reset
+		// @content		全ステートのリセット
+		*/
+		void Reset();
 	};
 }
