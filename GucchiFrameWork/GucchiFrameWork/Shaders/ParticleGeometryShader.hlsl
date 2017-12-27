@@ -19,7 +19,7 @@ static const float4 offsetArray[vNum] =
 	{  0.5f,  0.5f, 0, 0 }			// 右上
 };
 
-// 
+// UV座標
 static const float2 uvArray[vNum] =
 {
 	{ 0.0f, 1.0f },					// 左下
