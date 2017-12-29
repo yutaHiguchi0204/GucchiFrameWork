@@ -27,7 +27,7 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring 
 #if defined(MODE_DEBUG)
 		OutputDebugString(L"No sprite type. Please configuration \"typeNum\".");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	// ダミースプライト設定
@@ -76,7 +76,7 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring*
 #if defined(MODE_DEBUG)
 		OutputDebugString(L"No sprite type. Please configuration \"typeNum\".");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	// スプライト設定

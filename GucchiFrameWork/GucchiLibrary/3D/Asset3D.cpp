@@ -147,7 +147,7 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 #if defined(MODE_DEBUG)
 		OutputDebugString(L"Create blend state is failed.");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	return blendState;

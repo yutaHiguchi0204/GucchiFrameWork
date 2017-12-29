@@ -181,7 +181,7 @@ void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
 #if defined(MODE_DEBUG)
 		OutputDebugString("This scene is not register. Please register this scene for \"RegisterScene()\"");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	// 現在のシーンの終了処理を行う

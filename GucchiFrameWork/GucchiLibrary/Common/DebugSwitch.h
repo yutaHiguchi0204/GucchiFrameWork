@@ -19,4 +19,4 @@
 #define DRAW_WINDOW_FPS			(0)
 
 // デフォルト天球の描画
-#define DRAW_DEFAULT_SKYDOME	(0)
+#define DRAW_DEFAULT_SKYDOME	(1)

@@ -27,7 +27,7 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 #if defined(MODE_DEBUG)
 		OutputDebugString(L"No object type. Please configuration \"typeNum\".");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	// ダミーオブジェクト設定

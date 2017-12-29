@@ -158,6 +158,7 @@
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="InputTools\KeyboardUtil.cpp" />
     <ClCompile Include="InputTools\MouseUtil.cpp" />
+    <ClCompile Include="MapTip\AStar.cpp" />
     <ClCompile Include="MapTip\MapTip.cpp" />
     <ClCompile Include="MapTip\MapTip2D.cpp" />
     <ClCompile Include="MapTip\MapTip3D.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="GucchiLibrary.h" />
     <ClInclude Include="InputTools\KeyboardUtil.h" />
     <ClInclude Include="InputTools\MouseUtil.h" />
+    <ClInclude Include="MapTip\AStar.h" />
     <ClInclude Include="MapTip\MapTip.h" />
     <ClInclude Include="MapTip\MapTip2D.h" />
     <ClInclude Include="MapTip\MapTip3D.h" />
