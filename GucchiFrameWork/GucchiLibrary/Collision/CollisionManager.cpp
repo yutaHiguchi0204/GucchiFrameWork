@@ -32,7 +32,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 		}
 
 		// 障害物かどうかチェック
-		if (data[nowY].at(nowX - 1) == static_cast<int>(TipData::TIP_TYPE::SOLID))
+		if (data[nowY][nowX - 1] == static_cast<int>(TipData::TIP_TYPE::SOLID))
 		{
 			return true;
 		}
@@ -48,7 +48,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 		}
 
 		// 障害物かどうかチェック
-		if (data[nowY].at(nowX + 1) == static_cast<int>(TipData::TIP_TYPE::SOLID))
+		if (data[nowY][nowX + 1] == static_cast<int>(TipData::TIP_TYPE::SOLID))
 		{
 			return true;
 		}
@@ -64,7 +64,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 		}
 
 		// 障害物かどうかチェック
-		if (data[nowY - 1].at(nowX) == static_cast<int>(TipData::TIP_TYPE::SOLID))
+		if (data[nowY - 1][nowX] == static_cast<int>(TipData::TIP_TYPE::SOLID))
 		{
 			return true;
 		}
@@ -80,7 +80,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 		}
 
 		// 障害物かどうかチェック
-		if (data[nowY + 1].at(nowX) == static_cast<int>(TipData::TIP_TYPE::SOLID))
+		if (data[nowY + 1][nowX] == static_cast<int>(TipData::TIP_TYPE::SOLID))
 		{
 			return true;
 		}

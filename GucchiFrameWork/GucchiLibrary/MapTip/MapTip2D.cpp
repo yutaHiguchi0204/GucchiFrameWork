@@ -132,10 +132,10 @@ void MapTip2D::ResetData()
 ===============================================================*/
 void MapTip2D::ChangeTip(int noX, int noY, int newData)
 {
-	data_.at(noY).at(noX).SetData(newData);
+	data_[noY][noX].SetData(newData);
 
 	// 新しいスプライトデータに書き換える
-	sprite_.at(noY).at(noX) = *masterSprite_.at(data_.at(noY).at(noX).GetData()).get();
+	sprite_[noY][noX] = *masterSprite_[data_[noY][noX].GetData()].get();
 }
 
 /*==============================================================
@@ -145,7 +145,7 @@ void MapTip2D::ChangeTip(int noX, int noY, int newData)
 ===============================================================*/
 void MapTip2D::SetSpritePos(int noX, int noY, const Vector2& pos)
 {
-	sprite_.at(noY).at(noX).SetPos(pos);
+	sprite_[noY][noX].SetPos(pos);
 }
 
 /*==============================================================
@@ -155,7 +155,7 @@ void MapTip2D::SetSpritePos(int noX, int noY, const Vector2& pos)
 ===============================================================*/
 void MapTip2D::SetSpriteScale(int noX, int noY, float scale)
 {
-	sprite_.at(noY).at(noX).SetScale(scale);
+	sprite_[noY][noX].SetScale(scale);
 }
 
 /*==============================================================
@@ -165,7 +165,7 @@ void MapTip2D::SetSpriteScale(int noX, int noY, float scale)
 ===============================================================*/
 void MapTip2D::SetSpriteAngle(int noX, int noY, float angle)
 {
-	sprite_.at(noY).at(noX).SetAngle(angle);
+	sprite_[noY][noX].SetAngle(angle);
 }
 
 /*==============================================================
@@ -175,7 +175,7 @@ void MapTip2D::SetSpriteAngle(int noX, int noY, float angle)
 ===============================================================*/
 void MapTip2D::SetSpriteActive(int noX, int noY, bool active)
 {
-	sprite_.at(noY).at(noX).SetActive(active);
+	sprite_[noY][noX].SetActive(active);
 }
 
 /*==============================================================

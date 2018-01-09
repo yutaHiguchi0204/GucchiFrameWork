@@ -31,6 +31,7 @@ namespace GucchiLibrary
 			NONE,
 			SOLID,
 			DAMAGE,
+			START,
 			GOAL,
 
 			TYPE_NUM

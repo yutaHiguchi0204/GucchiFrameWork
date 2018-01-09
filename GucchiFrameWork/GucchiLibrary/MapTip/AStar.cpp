@@ -8,26 +8,32 @@
 #include "AStar.h"
 #include <cassert>
 #include <d3d11_1.h>
+#include "../3D/ObjectRenderer.h"
 #include "../Common/DebugSwitch.h"
 
 // 名前空間
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
 // 静的メンバの定義
-const int AStar::NUM_ADJOIN;					// 隣接タイル数
+const int AStar::NUM_ADJOIN;									// 隣接タイル数
 /*
 // １２３
 // ８　４
 // ７６５
 */
-Node::Point AStar::offset_[NUM_ADJOIN] = {		// オフセットリスト
-	{ -1, -1 }, { 0, -1 }, { 1, -1 }, { 1,  0 }, { 1,  1 }, { 0,  1 }, { -1,  1 }, { -1,  0 }
-};
-vector<vector<Node*>> AStar::mapData_;			// マップデータ
-list<Node*> AStar::openList_;					// オープンリスト
-Node::Point AStar::start_;						// 経路探索開始地点
-Node::Point AStar::end_;						// 経路探索終了地点
+Node::Point					AStar::offset_[NUM_ADJOIN] = {		// オフセットリスト
+								{ -1, -1 }, { 0, -1 }, { 1, -1 }, { 1,  0 }, { 1,  1 }, { 0,  1 }, { -1,  1 }, { -1,  0 }
+							};
+vector<vector<Node*>>		AStar::mapData_;					// マップデータ
+list<Node*>					AStar::openList_;					// オープンリスト
+vector<Node*>				AStar::shortestRoute_;				// 最短経路
+Node::Point					AStar::start_;						// 経路探索開始地点
+Node::Point					AStar::end_;						// 経路探索終了地点
+Vector3						AStar::mapPos_;						// マップ自体の座標
+vector<unique_ptr<Object>>	AStar::routePlane_;					// 最短経路ナビゲーター
 
 // メンバ関数の定義
 
@@ -109,6 +115,9 @@ void AStar::Initialize(vector<vector<int>> map)
 #endif
 		assert(false);
 	}
+
+	// マップ自体の座標を０に設定
+	mapPos_ = Vector3::Zero;
 }
 
 /*==============================================================
@@ -166,6 +175,82 @@ vector<vector<Node*>> AStar::Search()
 }
 
 /*==============================================================
+// @brief		最短経路リストを取得
+// @param		なし
+// @return		最短経路リスト（vector<Node*>）
+===============================================================*/
+vector<Node*> AStar::GetShortestRoute()
+{
+	// 経路探索が終わっていなければエラー
+	if (mapData_[start_.posY][start_.posX]->GetState() != Node::STATE::CLOSED)
+	{
+#if defined(MODE_DEBUG)
+		// 探索終了してないエラー
+		OutputDebugString(L"Don't finish search.");
+#endif
+		assert(false);
+	}
+
+	// 最短経路をリストに追加
+	shortestRoute_.emplace_back(mapData_[start_.posY][start_.posX]);
+
+	// 親ノードをたどり、ゴールまでリストに追加する
+	Node* parent = mapData_[start_.posY][start_.posX]->GetParentNode();
+	while (parent != nullptr)
+	{
+		shortestRoute_.emplace_back(parent);
+		parent = parent->GetParentNode();
+	}
+
+	return shortestRoute_;
+}
+
+/*==============================================================
+// @brief		探索結果を四角形で表示
+// @param		なし
+// @return		なし
+===============================================================*/
+void AStar::DrawResult()
+{
+	// 目標地点がクローズドリストに含まれてなかったら探索が完了していないのでなにもしない
+	if (mapData_[start_.posY][start_.posX]->GetState() == Node::STATE::CLOSED)
+	{
+		ObjectFactory& factory = ObjectFactory::GetInstance();
+		ObjectRenderer& renderer = ObjectRenderer::GetInstance();
+
+		// 目標地点にナビゲーター平面を設置
+		routePlane_.emplace_back(factory.CreateObjectFromFile(L"routePlane"));
+		routePlane_.back()->SetTranslate(Vector3(start_.posX + mapPos_.x, mapPos_.y + 1.f, start_.posY + mapPos_.z));
+		renderer.RegisterObject(routePlane_.back().get());
+
+		// 親ノードをたどり、すべてにナビゲーター平面を設置
+		Node* parent = mapData_[start_.posY][start_.posX]->GetParentNode();
+		while (parent != nullptr)
+		{
+			routePlane_.emplace_back(factory.CreateObjectFromFile(L"routePlane"));
+			routePlane_.back()->SetTranslate(Vector3(parent->GetPosX() + mapPos_.x, mapPos_.y + 1.f, parent->GetPosY() + mapPos_.z));
+			renderer.RegisterObject(routePlane_.back().get());
+
+			// 親ノードをたどる
+			parent = parent->GetParentNode();
+		}
+	}
+}
+
+/*==============================================================
+// @brief		最短経路ナビゲーターのアクティブ状態を変更
+// @param		アクティブ状態（bool）
+// @return		なし
+===============================================================*/
+void AStar::SetNavigatorActive(bool active)
+{
+	for (auto& routePlane : routePlane_)
+	{
+		routePlane->SetActive(active);
+	}
+}
+
+/*==============================================================
 // @brief		隣接するタイル８つを調べる
 // @param		チェック中のノード（Node*）
 // @return		なし
@@ -183,6 +268,7 @@ void AStar::CheckAdjoin(Node* node)
 			openList_.erase(itr);
 			break;
 		}
+		
 		itr++;
 	}
 
@@ -194,14 +280,15 @@ void AStar::CheckAdjoin(Node* node)
 		int y = node->GetPosY() + offset_[i].posY;
 
 		// マップ内かどうか
-		if (x >= 0 && x < (int)mapData_[y].size() &&
-			y >= 0 && y < (int)mapData_.size())
+		bool insideMap = (x >= 0 && y >= 0) && (y < (int)mapData_.size()) && (x < (int)mapData_[y].size());
+
+		if (insideMap)
 		{
 			// すでにオープンリスト・クローズドリストに含まれているとき、
 			// または障害物の場合は無視する
-			if (mapData_[y][x]->GetState()		!= Node::STATE::OPEN		&&
-				mapData_[y][x]->GetState()		!= Node::STATE::CLOSED		&&
-				mapData_[y][x]->GetAttribute()	!= Node::ATTRIBUTE::WALL)
+			if (mapData_[y][x]->GetState() != Node::STATE::OPEN				&&
+				mapData_[y][x]->GetState() != Node::STATE::CLOSED			&&
+				mapData_[y][x]->GetAttribute() != Node::ATTRIBUTE::WALL)
 			{
 				// 親ノードを設定
 				mapData_[y][x]->SetParentNode(node);

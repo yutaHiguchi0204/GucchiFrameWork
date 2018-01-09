@@ -6,8 +6,12 @@
 #pragma once
 
 // ヘッダファイルのインクルード
+#include <d3d11_1.h>
 #include <list>
+#include <SimpleMath.h>
 #include <vector>
+#include "MapTip2D.h"
+#include "MapTip3D.h"
 
 namespace GucchiLibrary
 {
@@ -107,16 +111,21 @@ namespace GucchiLibrary
 	class AStar
 	{
 	public:
-		static const int NUM_ADJOIN = 8;		// 隣接タイル数
+		static const int NUM_ADJOIN = 8;									// 隣接タイル数
 
 	private:
-		static Node::Point offset_[NUM_ADJOIN];
+		static Node::Point offset_[NUM_ADJOIN];								// 隣接タイル数
 
-		static std::vector<std::vector<Node*>> mapData_;
-		static std::list<Node*> openList_;
+		static std::vector<std::vector<Node*>> mapData_;					// マップデータ
+		static std::list<Node*> openList_;									// オープンリスト
+		static std::vector<Node*> shortestRoute_;							// 最短経路
 
-		static Node::Point start_;
-		static Node::Point end_;
+		static Node::Point start_;											// 開始地点
+		static Node::Point end_;											// 終了地点
+
+		static DirectX::SimpleMath::Vector3 mapPos_;						// マップ自体の座標（デフォルトは０ですが、マップデータのダミーオブジェクトの位置を登録することができます）
+
+		static std::vector<std::unique_ptr<Object>> routePlane_;			// 最短経路ナビゲーター
 
 	public:
 		/*
@@ -138,6 +147,26 @@ namespace GucchiLibrary
 		// @return		経路探索が完了したデータ（vector<vector<Node*>>）
 		*/
 		static std::vector<std::vector<Node*>> Search();
+
+		/*
+		// @method		GetShortestRoute（static）
+		// @content		最短経路リストを取得
+		// @return		最短経路リスト（vector<Node*>）
+		*/
+		static std::vector<Node*> GetShortestRoute();
+
+		/*
+		// @method		DrawResult（static）
+		// @content		探索結果を四角形で表示
+		*/
+		static void DrawResult();
+
+		/*
+		// @method		SetNavigatorActive（static）
+		// @content		最短経路ナビゲーターのアクティブ状態を変更
+		// @param		アクティブ状態（bool）
+		*/
+		static void SetNavigatorActive(bool active);
 
 		/*
 		// @method		CheckAdjoin（static）
@@ -186,5 +215,13 @@ namespace GucchiLibrary
 		// @return		スコア（int）
 		*/
 		static int GetScore(Node* node);
+
+		/* アクセッサ */
+
+		static Node* GetNode(Node::Point point)		{ return mapData_[point.posY][point.posX]; }
+		static Node* GetNode(int posX, int posY)	{ return mapData_[posY][posX]; }
+
+		static void SetMapPos(MapTip2D* map)		{ mapPos_ = DirectX::SimpleMath::Vector3(map->GetPos().x, map->GetPos().y, 0); }
+		static void SetMapPos(MapTip3D* map)		{ mapPos_ = map->GetTranslate(); }
 	};
 }

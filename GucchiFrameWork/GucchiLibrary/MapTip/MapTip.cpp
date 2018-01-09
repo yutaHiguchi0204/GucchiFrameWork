@@ -26,8 +26,8 @@ MapTip::MapTip(vector<vector<int>> data, int dataTypeNum)
 		for (auto& data : data[i])
 		{
 			data_[i].emplace_back();
-			data_[i].at(j).SetData(data);
-			data_[i].at(j).SetType(static_cast<TipData::TIP_TYPE>(data));
+			data_[i][j].SetData(data);
+			data_[i][j].SetType(static_cast<TipData::TIP_TYPE>(data));
 			j++;
 		}
 	}
