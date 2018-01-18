@@ -132,6 +132,9 @@
     <ClCompile Include="Particle\ParticleRenderer.cpp">
       <Filter>Particle</Filter>
     </ClCompile>
+    <ClCompile Include="MapTip\AStar.cpp">
+      <Filter>MapTip</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h">
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="Particle\ParticleRenderer.h">
       <Filter>Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTip\AStar.h">
+      <Filter>MapTip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

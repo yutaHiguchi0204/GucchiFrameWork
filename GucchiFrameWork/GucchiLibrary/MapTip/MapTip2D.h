@@ -111,9 +111,9 @@ namespace GucchiLibrary
 		inline DirectX::SimpleMath::Vector2& GetPos() const										{ return dummySprite_->GetPos(); }
 		inline int GetSpritesRowNum() const														{ return (int)sprite_.size(); }
 		inline int GetSpritesColumnNum(int row) const											{ return (int)sprite_[row].size(); }
-		inline const DirectX::SimpleMath::Vector2& GetSpritePos(int noX, int noY) const			{ return sprite_[noX].at(noY).GetPos(); }
-		inline const float GetSpriteScale(int noX, int noY) const								{ return sprite_[noX].at(noY).GetScale(); }
-		inline const float GetSpriteAngle(int noX, int noY) const								{ return sprite_[noX].at(noY).GetAngle(); }
-		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const		{ return sprite_[noX].at(noY).GetInterpolateDirector(); }
+		inline const DirectX::SimpleMath::Vector2& GetSpritePos(int noX, int noY) const			{ return sprite_[noY][noX].GetPos(); }
+		inline const float GetSpriteScale(int noX, int noY) const								{ return sprite_[noY][noX].GetScale(); }
+		inline const float GetSpriteAngle(int noX, int noY) const								{ return sprite_[noY][noX].GetAngle(); }
+		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const		{ return sprite_[noY][noX].GetInterpolateDirector(); }
 	};
 }

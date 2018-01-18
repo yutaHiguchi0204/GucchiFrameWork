@@ -246,6 +246,7 @@ void ParticleRenderer::RegisterEmitter(Emitter* emitter, wstring emitterName, ws
 {
 	emitter_[emitterName] = emitter;
 	emitter_[emitterName]->LoadTexture(textureFileName);
+	emitter_[emitterName]->SetPos(emitterPos);
 }
 
 /*==============================================================

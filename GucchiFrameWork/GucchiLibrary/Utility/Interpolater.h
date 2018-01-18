@@ -147,11 +147,11 @@ namespace GucchiLibrary
 			{
 				if (state.second != INTERPOLATE_STATE::FINISH)
 				{
-					return false;
+					return true;
 				}
 			}
 
-			return true;
+			return false;
 		}
 
 		/*

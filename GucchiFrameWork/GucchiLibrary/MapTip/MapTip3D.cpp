@@ -27,7 +27,7 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 #if defined(MODE_DEBUG)
 		OutputDebugString(L"No object type. Please configuration \"typeNum\".");
 #endif
-		assert(0);
+		assert(false);
 	}
 
 	// ダミーオブジェクト設定
@@ -103,10 +103,10 @@ void MapTip3D::ResetData()
 ===============================================================*/
 void MapTip3D::ChangeTip(int noX, int noY, int newData)
 {
-	data_.at(noY).at(noX).SetData(newData);
+	data_[noY][noX].SetData(newData);
 
 	// 新しいスプライトデータに書き換える
-	object_.at(noY).at(noX) = *masterObject_.at(data_.at(noY).at(noX).GetData()).get();
+	object_[noY][noX] = *masterObject_[data_[noY][noX].GetData()].get();
 }
 
 /*==============================================================
@@ -116,7 +116,7 @@ void MapTip3D::ChangeTip(int noX, int noY, int newData)
 ===============================================================*/
 void MapTip3D::SetObjectTranslate(int noX, int noY, const Vector3& trans)
 {
-	object_.at(noY).at(noX).SetTranslate(trans);
+	object_[noY][noX].SetTranslate(trans);
 }
 
 /*==============================================================
@@ -126,7 +126,7 @@ void MapTip3D::SetObjectTranslate(int noX, int noY, const Vector3& trans)
 ===============================================================*/
 void MapTip3D::SetObjectScale(int noX, int noY, const Vector3& scale)
 {
-	object_.at(noY).at(noX).SetScale(scale);
+	object_[noY][noX].SetScale(scale);
 }
 
 /*==============================================================
@@ -136,7 +136,7 @@ void MapTip3D::SetObjectScale(int noX, int noY, const Vector3& scale)
 ===============================================================*/
 void MapTip3D::SetObjectRotate(int noX, int noY, const Vector3& rot)
 {
-	object_.at(noY).at(noX).SetRotate(rot);
+	object_[noY][noX].SetRotate(rot);
 }
 
 /*==============================================================
@@ -146,7 +146,7 @@ void MapTip3D::SetObjectRotate(int noX, int noY, const Vector3& rot)
 ===============================================================*/
 void MapTip3D::SetObjectActive(int noX, int noY, bool active)
 {
-	object_.at(noY).at(noX).SetActive(active);
+	object_[noY][noX].SetActive(active);
 }
 
 /*==============================================================

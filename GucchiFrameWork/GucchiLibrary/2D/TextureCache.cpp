@@ -52,7 +52,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 #if defined(MODE_DEBUG)
 			OutputDebugString(L"Texture loading failed.");
 #endif
-			assert(0);
+			assert(false);
 		}
 
 		// リソースをテクスチャとして解釈する
@@ -64,7 +64,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 #if defined(MODE_DEBUG)
 			OutputDebugString(L"This resource is not texture.");
 #endif
-			assert(0);
+			assert(false);
 		}
 
 		// テクスチャ情報取得
