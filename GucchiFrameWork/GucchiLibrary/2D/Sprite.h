@@ -53,7 +53,7 @@ namespace GucchiLibrary
 		Sprite(const Sprite& sprite);
 
 		// デストラクタ
-		virtual ~Sprite() {}
+		virtual ~Sprite() = default;
 
 		/*
 		// @method		Update
@@ -122,23 +122,18 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Sprite& sprite) const
 		{
-			if (texture_		== sprite.texture_		&&
-				pos_			== sprite.pos_			&&
-				size_			== sprite.size_			&&
-				textureRect_	== sprite.textureRect_	&&
-				anchor_			== sprite.anchor_		&&
-				scale_			== sprite.scale_		&&
-				angle_			== sprite.angle_		&&
-				isActive_		== sprite.isActive_		&&
-				parentSprite_	== sprite.parentSprite_	&&
-				childSprite_	== sprite.childSprite_	&&
-				isAction_		== sprite.isAction_
-				)
-			{
-				return true;
-			}
-
-			return false;
+			return 
+				texture_		== sprite.texture_		&& 
+				pos_			== sprite.pos_			&& 
+				size_			== sprite.size_			&& 
+				textureRect_	== sprite.textureRect_	&& 
+				anchor_			== sprite.anchor_		&& 
+				scale_			== sprite.scale_		&& 
+				angle_			== sprite.angle_		&& 
+				isActive_		== sprite.isActive_		&& 
+				parentSprite_	== sprite.parentSprite_	&& 
+				childSprite_	== sprite.childSprite_	&& 
+				isAction_		== sprite.isAction_;
 		}
 	};
 }

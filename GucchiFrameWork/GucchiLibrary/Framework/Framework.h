@@ -10,7 +10,6 @@
 #include <DirectXColors.h>
 #include "../Common/DeviceResources.h"
 #include "../Common/StepTimer.h"
-#include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
 {
@@ -34,7 +33,7 @@ namespace GucchiLibrary
 
 	public:
 		Framework(HINSTANCE hInstance, int nCmdShow);
-		virtual ~Framework() {}
+		virtual ~Framework() = default;
 
 		virtual void Initialize() {}
 		virtual void Finalize() {}

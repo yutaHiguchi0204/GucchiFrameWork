@@ -60,7 +60,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<ParticleRenderer>;
 
-		ParticleRenderer() {}
+		ParticleRenderer() = default;
 
 	public:
 		/*

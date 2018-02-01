@@ -26,7 +26,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<SpriteRenderer>;
 
-		SpriteRenderer() {}
+		SpriteRenderer() = default;
 
 	public:
 		/*
@@ -97,7 +97,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<SpriteFactory>;
 
-		SpriteFactory() {}
+		SpriteFactory() = default;
 
 	public:
 		/*

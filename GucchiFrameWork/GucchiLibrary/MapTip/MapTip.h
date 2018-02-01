@@ -43,10 +43,10 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		TipData() {}
+		TipData() = default;
 
 		// デストラクタ
-		virtual ~TipData() {}
+		virtual ~TipData() = default;
 
 		/* アクセッサ */
 
@@ -77,7 +77,7 @@ namespace GucchiLibrary
 		MapTip(std::vector<std::vector<int>> data, int dataTypeNum);
 
 		// デストラクタ
-		virtual ~MapTip() {}
+		virtual ~MapTip() = default;
 
 		/*
 		// @method		ResetData

@@ -46,7 +46,7 @@ namespace GucchiLibrary
 		Emitter(DirectX::SimpleMath::Vector3 pos = DirectX::SimpleMath::Vector3::Zero, float exisTime = FOREVER_EXIST);
 
 		// デストラクタ
-		virtual ~Emitter() {}
+		virtual ~Emitter() = default;
 
 		/*
 		// @method		Update
@@ -90,6 +90,6 @@ namespace GucchiLibrary
 		void SetParent(Object* parent)								{ parentObject_ = parent; }
 
 		inline const DirectX::SimpleMath::Vector3& GetPos() const	{ return pos_; }
-		inline const bool IsExist() const							{ return isExist_; }
+		inline bool IsExist() const									{ return isExist_; }
 	};
 }

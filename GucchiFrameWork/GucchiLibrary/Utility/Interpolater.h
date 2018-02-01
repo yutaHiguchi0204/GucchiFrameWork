@@ -60,7 +60,7 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		InterpolateState() {}
+		InterpolateState() = default;
 
 		// デストラクタ
 		virtual ~InterpolateState()
@@ -159,7 +159,7 @@ namespace GucchiLibrary
 		// @content		補間状態の取得（アクションが無ければNONEを返す）
 		// @result		補間状態（INTERPOLATE_STATE）
 		*/
-		const INTERPOLATE_STATE GetState(std::wstring action)
+		INTERPOLATE_STATE GetState(std::wstring action)
 		{
 			if (state_.count(action) == 0)
 			{
@@ -187,7 +187,7 @@ namespace GucchiLibrary
 
 		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
 
-		inline const float GetTimer(std::wstring action) { return timer_[action]; }
+		inline float GetTimer(std::wstring action) { return timer_[action]; }
 	};
 
 	/*
@@ -403,7 +403,7 @@ namespace GucchiLibrary
 		InterpolateDirector();
 
 		// デストラクタ
-		virtual ~InterpolateDirector() {}
+		virtual ~InterpolateDirector() = default;
 
 		/*
 		// @method		Update

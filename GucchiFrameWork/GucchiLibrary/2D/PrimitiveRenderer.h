@@ -32,7 +32,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<PrimitiveRenderer>;
 
-		PrimitiveRenderer() {}
+		PrimitiveRenderer() = default;
 
 	public:
 		/*

@@ -22,7 +22,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<SoundManager>;
 
-		SoundManager() {}
+		SoundManager() = default;
 
 	public:
 		/*

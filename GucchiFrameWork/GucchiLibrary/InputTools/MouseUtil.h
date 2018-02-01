@@ -29,7 +29,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<MouseUtil>;
 
-		MouseUtil() {}
+		MouseUtil() = default;
 
 	public:
 		/*

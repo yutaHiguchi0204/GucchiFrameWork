@@ -42,7 +42,7 @@ namespace GucchiLibrary
 		DefaultCamera(int width, int height);
 
 		// デストラクタ
-		virtual ~DefaultCamera() {}
+		virtual ~DefaultCamera() = default;
 
 		/*
 		// @method		Update

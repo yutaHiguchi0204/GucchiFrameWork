@@ -18,10 +18,10 @@ private:
 
 public:
 	// コンストラクタ
-	DummyScene() {}
+	DummyScene() = default;
 
 	// デストラクタ
-	virtual ~DummyScene() {}
+	virtual ~DummyScene() = default;
 
 	/*
 	// @method		Initialize

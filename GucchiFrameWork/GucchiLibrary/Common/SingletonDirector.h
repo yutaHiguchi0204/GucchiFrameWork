@@ -23,7 +23,7 @@ namespace GucchiLibrary
 
 	protected:
 		// コンストラクタ
-		SingletonDirector() {}
+		SingletonDirector() = default;
 
 	private:
 		// コピーと代入防止

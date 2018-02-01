@@ -55,13 +55,13 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		Particle() {}
+		Particle() = default;
 
 		// コピーコンストラクタ
 		Particle(const Particle& particle);
 
 		// デストラクタ
-		virtual ~Particle() {}
+		virtual ~Particle() = default;
 
 		/*
 		// @method		Initialize
@@ -95,8 +95,8 @@ namespace GucchiLibrary
 		/* アクセッサ */
 
 		inline const DirectX::VertexPositionColorTexture& GetVertexNow() const	{ return vertexNow_; }
-		inline const Asset3D::BLEND_MODE GetBlendMode() const					{ return blendMode_; }
-		inline const bool IsExist() const										{ return isExist_; }
+		inline Asset3D::BLEND_MODE GetBlendMode() const							{ return blendMode_; }
+		inline bool IsExist() const												{ return isExist_; }
 
 	public:
 		// 代入オペレータ

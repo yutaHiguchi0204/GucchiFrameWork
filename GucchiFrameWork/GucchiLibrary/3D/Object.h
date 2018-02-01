@@ -40,7 +40,7 @@ namespace GucchiLibrary
 		Object(const Object& object);
 
 		// デストラクタ
-		virtual ~Object() {}
+		virtual ~Object() = default;
 
 		/*
 		// @method		Update
@@ -97,22 +97,17 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Object& object) const
 		{
-			if (scale_           == object.scale_				&&
-				rot_             == object.rot_					&&
-				quat_            == object.quat_				&&
-				trans_           == object.trans_				&&
-				world_           == object.world_				&&
-				blendMode_       == object.blendMode_			&&
-				isActive_        == object.isActive_			&&
-				isUseQuaternion_ == object.isUseQuaternion_		&&
-				model_           == object.model_				&&
-				parentObject_    == object.parentObject_
-				)
-			{
-				return true;
-			}
-
-			return false;
+			return 
+				scale_           == object.scale_				&& 
+				rot_             == object.rot_					&& 
+				quat_            == object.quat_				&& 
+				trans_           == object.trans_				&& 
+				world_           == object.world_				&& 
+				blendMode_       == object.blendMode_			&& 
+				isActive_        == object.isActive_			&& 
+				isUseQuaternion_ == object.isUseQuaternion_		&& 
+				model_           == object.model_				&& 
+				parentObject_    == object.parentObject_;
 		}
 	};
 }

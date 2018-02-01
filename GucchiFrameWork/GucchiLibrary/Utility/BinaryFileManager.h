@@ -24,7 +24,7 @@ namespace GucchiLibrary
 	public:
 		BinaryFile();						// デフォルトコンストラクタ
 		BinaryFile(BinaryFile&& _in);		// ムーブコンストラクタ
-		virtual ~BinaryFile() {}
+		virtual ~BinaryFile() = default;
 
 		/*
 		// @method		ResetData

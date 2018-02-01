@@ -24,7 +24,8 @@ ID3D11BlendState* Asset3D::blendStateSubtractive_;
 
 // コンストラクタ
 Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot, const Quaternion& quat, BLEND_MODE mode)
-	: scale_(scale)
+	: camera_(nullptr)
+	, scale_(scale)
 	, rot_(rot)
 	, quat_(quat)
 	, trans_(trans)
@@ -60,7 +61,6 @@ Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot,
 	effectFactory_->SetDirectory(FILE_PATH_MODEL.c_str());
 
 	// 減算描画設定
-	ObjectRenderer& objectRenderer = ObjectRenderer::GetInstance();
 	blendStateSubtractive_ = SetSubtractive();
 
 	// 補間ステートの準備

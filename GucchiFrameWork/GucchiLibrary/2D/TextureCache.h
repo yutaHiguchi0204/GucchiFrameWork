@@ -50,7 +50,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<TextureCache>;
 
-		TextureCache() {}
+		TextureCache() = default;
 
 	public:
 		/*

@@ -21,10 +21,10 @@ namespace GucchiLibrary
 	{
 	public:
 		// コンストラクタ
-		ActionManager() {}
+		ActionManager() = default;
 
 		// デストラクタ
-		virtual ~ActionManager() {}
+		virtual ~ActionManager() = default;
 	};
 
 	/*

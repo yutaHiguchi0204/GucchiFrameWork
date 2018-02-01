@@ -44,7 +44,7 @@ namespace GucchiLibrary
 		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring* textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		// デストラクタ
-		virtual ~MapTip2D() {}
+		virtual ~MapTip2D() = default;
 
 		/*
 		// @method		ResetData
@@ -109,11 +109,11 @@ namespace GucchiLibrary
 		void SetPos(const DirectX::SimpleMath::Vector2& pos)									{ dummySprite_->SetPos(pos); }
 
 		inline DirectX::SimpleMath::Vector2& GetPos() const										{ return dummySprite_->GetPos(); }
-		inline int GetSpritesRowNum() const														{ return (int)sprite_.size(); }
-		inline int GetSpritesColumnNum(int row) const											{ return (int)sprite_[row].size(); }
+		inline int GetSpritesRowNum() const														{ return static_cast<int>(sprite_.size()); }
+		inline int GetSpritesColumnNum(int row) const											{ return static_cast<int>(sprite_[row].size()); }
 		inline const DirectX::SimpleMath::Vector2& GetSpritePos(int noX, int noY) const			{ return sprite_[noY][noX].GetPos(); }
-		inline const float GetSpriteScale(int noX, int noY) const								{ return sprite_[noY][noX].GetScale(); }
-		inline const float GetSpriteAngle(int noX, int noY) const								{ return sprite_[noY][noX].GetAngle(); }
+		inline float GetSpriteScale(int noX, int noY) const										{ return sprite_[noY][noX].GetScale(); }
+		inline float GetSpriteAngle(int noX, int noY) const										{ return sprite_[noY][noX].GetAngle(); }
 		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const		{ return sprite_[noY][noX].GetInterpolateDirector(); }
 	};
 }

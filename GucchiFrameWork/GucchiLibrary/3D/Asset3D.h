@@ -101,7 +101,7 @@ namespace GucchiLibrary
 		Asset3D(const Asset3D& asset);
 
 		// デストラクタ
-		virtual ~Asset3D() {}
+		virtual ~Asset3D() = default;
 
 		/*
 		// @method		Update
@@ -162,20 +162,15 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Asset3D& asset) const
 		{
-			if (scale_				== asset.scale_				&&
-				rot_				== asset.rot_				&&
-				quat_				== asset.quat_				&&
-				trans_				== asset.trans_				&&
-				world_				== asset.world_				&&
-				blendMode_			== asset.blendMode_			&&
-				isActive_			== asset.isActive_			&&
-				isUseQuaternion_	== asset.isUseQuaternion_
-				)
-			{
-				return true;
-			}
-
-			return false;
+			return 
+				scale_				== asset.scale_				&& 
+				rot_				== asset.rot_				&& 
+				quat_				== asset.quat_				&& 
+				trans_				== asset.trans_				&& 
+				world_				== asset.world_				&& 
+				blendMode_			== asset.blendMode_			&& 
+				isActive_			== asset.isActive_			&& 
+				isUseQuaternion_	== asset.isUseQuaternion_;
 		}
 	};
 }

@@ -49,7 +49,7 @@ namespace GucchiLibrary
 		Primitive();
 
 		// デストラクタ
-		virtual ~Primitive() {}
+		virtual ~Primitive() = default;
 
 		/*
 		// @method		Entry

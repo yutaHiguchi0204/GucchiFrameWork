@@ -79,7 +79,7 @@ namespace GucchiLibrary
 		Node();
 
 		// デストラクタ
-		virtual ~Node() {}
+		virtual ~Node() = default;
 
 		/* アクセッサ */
 
@@ -93,10 +93,10 @@ namespace GucchiLibrary
 		void SetAttribute(ATTRIBUTE attribute)	{ attribute_ = attribute; }
 		void SetState(STATE state)				{ state_ = state; }
 
-		inline int GetCost()					{ return cost_; }
-		inline int GetTerrainCost()				{ return terrainCost_; }
-		inline int GetHeuristic()				{ return heuristic_; }
-		inline Node* GetParentNode()			{ return parentNode_; }
+		inline int GetCost() const				{ return cost_; }
+		inline int GetTerrainCost() const		{ return terrainCost_; }
+		inline int GetHeuristic() const			{ return heuristic_; }
+		inline Node* GetParentNode() const		{ return parentNode_; }
 		inline const Point& GetPos() const		{ return pos_; }
 		inline int GetPosX() const				{ return pos_.posX; }
 		inline int GetPosY() const				{ return pos_.posY; }
