@@ -29,7 +29,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<KeyboardUtil>;
 
-		KeyboardUtil() {}
+		KeyboardUtil() = default;
 
 	public:
 		/*

@@ -32,7 +32,7 @@ namespace
 		HRESULT hr = D3D11CreateDevice(
 			nullptr,
 			D3D_DRIVER_TYPE_NULL,			// ハードウェアデバイスの作成不要
-			0,
+			nullptr,
 			D3D11_CREATE_DEVICE_DEBUG,		// SDK レイヤーのチェック
 			nullptr,						// どの機能レベルでも利用可能
 			0,
@@ -54,7 +54,7 @@ DeviceResources::DeviceResources(DXGI_FORMAT backBufferFormat, DXGI_FORMAT depth
 	, depthBufferFormat_(depthBufferFormat)
 	, backBufferCount_(backBufferCount)
 	, d3dMinFeatureLevel_(minFeatureLevel)
-	, window_(0)
+	, window_(nullptr)
 	, d3dFeatureLevel_(D3D_FEATURE_LEVEL_9_1)
 	, outputSize_{ 0, 0, 1, 1 }
 	, deviceNotify_(nullptr)
@@ -144,7 +144,7 @@ void DeviceResources::CreateDeviceResources()
 		hr = D3D11CreateDevice(
 			adapter.Get(),
 			D3D_DRIVER_TYPE_UNKNOWN,
-			0,
+			nullptr,
 			creationFlags,
 			s_featureLevels,
 			featLevelCount,
@@ -186,7 +186,7 @@ void DeviceResources::CreateDeviceResources()
 		hr = D3D11CreateDevice(
 			nullptr,
 			D3D_DRIVER_TYPE_WARP,		// ハードウェアデバイスの代わりにWARPデバイスを作成する
-			0,
+			nullptr,
 			creationFlags,
 			s_featureLevels,
 			featLevelCount,

@@ -13,7 +13,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -24,16 +23,16 @@ const int AStar::NUM_ADJOIN;									// 隣接タイル数
 // ８　４
 // ７６５
 */
-Node::Point					AStar::offset_[NUM_ADJOIN] = {		// オフセットリスト
-								{ -1, -1 }, { 0, -1 }, { 1, -1 }, { 1,  0 }, { 1,  1 }, { 0,  1 }, { -1,  1 }, { -1,  0 }
-							};
-vector<vector<Node*>>		AStar::mapData_;					// マップデータ
-list<Node*>					AStar::openList_;					// オープンリスト
-vector<Node*>				AStar::shortestRoute_;				// 最短経路
-Node::Point					AStar::start_;						// 経路探索開始地点
-Node::Point					AStar::end_;						// 経路探索終了地点
-Vector3						AStar::mapPos_;						// マップ自体の座標
-vector<unique_ptr<Object>>	AStar::routePlane_;					// 最短経路ナビゲーター
+Node::Point						AStar::offset_[NUM_ADJOIN] = {		// オフセットリスト
+									{ -1, -1 }, { 0, -1 }, { 1, -1 }, { 1,  0 }, { 1,  1 }, { 0,  1 }, { -1,  1 }, { -1,  0 }
+								};
+vector<vector<Node*>>			AStar::mapData_;					// マップデータ
+list<Node*>						AStar::openList_;					// オープンリスト
+vector<Node*>					AStar::shortestRoute_;				// 最短経路
+Node::Point						AStar::start_;						// 経路探索開始地点
+Node::Point						AStar::end_;						// 経路探索終了地点
+DirectX::SimpleMath::Vector3	AStar::mapPos_;						// マップ自体の座標
+vector<unique_ptr<Object>>		AStar::routePlane_;					// 最短経路ナビゲーター
 
 // メンバ関数の定義
 
@@ -92,9 +91,9 @@ void AStar::Initialize(vector<vector<int>> map)
 	}
 
 	// コストとヒューリスティックの計算
-	for (int i = 0; i < (int)mapData_.size(); i++)
+	for (int i = 0; i < static_cast<int>(mapData_.size()); i++)
 	{
-		for (int j = 0; j < (int)mapData_[i].size(); j++)
+		for (int j = 0; j < static_cast<int>(mapData_[i].size()); j++)
 		{
 			// 地形コストの設定
 			int terrainCost = SetTerrainCost(j, i);
@@ -269,18 +268,18 @@ void AStar::CheckAdjoin(Node* node)
 			break;
 		}
 		
-		itr++;
+		++itr;
 	}
 
 	// 隣接する８つのノードを調べる
-	for (int i = 0; i < NUM_ADJOIN; i++)
+	for (auto& i : offset_)
 	{
 		// チェックする隣接タイル
-		int x = node->GetPosX() + offset_[i].posX;
-		int y = node->GetPosY() + offset_[i].posY;
+		int x = node->GetPosX() + i.posX;
+		int y = node->GetPosY() + i.posY;
 
 		// マップ内かどうか
-		bool insideMap = (x >= 0 && y >= 0) && (y < (int)mapData_.size()) && (x < (int)mapData_[y].size());
+		bool insideMap = (x >= 0 && y >= 0) && (y < static_cast<int>(mapData_.size())) && (x < static_cast<int>(mapData_[y].size()));
 
 		if (insideMap)
 		{

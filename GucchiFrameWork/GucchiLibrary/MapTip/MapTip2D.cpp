@@ -12,7 +12,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -40,25 +39,25 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring 
 	for (int i = 0; i < dataTypeNum_; i++)
 	{
 		// テクスチャの矩形設定
-		RECT rect = RECT { (int)spriteSize.x * i, 0, (int)spriteSize.x * i + (int)spriteSize.x, (int)spriteSize.y };
+		RECT rect = RECT { static_cast<int>(spriteSize.x) * i, 0, static_cast<int>(spriteSize.x) * i + static_cast<int>(spriteSize.x), static_cast<int>(spriteSize.y) };
 
 		// スプライト生成・登録
 		masterSprite_.emplace_back(factory.CreateSpriteFromFile(textureName, spriteSize, &rect));
 	}
 
 	// スプライトデータに反映
-	for (int i = 0; i < (int)data_.size(); i++)
+	for (int i = 0; i < static_cast<int>(data_.size()); i++)
 	{
 		sprite_.emplace_back();
 
-		for (auto& data : data_[i])
+		for (auto& tip : data_[i])
 		{
-			sprite_[i].emplace_back(*masterSprite_[data.GetData()].get());
+			sprite_[i].emplace_back(*masterSprite_[tip.GetData()].get());
 		}
 	}
 
 	// スプライトレンダラーに登録
-	for (int i = 0; i < (int)sprite_.size(); i++)
+	for (int i = 0; i < static_cast<int>(sprite_.size()); i++)
 	{
 		for (auto& sprite : sprite_[i])
 		{
@@ -88,19 +87,19 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring*
 	}
 
 	// スプライトデータに反映
-	for (int i = 0; i < (int)data_.size(); i++)
+	for (int i = 0; i < static_cast<int>(data_.size()); i++)
 	{
 		sprite_.emplace_back();
 
-		for (auto& data : data_[i])
+		for (auto& tip : data_[i])
 		{
-			sprite_[i].emplace_back(*masterSprite_[data.GetData()].get());
+			sprite_[i].emplace_back(*masterSprite_[tip.GetData()].get());
 		}
 	}
 
 	// スプライトレンダラーに登録
 	SpriteRenderer& renderer = SpriteRenderer::GetInstance();
-	for (int i = 0; i < (int)sprite_.size(); i++)
+	for (int i = 0; i < static_cast<int>(sprite_.size()); i++)
 	{
 		for (auto& sprite : sprite_[i])
 		{

@@ -20,6 +20,10 @@ namespace GucchiLibrary
 	class Object : public Asset3D
 	{
 	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Quaternion = DirectX::SimpleMath::Quaternion;
+
+	private:
 		DirectX::Model*			model_;						// モデル
 
 		Object*					parentObject_;				// 親オブジェクト
@@ -34,13 +38,13 @@ namespace GucchiLibrary
 		// @param		クォータニオン（Quaternion）　：　デフォルト（Quaternion::Identity）
 		// @param		ブレンドモード（BLEND_MODE）　：　デフォルト（ALPHA）
 		*/
-		Object(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, Asset3D::BLEND_MODE mode = Asset3D::BLEND_MODE::ALPHA);
+		Object(const Vector3& trans = Vector3::Zero, const Vector3& scale = Vector3::One, const Vector3& rot = Vector3::Zero, const Quaternion& quat = Quaternion::Identity, Asset3D::BLEND_MODE mode = Asset3D::BLEND_MODE::ALPHA);
 
 		// コピーコンストラクタ
 		Object(const Object& object);
 
 		// デストラクタ
-		virtual ~Object() {}
+		virtual ~Object() = default;
 
 		/*
 		// @method		Update
@@ -97,22 +101,17 @@ namespace GucchiLibrary
 		// 比較用オペレータ
 		bool operator==(const Object& object) const
 		{
-			if (scale_           == object.scale_				&&
-				rot_             == object.rot_					&&
-				quat_            == object.quat_				&&
-				trans_           == object.trans_				&&
-				world_           == object.world_				&&
-				blendMode_       == object.blendMode_			&&
-				isActive_        == object.isActive_			&&
-				isUseQuaternion_ == object.isUseQuaternion_		&&
-				model_           == object.model_				&&
-				parentObject_    == object.parentObject_
-				)
-			{
-				return true;
-			}
-
-			return false;
+			return 
+				scale_           == object.scale_				&& 
+				rot_             == object.rot_					&& 
+				quat_            == object.quat_				&& 
+				trans_           == object.trans_				&& 
+				world_           == object.world_				&& 
+				blendMode_       == object.blendMode_			&& 
+				isActive_        == object.isActive_			&& 
+				isUseQuaternion_ == object.isUseQuaternion_		&& 
+				model_           == object.model_				&& 
+				parentObject_    == object.parentObject_;
 		}
 	};
 }

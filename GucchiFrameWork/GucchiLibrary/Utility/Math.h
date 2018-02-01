@@ -9,7 +9,7 @@ namespace GucchiLibrary
 {
 	/*
 	// @class		Math クラス
-	// @content		数学ライブラリ
+	// @content		数学関係
 	// @use			主に、SimpleMathでできない計算などをまとめたもの
 	*/
 	class Math
@@ -42,6 +42,22 @@ namespace GucchiLibrary
 			T tmp = *_1;
 			*_1 = *_2;
 			*_2 = tmp;
+		}
+
+		/*
+		// @method		Clamp（template、static）
+		// @content		指定した範囲に値を収める
+		// @param		値（T）
+		// @param		最小値（T）
+		// @param		最大値（T）
+		*/
+		template<class T> static T Clamp(T data, T minimum, T maximum)
+		{
+			// 最大値のラップ処理
+			T tmp = data > maximum ? maximum : data;
+
+			// 最小値のラップ処理
+			return tmp < minimum ? minimum : tmp;
 		}
 
 		/*

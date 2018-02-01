@@ -20,6 +20,10 @@ namespace GucchiLibrary
 	*/
 	class Primitive
 	{
+	private:
+		using Vector2	= DirectX::SimpleMath::Vector2;
+		using Color		= DirectX::SimpleMath::Color;
+
 	public:
 		/*
 		// @content		プリミティブタイプ
@@ -39,17 +43,17 @@ namespace GucchiLibrary
 		};
 
 	protected:
-		PRIMITIVE_TYPE											type_;
-		std::map<std::string, DirectX::SimpleMath::Vector2>		point_;
-		DirectX::SimpleMath::Color								color_;
-		bool													isFill_;
+		PRIMITIVE_TYPE						type_;
+		std::map<std::string, Vector2>		point_;
+		Color								color_;
+		bool								isFill_;
 
 	public:
 		// コンストラクタ
 		Primitive();
 
 		// デストラクタ
-		virtual ~Primitive() {}
+		virtual ~Primitive() = default;
 
 		/*
 		// @method		Entry
@@ -57,7 +61,7 @@ namespace GucchiLibrary
 		// @param		座標（Vector2）
 		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
 		*/
-		void Entry(const DirectX::SimpleMath::Vector2& point, const DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1, 1));
+		void Entry(const Vector2& point, const Color& color = Color(1, 1, 1, 1));
 
 		/*
 		// @method		Entry
@@ -66,7 +70,7 @@ namespace GucchiLibrary
 		// @param		終点（Vector2）
 		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
 		*/
-		void Entry(const DirectX::SimpleMath::Vector2& start, const DirectX::SimpleMath::Vector2& end, const DirectX::SimpleMath::Color& color = DirectX::SimpleMath::Color(1, 1, 1, 1));
+		void Entry(const Vector2& start, const Vector2& end, const Color& color = Color(1, 1, 1, 1));
 
 		/*
 		// @method		Entry
@@ -75,9 +79,9 @@ namespace GucchiLibrary
 		// @param		１点目（Vector2）
 		// @param		２点目（Vector2）
 		// @param		３点目（Vector2）
-		// @param		色（Color）					：	デフォルト（Color(1, 1, 1, 1)）
+		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
 		*/
-		void Entry(bool fillFlag, const DirectX::SimpleMath::Vector2& _p1, const DirectX::SimpleMath::Vector2& _p2, const DirectX::SimpleMath::Vector2& _p3, const DirectX::SimpleMath::Color& color = DirectX::SimpleMath::Color(1, 1, 1, 1));
+		void Entry(bool fillFlag, const Vector2& _p1, const Vector2& _p2, const Vector2& _p3, const Color& color = Color(1, 1, 1, 1));
 
 		/*
 		// @method		Entry
@@ -85,9 +89,9 @@ namespace GucchiLibrary
 		// @param		塗りつぶすかどうか（bool）
 		// @param		左上の座標（Vector2）
 		// @param		右下の座標（Vector2）
-		// @param		色（Color）					：	デフォルト（Color(1, 1, 1, 1)）
+		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
 		*/
-		void Entry(bool fillFlag, const DirectX::SimpleMath::Vector2& topLeft, const DirectX::SimpleMath::Vector2& bottomRight, const DirectX::SimpleMath::Color& color = DirectX::SimpleMath::Color(1, 1, 1, 1));
+		void Entry(bool fillFlag, const Vector2& topLeft, const Vector2& bottomRight, const Color& color = Color(1, 1, 1, 1));
 
 		/*
 		// @method		Entry
@@ -96,9 +100,9 @@ namespace GucchiLibrary
 		// @param		中心座標（Vector2）
 		// @param		半径（float）
 		// @param		分割数（int）
-		// @param		色（Color）					：	デフォルト（Color(1, 1, 1, 1)）
+		// @param		色（Color）	：	デフォルト（Color(1, 1, 1, 1)）
 		*/
-		void Entry(bool fillFlag, const DirectX::SimpleMath::Vector2& center, float radius, int div, const DirectX::SimpleMath::Color& color = DirectX::SimpleMath::Color(1, 1, 1, 1));
+		void Entry(bool fillFlag, const Vector2& center, float radius, int div, const Color& color = Color(1, 1, 1, 1));
 
 		/*
 		// @method		GetKeys
@@ -109,13 +113,13 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetPoint(std::string key, const DirectX::SimpleMath::Vector2& point)		{ point_[key] = point; }
-		void SetColor(const DirectX::SimpleMath::Color& color)							{ color_ = color; }
-		void SetFillFlag(bool fillFlag)													{ isFill_ = fillFlag; }
+		void SetPoint(std::string key, const Vector2& point)		{ point_[key] = point; }
+		void SetColor(const Color& color)							{ color_ = color; }
+		void SetFillFlag(bool fillFlag)								{ isFill_ = fillFlag; }
 
-		inline PRIMITIVE_TYPE GetType()	const											{ return type_; }
-		inline std::map<std::string, DirectX::SimpleMath::Vector2> GetPoints() const 	{ return point_; }
-		inline DirectX::SimpleMath::Color GetColor() const								{ return color_; }
-		inline bool GetFillFlag() const													{ return isFill_; }
+		inline PRIMITIVE_TYPE GetType()	const						{ return type_; }
+		inline std::map<std::string, Vector2> GetPoints() const 	{ return point_; }
+		inline const Color& GetColor() const						{ return color_; }
+		inline bool GetFillFlag() const								{ return isFill_; }
 	};
 }

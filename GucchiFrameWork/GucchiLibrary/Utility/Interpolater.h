@@ -42,6 +42,8 @@ namespace GucchiLibrary
 		EASE_INOUT
 	};
 
+	class Interpolater;
+
 	/*
 	// @class		InterpolateState クラス（template）
 	// @content		補間用ステート
@@ -60,7 +62,7 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		InterpolateState() {}
+		InterpolateState() = default;
 
 		// デストラクタ
 		virtual ~InterpolateState()
@@ -159,7 +161,7 @@ namespace GucchiLibrary
 		// @content		補間状態の取得（アクションが無ければNONEを返す）
 		// @result		補間状態（INTERPOLATE_STATE）
 		*/
-		const INTERPOLATE_STATE GetState(std::wstring action)
+		INTERPOLATE_STATE GetState(std::wstring action)
 		{
 			if (state_.count(action) == 0)
 			{
@@ -187,7 +189,7 @@ namespace GucchiLibrary
 
 		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
 
-		inline const float GetTimer(std::wstring action) { return timer_[action]; }
+		inline float GetTimer(std::wstring action) { return timer_[action]; }
 	};
 
 	/*
@@ -196,6 +198,11 @@ namespace GucchiLibrary
 	*/
 	class Interpolater
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Vector4 = DirectX::SimpleMath::Vector4;
+
 	private:
 		static float startTime_;
 		static float nowTime_;
@@ -223,7 +230,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector2>*）
 		*/
-		static DirectX::SimpleMath::Vector2 Lerp(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+		static Vector2 Lerp(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
 
 		/*
 		// @method		Lerp（static）
@@ -234,7 +241,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector3>*）
 		*/
-		static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+		static Vector3 Lerp(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
 
 		/*
 		// @method		Lerp（static）
@@ -245,7 +252,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector4>*）
 		*/
-		static DirectX::SimpleMath::Vector4 Lerp(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+		static Vector4 Lerp(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
 
 		/* 二次補間（後が速い） */
 
@@ -269,7 +276,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector2>*）
 		*/
-		static DirectX::SimpleMath::Vector2 EaseIn(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+		static Vector2 EaseIn(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
 
 		/*
 		// @method		EaseIn（static）
@@ -280,7 +287,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector3>*）
 		*/
-		static DirectX::SimpleMath::Vector3 EaseIn(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+		static Vector3 EaseIn(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
 
 		/*
 		// @method		EaseIn（static）
@@ -291,7 +298,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector4>*）
 		*/
-		static DirectX::SimpleMath::Vector4 EaseIn(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+		static Vector4 EaseIn(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
 
 		/* 二次補間（先が速い） */
 
@@ -315,7 +322,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector2>*）
 		*/
-		static DirectX::SimpleMath::Vector2 EaseOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+		static Vector2 EaseOut(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
 
 		/*
 		// @method		EaseOut（static）
@@ -326,7 +333,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector3>*）
 		*/
-		static DirectX::SimpleMath::Vector3 EaseOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+		static Vector3 EaseOut(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
 
 		/*
 		// @method		EaseOut（static）
@@ -337,7 +344,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector4>*）
 		*/
-		static DirectX::SimpleMath::Vector4 EaseOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+		static Vector4 EaseOut(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
 
 		/* 三次補間 */
 
@@ -361,7 +368,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector2>*）
 		*/
-		static DirectX::SimpleMath::Vector2 EaseInOut(DirectX::SimpleMath::Vector2 start, DirectX::SimpleMath::Vector2 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector2>* state);
+		static Vector2 EaseInOut(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
 
 		/*
 		// @method		EaseInOut（static）
@@ -372,7 +379,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector3>*）
 		*/
-		static DirectX::SimpleMath::Vector3 EaseInOut(DirectX::SimpleMath::Vector3 start, DirectX::SimpleMath::Vector3 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector3>* state);
+		static Vector3 EaseInOut(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
 
 		/*
 		// @method		EaseInOut（static）
@@ -383,7 +390,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @param		補間ステート（InterpolateState<Vector4>*）
 		*/
-		static DirectX::SimpleMath::Vector4 EaseInOut(DirectX::SimpleMath::Vector4 start, DirectX::SimpleMath::Vector4 end, float time, std::wstring action, InterpolateState<DirectX::SimpleMath::Vector4>* state);
+		static Vector4 EaseInOut(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
 	};
 
 	/*
@@ -392,18 +399,23 @@ namespace GucchiLibrary
 	*/
 	class InterpolateDirector
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Vector4 = DirectX::SimpleMath::Vector4;
+
 	public:
-		std::unique_ptr<InterpolateState<float>>							stateF_;
-		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector2>>		stateV2_;
-		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector3>>		stateV3_;
-		std::unique_ptr<InterpolateState<DirectX::SimpleMath::Vector4>>		stateV4_;
+		std::unique_ptr<InterpolateState<float>>		stateF_;
+		std::unique_ptr<InterpolateState<Vector2>>		stateV2_;
+		std::unique_ptr<InterpolateState<Vector3>>		stateV3_;
+		std::unique_ptr<InterpolateState<Vector4>>		stateV4_;
 
 	public:
 		// コンストラクタ
 		InterpolateDirector();
 
 		// デストラクタ
-		virtual ~InterpolateDirector() {}
+		virtual ~InterpolateDirector() = default;
 
 		/*
 		// @method		Update

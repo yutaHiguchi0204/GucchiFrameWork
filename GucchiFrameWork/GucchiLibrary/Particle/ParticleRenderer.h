@@ -26,6 +26,11 @@ namespace GucchiLibrary
 	*/
 	class ParticleRenderer : public SingletonDirector<ParticleRenderer>
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Vector4 = DirectX::SimpleMath::Vector4;
+		using Matrix = DirectX::SimpleMath::Matrix;
+
 	public:
 		/*
 		// @struct		コンスタントバッファ 構造体
@@ -33,8 +38,8 @@ namespace GucchiLibrary
 		*/
 		struct Constants
 		{
-			DirectX::SimpleMath::Matrix wvpMat;			// ワールド・ビュー・プロジェクションの合成行列
-			DirectX::SimpleMath::Matrix billboard;		// ビルボード行列
+			Matrix wvpMat;			// ワールド・ビュー・プロジェクションの合成行列
+			Matrix billboard;		// ビルボード行列
 		};
 
 	public:
@@ -60,7 +65,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<ParticleRenderer>;
 
-		ParticleRenderer() {}
+		ParticleRenderer() = default;
 
 	public:
 		/*
@@ -95,7 +100,7 @@ namespace GucchiLibrary
 		// @param		パーティクル用テクスチャファイル名（wstring）
 		// @param		エミッターの座標（Vector3）	：	デフォルト（Vector3::Zero）
 		*/
-		void RegisterEmitter(Emitter* emitter, std::wstring emitterName, std::wstring textureFileName, DirectX::SimpleMath::Vector3 emitterPos = DirectX::SimpleMath::Vector3::Zero);
+		void RegisterEmitter(Emitter* emitter, std::wstring emitterName, std::wstring textureFileName, const Vector3& emitterPos = Vector3::Zero);
 
 		/*
 		// @method		DisposeEmitter

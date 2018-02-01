@@ -9,7 +9,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -18,6 +17,7 @@ using namespace std;
 // コンストラクタ
 Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, const Quaternion& quat, Asset3D::BLEND_MODE mode)
 	: Asset3D(trans, scale, rot, quat, mode)
+	, model_(nullptr)
 	, parentObject_(nullptr)
 {
 }
@@ -57,7 +57,7 @@ void Object::Update()
 	Asset3D::Update();
 
 	// 子がいた場合は子も更新する
-	if (childObject_.size() != 0)
+	if (static_cast<int>(childObject_.size()) != 0)
 	{
 		for (auto& child : childObject_)
 		{

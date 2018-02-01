@@ -9,7 +9,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -26,7 +25,7 @@ Primitive::Primitive()
 // @param		座標（Vector2）、色（Color）
 // @return		なし
 ===============================================================*/
-void Primitive::Entry(const Vector2& point, const Color color)
+void Primitive::Entry(const Vector2& point, const Color& color)
 {
 	point_["point"] = point;
 	color_ = color;
@@ -99,7 +98,7 @@ void Primitive::Entry(bool fillFlag, const Vector2& center, float radius, int di
 	// ポイントの１番目と２番目をデータ保存用とする
 	point_["center"] = center;
 	point_["rad&div"].x = radius;
-	point_["rad&div"].y = (float)div;
+	point_["rad&div"].y = static_cast<float>(div);
 
 	for (int i = 0; i < div; i++)
 	{

@@ -11,7 +11,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -181,11 +180,11 @@ void PrimitiveRenderer::DrawLine(map<string, Vector2> vertices, const Color& col
 
 	// 位置設定
 	start.position = Vector3(vertices["start"].x, vertices["start"].y, 0);
-	end.position = Vector3(vertices["end"].x, vertices["end"].y, 0);
+	end.position   = Vector3(vertices["end"].x, vertices["end"].y, 0);
 
 	// 色設定
 	start.color = color;
-	end.color = color;
+	end.color   = color;
 
 	// 描画
 	primitiveBatch_->Begin();
@@ -253,7 +252,7 @@ void PrimitiveRenderer::DrawSquare(map<string, Vector2> vertices, const Color& c
 void PrimitiveRenderer::DrawCircle(map<string, Vector2> vertices, const Color& color)
 {
 	// 分割数
-	const int div = (int)vertices["rad&div"].y;
+	const int div = static_cast<int>(vertices["rad&div"].y);
 
 	// 中心座標
 	Vector3 center3D = Vector3(vertices["center"].x, vertices["center"].y, 0);
@@ -292,8 +291,8 @@ void PrimitiveRenderer::DrawCircle(map<string, Vector2> vertices, const Color& c
 	primitiveBatch_->End();
 
 	// データの解放
-	delete indices;
-	delete v;
+	delete[] indices;
+	delete[] v;
 }
 
 /*==============================================================
@@ -311,7 +310,7 @@ void PrimitiveRenderer::RegisterPrimitive(Primitive* primitive)
 // @param		プリミティブタイプ（PRIMITIVE_TYPE）、頂点データ（map<string, Vector2>）、色（Color）、頂点数（int）
 // @return		頂点データ（VertexPositionColor*）
 ===============================================================*/
-VertexPositionColor* PrimitiveRenderer::SetVertices(Primitive::PRIMITIVE_TYPE type, map<string, Vector2> vertices, Color color, int vertexNum)
+VertexPositionColor* PrimitiveRenderer::SetVertices(Primitive::PRIMITIVE_TYPE type, map<string, Vector2> vertices, const Color& color, int vertexNum)
 {
 	VertexPositionColor* vertex = new VertexPositionColor[vertexNum];
 

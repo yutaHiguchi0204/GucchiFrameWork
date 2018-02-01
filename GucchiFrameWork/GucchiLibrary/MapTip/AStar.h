@@ -79,7 +79,7 @@ namespace GucchiLibrary
 		Node();
 
 		// デストラクタ
-		virtual ~Node() {}
+		virtual ~Node() = default;
 
 		/* アクセッサ */
 
@@ -93,10 +93,10 @@ namespace GucchiLibrary
 		void SetAttribute(ATTRIBUTE attribute)	{ attribute_ = attribute; }
 		void SetState(STATE state)				{ state_ = state; }
 
-		inline int GetCost()					{ return cost_; }
-		inline int GetTerrainCost()				{ return terrainCost_; }
-		inline int GetHeuristic()				{ return heuristic_; }
-		inline Node* GetParentNode()			{ return parentNode_; }
+		inline int GetCost() const				{ return cost_; }
+		inline int GetTerrainCost() const		{ return terrainCost_; }
+		inline int GetHeuristic() const			{ return heuristic_; }
+		inline Node* GetParentNode() const		{ return parentNode_; }
 		inline const Point& GetPos() const		{ return pos_; }
 		inline int GetPosX() const				{ return pos_.posX; }
 		inline int GetPosY() const				{ return pos_.posY; }
@@ -110,6 +110,9 @@ namespace GucchiLibrary
 	*/
 	class AStar
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		static const int NUM_ADJOIN = 8;									// 隣接タイル数
 
@@ -123,7 +126,7 @@ namespace GucchiLibrary
 		static Node::Point start_;											// 開始地点
 		static Node::Point end_;											// 終了地点
 
-		static DirectX::SimpleMath::Vector3 mapPos_;						// マップ自体の座標（デフォルトは０ですが、マップデータのダミーオブジェクトの位置を登録することができます）
+		static Vector3 mapPos_;												// マップ自体の座標（デフォルトは０ですが、マップデータのダミーオブジェクトの位置を登録することができます）
 
 		static std::vector<std::unique_ptr<Object>> routePlane_;			// 最短経路ナビゲーター
 
@@ -221,7 +224,7 @@ namespace GucchiLibrary
 		static Node* GetNode(Node::Point point)		{ return mapData_[point.posY][point.posX]; }
 		static Node* GetNode(int posX, int posY)	{ return mapData_[posY][posX]; }
 
-		static void SetMapPos(MapTip2D* map)		{ mapPos_ = DirectX::SimpleMath::Vector3(map->GetPos().x, map->GetPos().y, 0); }
+		static void SetMapPos(MapTip2D* map)		{ mapPos_ = Vector3(map->GetPos().x, map->GetPos().y, 0); }
 		static void SetMapPos(MapTip3D* map)		{ mapPos_ = map->GetTranslate(); }
 	};
 }

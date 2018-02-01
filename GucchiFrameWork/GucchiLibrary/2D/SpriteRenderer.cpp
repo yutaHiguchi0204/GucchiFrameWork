@@ -10,7 +10,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -164,7 +163,7 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 // @param		親スプライト（Sprite*）
 // @return		最終位置（Vector2）
 ===============================================================*/
-Vector2 SpriteRenderer::GetParentSpritePos(Sprite* sprite)
+DirectX::SimpleMath::Vector2 SpriteRenderer::GetParentSpritePos(Sprite* sprite)
 {
 	Vector2 localPos = sprite->GetPos();
 
@@ -207,5 +206,5 @@ unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, c
 		sprite->SetRect(rect);
 	}
 
-	return std::move(sprite);
+	return move(sprite);
 }

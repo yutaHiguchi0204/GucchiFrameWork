@@ -39,10 +39,10 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		IScene() {}
+		IScene() = default;
 
 		// デストラクタ
-		virtual ~IScene() {}
+		virtual ~IScene() = default;
 
 		/*
 		// @method		Initialize（pure）

@@ -16,8 +16,8 @@ private:
 	GucchiLibrary::SceneManager& sceneManager_ = GucchiLibrary::SceneManager::GetInstance();
 
 public:
-	GameMain() {};
-	virtual ~GameMain() {};
+	GameMain() = default;
+	virtual ~GameMain() = default;
 
 	void Initialize();			// ‰Šú‰»ˆ—
 	void Update();				// XVˆ—

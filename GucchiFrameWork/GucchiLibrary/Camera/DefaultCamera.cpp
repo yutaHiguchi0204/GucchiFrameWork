@@ -9,7 +9,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 
 // 静的メンバの定義
@@ -44,7 +43,7 @@ void DefaultCamera::Update()
 	if (mouse_.GetTracker().leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		// マウスの座標を取得
-		dragStartPos_ = Vector2((float)mouse_.GetState().x, (float)mouse_.GetState().y);
+		dragStartPos_ = Vector2(static_cast<float>(mouse_.GetState().x), static_cast<float>(mouse_.GetState().y));
 	}
 	// ドラッグ終了
 	else if (mouse_.GetTracker().leftButton == Mouse::ButtonStateTracker::ButtonState::RELEASED)
@@ -56,7 +55,7 @@ void DefaultCamera::Update()
 	// ドラッグ中はカメラ移動
 	if (mouse_.GetState().leftButton)
 	{
-		Motion(Vector2((float)mouse_.GetState().x, (float)mouse_.GetState().y));
+		Motion(Vector2(static_cast<float>(mouse_.GetState().x), static_cast<float>(mouse_.GetState().y)));
 	}
 
 	// マウスのフォイール値でカメラのビュー拡大率を確定
@@ -91,7 +90,7 @@ void DefaultCamera::Update()
 // @param		マウスの座標（Vector2）
 // @return		なし
 ===============================================================*/
-void DefaultCamera::Motion(Vector2 mousePos)
+void DefaultCamera::Motion(const Vector2& mousePos)
 {
 	// 相対座標の取得
 	Vector2 dragPos;

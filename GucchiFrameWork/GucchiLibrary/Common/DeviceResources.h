@@ -11,7 +11,7 @@
 #include <wrl/client.h>
 
 #include <algorithm>
-#include <assert.h>
+#include <cassert>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -32,6 +32,8 @@ namespace GucchiLibrary
 	*/
 	interface IDeviceNotify
 	{
+		virtual ~IDeviceNotify() = default;
+
 		virtual void OnDeviceLost() = 0;
 		virtual void OnDeviceRestored() = 0;
 	};
@@ -165,7 +167,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<DirectXToolKidResources>;
 
-		DirectXToolKidResources() {}
+		DirectXToolKidResources() = default;
 
 	public:
 		/*

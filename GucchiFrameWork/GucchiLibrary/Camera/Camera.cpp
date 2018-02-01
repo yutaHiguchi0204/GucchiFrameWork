@@ -9,7 +9,6 @@
 
 // –¼‘O‹óŠÔ
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 
 // ƒƒ“ƒoŠÖ”‚Ì’è‹`

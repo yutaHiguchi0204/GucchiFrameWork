@@ -15,8 +15,8 @@ private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
 
 public:
-	PlayScene() {}
-	virtual ~PlayScene() {}
+	PlayScene() = default;
+	virtual ~PlayScene() = default;
 
 	void Initialize() override;
 	void Update() override;

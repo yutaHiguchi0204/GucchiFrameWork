@@ -10,7 +10,6 @@
 
 // –¼‘O‹óŠÔ
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -20,13 +19,14 @@ const float Text::DEFAULT_FONT_SIZE = 18.0f;		// ƒtƒHƒ“ƒgƒTƒCƒY‚Ì‰Šúİ’èiƒtƒHƒ
 // ƒƒ“ƒoŠÖ”‚Ì’è‹`
 
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-Text::Text(wstring str, Vector2 pos, wstring font, int fontSize, Color color)
+Text::Text(wstring str, const Vector2& pos, wstring font, int fontSize, const Color& color)
 	: str_(str)
 	, pos_(pos)
 	, anchor_(ANCHOR_LM)
 	, font_(font)
 	, fontSize_(fontSize)
 	, color_(color)
+	, isActive_(true)
 {
 }
 

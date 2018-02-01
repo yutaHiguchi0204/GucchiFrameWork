@@ -217,6 +217,7 @@
     <ClInclude Include="Utility\Interpolater.h" />
     <ClInclude Include="Utility\Math.h" />
     <ClInclude Include="Utility\MemoryLeakDetector.h" />
+    <ClInclude Include="Utility\RadixConverter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

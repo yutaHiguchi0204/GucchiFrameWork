@@ -8,7 +8,7 @@
 // ヘッダファイルのインクルード
 #include <windows.h>
 #include <exception>
-#include <stdint.h>
+#include <cstdint>
 #include "SingletonDirector.h"
 
 namespace GucchiLibrary

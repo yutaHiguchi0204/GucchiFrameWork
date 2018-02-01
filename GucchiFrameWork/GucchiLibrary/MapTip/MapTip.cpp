@@ -16,18 +16,19 @@ using namespace std;
 // コンストラクタ
 MapTip::MapTip(vector<vector<int>> data, int dataTypeNum)
 	: dataTypeNum_(dataTypeNum)
+	, isActive_(true)
 {
 	// チップデータに挿入
-	for (int i = 0; i < (int)data.size(); i++)
+	for (int i = 0; i < static_cast<int>(data.size()); i++)
 	{
 		data_.emplace_back();
 
 		int j = 0;
-		for (auto& data : data[i])
+		for (auto& tip : data[i])
 		{
 			data_[i].emplace_back();
-			data_[i][j].SetData(data);
-			data_[i][j].SetType(static_cast<TipData::TIP_TYPE>(data));
+			data_[i][j].SetData(tip);
+			data_[i][j].SetType(static_cast<TipData::TIP_TYPE>(tip));
 			j++;
 		}
 	}

@@ -23,8 +23,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 {
 	switch (col)
 	{
-		// 左
-	case COLLISION::LEFT:
+	case COLLISION::LEFT:		// 左
 		// 画面端なら当たったこととする
 		if (nowX - 1 < 0)
 		{
@@ -39,10 +38,9 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 
 		break;
 
-		// 右
-	case COLLISION::RIGHT:
+	case COLLISION::RIGHT:		// 右
 		// 画面端なら当たったこととする
-		if (nowX + 1 >= (int)data[nowY].size())
+		if (nowX + 1 >= static_cast<int>(data[nowY].size()))
 		{
 			return true;
 		}
@@ -55,8 +53,7 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 
 		break;
 
-		// 上
-	case COLLISION::TOP:
+	case COLLISION::TOP:		// 上
 		// 画面端なら当たったこととする
 		if (nowY - 1 < 0)
 		{
@@ -71,10 +68,9 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 
 		break;
 
-		// 下
-	case COLLISION::BOTTOM:
+	case COLLISION::BOTTOM:		// 下
 		// 画面端なら当たったこととする
-		if (nowY + 1 >= (int)data.size())
+		if (nowY + 1 >= static_cast<int>(data.size()))
 		{
 			return true;
 		}
@@ -85,6 +81,9 @@ bool CollisionManager::CheckCollisionMapTip(vector<vector<int>> data, int nowX, 
 			return true;
 		}
 
+		break;
+
+	default:
 		break;
 	}
 

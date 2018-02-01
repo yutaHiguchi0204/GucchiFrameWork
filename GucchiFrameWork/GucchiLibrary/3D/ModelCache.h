@@ -29,7 +29,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<ModelCache>;
 
-		ModelCache() {}
+		ModelCache() = default;
 
 	public:
 		/*

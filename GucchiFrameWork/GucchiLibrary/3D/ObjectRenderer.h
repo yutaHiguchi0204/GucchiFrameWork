@@ -25,12 +25,16 @@ namespace GucchiLibrary
 	class ObjectRenderer : public SingletonDirector<ObjectRenderer>
 	{
 	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Matrix = DirectX::SimpleMath::Matrix;
+
+	private:
 		std::list<Object*> objectList_;
 
 	private:
 		friend class SingletonDirector<ObjectRenderer>;
 
-		ObjectRenderer() {}
+		ObjectRenderer() = default;
 
 	public:
 		/*
@@ -65,15 +69,15 @@ namespace GucchiLibrary
 		// @content		オブジェクトの描画
 		// @param		オブジェクト（Object*）
 		*/
-		void DrawObject(Object* sprite);
+		void DrawObject(Object* object);
 
 		/*
 		// @method		GetParentObjectPos
 		// @content		親の位置を辿る
-		// @param		親オブジェクト（Sprite*）
+		// @param		親オブジェクト（Object*）
 		// @return		最終位置（Matrix）
 		*/
-		DirectX::SimpleMath::Matrix GetParentObjectMatrix(Object* sprite);
+		Matrix GetParentObjectMatrix(Object* object);
 
 		/*
 		// @method		Reset
@@ -102,7 +106,7 @@ namespace GucchiLibrary
 	private:
 		friend class SingletonDirector<ObjectFactory>;
 
-		ObjectFactory() {}
+		ObjectFactory() = default;
 
 	public:
 		/*
