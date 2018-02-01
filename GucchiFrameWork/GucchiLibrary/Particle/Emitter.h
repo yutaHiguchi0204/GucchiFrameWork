@@ -21,6 +21,11 @@ namespace GucchiLibrary
 	*/
 	class Emitter
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Vector4 = DirectX::SimpleMath::Vector4;
+
 	public:
 		static const int FOREVER_EXIST;			// 寿命
 
@@ -30,7 +35,7 @@ namespace GucchiLibrary
 		Texture*																		texture_;			// パーティクル用テクスチャ
 		std::vector<std::unique_ptr<Particle>>											particle_;			// パーティクル
 
-		DirectX::SimpleMath::Vector3													pos_;				// エミッターの座標
+		Vector3																			pos_;				// エミッターの座標
 		float																			exisTime_;			// エミッターの寿命
 		float																			nowFrame_;			// 出現してからの経過フレーム
 		bool																			isExist_;			// 存在しているかどうか
@@ -43,7 +48,7 @@ namespace GucchiLibrary
 		// @param		エミッターの座標（Vector3）	：	デフォルト（Vector3::Zero）
 		// @param		寿命（float）				：	デフォルト（FOREVER_EXIST）
 		*/
-		Emitter(DirectX::SimpleMath::Vector3 pos = DirectX::SimpleMath::Vector3::Zero, float exisTime = FOREVER_EXIST);
+		Emitter(const Vector3& pos = Vector3::Zero, float exisTime = FOREVER_EXIST);
 
 		// デストラクタ
 		virtual ~Emitter() = default;
@@ -71,8 +76,8 @@ namespace GucchiLibrary
 		*/
 		void Entry(
 			float exisTime = FOREVER_EXIST,
-			DirectX::VertexPositionColorTexture vertexDataStart = DirectX::VertexPositionColorTexture(DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector4::One, DirectX::SimpleMath::Vector2(Particle::DEFAULT_SCALE, Particle::DEFAULT_ROTATE)),
-			DirectX::VertexPositionColorTexture vertexDataEnd = DirectX::VertexPositionColorTexture(DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector4::One, DirectX::SimpleMath::Vector2(Particle::DEFAULT_SCALE, Particle::DEFAULT_ROTATE)),
+			DirectX::VertexPositionColorTexture vertexDataStart = DirectX::VertexPositionColorTexture(Vector3::Zero, Vector4::One, Vector2(Particle::DEFAULT_SCALE, Particle::DEFAULT_ROTATE)),
+			DirectX::VertexPositionColorTexture vertexDataEnd = DirectX::VertexPositionColorTexture(Vector3::Zero, Vector4::One, Vector2(Particle::DEFAULT_SCALE, Particle::DEFAULT_ROTATE)),
 			Asset3D::BLEND_MODE blendMode = Asset3D::BLEND_MODE::ALPHA,
 			Particle::LOOP_MODE loopMode = Particle::LOOP_MODE::DEFAULT
 		);
@@ -86,10 +91,10 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetPos(DirectX::SimpleMath::Vector3 pos)				{ pos_ = pos; }
-		void SetParent(Object* parent)								{ parentObject_ = parent; }
+		void SetPos(const Vector3& pos)			{ pos_ = pos; }
+		void SetParent(Object* parent)			{ parentObject_ = parent; }
 
-		inline const DirectX::SimpleMath::Vector3& GetPos() const	{ return pos_; }
-		inline bool IsExist() const									{ return isExist_; }
+		inline const Vector3& GetPos() const	{ return pos_; }
+		inline bool IsExist() const				{ return isExist_; }
 	};
 }

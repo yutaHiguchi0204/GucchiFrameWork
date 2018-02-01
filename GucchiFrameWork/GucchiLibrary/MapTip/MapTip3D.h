@@ -20,6 +20,9 @@ namespace GucchiLibrary
 	class MapTip3D : public MapTip
 	{
 	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
+	private:
 		std::unique_ptr<Object>						dummyObject_;		// 親用ダミーオブジェクト
 		std::vector<std::vector<Object>>			object_;			// オブジェクト
 		std::vector<std::shared_ptr<Object>>		masterObject_;		// オブジェクト格納用
@@ -28,11 +31,12 @@ namespace GucchiLibrary
 		/*
 		// @method		コンストラクタ（テクスチャ１つから均等に矩形分割し、読み込む）
 		// @param		データ（vector<vector<int>>）
+		// @param		マップチップデータ１つのオブジェクトサイズ（Vector3）
 		// @param		モデルファイル名（wstring[]）
 		// @param		データの種類数（int）
 		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip3D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector3& tipSize, std::wstring* modelFileName, int typeNum, TipData::TIP_TYPE* type);
+		MapTip3D(std::vector<std::vector<int>> data, const Vector3& tipSize, std::wstring* modelFileName, int typeNum, TipData::TIP_TYPE* type);
 
 		// デストラクタ
 		virtual ~MapTip3D() = default;
@@ -59,7 +63,7 @@ namespace GucchiLibrary
 		// @param		変えたいデータの番号y（int）
 		// @param		平行移動（Vector3）
 		*/
-		void SetObjectTranslate(int noX, int noY, const DirectX::SimpleMath::Vector3& trans);
+		void SetObjectTranslate(int noX, int noY, const Vector3& trans);
 
 		/*
 		// @method		SetObjectScale
@@ -68,7 +72,7 @@ namespace GucchiLibrary
 		// @param		変えたいデータの番号y（int）
 		// @param		スケール（Vector3）
 		*/
-		void SetObjectScale(int noX, int noY, const DirectX::SimpleMath::Vector3& scale);
+		void SetObjectScale(int noX, int noY, const Vector3& scale);
 
 		/*
 		// @method		SetObjectRotate
@@ -77,7 +81,7 @@ namespace GucchiLibrary
 		// @param		変えたいデータの番号y（int）
 		// @param		回転角（Vector3）
 		*/
-		void SetObjectRotate(int noX, int noY, const DirectX::SimpleMath::Vector3& rot);
+		void SetObjectRotate(int noX, int noY, const Vector3& rot);
 
 		/*
 		// @method		SetObjectActive
@@ -97,14 +101,14 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetTranslate(const DirectX::SimpleMath::Vector3& trans)								{ dummyObject_->SetTranslate(trans); }
+		void SetTranslate(const Vector3& trans)											{ dummyObject_->SetTranslate(trans); }
 
-		inline const DirectX::SimpleMath::Vector3& GetTranslate() const								{ return dummyObject_->GetTranslate(); }
-		inline int GetObjectsRowNum() const															{ return static_cast<int>(object_.size()); }
-		inline int GetObjectsColumnNum(int row) const												{ return static_cast<int>(object_[row].size()); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectTranslate(int noX, int noY) const		{ return object_[noY][noX].GetTranslate(); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectScale(int noX, int noY) const			{ return object_[noY][noX].GetScale(); }
-		inline const DirectX::SimpleMath::Vector3& GetObjectRotate(int noX, int noY) const			{ return object_[noY][noX].GetRotate(); }
-		inline InterpolateDirector* GetObjectInterpolateState(int noX, int noY) const				{ return object_[noY][noX].GetInterpolateDirector(); }
+		inline const Vector3& GetTranslate() const										{ return dummyObject_->GetTranslate(); }
+		inline int GetObjectsRowNum() const												{ return static_cast<int>(object_.size()); }
+		inline int GetObjectsColumnNum(int row) const									{ return static_cast<int>(object_[row].size()); }
+		inline const Vector3& GetObjectTranslate(int noX, int noY) const				{ return object_[noY][noX].GetTranslate(); }
+		inline const Vector3& GetObjectScale(int noX, int noY) const					{ return object_[noY][noX].GetScale(); }
+		inline const Vector3& GetObjectRotate(int noX, int noY) const					{ return object_[noY][noX].GetRotate(); }
+		inline InterpolateDirector* GetObjectInterpolateState(int noX, int noY) const	{ return object_[noY][noX].GetInterpolateDirector(); }
 	};
 }

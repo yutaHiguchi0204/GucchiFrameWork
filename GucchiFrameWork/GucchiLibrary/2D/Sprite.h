@@ -22,11 +22,14 @@ namespace GucchiLibrary
 	class Sprite
 	{
 	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+
+	private:
 		Texture*									texture_;				// テクスチャハンドル
-		DirectX::SimpleMath::Vector2				pos_;					// 位置
-		DirectX::SimpleMath::Vector2				size_;					// サイズ
+		Vector2										pos_;					// 位置
+		Vector2										size_;					// サイズ
 		RECT*										textureRect_;			// 画像矩形
-		DirectX::SimpleMath::Vector2				anchor_;				// アンカーポイント
+		Vector2										anchor_;				// アンカーポイント
 		float										scale_;					// 拡大率
 		float										angle_;					// 回転角
 		bool										isActive_;				// アクティブ状態
@@ -47,7 +50,7 @@ namespace GucchiLibrary
 		// @param		スケール（float）　：　デフォルト（1.0f）
 		// @param		回転角（float）　：　デフォルト（0.0f）
 		*/
-		Sprite(const DirectX::SimpleMath::Vector2& size, const DirectX::SimpleMath::Vector2& pos = DirectX::SimpleMath::Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
+		Sprite(const Vector2& size, const Vector2& pos = Vector2::Zero, RECT* rect = nullptr, float scale = 1.0f, float angle = 0.0f);
 
 		// コピーコンストラクタ
 		Sprite(const Sprite& sprite);
@@ -78,20 +81,20 @@ namespace GucchiLibrary
 		/* アクセッサ */
 
 		void SetTexture(Texture* texture)								{ texture_ = texture; }
-		void SetPos(const DirectX::SimpleMath::Vector2& pos)			{ pos_ = pos; }
-		void SetSize(const DirectX::SimpleMath::Vector2& size)			{ size_ = size; }
+		void SetPos(const Vector2& pos)									{ pos_ = pos; }
+		void SetSize(const Vector2& size)								{ size_ = size; }
 		void SetRect(RECT* rect)										{ textureRect_ = rect; }
-		void SetAnchor(const DirectX::SimpleMath::Vector2& anchor)		{ anchor_ = anchor; }
+		void SetAnchor(const Vector2& anchor)							{ anchor_ = anchor; }
 		void SetScale(float scale)										{ scale_ = scale; }
 		void SetAngle(float angle)										{ angle_ = angle; }
 		void SetActive(bool active)										{ isActive_ = active; }
 		void SetIsAction(bool isAction)									{ isAction_ = isAction; }
 
 		inline Texture* GetTexture() const								{ return texture_; }
-		inline DirectX::SimpleMath::Vector2 GetPos() const				{ return pos_; }
-		inline DirectX::SimpleMath::Vector2 GetSize() const				{ return size_; }
+		inline const Vector2& GetPos() const							{ return pos_; }
+		inline const Vector2& GetSize() const							{ return size_; }
 		inline RECT* GetRect() const									{ return textureRect_; }
-		inline DirectX::SimpleMath::Vector2 GetAnchor() const			{ return anchor_; }
+		inline const Vector2& GetAnchor() const							{ return anchor_; }
 		inline float GetScale() const									{ return scale_; }
 		inline float GetAngle() const									{ return angle_; }
 		inline bool GetActive() const									{ return isActive_; }

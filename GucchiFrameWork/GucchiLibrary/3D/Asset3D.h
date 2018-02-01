@@ -22,6 +22,11 @@ namespace GucchiLibrary
 	*/
 	class Asset3D
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Matrix = DirectX::SimpleMath::Matrix;
+		using Quaternion = DirectX::SimpleMath::Quaternion;
+
 	public:
 		/*
 		// @content		ブレンドモード
@@ -56,6 +61,10 @@ namespace GucchiLibrary
 		*/
 		static ID3D11BlendState* SetSubtractive();
 
+		/* アクセッサ */
+
+		static ID3D11BlendState* GetBlendStateSubtract() { return blendStateSubtractive_; }
+
 	protected:
 		// エフェクト
 		std::shared_ptr<DirectX::BasicEffect>		basicEffect_;
@@ -70,14 +79,14 @@ namespace GucchiLibrary
 		Camera* camera_;
 
 	protected:
-		DirectX::SimpleMath::Vector3				scale_;						// スケール
+		Vector3										scale_;						// スケール
 		union {
-			DirectX::SimpleMath::Vector3			rot_;						// 回転角
-			DirectX::SimpleMath::Quaternion			quat_;						// クォータニオン
+			Vector3									rot_;						// 回転角
+			Quaternion								quat_;						// クォータニオン
 		};
-		DirectX::SimpleMath::Vector3				trans_;						// 平行移動
+		Vector3										trans_;						// 平行移動
 
-		DirectX::SimpleMath::Matrix					world_;						// ワールド行列
+		Matrix										world_;						// ワールド行列
 
 		BLEND_MODE									blendMode_;					// ブレンドモード
 
@@ -95,7 +104,7 @@ namespace GucchiLibrary
 		// @param		クォータニオン（Quaternion）　：　デフォルト（Quaternion::Identity）
 		// @param		ブレンドモード（BLEND_MODE）　：　デフォルト（ALPHA）
 		*/
-		Asset3D(const DirectX::SimpleMath::Vector3& trans = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Vector3& scale = DirectX::SimpleMath::Vector3::One, const DirectX::SimpleMath::Vector3& rot = DirectX::SimpleMath::Vector3::Zero, const DirectX::SimpleMath::Quaternion& quat = DirectX::SimpleMath::Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
+		Asset3D(const Vector3& trans = Vector3::Zero, const Vector3& scale = Vector3::One, const Vector3& rot = Vector3::Zero, const Quaternion& quat = Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
 
 		// コピーコンストラクタ
 		Asset3D(const Asset3D& asset);
@@ -117,26 +126,25 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetCamera(Camera* camera)											{ camera_ = camera; }
-		void SetScale(DirectX::SimpleMath::Vector3 scale)						{ scale_ = scale; }
-		void SetRotate(DirectX::SimpleMath::Vector3 rot)						{ rot_ = rot; }
-		void SetTranslate(DirectX::SimpleMath::Vector3 trans)					{ trans_ = trans; }
-		void SetBlendMode(BLEND_MODE mode)										{ blendMode_ = mode; }
-		void SetActive(bool active)												{ isActive_ = active; }
-		void SetUseQuaternion(bool use)											{ isUseQuaternion_ = use; }
+		void SetCamera(Camera* camera)									{ camera_ = camera; }
+		void SetScale(const Vector3& scale)								{ scale_ = scale; }
+		void SetRotate(const Vector3& rot)								{ rot_ = rot; }
+		void SetTranslate(const Vector3& trans)							{ trans_ = trans; }
+		void SetBlendMode(BLEND_MODE mode)								{ blendMode_ = mode; }
+		void SetActive(bool active)										{ isActive_ = active; }
+		void SetUseQuaternion(bool use)									{ isUseQuaternion_ = use; }
 
-		inline DirectX::EffectFactory* GetEffectFactory() const					{ return effectFactory_.get(); }
-		inline Camera* GetCamera() const										{ return camera_; }
-		inline const DirectX::SimpleMath::Vector3& GetScale() const				{ return scale_; }
-		inline const DirectX::SimpleMath::Vector3& GetRotate() const			{ return rot_; }
-		inline const DirectX::SimpleMath::Quaternion& GetQuaternion() const		{ return quat_; }
-		inline const DirectX::SimpleMath::Vector3& GetTranslate() const			{ return trans_; }
-		inline const DirectX::SimpleMath::Matrix& GetWorld() const				{ return world_; }
-		inline ID3D11BlendState* GetBlendStateSubtract() const					{ return blendStateSubtractive_; }
-		inline BLEND_MODE GetBlendMode() const									{ return blendMode_; }
-		inline bool GetActive()	const											{ return isActive_; }
-		inline bool GetUseQuaternion() const									{ return isUseQuaternion_; }
-		inline InterpolateDirector* GetInterpolateDirector() const				{ return interpolateDirector_.get(); }
+		inline DirectX::EffectFactory* GetEffectFactory() const			{ return effectFactory_.get(); }
+		inline Camera* GetCamera() const								{ return camera_; }
+		inline const Vector3& GetScale() const							{ return scale_; }
+		inline const Vector3& GetRotate() const							{ return rot_; }
+		inline const Quaternion& GetQuaternion() const					{ return quat_; }
+		inline const Vector3& GetTranslate() const						{ return trans_; }
+		inline const Matrix& GetWorld() const							{ return world_; }
+		inline BLEND_MODE GetBlendMode() const							{ return blendMode_; }
+		inline bool GetActive()	const									{ return isActive_; }
+		inline bool GetUseQuaternion() const							{ return isUseQuaternion_; }
+		inline InterpolateDirector* GetInterpolateDirector() const		{ return interpolateDirector_.get(); }
 
 	public:
 		// 代入オペレータ

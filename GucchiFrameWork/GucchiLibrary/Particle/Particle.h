@@ -17,6 +17,11 @@ namespace GucchiLibrary
 	*/
 	class Particle
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Vector4 = DirectX::SimpleMath::Vector4;
+
 	public:
 		/*
 		// @content		ループモード
@@ -74,8 +79,8 @@ namespace GucchiLibrary
 		*/
 		void Initialize(
 			float exisTime = FOREVER_EXIST, 
-			DirectX::VertexPositionColorTexture vertexDataStart = DirectX::VertexPositionColorTexture(DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector4::One, DirectX::SimpleMath::Vector2(DEFAULT_SCALE, DEFAULT_ROTATE)),
-			DirectX::VertexPositionColorTexture vertexDataEnd = DirectX::VertexPositionColorTexture(DirectX::SimpleMath::Vector3::Zero, DirectX::SimpleMath::Vector4::One, DirectX::SimpleMath::Vector2(DEFAULT_SCALE, DEFAULT_ROTATE)),
+			DirectX::VertexPositionColorTexture vertexDataStart = DirectX::VertexPositionColorTexture(Vector3::Zero, Vector4::One, Vector2(DEFAULT_SCALE, DEFAULT_ROTATE)),
+			DirectX::VertexPositionColorTexture vertexDataEnd = DirectX::VertexPositionColorTexture(Vector3::Zero, Vector4::One, Vector2(DEFAULT_SCALE, DEFAULT_ROTATE)),
 			Asset3D::BLEND_MODE blendMode = Asset3D::BLEND_MODE::ALPHA, 
 			LOOP_MODE loopMode = LOOP_MODE::DEFAULT
 		);

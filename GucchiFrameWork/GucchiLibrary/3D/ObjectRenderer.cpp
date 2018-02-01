@@ -11,7 +11,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -115,7 +114,7 @@ void ObjectRenderer::DrawObject(Object* object)
 	}
 
 	// 子オブジェクトがいるなら子どもも描画
-	if (object->GetChildren().size() != 0)
+	if (static_cast<int>(object->GetChildren().size()) != 0)
 	{
 		for (auto& child : object->GetChildren())
 		{
@@ -132,7 +131,7 @@ void ObjectRenderer::DrawObject(Object* object)
 // @param		親オブジェクト（Object*）
 // @return		最終位置（Matrix）
 ===============================================================*/
-Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
+DirectX::SimpleMath::Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
 {
 	Matrix worldMat = object->GetWorld();
 

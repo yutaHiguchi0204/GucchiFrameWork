@@ -28,6 +28,6 @@ public:
 	void Finalize() override;
 
 private:
-    void Update(const GucchiLibrary::StepTimer& timer);
-    void Render();
+    void Update(const GucchiLibrary::StepTimer& timer) override;
+    void Render() override;
 };

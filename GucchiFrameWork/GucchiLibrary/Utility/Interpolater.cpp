@@ -9,7 +9,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -59,7 +58,7 @@ float Interpolater::Lerp(float start, float end, float time, wstring action, Int
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector2>*）
 // @return		補間値（Vector2）
 ===============================================================*/
-Vector2 Interpolater::Lerp(Vector2 start, Vector2 end, float time, wstring action, InterpolateState<Vector2>* state)
+DirectX::SimpleMath::Vector2 Interpolater::Lerp(const Vector2& start, const Vector2& end, float time, wstring action, InterpolateState<Vector2>* state)
 {
 	Vector2 data;
 
@@ -94,7 +93,7 @@ Vector2 Interpolater::Lerp(Vector2 start, Vector2 end, float time, wstring actio
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector3>*）
 // @return		補間値（Vector3）
 ===============================================================*/
-Vector3 Interpolater::Lerp(Vector3 start, Vector3 end, float time, wstring action, InterpolateState<Vector3>* state)
+DirectX::SimpleMath::Vector3 Interpolater::Lerp(const Vector3& start, const Vector3& end, float time, wstring action, InterpolateState<Vector3>* state)
 {
 	Vector3 data;
 
@@ -129,7 +128,7 @@ Vector3 Interpolater::Lerp(Vector3 start, Vector3 end, float time, wstring actio
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector4>*）
 // @return		補間値（Vector4）
 ===============================================================*/
-Vector4 Interpolater::Lerp(Vector4 start, Vector4 end, float time, wstring action, InterpolateState<Vector4>* state)
+DirectX::SimpleMath::Vector4 Interpolater::Lerp(const Vector4& start, const Vector4& end, float time, wstring action, InterpolateState<Vector4>* state)
 {
 	Vector4 data;
 
@@ -199,7 +198,7 @@ float Interpolater::EaseIn(float start, float end, float time, wstring action, I
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector2>*）
 // @return		補間値（Vector2）
 ===============================================================*/
-Vector2 Interpolater::EaseIn(Vector2 start, Vector2 end, float time, wstring action, InterpolateState<Vector2>* state)
+DirectX::SimpleMath::Vector2 Interpolater::EaseIn(const Vector2& start, const Vector2& end, float time, wstring action, InterpolateState<Vector2>* state)
 {
 	Vector2 data;
 
@@ -234,7 +233,7 @@ Vector2 Interpolater::EaseIn(Vector2 start, Vector2 end, float time, wstring act
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector3>*）
 // @return		補間値（Vector3）
 ===============================================================*/
-Vector3 Interpolater::EaseIn(Vector3 start, Vector3 end, float time, wstring action, InterpolateState<Vector3>* state)
+DirectX::SimpleMath::Vector3 Interpolater::EaseIn(const Vector3& start, const Vector3& end, float time, wstring action, InterpolateState<Vector3>* state)
 {
 	Vector3 data;
 
@@ -269,7 +268,7 @@ Vector3 Interpolater::EaseIn(Vector3 start, Vector3 end, float time, wstring act
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector4>*）
 // @return		補間値（Vector4）
 ===============================================================*/
-Vector4 Interpolater::EaseIn(Vector4 start, Vector4 end, float time, wstring action, InterpolateState<Vector4>* state)
+DirectX::SimpleMath::Vector4 Interpolater::EaseIn(const Vector4& start, const Vector4& end, float time, wstring action, InterpolateState<Vector4>* state)
 {
 	Vector4 data;
 
@@ -339,7 +338,7 @@ float Interpolater::EaseOut(float start, float end, float time, wstring action, 
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector2>*）
 // @return		補間値（Vector2）
 ===============================================================*/
-Vector2 Interpolater::EaseOut(Vector2 start, Vector2 end, float time, wstring action, InterpolateState<Vector2>* state)
+DirectX::SimpleMath::Vector2 Interpolater::EaseOut(const Vector2& start, const Vector2& end, float time, wstring action, InterpolateState<Vector2>* state)
 {
 	Vector2 data;
 
@@ -374,7 +373,7 @@ Vector2 Interpolater::EaseOut(Vector2 start, Vector2 end, float time, wstring ac
 // @param		開始（Vector3）、終了（Vector3）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector3>*）
 // @return		補間値（Vector3）
 ===============================================================*/
-Vector3 Interpolater::EaseOut(Vector3 start, Vector3 end, float time, wstring action, InterpolateState<Vector3>* state)
+DirectX::SimpleMath::Vector3 Interpolater::EaseOut(const Vector3& start, const Vector3& end, float time, wstring action, InterpolateState<Vector3>* state)
 {
 	Vector3 data;
 
@@ -409,7 +408,7 @@ Vector3 Interpolater::EaseOut(Vector3 start, Vector3 end, float time, wstring ac
 // @param		開始（Vector4）、終了（Vector4）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector4>*）
 // @return		補間値（Vector4）
 ===============================================================*/
-Vector4 Interpolater::EaseOut(Vector4 start, Vector4 end, float time, wstring action, InterpolateState<Vector4>* state)
+DirectX::SimpleMath::Vector4 Interpolater::EaseOut(const Vector4& start, const Vector4& end, float time, wstring action, InterpolateState<Vector4>* state)
 {
 	Vector4 data;
 
@@ -479,7 +478,7 @@ float Interpolater::EaseInOut(float start, float end, float time, wstring action
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector2>*）
 // @return		補間値（Vector2）
 ===============================================================*/
-Vector2 Interpolater::EaseInOut(Vector2 start, Vector2 end, float time, wstring action, InterpolateState<Vector2>* state)
+DirectX::SimpleMath::Vector2 Interpolater::EaseInOut(const Vector2& start, const Vector2& end, float time, wstring action, InterpolateState<Vector2>* state)
 {
 	Vector2 data;
 
@@ -514,7 +513,7 @@ Vector2 Interpolater::EaseInOut(Vector2 start, Vector2 end, float time, wstring 
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector3>*）
 // @return		補間値（Vector3）
 ===============================================================*/
-Vector3 Interpolater::EaseInOut(Vector3 start, Vector3 end, float time, wstring action, InterpolateState<Vector3>* state)
+DirectX::SimpleMath::Vector3 Interpolater::EaseInOut(const Vector3& start, const Vector3& end, float time, wstring action, InterpolateState<Vector3>* state)
 {
 	Vector3 data;
 
@@ -549,7 +548,7 @@ Vector3 Interpolater::EaseInOut(Vector3 start, Vector3 end, float time, wstring 
 // @param		開始（Vector2）、終了（Vector2）、かける時間（float、単位：秒）、補間アクション名（wstring）、補間ステート（InterpolateState<Vector4>*）
 // @return		補間値（Vector4）
 ===============================================================*/
-Vector4 Interpolater::EaseInOut(Vector4 start, Vector4 end, float time, wstring action, InterpolateState<Vector4>* state)
+DirectX::SimpleMath::Vector4 Interpolater::EaseInOut(const Vector4& start, const Vector4& end, float time, wstring action, InterpolateState<Vector4>* state)
 {
 	Vector4 data;
 

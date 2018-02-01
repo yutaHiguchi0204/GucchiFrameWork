@@ -18,6 +18,9 @@ namespace GucchiLibrary
 	class MapTip2D : public MapTip
 	{
 	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+
+	private:
 		std::unique_ptr<Sprite>						dummySprite_;		// 親用ダミースプライト
 		std::vector<std::vector<Sprite>>			sprite_;			// スプライトデータ
 		std::vector<std::shared_ptr<Sprite>>		masterSprite_;		// スプライト格納用
@@ -31,7 +34,7 @@ namespace GucchiLibrary
 		// @param		データの種類数（int）
 		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring textureName, int typeNum, TipData::TIP_TYPE* type);
+		MapTip2D(std::vector<std::vector<int>> data, const Vector2& spriteSize, std::wstring textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		/*
 		// @method		コンストラクタ（個々のテクスチャを読み込む）
@@ -41,7 +44,7 @@ namespace GucchiLibrary
 		// @param		データの種類数（int）
 		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip2D(std::vector<std::vector<int>> data, const DirectX::SimpleMath::Vector2& spriteSize, std::wstring* textureName, int typeNum, TipData::TIP_TYPE* type);
+		MapTip2D(std::vector<std::vector<int>> data, const Vector2& spriteSize, std::wstring* textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		// デストラクタ
 		virtual ~MapTip2D() = default;
@@ -68,7 +71,7 @@ namespace GucchiLibrary
 		// @param		変えたいデータの番号y（int）
 		// @param		位置（Vector2）
 		*/
-		void SetSpritePos(int noX, int noY, const DirectX::SimpleMath::Vector2& pos);
+		void SetSpritePos(int noX, int noY, const Vector2& pos);
 
 		/*
 		// @method		SetSpriteScale
@@ -106,14 +109,14 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetPos(const DirectX::SimpleMath::Vector2& pos)									{ dummySprite_->SetPos(pos); }
+		void SetPos(const Vector2& pos)														{ dummySprite_->SetPos(pos); }
 
-		inline DirectX::SimpleMath::Vector2& GetPos() const										{ return dummySprite_->GetPos(); }
-		inline int GetSpritesRowNum() const														{ return static_cast<int>(sprite_.size()); }
-		inline int GetSpritesColumnNum(int row) const											{ return static_cast<int>(sprite_[row].size()); }
-		inline const DirectX::SimpleMath::Vector2& GetSpritePos(int noX, int noY) const			{ return sprite_[noY][noX].GetPos(); }
-		inline float GetSpriteScale(int noX, int noY) const										{ return sprite_[noY][noX].GetScale(); }
-		inline float GetSpriteAngle(int noX, int noY) const										{ return sprite_[noY][noX].GetAngle(); }
-		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const		{ return sprite_[noY][noX].GetInterpolateDirector(); }
+		inline const Vector2& GetPos() const												{ return dummySprite_->GetPos(); }
+		inline int GetSpritesRowNum() const													{ return static_cast<int>(sprite_.size()); }
+		inline int GetSpritesColumnNum(int row) const										{ return static_cast<int>(sprite_[row].size()); }
+		inline const Vector2& GetSpritePos(int noX, int noY) const							{ return sprite_[noY][noX].GetPos(); }
+		inline float GetSpriteScale(int noX, int noY) const									{ return sprite_[noY][noX].GetScale(); }
+		inline float GetSpriteAngle(int noX, int noY) const									{ return sprite_[noY][noX].GetAngle(); }
+		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const	{ return sprite_[noY][noX].GetInterpolateDirector(); }
 	};
 }

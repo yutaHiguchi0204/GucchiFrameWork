@@ -21,6 +21,9 @@ namespace GucchiLibrary
 	class TextRenderer : public SingletonDirector<TextRenderer>
 	{
 	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+
+	private:
 		std::list<Text*> textList_;
 
 	private:

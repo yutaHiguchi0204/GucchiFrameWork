@@ -33,6 +33,10 @@ namespace GucchiLibrary
 	*/
 	class MoveTo : public ActionManager
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -42,7 +46,7 @@ namespace GucchiLibrary
 		// @param		終点（Vector2）
 		// @return		補間値（Vector2）
 		*/
-		static DirectX::SimpleMath::Vector2 Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& pos);
+		static Vector2 Action(Sprite* sprite, float time, const Vector2& pos);
 
 		/*
 		// @method		Action
@@ -52,7 +56,7 @@ namespace GucchiLibrary
 		// @param		終点（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& trans);
+		static Vector3 Action(Object* object, float time, const Vector3& trans);
 	};
 
 	/*
@@ -61,6 +65,10 @@ namespace GucchiLibrary
 	*/
 	class MoveBy : public ActionManager
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -70,7 +78,7 @@ namespace GucchiLibrary
 		// @param		移動距離（Vector2）
 		// @return		補間値（Vector2）
 		*/
-		static DirectX::SimpleMath::Vector2 Action(Sprite* sprite, float time, const DirectX::SimpleMath::Vector2& distance);
+		static Vector2 Action(Sprite* sprite, float time, const Vector2& distance);
 		
 		/*
 		// @method		Action
@@ -80,7 +88,7 @@ namespace GucchiLibrary
 		// @param		移動距離（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& distance);
+		static Vector3 Action(Object* object, float time, const Vector3& distance);
 	};
 
 	/*
@@ -89,6 +97,9 @@ namespace GucchiLibrary
 	*/
 	class ScaleTo : public ActionManager
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -108,7 +119,7 @@ namespace GucchiLibrary
 		// @param		スケール値（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& scale);
+		static Vector3 Action(Object* object, float time, const Vector3& scale);
 	};
 
 	/*
@@ -117,6 +128,9 @@ namespace GucchiLibrary
 	*/
 	class ScaleBy : public ActionManager
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -136,7 +150,7 @@ namespace GucchiLibrary
 		// @param		現在のスケールからの倍率（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& scale);
+		static Vector3 Action(Object* object, float time, const Vector3& scale);
 	};
 
 	/*
@@ -145,6 +159,9 @@ namespace GucchiLibrary
 	*/
 	class RotateTo : public ActionManager
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -164,7 +181,7 @@ namespace GucchiLibrary
 		// @param		回転角（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& rot);
+		static Vector3 Action(Object* object, float time, const Vector3& rot);
 	};
 
 	/*
@@ -173,6 +190,9 @@ namespace GucchiLibrary
 	*/
 	class RotateBy : public ActionManager
 	{
+	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
 	public:
 		/*
 		// @method		Action
@@ -192,6 +212,6 @@ namespace GucchiLibrary
 		// @param		現在の角度からの回転角（Vector3）
 		// @return		補間値（Vector3）
 		*/
-		static DirectX::SimpleMath::Vector3 Action(Object* object, float time, const DirectX::SimpleMath::Vector3& rot);
+		static Vector3 Action(Object* object, float time, const Vector3& rot);
 	};
 }

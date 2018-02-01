@@ -23,13 +23,13 @@ namespace GucchiLibrary
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	protected:
-		HWND								hwnd_;
+		HWND		hwnd_;
 
 		// 描画用ループタイマー
-		StepTimer&							timer_ = StepTimer::GetInstance();
+		StepTimer&	timer_ = StepTimer::GetInstance();
 
 		// FPS表示
-		bool isDispFPS_;
+		bool		isDispFPS_;
 
 	public:
 		Framework(HINSTANCE hInstance, int nCmdShow);

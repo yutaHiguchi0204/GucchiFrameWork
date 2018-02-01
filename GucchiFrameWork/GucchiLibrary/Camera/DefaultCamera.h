@@ -19,17 +19,22 @@ namespace GucchiLibrary
 	*/
 	class DefaultCamera : public Camera
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Matrix = DirectX::SimpleMath::Matrix;
+
 	protected:
 		static const float DEFAULT_DISTANCE;
 
 	protected:
 		MouseUtil& mouse_ = MouseUtil::GetInstance();		// マウス情報
 
-		DirectX::SimpleMath::Vector2 angle_;				// 回転角情報
-		DirectX::SimpleMath::Vector2 tmpAngle_;				// 回転角保存用
+		Vector2 angle_;										// 回転角情報
+		Vector2 tmpAngle_;									// 回転角保存用
 
-		DirectX::SimpleMath::Vector2 dragStartPos_;			// マウスドラッグの開始地点
-		DirectX::SimpleMath::Vector2 relScale_;				// 相対スケール
+		Vector2 dragStartPos_;								// マウスドラッグの開始地点
+		Vector2 relScale_;									// 相対スケール
 
 		int wheelValue_;									// 拡大率
 
@@ -55,6 +60,6 @@ namespace GucchiLibrary
 		// @content		ドラッグによる回転モーション
 		// @param		マウスの座標（Vector2）
 		*/
-		virtual void Motion(DirectX::SimpleMath::Vector2 mousePos);
+		virtual void Motion(const Vector2& mousePos);
 	};
 }

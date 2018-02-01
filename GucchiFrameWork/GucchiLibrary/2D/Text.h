@@ -19,17 +19,21 @@ namespace GucchiLibrary
 	*/
 	class Text
 	{
+	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Color = DirectX::SimpleMath::Color;
+
 	public:
 		static const float DEFAULT_FONT_SIZE;
 
 	private:
-		std::wstring					str_;			// テキスト
-		DirectX::SimpleMath::Vector2	pos_;			// 位置
-		DirectX::SimpleMath::Vector2	anchor_;		// アンカーポイント
-		std::wstring					font_;			// 使用フォント
-		int								fontSize_;		// フォントサイズ
-		DirectX::SimpleMath::Color		color_;			// 色
-		bool							isActive_;		// アクティブ状態
+		std::wstring	str_;			// テキスト
+		Vector2			pos_;			// 位置
+		Vector2			anchor_;		// アンカーポイント
+		std::wstring	font_;			// 使用フォント
+		int				fontSize_;		// フォントサイズ
+		Color			color_;			// 色
+		bool			isActive_;		// アクティブ状態
 
 	public:
 		/*
@@ -40,7 +44,7 @@ namespace GucchiLibrary
 		// @param		フォントサイズ（int）　：　デフォルト（DEFAULT_FONT_SIZE）
 		// @param		フォントの色（Color）　：　デフォルト（Color(1, 1, 1)）
 		*/
-		Text(std::wstring str, DirectX::SimpleMath::Vector2 pos, std::wstring font = L"default_font", int fontSize = DEFAULT_FONT_SIZE, DirectX::SimpleMath::Color color = DirectX::SimpleMath::Color(1, 1, 1));
+		Text(std::wstring str, const Vector2& pos, std::wstring font = L"default_font", int fontSize = DEFAULT_FONT_SIZE, const Color& color = Color(1, 1, 1));
 
 		// デストラクタ
 		virtual ~Text() = default;
@@ -54,19 +58,19 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetString(std::wstring str)						{ str_ = str; }
-		void SetPos(DirectX::SimpleMath::Vector2 pos)			{ pos_ = pos; }
-		void SetAnchor(DirectX::SimpleMath::Vector2 anchor)		{ anchor_ = anchor; }
-		void SetFontSize(int fontSize)							{ fontSize_ = fontSize; }
-		void SetColor(DirectX::SimpleMath::Color color)			{ color_ = color; }
-		void SetActive(bool active)								{ isActive_ = active; }
+		void SetString(std::wstring str)			{ str_ = str; }
+		void SetPos(const Vector2& pos)				{ pos_ = pos; }
+		void SetAnchor(const Vector2& anchor)		{ anchor_ = anchor; }
+		void SetFontSize(int fontSize)				{ fontSize_ = fontSize; }
+		void SetColor(const Color& color)			{ color_ = color; }
+		void SetActive(bool active)					{ isActive_ = active; }
 
-		inline std::wstring GetString() const					{ return str_; }
-		inline DirectX::SimpleMath::Vector2 GetPos() const		{ return pos_; }
-		inline DirectX::SimpleMath::Vector2 GetAnchor() const	{ return anchor_; }
-		inline std::wstring GetFont() const						{ return font_; }
-		inline int GetFontSize() const							{ return fontSize_; }
-		inline DirectX::SimpleMath::Color GetColor() const		{ return color_; }
-		inline bool GetActive() const							{ return isActive_; }
+		inline std::wstring GetString() const		{ return str_; }
+		inline const Vector2& GetPos() const		{ return pos_; }
+		inline const Vector2& GetAnchor() const		{ return anchor_; }
+		inline std::wstring GetFont() const			{ return font_; }
+		inline int GetFontSize() const				{ return fontSize_; }
+		inline const Color& GetColor() const		{ return color_; }
+		inline bool GetActive() const				{ return isActive_; }
 	};
 }

@@ -14,7 +14,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -242,7 +241,7 @@ void ParticleRenderer::Reset()
 // @param		エミッター（Emitter*）、エミッター名（wstring）、テクスチャファイル名（wstring）、エミッターの座標（Vector3）
 // @return		なし
 ===============================================================*/
-void ParticleRenderer::RegisterEmitter(Emitter* emitter, wstring emitterName, wstring textureFileName, Vector3 emitterPos)
+void ParticleRenderer::RegisterEmitter(Emitter* emitter, wstring emitterName, wstring textureFileName, const Vector3& emitterPos)
 {
 	emitter_[emitterName] = emitter;
 	emitter_[emitterName]->LoadTexture(textureFileName);

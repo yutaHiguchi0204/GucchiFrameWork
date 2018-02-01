@@ -11,7 +11,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -21,7 +20,7 @@ const int Emitter::FOREVER_EXIST = -1;			// 寿命
 // メンバ関数の定義
 
 // コンストラクタ
-Emitter::Emitter(Vector3 pos, float exisTime)
+Emitter::Emitter(const Vector3& pos, float exisTime)
 	: texture_(nullptr)
 	, pos_(pos)
 	, exisTime_(exisTime)
@@ -68,7 +67,7 @@ void Emitter::Update()
 
 		(*particleItr)->Update();
 
-		particleItr++;
+		++particleItr;
 	}
 }
 

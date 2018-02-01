@@ -12,7 +12,6 @@
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -53,18 +52,18 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 	}
 
 	// オブジェクトデータに反映
-	for (int i = 0; i < (int)data_.size(); i++)
+	for (int i = 0; i < static_cast<int>(data_.size()); i++)
 	{
 		object_.emplace_back();
 
-		for (auto& data : data_[i])
+		for (auto& tip : data_[i])
 		{
-			object_[i].emplace_back(*masterObject_[data.GetData()].get());
+			object_[i].emplace_back(*masterObject_[tip.GetData()].get());
 		}
 	}
 
 	// オブジェクトの登録
-	for (int i = 0; i < (int)object_.size(); i++)
+	for (int i = 0; i < static_cast<int>(object_.size()); i++)
 	{
 		int j = 0;
 		for (auto& object : object_[i])

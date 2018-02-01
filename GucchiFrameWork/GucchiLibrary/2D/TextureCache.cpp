@@ -15,6 +15,7 @@
 // 名前空間
 using namespace DirectX;
 using namespace GucchiLibrary;
+using namespace Microsoft::WRL;
 using namespace std;
 
 // メンバ関数の定義
@@ -36,9 +37,9 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		DeviceResources& deviceResources = DeviceResources::GetInstance();
 
 		// テクスチャ関連
-		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView;
-		Microsoft::WRL::ComPtr<ID3D11Resource> resource;
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> resourceTexture;
+		ComPtr<ID3D11ShaderResourceView> shaderResourceView;
+		ComPtr<ID3D11Resource> resource;
+		ComPtr<ID3D11Texture2D> resourceTexture;
 
 		// フルパス作成
 		wstring fullPath = FILE_PATH_SPRITE + fileName + EXT_PNG;
@@ -76,7 +77,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		texture->SetDesc(desc);
 		texture->SetShaderResourceView(shaderResourceView.Get());
 
-		textures_[fileName] = std::move(texture);
+		textures_[fileName] = move(texture);
 	}
 
 	return textures_[fileName].get();

@@ -23,6 +23,12 @@ namespace GucchiLibrary
 	class PrimitiveRenderer : public SingletonDirector<PrimitiveRenderer>
 	{
 	private:
+		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Matrix  = DirectX::SimpleMath::Matrix;
+		using Color   = DirectX::SimpleMath::Color;
+
+	private:
 		std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>	primitiveBatch_;
 		std::unique_ptr<DirectX::BasicEffect>									basicEffect_;
 		Microsoft::WRL::ComPtr<ID3D11InputLayout>								inputLayout_;
@@ -61,7 +67,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawPoint(std::map<std::string, DirectX::SimpleMath::Vector2> vertex, const DirectX::SimpleMath::Color& color);
+		void DrawPoint(std::map<std::string, Vector2> vertex, const Color& color);
 
 		/*
 		// @method		DrawLine
@@ -69,7 +75,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawLine(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color);
+		void DrawLine(std::map<std::string, Vector2> vertices, const Color& color);
 
 		/*
 		// @method		DrawTriangle
@@ -77,7 +83,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawTriangle(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color);
+		void DrawTriangle(std::map<std::string, Vector2> vertices, const Color& color);
 
 		/*
 		// @method		DrawSquare
@@ -85,7 +91,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawSquare(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color);
+		void DrawSquare(std::map<std::string, Vector2> vertices, const Color& color);
 
 		/*
 		// @method		DrawCircle
@@ -93,7 +99,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @param		色（Color）
 		*/
-		void DrawCircle(std::map<std::string, DirectX::SimpleMath::Vector2> vertices, const DirectX::SimpleMath::Color& color);
+		void DrawCircle(std::map<std::string, Vector2> vertices, const Color& color);
 
 		/*
 		// @method		RegisterPrimitive
@@ -111,7 +117,7 @@ namespace GucchiLibrary
 		// @param		頂点数（int）
 		// @return		頂点データ（VertexPositionColor*）
 		*/
-		DirectX::VertexPositionColor* SetVertices(Primitive::PRIMITIVE_TYPE type, std::map<std::string, DirectX::SimpleMath::Vector2> vertices, DirectX::SimpleMath::Color color, int vertexNum);
+		DirectX::VertexPositionColor* SetVertices(Primitive::PRIMITIVE_TYPE type, std::map<std::string, Vector2> vertices, const Color& color, int vertexNum);
 
 		/*
 		// @method		GetNumVertex
@@ -119,7 +125,7 @@ namespace GucchiLibrary
 		// @param		頂点データ（map<string, Vector2>）
 		// @return		頂点数（int）
 		*/
-		int GetNumVertex(std::map<std::string, DirectX::SimpleMath::Vector2> vertices);
+		int GetNumVertex(std::map<std::string, Vector2> vertices);
 
 		/*
 		// @method		Reset
