@@ -258,6 +258,9 @@
     <ClInclude Include="MapTip\AStar.h">
       <Filter>MapTip</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\RadixConverter.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dummy\Read me.md">

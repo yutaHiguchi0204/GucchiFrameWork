@@ -9,7 +9,7 @@ namespace GucchiLibrary
 {
 	/*
 	// @class		Math クラス
-	// @content		数学ライブラリ
+	// @content		数学関係
 	// @use			主に、SimpleMathでできない計算などをまとめたもの
 	*/
 	class Math
