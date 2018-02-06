@@ -6,9 +6,8 @@
 
 // ヘッダファイルのインクルード
 #include "BenchMark.h"
-#include <d3d11_1.h>
 #include "../Common/Constant.h"
-#include "../Common/DebugSwitch.h"
+#include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace GucchiLibrary;
@@ -29,22 +28,16 @@ void BenchMark::Begin()
 	// 周波数を取得
 	if (!QueryPerformanceFrequency(&frequency_))
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"Error: Sorry, I can't count.");
-#endif
-
 		// 計測不能
+		DebugSystem::DebugLog(L"Sorry, I can't count.");
 		return;
 	}
 
 	// 現在の時間（開始時間）を取得
 	if (!QueryPerformanceCounter(&begin_))
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"Error: Sorry, I can't count.");
-#endif
-
 		// 計測不能
+		DebugSystem::DebugLog(L"Sorry, I can't count.");
 		return;
 	}
 
@@ -62,11 +55,8 @@ void BenchMark::End()
 	// 現在の時間（開始時間）を取得
 	if (!QueryPerformanceCounter(&end_))
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"Error: Sorry, I can't count.");
-#endif
-
 		// 計測不能
+		DebugSystem::DebugLog(L"Sorry, I can't count.");
 		return;
 	}
 

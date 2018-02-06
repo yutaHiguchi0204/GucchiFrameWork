@@ -37,6 +37,9 @@
     <Filter Include="Particle">
       <UniqueIdentifier>{fff2ea6a-83cb-4d2b-b0e5-5da313c07d8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{48b2a783-54f1-406a-ab50-2eaa8acfee4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -78,9 +81,6 @@
     <ClCompile Include="3D\Asset3D.cpp">
       <Filter>3D</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Interpolater.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="3D\ModelCache.cpp">
       <Filter>3D</Filter>
     </ClCompile>
@@ -109,9 +109,6 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="Utility\BinaryFileManager.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\CSVFileManager.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="Utility\Action.cpp">
@@ -266,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="Utility\BenchMark.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="System\DebugSystem.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

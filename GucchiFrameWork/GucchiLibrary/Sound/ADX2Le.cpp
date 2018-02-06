@@ -7,7 +7,7 @@
 
 // ヘッダファイルのインクルード
 #include "ADX2Le.h"
-#include "../Common/DebugSwitch.h"
+#include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace GucchiLibrary;
@@ -199,11 +199,7 @@ void ADX2Le::UserErrorCallback(const CriChar8* errID, CriUint32 p1, CriUint32 p2
 	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, errmsg, dataSize, wlocal, dataSize + 1);
 
 	// コンソール出力する
-#if defined(MODE_DEBUG)
-	OutputDebugString(wlocal);
-#endif
-
-	return;
+	DebugSystem::DebugLog(wlocal);
 }
 
 //	メモリ確保関数のユーザ実装

@@ -9,7 +9,7 @@
 #include <cassert>
 #include <d3d11_1.h>
 #include "../3D/ObjectRenderer.h"
-#include "../Common/DebugSwitch.h"
+#include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace DirectX;
@@ -108,10 +108,7 @@ void AStar::Initialize(vector<vector<int>> map)
 	// スタートもしくはゴールが設定されていなかったらエラー
 	if (start_.posX == -1 || start_.posY == -1 || end_.posX == -1 || end_.posY == -1)
 	{
-#if defined(MODE_DEBUG)
-		// マップデータエラー
-		OutputDebugString(L"Map data error.");
-#endif
+		DebugSystem::DebugLog(L"Map data error.");
 		assert(false);
 	}
 
@@ -183,10 +180,7 @@ vector<Node*> AStar::GetShortestRoute()
 	// 経路探索が終わっていなければエラー
 	if (mapData_[start_.posY][start_.posX]->GetState() != Node::STATE::CLOSED)
 	{
-#if defined(MODE_DEBUG)
-		// 探索終了してないエラー
-		OutputDebugString(L"Don't finish search.");
-#endif
+		DebugSystem::DebugLog(L"Don't finish search.");
 		assert(false);
 	}
 

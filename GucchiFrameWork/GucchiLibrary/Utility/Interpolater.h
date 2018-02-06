@@ -451,7 +451,14 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		InterpolateDirector();
+		InterpolateDirector()
+		{
+			// 実体化
+			stateF_  = std::make_unique<InterpolateState<float>>();
+			stateV2_ = std::make_unique<InterpolateState<Vector2>>();
+			stateV3_ = std::make_unique<InterpolateState<Vector3>>();
+			stateV4_ = std::make_unique<InterpolateState<Vector4>>();
+		}
 
 		// デストラクタ
 		virtual ~InterpolateDirector() = default;
@@ -460,12 +467,24 @@ namespace GucchiLibrary
 		// @method		Update
 		// @content		更新処理
 		*/
-		void Update();
+		void Update()
+		{
+			stateF_->Update();
+			stateV2_->Update();
+			stateV3_->Update();
+			stateV4_->Update();
+		}
 
 		/*
 		// @method		Reset
 		// @content		全ステートのリセット
 		*/
-		void Reset();
+		void Reset()
+		{
+			stateF_->Reset();
+			stateV2_->Reset();
+			stateV3_->Reset();
+			stateV4_->Reset();
+		}
 	};
 }

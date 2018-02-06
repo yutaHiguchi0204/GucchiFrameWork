@@ -8,8 +8,8 @@
 #include "Asset3D.h"
 #include "ObjectRenderer.h"
 #include "../Common/Constant.h"
-#include "../Common/DebugSwitch.h"
 #include "../Common/DeviceResources.h"
+#include "../System/DebugSystem.h"
 
 // –¼‘O‹óŠÔ
 using namespace DirectX;
@@ -143,9 +143,7 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"Create blend state is failed.");
-#endif
+		DebugSystem::DebugLog(L"Create blend state is failed.");
 		assert(false);
 	}
 

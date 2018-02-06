@@ -9,8 +9,8 @@
 #include <cassert>
 #include <WICTextureLoader.h>
 #include "../Common/Constant.h"
-#include "../Common/DebugSwitch.h"
 #include "../Common/DeviceResources.h"
+#include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace DirectX;
@@ -50,9 +50,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-#if defined(MODE_DEBUG)
-			OutputDebugString(L"Texture loading failed.");
-#endif
+			DebugSystem::DebugLog(L"Texture loading failed.");
 			assert(false);
 		}
 
@@ -62,9 +60,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-#if defined(MODE_DEBUG)
-			OutputDebugString(L"This resource is not texture.");
-#endif
+			DebugSystem::DebugLog(L"This resource is not texture.");
 			assert(false);
 		}
 
