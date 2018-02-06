@@ -67,6 +67,12 @@ namespace GucchiLibrary
 		virtual ~Camera() = default;
 
 		/*
+		// @method		Initialize
+		// @content		‰Šú‰»ˆ—
+		*/
+		virtual void Initialize() = 0;
+
+		/*
 		// @method		Update
 		// @content		XVˆ—
 		*/

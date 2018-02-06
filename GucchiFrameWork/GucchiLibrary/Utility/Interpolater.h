@@ -11,6 +11,7 @@
 #include <memory>
 #include <SimpleMath.h>
 #include <string>
+#include "../Common/Constant.h"
 
 namespace GucchiLibrary
 {
@@ -33,13 +34,15 @@ namespace GucchiLibrary
 	// @mode		EASE_IN		：	二次補間（後が速い）
 	// @mode		EASE_OUT	：	二次補間（先が速い）
 	// @mode		EASE_INOUT	：	三次補間
+	// @mode		SPHERE_LERP	：	球面線形補間
 	*/
 	enum class INTERPOLATE_MODE : int
 	{
 		LERP,
 		EASE_IN,
 		EASE_OUT,
-		EASE_INOUT
+		EASE_INOUT,
+		SPHERE_LERP
 	};
 
 	class Interpolater;
@@ -52,6 +55,9 @@ namespace GucchiLibrary
 	class InterpolateState
 	{
 	private:
+		using Vector3 = DirectX::SimpleMath::Vector3;
+
+	private:
 		std::map<std::wstring, float>									timer_;			// ローカルタイマー
 		std::map<std::wstring, INTERPOLATE_STATE>						state_;			// 補間中かどうか
 
@@ -59,6 +65,9 @@ namespace GucchiLibrary
 		std::map<std::wstring, T>										end_;			// 終点
 		std::map<std::wstring, float>									runTime_;		// 実行時間
 		std::map<std::wstring, INTERPOLATE_MODE>						mode_;			// 補間モード
+
+		std::map<std::wstring, float>									startTime_;		// 補間開始時点の時間
+		std::map<std::wstring, float>									nowTime_;		// 補間中での時間
 
 	public:
 		// コンストラクタ
@@ -73,6 +82,8 @@ namespace GucchiLibrary
 			end_.clear();
 			runTime_.clear();
 			mode_.clear();
+			startTime_.clear();
+			nowTime_.clear();
 		}
 
 		/*
@@ -112,30 +123,34 @@ namespace GucchiLibrary
 		// @method		GetResult
 		// @content		補間結果の取得
 		// @param		補間アクション名（wstring）
-		// @param		始点（T）
 		// @result		補間結果（T）
 		*/
 		T GetResult(std::wstring action)
 		{
-			T result;
-
 			if (state_[action] != INTERPOLATE_STATE::FINISH)
 			{
 				// 結果を取得
-				switch (mode_[action])
-				{
-				case INTERPOLATE_MODE::LERP:		result = Interpolater::Lerp(start_[action], end_[action], runTime_[action], action, this);			break;
-				case INTERPOLATE_MODE::EASE_IN:		result = Interpolater::EaseIn(start_[action], end_[action], runTime_[action], action, this);		break;
-				case INTERPOLATE_MODE::EASE_OUT:	result = Interpolater::EaseOut(start_[action], end_[action], runTime_[action], action, this);		break;
-				case INTERPOLATE_MODE::EASE_INOUT:	result = Interpolater::EaseInOut(start_[action], end_[action], runTime_[action], action, this);		break;
-				}
-			}
-			else
-			{
-				result = end_[action];
+				return Interpolate(mode_[action], start_[action], end_[action], runTime_[action], action, this);
 			}
 
-			return result;
+			return end_[action];
+		}
+
+		/*
+		// @method		GetResult
+		// @content		補間結果の取得（軸使用補間）
+		// @param		補間アクション名（wstring）
+		// @result		補間結果（T）
+		*/
+		Vector3 GetResult(std::wstring action, const Vector3& axis)
+		{
+			if (state_[action] != INTERPOLATE_STATE::FINISH)
+			{
+				// 結果を取得
+				return Interpolate(mode_[action], start_[action], end_[action], axis, runTime_[action], action, this);
+			}
+
+			return end_[action];
 		}
 
 		/*
@@ -190,207 +205,231 @@ namespace GucchiLibrary
 		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
 
 		inline float GetTimer(std::wstring action) { return timer_[action]; }
-	};
-
-	/*
-	// @class		Interpolater クラス
-	// @content		補間ライブラリ
-	*/
-	class Interpolater
-	{
-	private:
-		using Vector2 = DirectX::SimpleMath::Vector2;
-		using Vector3 = DirectX::SimpleMath::Vector3;
-		using Vector4 = DirectX::SimpleMath::Vector4;
 
 	private:
-		static float startTime_;
-		static float nowTime_;
+		/*
+		// @method		Interpolate
+		// @content		補間での共通処理
+		// @param		補間モード（INTERPOLATE_MODE）
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<T>*）
+		// @result		補間値（T）
+		*/
+		T Interpolate(INTERPOLATE_MODE mode, const T& start, const T& end, float time, std::wstring action, InterpolateState<T>* state)
+		{
+			// 補間中でないなら時間等を初期化
+			if (state->GetState(action) == INTERPOLATE_STATE::NONE)
+			{
+				startTime_[action] = state->GetTimer(action);
+				state->SetState(action, INTERPOLATE_STATE::NOW);
+			}
 
-	public:
-		/* 線形補間 */
+			// 時間更新
+			nowTime_[action] = state->GetTimer(action) - startTime_[action];
+
+			// 補間完了かどうか
+			if (nowTime_[action] >= (time * FRAME_PER_SECOND))
+			{
+				state->SetState(action, INTERPOLATE_STATE::FINISH);
+				return end;
+			}
+
+			float lerpTime = nowTime_[action] / (time * FRAME_PER_SECOND);
+
+			// 補間移動
+			return GetResultToInterpolateMode(mode, start, end, lerpTime);
+		}
+
+		/*
+		// @method		Interpolate
+		// @content		補間での共通処理
+		// @param		補間モード（INTERPOLATE_MODE）
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		軸（Vector3）	：	デフォルト（Vector3::Zero）
+		// @param		媒介変数（float）
+		// @param		補間アクション名（wstring）
+		// @param		補間ステート（InterpolateState<Vector3>*）
+		// @result		補間値（Vector3）
+		*/
+		Vector3 Interpolate(INTERPOLATE_MODE mode, const Vector3& start, const Vector3& end, const Vector3& axis, float time, std::wstring action, InterpolateState<Vector3>* state)
+		{
+			// 補間中でないなら時間等を初期化
+			if (state->GetState(action) == INTERPOLATE_STATE::NONE)
+			{
+				startTime_[action] = state->GetTimer(action);
+				state->SetState(action, INTERPOLATE_STATE::NOW);
+			}
+
+			// 時間更新
+			nowTime_[action] = state->GetTimer(action) - startTime_[action];
+
+			// 補間完了かどうか
+			if (nowTime_[action] >= (time * FRAME_PER_SECOND))
+			{
+				state->SetState(action, INTERPOLATE_STATE::FINISH);
+				return end;
+			}
+
+			float lerpTime = nowTime_[action] / (time * FRAME_PER_SECOND);
+
+			// 補間移動
+			return GetResultToInterpolateMode(mode, start, end, axis, lerpTime);
+		}
+
+		/*
+		// @method		GetResultToInterpolateMode
+		// @method		指定したモードから補間値を取得
+		// @param		補間モード（INTERPOLATE_MODE）
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @return		補間値（T）
+		*/
+		T GetResultToInterpolateMode(INTERPOLATE_MODE mode, const T& start, const T& end, float time)
+		{
+			T result;
+
+			switch (mode)
+			{
+			case INTERPOLATE_MODE::LERP:			// 線形補間	
+				result = Lerp(start, end, time);
+				break;
+
+			case INTERPOLATE_MODE::EASE_IN:			// 二次補間（後が速い）
+				result = EaseIn(start, end, time);
+				break;
+
+			case INTERPOLATE_MODE::EASE_OUT:		// 二次補間（先が速い）
+				result = EaseOut(start, end, time);
+				break;
+
+			case INTERPOLATE_MODE::EASE_INOUT:		// 三次補間
+				result = EaseInOut(start, end, time);
+				break;
+
+			default:
+				break;
+			}
+
+			return result;
+		}
+
+		/*
+		// @method		GetResultToInterpolateMode
+		// @method		指定したモードから補間値を取得
+		// @param		補間モード（INTERPOLATE_MODE）
+		// @param		始点（Vector3）
+		// @param		終点（Vector3）
+		// @param		軸（Vector3）	：	デフォルト（Vector3::Zero）
+		// @param		媒介変数（float）
+		// @return		補間値（Vector3）
+		*/
+		Vector3 GetResultToInterpolateMode(INTERPOLATE_MODE mode, const Vector3& start, const Vector3& end, const Vector3& axis, float time)
+		{
+			Vector3 result;
+
+			switch (mode)
+			{
+			case INTERPOLATE_MODE::SPHERE_LERP:		// 球面線形補間
+				result = SphereLerp(start, end, axis, time);
+
+			default:
+				break;
+			}
+
+			return result;
+		}
 
 		/*
 		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<float>*）
+		// @method		線形補間
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @return		補間値（T）
 		*/
-		static float Lerp(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector2>*）
-		*/
-		static Vector2 Lerp(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector3>*）
-		*/
-		static Vector3 Lerp(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
-
-		/*
-		// @method		Lerp（static）
-		// @content		線形補間
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector4>*）
-		*/
-		static Vector4 Lerp(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
-
-		/* 二次補間（後が速い） */
+		static T Lerp(const T& start, const T& end, float t)
+		{
+			return start + (end - start) * t;
+		}
 
 		/*
 		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<float>*）
+		// @method		二次補間（後が速い）
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @return		補間値（T）
 		*/
-		static float EaseIn(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+		static T EaseIn(const T& start, const T& end, float t)
+		{
+			return start + (end - start) * (t * t);
+		}
 
 		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector2>*）
+		// @method		EaseOut（static）
+		// @method		二次補間（先が速い）
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @return		補間値（T）
 		*/
-		static Vector2 EaseIn(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
+		static T EaseOut(const T& start, const T& end, float t)
+		{
+			return start + (end - start) * (t * (2.0f - t));
+		}
 
 		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
+		// @method		EaseInOut（static）
+		// @method		三次補間
+		// @param		始点（T）
+		// @param		終点（T）
+		// @param		媒介変数（float）
+		// @return		補間値（T）
+		*/
+		static T EaseInOut(const T& start, const T& end, float t)
+		{
+			return start + (end - start) * ((t * t) * (3.0f - t * 2.0f));
+		}
+
+		/*
+		// @method		SphereLerp
+		// @method		球面線形補間
 		// @param		始点（Vector3）
 		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector3>*）
+		// @param		媒介変数（float）
+		// @return		補間値（Vector3）
 		*/
-		static Vector3 EaseIn(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
+		static Vector3 SphereLerp(const Vector3& start, const Vector3& end, const Vector3& axis, float t)
+		{
+			// 軸からのベクトルを取得
+			Vector3 s = start - axis;
+			Vector3 e = end - axis;
+			s.Normalize();	e.Normalize();
 
-		/*
-		// @method		EaseIn（static）
-		// @content		二次補間（後が速い）
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector4>*）
-		*/
-		static Vector4 EaseIn(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
+			// ２ベクトル間の鋭角の角度を求める
+			float angle = acosf(s.Dot(e));
 
-		/* 二次補間（先が速い） */
+			// sinθを求める
+			float sinTh = sinf(angle);
 
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<float>*）
-		*/
-		static float EaseOut(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
+			// 線形補間係数を求める
+			float sPos = sinf(angle * (1 - t));
+			float ePos = sinf(angle * t);
 
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector2>*）
-		*/
-		static Vector2 EaseOut(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
+			// 始点から終点までの線形補間
+			Vector3 data = (sPos * s + ePos * e) / (sinTh == 0 ? 0.0000001f : sinTh);
+			data.Normalize();
 
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector3>*）
-		*/
-		static Vector3 EaseOut(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
+			// 半径を求める
+			float rad = (start - axis).Length();
 
-		/*
-		// @method		EaseOut（static）
-		// @content		二次補間（先が速い）
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector4>*）
-		*/
-		static Vector4 EaseOut(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
-
-		/* 三次補間 */
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（float）
-		// @param		終点（float）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<float>*）
-		*/
-		static float EaseInOut(float start, float end, float time, std::wstring action, InterpolateState<float>* state);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector2）
-		// @param		終点（Vector2）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector2>*）
-		*/
-		static Vector2 EaseInOut(const Vector2& start, const Vector2& end, float time, std::wstring action, InterpolateState<Vector2>* state);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector3）
-		// @param		終点（Vector3）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector3>*）
-		*/
-		static Vector3 EaseInOut(const Vector3& start, const Vector3& end, float time, std::wstring action, InterpolateState<Vector3>* state);
-
-		/*
-		// @method		EaseInOut（static）
-		// @content		三次補間
-		// @param		始点（Vector4）
-		// @param		終点（Vector4）
-		// @param		実行時間（float）
-		// @param		補間アクション名（wstring）
-		// @param		補間ステート（InterpolateState<Vector4>*）
-		*/
-		static Vector4 EaseInOut(const Vector4& start, const Vector4& end, float time, std::wstring action, InterpolateState<Vector4>* state);
+			return data * rad + axis;
+		}
 	};
 
 	/*
