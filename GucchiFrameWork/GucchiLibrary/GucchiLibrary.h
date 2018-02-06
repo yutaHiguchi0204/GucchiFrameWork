@@ -28,6 +28,9 @@
 // アクション関連
 #include "Utility/Action.h"
 
+// ベンチマークテスト
+#include "Utility/BenchMark.h"
+
 // バイナリファイル管理
 #include "Utility/BinaryFileManager.h"
 

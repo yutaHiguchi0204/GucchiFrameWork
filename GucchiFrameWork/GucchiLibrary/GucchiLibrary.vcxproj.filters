@@ -135,6 +135,9 @@
     <ClCompile Include="MapTip\AStar.cpp">
       <Filter>MapTip</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\BenchMark.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h">
@@ -259,6 +262,9 @@
       <Filter>MapTip</Filter>
     </ClInclude>
     <ClInclude Include="Utility\RadixConverter.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\BenchMark.h">
       <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>

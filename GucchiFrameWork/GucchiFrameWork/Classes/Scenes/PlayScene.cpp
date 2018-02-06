@@ -6,6 +6,7 @@
 
 // ヘッダファイルのインクルード
 #include "PlayScene.h"
+#include "InputTools/KeyboardUtil.h"
 
 // 名前空間
 using namespace DirectX;
