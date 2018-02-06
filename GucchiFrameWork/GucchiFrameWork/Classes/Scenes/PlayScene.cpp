@@ -6,11 +6,9 @@
 
 // ヘッダファイルのインクルード
 #include "PlayScene.h"
-#include "InputTools/KeyboardUtil.h"
 
 // 名前空間
 using namespace DirectX;
-using namespace DirectX::SimpleMath;
 using namespace GucchiLibrary;
 using namespace std;
 
@@ -25,6 +23,8 @@ void PlayScene::Initialize()
 {
 	// 全シーン共通初期化処理
 	IScene::CommonInitialize();
+
+	// TODO: このシーンの初期化処理
 }
 
 /*==============================================================
@@ -36,6 +36,8 @@ void PlayScene::Update()
 {
 	// 全シーン共通更新処理
 	IScene::CommonUpdate();
+
+	// TODO: このシーンの更新処理
 }
 
 /*==============================================================
@@ -47,6 +49,8 @@ void PlayScene::Draw()
 {
 	// 全シーン共通描画処理
 	IScene::CommonDraw();
+
+	// TODO: このシーンの描画処理
 }
 
 /*==============================================================
@@ -58,4 +62,6 @@ void PlayScene::Finalize()
 {
 	// 全シーン共通終了処理
 	IScene::CommonFinalize();
+
+	// TODO: このシーンの終了処理
 }

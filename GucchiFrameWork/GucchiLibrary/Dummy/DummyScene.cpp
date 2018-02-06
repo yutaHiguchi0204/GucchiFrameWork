@@ -21,6 +21,8 @@ void DummyScene::Initialize()
 {
 	// 全シーン共通初期化処理
 	IScene::CommonInitialize();
+
+	// TODO: このシーンの初期化処理
 }
 
 /*==============================================================
@@ -32,6 +34,8 @@ void DummyScene::Update()
 {
 	// 全シーン共通更新処理
 	IScene::CommonUpdate();
+
+	// TODO: このシーンの更新処理
 }
 
 /*==============================================================
@@ -43,6 +47,8 @@ void DummyScene::Draw()
 {
 	// 全シーン共通描画処理
 	IScene::CommonDraw();
+
+	// TODO: このシーンの描画処理
 }
 
 /*==============================================================
@@ -54,4 +60,6 @@ void DummyScene::Finalize()
 {
 	// 全シーン共通終了処理
 	IScene::CommonFinalize();
+
+	// TODO: このシーンの終了処理
 }
