@@ -6,7 +6,7 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <list>
+#include <map>
 #include "../Common/SingletonDirector.h"
 #include "Text.h"
 
@@ -22,9 +22,10 @@ namespace GucchiLibrary
 	{
 	private:
 		using Vector2 = DirectX::SimpleMath::Vector2;
+		using Color = DirectX::SimpleMath::Color;
 
 	private:
-		std::list<Text*> textList_;
+		std::map<std::wstring, Text*> textList_;
 
 	private:
 		friend class SingletonDirector<TextRenderer>;
@@ -35,17 +36,78 @@ namespace GucchiLibrary
 		/*
 		// @method		RegisterText
 		// @content		テキストの登録
+		// @param		テキスト名（wstring）
+		// @param		文字列（wstring）
+		// @param		表示位置（Vector2）
+		// @param		フォントの色（Color）　：　デフォルト（Color(1, 1, 1)）
+		// @param		フォントサイズ（float）　：　デフォルト（DEFAULT_FONT_SIZE）
+		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（L"default_font"）
+		*/
+		void RegisterText(std::wstring name, std::wstring str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = Text::DEFAULT_FONT_SIZE, std::wstring font = L"default_font");
+
+		/*
+		// @method		RegisterText
+		// @content		テキストの登録
+		// @param		テキスト名（wstring）
 		// @param		登録するテキスト（Text*）
 		*/
-		void RegisterText(Text* text);
+		void RegisterText(std::wstring name, Text* text);
+
+		/*
+		// @method		SetString
+		// @content		文字列の変更
+		// @param		テキスト名（wstring）
+		// @param		文字列（wstring）
+		*/
+		void SetString(std::wstring name, std::wstring str);
+
+		/*
+		// @method		SetPos
+		// @content		表示位置の変更
+		// @param		テキスト名（wstring）
+		// @param		表示位置（Vector2）
+		*/
+		void SetPos(std::wstring name, const Vector2& pos);
+
+		/*
+		// @method		SetAnchor
+		// @content		アンカーポイントの変更
+		// @param		テキスト名（wstring）
+		// @param		アンカーポイント（Vector2）
+		*/
+		void SetAnchor(std::wstring name, const Vector2& anchor);
+
+		/*
+		// @method		SetColor
+		// @content		色の変更
+		// @param		テキスト名（wstring）
+		// @param		色（Color）
+		*/
+		void SetColor(std::wstring name, const Color& color);
+
+		/*
+		// @method		SetFontSize
+		// @content		サイズの変更
+		// @param		テキスト名（wstring）
+		// @param		フォントサイズ（float）
+		*/
+		void SetFontSize(std::wstring name, float fontSize);
+
+		/*
+		// @method		SetFont
+		// @content		フォントの種類の変更
+		// @param		テキスト名（wstring）
+		// @param		フォント（wstring）
+		*/
+		void SetFont(std::wstring name, std::wstring font);
 
 		/*
 		// @method		SetActive
-		// @content		テキストのアクティブ状態の変更
-		// @param		テキスト（Text*）
+		// @content		アクティブ状態の変更
+		// @param		テキスト名（wstring）
 		// @param		アクティブ状態（bool）
 		*/
-		void SetActive(Text* text, bool active);
+		void SetActive(std::wstring name, bool active);
 
 		/*
 		// @method		Draw

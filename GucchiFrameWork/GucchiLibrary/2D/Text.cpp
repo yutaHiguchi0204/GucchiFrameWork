@@ -19,13 +19,13 @@ const float Text::DEFAULT_FONT_SIZE = 18.0f;		// ƒtƒHƒ“ƒgƒTƒCƒY‚Ì‰Šúİ’èiƒtƒHƒ
 // ƒƒ“ƒoŠÖ”‚Ì’è‹`
 
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-Text::Text(wstring str, const Vector2& pos, wstring font, int fontSize, const Color& color)
+Text::Text(wstring str, const Vector2& pos, const Color& color, float fontSize, wstring font)
 	: str_(str)
 	, pos_(pos)
 	, anchor_(ANCHOR_LM)
-	, font_(font)
-	, fontSize_(fontSize)
 	, color_(color)
+	, fontSize_(fontSize)
+	, font_(font)
 	, isActive_(true)
 {
 }
@@ -45,5 +45,5 @@ void Text::SetFont(const wstring font)
 
 	// ƒŠƒZƒbƒgˆ—
 	DirectXToolKidResources& dxtk = DirectXToolKidResources::GetInstance();
-	dxtk.SetFont(font);
+	dxtk.SetFont(fontName);
 }

@@ -15,6 +15,11 @@ const int								WINDOW_WIDTH			= 800;															// 画面の幅
 const int								WINDOW_HEIGHT			= 600;															// 画面の高さ
 const float								FRAME_PER_SECOND		= 60.0f;														// １秒６０フレーム
 
+// ファイナライズ
+#define SAFE_DELETE(p)					(if(p){delete p; p=nullptr})															// デリート処理
+#define SAFE_DELETE_ARRAY(p)			(if(p){delete[] p; p=nullptr})															// デリート処理（配列用）
+#define SAFE_RELEASE(p)					(if(p){p->Release(); p=nullptr})														// リリース処理（ComPtr用）
+
 // ウインドウの場所
 #define WINDOW_LEFT(objSizeX)			((objSizeX) / (2))																		// 画面の左端
 #define WINDOW_TOP(objSizeY)			((objSizeY) / (2))																		// 画面の上端
