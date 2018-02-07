@@ -11,9 +11,6 @@
 // 定数ヘッダ
 #include "Common/Constant.h"
 
-// デバッグスイッチ
-#include "Common/DebugSwitch.h"
-
 // シーンマネージャ
 #include "Common/SceneManager.h"
 
@@ -25,8 +22,14 @@
 #include "MapTip/MapTip2D.h"
 #include "MapTip/MapTip3D.h"
 
+// システム
+#include "System/DebugSystem.h"
+
 // アクション関連
 #include "Utility/Action.h"
+
+// ベンチマークテスト
+#include "Utility/BenchMark.h"
 
 // バイナリファイル管理
 #include "Utility/BinaryFileManager.h"

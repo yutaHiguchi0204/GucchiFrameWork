@@ -7,32 +7,114 @@
 // ヘッダファイルのインクルード
 #include "TextRenderer.h"
 #include <SpriteFont.h>
-#include "GucchiLibrary.h"
+#include "../Common/Constant.h"
+#include "../Common/DeviceResources.h"
 
 // 名前空間
 using namespace DirectX;
 using namespace GucchiLibrary;
+using namespace std;
 
 // メンバ関数の定義
 
 /*==============================================================
 // @brief		テキストの登録
-// @param		テキスト（Text*）
+// @param		テキスト名（wstring）、文字列（wstring）、表示位置（Vector2）、フォントの色（Color）、フォントサイズ（float）、フォント名（拡張子を除く）（wstring）
 // @return		なし
 ===============================================================*/
-void TextRenderer::RegisterText(Text* text)
+void TextRenderer::RegisterText(std::wstring name, std::wstring str, const Vector2& pos, const Color& color, float fontSize, std::wstring font)
 {
-	textList_.emplace_back(text);
+	// スタック領域変数
+	static Text text(str, pos);
+
+	// 初期設定
+	text.SetString(str);
+	text.SetPos(pos);
+	text.SetColor(color);
+	text.SetFontSize(fontSize);
+	text.SetFont(font);
+
+	textList_[name] = &text;
+}
+
+/*==============================================================
+// @brief		テキストの登録
+// @param		テキスト名（wstring）、テキスト（Text*）
+// @return		なし
+===============================================================*/
+void TextRenderer::RegisterText(wstring name, Text* text)
+{
+	textList_[name] = text;
+}
+
+/*==============================================================
+// @brief		文字列の変更
+// @param		テキスト名（wstring）、文字列（wstring）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetString(std::wstring name, std::wstring str)
+{
+	textList_[name]->SetString(str);
+}
+
+/*==============================================================
+// @brief		表示位置の変更
+// @param		テキスト名（wstring）、表示位置（Vector2）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetPos(std::wstring name, const Vector2& pos)
+{
+	textList_[name]->SetPos(pos);
+}
+
+/*==============================================================
+// @brief		アンカーポイントの変更
+// @param		テキスト名（wstring）、アンカーポイント（Vector2）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetAnchor(std::wstring name, const Vector2& anchor)
+{
+	textList_[name]->SetAnchor(anchor);
+}
+
+/*==============================================================
+// @brief		色の変更
+// @param		テキスト名（wstring）、色（Color）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetColor(std::wstring name, const Color& color)
+{
+	textList_[name]->SetColor(color);
+}
+
+/*==============================================================
+// @brief		サイズの変更
+// @param		テキスト名（wstring）、フォントサイズ（float）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetFontSize(std::wstring name, float fontSize)
+{
+	textList_[name]->SetFontSize(fontSize);
+}
+
+/*==============================================================
+// @brief		フォントの種類の変更
+// @param		テキスト名（wstring）、フォント（wstring）
+// @return		なし
+===============================================================*/
+void TextRenderer::SetFont(std::wstring name, std::wstring font)
+{
+	textList_[name]->SetFont(font);
 }
 
 /*==============================================================
 // @brief		アクティブ状態の変更
-// @param		テキスト（Text*）、アクティブ状態（bool）
+// @param		テキスト名（wstring）、アクティブ状態（bool）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetActive(Text* text, bool active)
+void TextRenderer::SetActive(wstring name, bool active)
 {
-	text->SetActive(active);
+	textList_[name]->SetActive(active);
 }
 
 /*==============================================================
@@ -52,14 +134,14 @@ void TextRenderer::Draw()
 	for (auto text : textList_)
 	{
 		// アクティブ状態のスプライトのみ表示
-		if (text->GetActive())
+		if (text.second->GetActive())
 		{
 			// アンカーポイントの設定
-			Vector2 origin = dxtk.GetSpriteFont()->MeasureString(text->GetString().c_str());
-			origin *= text->GetAnchor();
+			Vector2 origin = dxtk.GetSpriteFont()->MeasureString(text.second->GetString().c_str());
+			origin *= text.second->GetAnchor();
 
 			// 描画
-			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch(), text->GetString().c_str(), text->GetPos(), text->GetColor(), 0.f, origin, text->GetFontSize() / Text::DEFAULT_FONT_SIZE);
+			dxtk.GetSpriteFont()->DrawString(dxtk.GetSpriteBatch(), text.second->GetString().c_str(), text.second->GetPos(), text.second->GetColor(), 0.f, origin, text.second->GetFontSize() / Text::DEFAULT_FONT_SIZE);
 		}
 	}
 

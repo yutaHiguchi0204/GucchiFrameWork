@@ -13,7 +13,12 @@
 // マスター
 const int								WINDOW_WIDTH			= 800;															// 画面の幅
 const int								WINDOW_HEIGHT			= 600;															// 画面の高さ
-const int								FRAME_PER_SECOND		= 60;															// １秒６０フレーム
+const float								FRAME_PER_SECOND		= 60.0f;														// １秒６０フレーム
+
+// ファイナライズ
+#define SAFE_DELETE(p)					(if(p){delete p; p=nullptr})															// デリート処理
+#define SAFE_DELETE_ARRAY(p)			(if(p){delete[] p; p=nullptr})															// デリート処理（配列用）
+#define SAFE_RELEASE(p)					(if(p){p->Release(); p=nullptr})														// リリース処理（ComPtr用）
 
 // ウインドウの場所
 #define WINDOW_LEFT(objSizeX)			((objSizeX) / (2))																		// 画面の左端
@@ -21,8 +26,8 @@ const int								FRAME_PER_SECOND		= 60;															// １秒６０フレーム
 #define WINDOW_RIGHT(objSizeX)			((WINDOW_WIDTH) - ((objSizeX) / (2)))													// 画面の右端
 #define WINDOW_BOTTOM(objSizeY)			((WINDOW_HEIGHT) - ((objSizeY) / (2)))													// 画面の下端
 #define WINDOW_MIDDLE					(DirectX::SimpleMath::Vector2(((WINDOW_WIDTH) / (2)), ((WINDOW_HEIGHT) / (2))))			// 画面の中心
-#define WINDOW_MIDDLE_X(objSizeX)		((WINDOW_WIDTH) / (2))																	// 画面のx座標の中心
-#define WINDOW_MIDDLE_Y(objSizeY)		((WINDOW_HEIGHT) / (2))																	// 画面のy座標の中心
+#define WINDOW_MIDDLE_X					((WINDOW_WIDTH) / (2))																	// 画面のx座標の中心
+#define WINDOW_MIDDLE_Y					((WINDOW_HEIGHT) / (2))																	// 画面のy座標の中心
 
 // アンカーポイント
 const DirectX::SimpleMath::Vector2		ANCHOR_LT				= DirectX::SimpleMath::Vector2(0.0f, 0.0f);						// 左上のアンカーポイント

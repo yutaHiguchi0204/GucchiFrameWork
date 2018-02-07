@@ -167,9 +167,8 @@
     <ClCompile Include="Particle\ParticleRenderer.cpp" />
     <ClCompile Include="Sound\ADX2Le.cpp" />
     <ClCompile Include="Utility\Action.cpp" />
+    <ClCompile Include="Utility\BenchMark.cpp" />
     <ClCompile Include="Utility\BinaryFileManager.cpp" />
-    <ClCompile Include="Utility\CSVFileManager.cpp" />
-    <ClCompile Include="Utility\Interpolater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2D\Primitive.h" />
@@ -211,7 +210,9 @@
     <ClInclude Include="Particle\ParticleRenderer.h" />
     <ClInclude Include="Sound\ADX2Le.h" />
     <ClInclude Include="Sound\SoundManager.h" />
+    <ClInclude Include="System\DebugSystem.h" />
     <ClInclude Include="Utility\Action.h" />
+    <ClInclude Include="Utility\BenchMark.h" />
     <ClInclude Include="Utility\BinaryFileManager.h" />
     <ClInclude Include="Utility\CSVFileManager.h" />
     <ClInclude Include="Utility\Interpolater.h" />

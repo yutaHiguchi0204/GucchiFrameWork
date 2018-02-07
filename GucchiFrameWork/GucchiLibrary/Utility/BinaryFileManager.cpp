@@ -7,9 +7,8 @@
 // ヘッダファイルのインクルード
 #include "BinaryFileManager.h"
 #include <cassert>
-#include <d3d11_1.h>
 #include <fstream>
-#include "../Common/DebugSwitch.h"
+#include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace GucchiLibrary;
@@ -58,9 +57,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
 	// エラー処理
 	if (!ifs)
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"BinaryFile opening failed.");
-#endif
+		DebugSystem::DebugLog(L"BinaryFile opening failed.");
 		assert(ifs);
 	}
 
@@ -102,9 +99,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
 	// エラー処理
 	if (!ifs)
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"BinaryFile opening failed.");
-#endif
+		DebugSystem::DebugLog(L"BinaryFile opening failed.");
 		assert(ifs);
 	}
 
@@ -140,9 +135,7 @@ void BinaryFileManager::SaveBinaryFile(const wstring fileName, const BinaryFile&
 	// エラー処理
 	if (!ifs)
 	{
-#if defined(MODE_DEBUG)
-		OutputDebugString(L"BinaryFile opening failed.");
-#endif
+		DebugSystem::DebugLog(L"BinaryFile opening failed.");
 		assert(ifs);
 	}
 }

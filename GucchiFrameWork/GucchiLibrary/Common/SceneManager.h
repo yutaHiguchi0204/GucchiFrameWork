@@ -23,6 +23,14 @@ namespace GucchiLibrary
 	class IScene
 	{
 	protected:
+		using Vector2    = DirectX::SimpleMath::Vector2;
+		using Vector3    = DirectX::SimpleMath::Vector3;
+		using Vector4    = DirectX::SimpleMath::Vector4;
+		using Color      = DirectX::SimpleMath::Color;
+		using Matrix     = DirectX::SimpleMath::Matrix;
+		using Quaternion = DirectX::SimpleMath::Quaternion;
+
+	protected:
 		// TODO: ‹¤’Êƒƒ“ƒo
 		std::unique_ptr<Object> skyDome_;		// “V‹…
 		std::unique_ptr<Camera> camera_;		// ƒJƒƒ‰

@@ -6,10 +6,9 @@
 
 // ヘッダファイルのインクルード
 #include "ParticleRenderer.h"
-#include <string>
 #include "../Common/Constant.h"
-#include "../Common/DebugSwitch.h"
 #include "../Common/DeviceResources.h"
+#include "../System/DebugSystem.h"
 #include "../Utility/BinaryFileManager.h"
 
 // 名前空間
@@ -52,30 +51,21 @@ void ParticleRenderer::Initialize()
 	// 頂点シェーダ作成
 	if (FAILED(device->CreateVertexShader(shaderVS.GetData(), shaderVS.GetSize(), NULL, vertexShader_.ReleaseAndGetAddressOf())))
 	{
-#if defined(MODE_DEBUG)
-		// エラー処理
-		OutputDebugString(L"CreateVertexShader Failed.");
-#endif
+		DebugSystem::DebugLog(L"CreateVertexShader Failed.");
 		return;
 	}
 
 	// ジオメトリシェーダ作成
 	if (FAILED(device->CreateGeometryShader(shaderGS.GetData(), shaderGS.GetSize(), NULL, geometryShader_.ReleaseAndGetAddressOf())))
 	{
-#if defined(MODE_DEBUG)
-		// エラー処理
-		OutputDebugString(L"CreateGeometryShader Failed.");
-#endif
+		DebugSystem::DebugLog(L"CreateGeometryShader Failed.");
 		return;
 	}
 
 	// ピクセルシェーダ作成
 	if (FAILED(device->CreatePixelShader(shaderPS.GetData(), shaderPS.GetSize(), NULL, pixelShader_.ReleaseAndGetAddressOf())))
 	{
-#if defined(MODE_DEBUG)
-		// エラー処理
-		OutputDebugString(L"CreatePixelShader Failed.");
-#endif
+		DebugSystem::DebugLog(L"CreatePixelShader Failed.");
 		return;
 	}
 
@@ -103,10 +93,7 @@ void ParticleRenderer::Initialize()
 	// コンスタントバッファの作成
 	if (FAILED(device->CreateBuffer(&cBuffer, nullptr, cBuffer_.ReleaseAndGetAddressOf())))
 	{
-#if defined(MODE_DEBUG)
-		// エラー処理
-		OutputDebugString(L"CreateBuffer Failed.");
-#endif
+		DebugSystem::DebugLog(L"CreateBuffer Failed.");
 		return;
 	}
 
@@ -121,10 +108,7 @@ void ParticleRenderer::Initialize()
 	// テクスチャサンプラーの作成
 	if (FAILED(device->CreateSamplerState(&sampler, sampler_.ReleaseAndGetAddressOf())))
 	{
-#if defined(MODE_DEBUG)
-		// エラー処理
-		OutputDebugString(L"Create sampler state failed.");
-#endif
+		DebugSystem::DebugLog(L"Create sampler state failed.");
 		return;
 	}
 }

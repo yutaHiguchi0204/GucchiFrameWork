@@ -6,11 +6,10 @@
 
 // ヘッダファイルのインクルード
 #include "Framework.h"
-#include <string>
 #include "../Common/Constant.h"
-#include "../Common/DebugSwitch.h"
 #include "../InputTools/KeyboardUtil.h"
 #include "../InputTools/MouseUtil.h"
+#include "../System/DebugSystem.h"
 #include "../Utility/MemoryLeakDetector.h"
 
 // 名前空間
@@ -348,30 +347,22 @@ void Framework::Clear()
 // メッセージ関連
 void Framework::OnActivated()
 {
-#if defined(MODE_DEBUG)
-	OutputDebugString(L"Framework is becoming active window.");
-#endif
+	DebugSystem::DebugLog(L"Framework is becoming active window.");
 }
 
 void Framework::OnDeactivated()
 {
-#if defined(MODE_DEBUG)
-	OutputDebugString(L"Framework is becoming background window.");
-#endif
+	DebugSystem::DebugLog(L"Framework is becoming background window.");
 }
 
 void Framework::OnSuspending()
 {
-#if defined(MODE_DEBUG)
-	OutputDebugString(L"Framework is being power-suspended (or minimized).");
-#endif
+	DebugSystem::DebugLog(L"Framework is being power-suspended (or minimized).");
 }
 
 void Framework::OnResuming()
 {
-#if defined(MODE_DEBUG)
-	OutputDebugString(L"Framework is being power-resumed (or returning from minimize).");
-#endif
+	DebugSystem::DebugLog(L"Framework is being power-resumed (or returning from minimize).");
 	timer_.ResetElapsedTime();
 }
 
@@ -382,9 +373,7 @@ void Framework::OnWindowSizeChanged(int width, int height)
 	if (!deviceResources.WindowSizeChanged(width, height))
 		return;
 
-#if defined(MODE_DEBUG)
-	OutputDebugString(L"Framework window is being resized.");
-#endif
+	DebugSystem::DebugLog(L"Framework window is being resized.");
 
 	CreateWindowSizeDependentResources();
 }
