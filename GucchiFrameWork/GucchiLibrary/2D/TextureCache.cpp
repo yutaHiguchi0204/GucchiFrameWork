@@ -50,7 +50,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-			DebugSystem::DebugLog(L"Texture loading failed.");
+			DebugSystem::DebugLog(L"Texture loading failed.", true);
 			assert(false);
 		}
 
@@ -60,7 +60,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-			DebugSystem::DebugLog(L"This resource is not texture.");
+			DebugSystem::DebugLog(L"This resource is not texture.", true);
 			assert(false);
 		}
 

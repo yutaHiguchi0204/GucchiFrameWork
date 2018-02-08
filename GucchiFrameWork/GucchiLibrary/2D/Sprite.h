@@ -8,6 +8,7 @@
 // ヘッダファイルのインクルード
 #include <vector>
 #include "TextureCache.h"
+#include "../Common/Element.h"
 #include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
@@ -19,11 +20,8 @@ namespace GucchiLibrary
 	// @use			テクスチャはTextureCacheによって管理される（SpriteFactory内）
 	// @use			SpriteRendererに登録することで描画可能（この時オーダー値を変えることで描画順を変更可能）
 	*/
-	class Sprite
+	class Sprite : public Element
 	{
-	private:
-		using Vector2 = DirectX::SimpleMath::Vector2;
-
 	private:
 		Texture*									texture_;				// テクスチャハンドル
 		Vector2										pos_;					// 位置
@@ -62,7 +60,7 @@ namespace GucchiLibrary
 		// @method		Update
 		// @content		更新処理
 		*/
-		void Update();
+		void Update() override;
 
 		/*
 		// @method		SetParent

@@ -18,6 +18,9 @@
 #include "Camera/Camera.h"
 #include "Camera/DefaultCamera.h"
 
+// 当たり判定
+#include "Collision/Collider.h"
+
 // マップチップ関連
 #include "MapTip/MapTip2D.h"
 #include "MapTip/MapTip3D.h"

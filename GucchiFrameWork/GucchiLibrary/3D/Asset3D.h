@@ -10,6 +10,7 @@
 #include <memory>
 #include <wrl/client.h>
 #include "../Camera/Camera.h"
+#include "../Common/Element.h"
 #include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
@@ -20,13 +21,8 @@ namespace GucchiLibrary
 	// @use			スプライトやモデルのテクスチャに使用
 	// @use			TextureCacheによって管理される
 	*/
-	class Asset3D
+	class Asset3D : public Element
 	{
-	private:
-		using Vector3 = DirectX::SimpleMath::Vector3;
-		using Matrix = DirectX::SimpleMath::Matrix;
-		using Quaternion = DirectX::SimpleMath::Quaternion;
-
 	public:
 		/*
 		// @content		ブレンドモード
@@ -116,7 +112,7 @@ namespace GucchiLibrary
 		// @method		Update
 		// @content		更新処理
 		*/
-		virtual void Update();
+		virtual void Update() override;
 
 		/*
 		// @method		DrawApply

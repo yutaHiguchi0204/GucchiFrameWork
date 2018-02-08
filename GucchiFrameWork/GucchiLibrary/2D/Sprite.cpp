@@ -57,6 +57,9 @@ Sprite::Sprite(const Sprite& sprite)
 ===============================================================*/
 void Sprite::Update()
 {
+	// 基底クラスの更新
+	Element::Update();
+
 	// 補間ステートの更新
 	interpolateDirector_->Update();
 }

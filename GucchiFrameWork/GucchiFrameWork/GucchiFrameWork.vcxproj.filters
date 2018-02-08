@@ -57,6 +57,9 @@
     <MeshContentTask Include="Resources\Assets\ModelData\skyDome.FBX">
       <Filter>Assets\Models</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Resources\Assets\ModelData\bomb.FBX">
+      <Filter>Assets\Models</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Particle.hlsli">

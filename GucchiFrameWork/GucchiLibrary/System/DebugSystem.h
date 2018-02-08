@@ -24,8 +24,9 @@ namespace GucchiLibrary
 		// @method		DebugLog（static）
 		// @content		ログ表示
 		// @param		メッセージ（wchar_t*）
+		// @param		エラーログかどうか（bool）	：	デフォルト（false）
 		*/
-		static void DebugLog(wchar_t* message)
+		static void DebugLog(wchar_t* message, bool error = false)
 		{
 #if defined(MODE_DEBUG)
 			// ログメッセージ
@@ -33,7 +34,8 @@ namespace GucchiLibrary
 
 			log << L"\n";
 			log << L"**************************************************\n";
-			log << L"Error: " << message << L"\n";
+			if (error) log << L"Error!: ";
+			log << message << L"\n";
 			log << L"**************************************************\n";
 			log << L"\n";
 
@@ -45,10 +47,11 @@ namespace GucchiLibrary
 		// @method		DebugLog（static）
 		// @content		ログ表示
 		// @param		メッセージ（wstring）
+		// @param		エラーログかどうか（bool）	：	デフォルト（false）
 		*/
-		static void DebugLog(std::wstring message)
+		static void DebugLog(std::wstring message, bool error = false)
 		{
-			DebugLog(message.c_str());
+			DebugLog(message.c_str(), error);
 		}
 	};
 }

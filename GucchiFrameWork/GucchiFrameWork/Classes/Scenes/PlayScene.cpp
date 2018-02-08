@@ -6,6 +6,7 @@
 
 // ヘッダファイルのインクルード
 #include "PlayScene.h"
+#include "InputTools/KeyboardUtil.h"
 
 // 名前空間
 using namespace DirectX;
@@ -25,6 +26,13 @@ void PlayScene::Initialize()
 	IScene::CommonInitialize();
 
 	// TODO: このシーンの初期化処理
+	test = objectFactory_.CreateObjectFromFile(L"bomb");
+	objectRenderer_.RegisterObject(test.get());
+
+	test->AddComponent<AABB>();
+
+	textRenderer_.RegisterText(L"test", L"component: true", Vector2(0, 0));
+	textRenderer_.SetAnchor(L"test", ANCHOR_LT);
 }
 
 /*==============================================================
@@ -38,6 +46,13 @@ void PlayScene::Update()
 	IScene::CommonUpdate();
 
 	// TODO: このシーンの更新処理
+
+	KeyboardUtil& keyboard = KeyboardUtil::GetInstance();
+	if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::Space))
+	{
+		test->RemoveComponent<AABB>();
+		textRenderer_.SetString(L"test", L"component: false");
+	}
 }
 
 /*==============================================================

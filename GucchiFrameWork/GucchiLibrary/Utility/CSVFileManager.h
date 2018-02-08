@@ -43,7 +43,7 @@ namespace GucchiLibrary
 			// ƒGƒ‰[ˆ—
 			if (!ifs)
 			{
-				DebugSystem::DebugLog(L"CSV file load failed.");
+				DebugSystem::DebugLog(L"CSV file load failed.", true);
 				assert(ifs);
 			}
 

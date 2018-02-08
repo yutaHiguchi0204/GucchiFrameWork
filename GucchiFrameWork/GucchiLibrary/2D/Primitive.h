@@ -6,11 +6,10 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <d3d11_1.h>
 #include <list>
 #include <map>
-#include <SimpleMath.h>
 #include <string>
+#include "../Common/Element.h"
 
 namespace GucchiLibrary
 {
@@ -18,12 +17,8 @@ namespace GucchiLibrary
 	// @class		Primitive クラス
 	// @content		プリミティブ
 	*/
-	class Primitive
+	class Primitive : public Element
 	{
-	private:
-		using Vector2	= DirectX::SimpleMath::Vector2;
-		using Color		= DirectX::SimpleMath::Color;
-
 	public:
 		/*
 		// @content		プリミティブタイプ
@@ -54,6 +49,12 @@ namespace GucchiLibrary
 
 		// デストラクタ
 		virtual ~Primitive() = default;
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
+		void Update() override { Element::Update(); }
 
 		/*
 		// @method		Entry

@@ -149,6 +149,7 @@
     <ClCompile Include="3D\ObjectRenderer.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Camera\DefaultCamera.cpp" />
+    <ClCompile Include="Collision\Collider.cpp" />
     <ClCompile Include="Collision\CollisionManager.cpp" />
     <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="Common\StepTimer.cpp" />
@@ -184,10 +185,13 @@
     <ClInclude Include="3D\ObjectRenderer.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Camera\DefaultCamera.h" />
+    <ClInclude Include="Collision\Collider.h" />
     <ClInclude Include="Collision\CollisionManager.h" />
+    <ClInclude Include="Common\Component.h" />
     <ClInclude Include="Common\Constant.h" />
     <ClInclude Include="Common\DebugSwitch.h" />
     <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Common\Element.h" />
     <ClInclude Include="Common\SceneManager.h" />
     <ClInclude Include="Common\SingletonDirector.h" />
     <ClInclude Include="Common\StepTimer.h" />

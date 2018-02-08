@@ -135,6 +135,9 @@
     <ClCompile Include="Utility\BenchMark.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Collision\Collider.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\DeviceResources.h">
@@ -266,6 +269,15 @@
     </ClInclude>
     <ClInclude Include="System\DebugSystem.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\Collider.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Component.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Element.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <d3d11_1.h>
-#include <SimpleMath.h>
 #include <string>
+#include "../Common/Element.h"
 
 namespace GucchiLibrary
 { 
@@ -17,12 +16,8 @@ namespace GucchiLibrary
 	// @content		テキストリソース
 	// @use			TextRendererに登録することで描画可能
 	*/
-	class Text
+	class Text : public Element
 	{
-	private:
-		using Vector2 = DirectX::SimpleMath::Vector2;
-		using Color = DirectX::SimpleMath::Color;
-
 	public:
 		static const float DEFAULT_FONT_SIZE;
 
@@ -48,6 +43,12 @@ namespace GucchiLibrary
 
 		// デストラクタ
 		virtual ~Text() = default;
+
+		/*
+		// @method		Update
+		// @content		更新処理
+		*/
+		void Update() override { Element::Update(); }
 
 		/*
 		// @method		SetFont

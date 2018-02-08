@@ -23,7 +23,7 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 {
 	if (dataTypeNum_ <= 0)
 	{
-		DebugSystem::DebugLog(L"No object type. Please configuration \"typeNum\".");
+		DebugSystem::DebugLog(L"No object type. Please configuration \"typeNum\".", true);
 		assert(false);
 	}
 

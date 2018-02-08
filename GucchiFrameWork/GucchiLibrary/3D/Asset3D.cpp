@@ -143,7 +143,7 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
-		DebugSystem::DebugLog(L"Create blend state is failed.");
+		DebugSystem::DebugLog(L"Create blend state is failed.", true);
 		assert(false);
 	}
 
@@ -157,6 +157,9 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 ===============================================================*/
 void Asset3D::Update()
 {
+	// 基底クラスの更新
+	Element::Update();
+
 	// 補間ステートの更新
 	interpolateDirector_->Update();
 
