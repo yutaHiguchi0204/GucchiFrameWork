@@ -25,6 +25,10 @@
 #include "MapTip/MapTip2D.h"
 #include "MapTip/MapTip3D.h"
 
+// 入力関連
+#include "InputTools/KeyboardUtil.h"
+#include "InputTools/MouseUtil.h"
+
 // システム
 #include "System/DebugSystem.h"
 

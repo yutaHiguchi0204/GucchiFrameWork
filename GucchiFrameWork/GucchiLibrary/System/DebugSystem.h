@@ -10,6 +10,7 @@
 #include <sstream>
 #include <string>
 #include "../Common/DebugSwitch.h"
+#include "../Common/DeviceResources.h"
 
 namespace GucchiLibrary
 {
@@ -52,6 +53,30 @@ namespace GucchiLibrary
 		static void DebugLog(std::wstring message, bool error = false)
 		{
 			DebugLog(message.c_str(), error);
+		}
+
+		/*
+		// @method		RasterizerToWireFrame（static）
+		// @content		ラスタライザによって描画されるプリミティブをワイヤーフレームにする
+		*/
+		static void RasterizerToWireFrame()
+		{
+			DeviceResources& deviceResources = DeviceResources::GetInstance();
+			ID3D11Device* device = deviceResources.GetD3DDevice();
+			ID3D11DeviceContext* context = deviceResources.GetD3DDeviceContext();
+
+			// ラスタライザ設定
+			D3D11_RASTERIZER_DESC rdc;
+			ZeroMemory(&rdc, sizeof(rdc));
+			rdc.CullMode = D3D11_CULL_NONE;
+			rdc.FillMode = D3D11_FILL_WIREFRAME;
+
+			// ラスタライザステートの作成
+			ID3D11RasterizerState* rasterizer = nullptr;
+			device->CreateRasterizerState(&rdc, &rasterizer);
+
+			// ラスタライザステートを設定
+			context->RSSetState(rasterizer);
 		}
 	};
 }

@@ -40,6 +40,9 @@
     <Filter Include="System">
       <UniqueIdentifier>{48b2a783-54f1-406a-ab50-2eaa8acfee4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Primitive">
+      <UniqueIdentifier>{4ce817c1-ca13-48cf-aac1-87a37a88dab8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\DeviceResources.cpp">
@@ -114,12 +117,6 @@
     <ClCompile Include="Utility\Action.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="2D\Primitive.cpp">
-      <Filter>2D</Filter>
-    </ClCompile>
-    <ClCompile Include="2D\PrimitiveRenderer.cpp">
-      <Filter>2D</Filter>
-    </ClCompile>
     <ClCompile Include="Particle\Emitter.cpp">
       <Filter>Particle</Filter>
     </ClCompile>
@@ -137,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="Collision\Collider.cpp">
       <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive\Primitive.cpp">
+      <Filter>Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive\PrimitiveRenderer.cpp">
+      <Filter>Primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,12 +243,6 @@
     <ClInclude Include="Utility\Action.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="2D\Primitive.h">
-      <Filter>2D</Filter>
-    </ClInclude>
-    <ClInclude Include="2D\PrimitiveRenderer.h">
-      <Filter>2D</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\MemoryLeakDetector.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -278,6 +275,12 @@
     </ClInclude>
     <ClInclude Include="Common\Element.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive\Primitive.h">
+      <Filter>Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive\PrimitiveRenderer.h">
+      <Filter>Primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,6 @@
 
 // ヘッダファイルのインクルード
 #include "PlayScene.h"
-#include "InputTools/KeyboardUtil.h"
 
 // 名前空間
 using namespace DirectX;
@@ -27,12 +26,16 @@ void PlayScene::Initialize()
 
 	// TODO: このシーンの初期化処理
 	test = objectFactory_.CreateObjectFromFile(L"bomb");
+	test->SetTranslate(Vector3(0, -1.5f, 0));
 	objectRenderer_.RegisterObject(test.get());
 
 	test->AddComponent<AABB>();
 
 	textRenderer_.RegisterText(L"test", L"component: true", Vector2(0, 0));
 	textRenderer_.SetAnchor(L"test", ANCHOR_LT);
+
+	pri = PrimitiveFactory::CreateSphere(test->GetBoundingSphere(), 16, Color(0, 1, 0, 1));
+	primitiveRenderer_.RegisterPrimitive(pri.get());
 }
 
 /*==============================================================

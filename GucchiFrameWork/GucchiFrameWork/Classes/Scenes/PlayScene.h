@@ -14,6 +14,7 @@ class PlayScene : public GucchiLibrary::IScene
 private:
 	// TODO: PlayScene‚Ìƒƒ“ƒo
 	std::unique_ptr<GucchiLibrary::Object> test;
+	std::unique_ptr<GucchiLibrary::Primitive> pri;
 
 public:
 	PlayScene() = default;

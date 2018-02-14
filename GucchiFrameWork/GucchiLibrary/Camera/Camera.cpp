@@ -25,7 +25,7 @@ Camera::Camera(int width, int height)
 	// プロジェクションの設定
 	proj_.projMat	= Matrix::Identity;
 	proj_.fov		= XMConvertToRadians(60.0f);
-	proj_.aspect	= (float)width / height;
+	proj_.aspect	= static_cast<float>(width) / height;
 	proj_.nearClip	= 0.1f;
 	proj_.farClip	= 1000.0f;
 }

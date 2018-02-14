@@ -136,8 +136,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="2D\Primitive.cpp" />
-    <ClCompile Include="2D\PrimitiveRenderer.cpp" />
     <ClCompile Include="2D\Sprite.cpp" />
     <ClCompile Include="2D\SpriteRenderer.cpp" />
     <ClCompile Include="2D\Text.cpp" />
@@ -166,14 +164,14 @@
     <ClCompile Include="Particle\Emitter.cpp" />
     <ClCompile Include="Particle\Particle.cpp" />
     <ClCompile Include="Particle\ParticleRenderer.cpp" />
+    <ClCompile Include="Primitive\Primitive.cpp" />
+    <ClCompile Include="Primitive\PrimitiveRenderer.cpp" />
     <ClCompile Include="Sound\ADX2Le.cpp" />
     <ClCompile Include="Utility\Action.cpp" />
     <ClCompile Include="Utility\BenchMark.cpp" />
     <ClCompile Include="Utility\BinaryFileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="2D\Primitive.h" />
-    <ClInclude Include="2D\PrimitiveRenderer.h" />
     <ClInclude Include="2D\Sprite.h" />
     <ClInclude Include="2D\SpriteRenderer.h" />
     <ClInclude Include="2D\Text.h" />
@@ -212,6 +210,8 @@
     <ClInclude Include="Particle\Emitter.h" />
     <ClInclude Include="Particle\Particle.h" />
     <ClInclude Include="Particle\ParticleRenderer.h" />
+    <ClInclude Include="Primitive\Primitive.h" />
+    <ClInclude Include="Primitive\PrimitiveRenderer.h" />
     <ClInclude Include="Sound\ADX2Le.h" />
     <ClInclude Include="Sound\SoundManager.h" />
     <ClInclude Include="System\DebugSystem.h" />

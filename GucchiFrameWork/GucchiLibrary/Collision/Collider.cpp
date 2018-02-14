@@ -16,7 +16,7 @@ using namespace GucchiLibrary;
 // @param		要素（Element*）
 // @return		なし
 ===============================================================*/
-void Segment::Update(Element* element)
+void SegmentCollider::Update(Element* element)
 {
 	DebugSystem::DebugLog(L"Check segment.");
 }
@@ -26,7 +26,7 @@ void Segment::Update(Element* element)
 // @param		要素（Element*）
 // @return		なし
 ===============================================================*/
-void Sphere::Update(Element* element)
+void SphereCollider::Update(Element* element)
 {
 	DebugSystem::DebugLog(L"Check sphere.");
 }
@@ -36,7 +36,7 @@ void Sphere::Update(Element* element)
 // @param		要素（Element*）
 // @return		なし
 ===============================================================*/
-void Capsule::Update(Element* element)
+void CapsuleCollider::Update(Element* element)
 {
 	DebugSystem::DebugLog(L"Check capsule.");
 }
@@ -46,7 +46,7 @@ void Capsule::Update(Element* element)
 // @param		要素（Element*）
 // @return		なし
 ===============================================================*/
-void Plane::Update(Element* element)
+void PlaneCollider::Update(Element* element)
 {
 	DebugSystem::DebugLog(L"Check plane.");
 }
@@ -56,7 +56,7 @@ void Plane::Update(Element* element)
 // @param		要素（Element*）
 // @return		なし
 ===============================================================*/
-void Triangle::Update(Element* element)
+void TriangleCollider::Update(Element* element)
 {
 	DebugSystem::DebugLog(L"Check triangle.");
 }

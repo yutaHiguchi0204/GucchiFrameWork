@@ -147,7 +147,6 @@ void ParticleRenderer::Update()
 void ParticleRenderer::Draw()
 {
 	DeviceResources& deviceResources	= DeviceResources::GetInstance();
-	ID3D11Device* device				= deviceResources.GetD3DDevice();
 	ID3D11DeviceContext* context		= deviceResources.GetD3DDeviceContext();
 	CommonStates* states				= deviceResources.GetCommonStates();
 

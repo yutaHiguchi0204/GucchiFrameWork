@@ -66,6 +66,20 @@ namespace GucchiLibrary
 		*/
 		void AddChild(Object* object);
 
+		/*
+		// @method		GetBoundingBox
+		// @content		オブジェクトのバウンディングボックスを取得
+		// @return		バウンディングボックス（Vector3）
+		*/
+		Vector3 GetBoundingBox();
+
+		/*
+		// @method		GetBoundingSphere
+		// @content		オブジェクトのバウンディングスフィアを取得
+		// @return		バウンディングスフィア（float）
+		*/
+		float GetBoundingSphere();
+
 		/* アクセッサ */
 
 		void SetModel(DirectX::Model* model) { model_ = model; }

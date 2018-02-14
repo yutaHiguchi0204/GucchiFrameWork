@@ -37,10 +37,10 @@ namespace GucchiLibrary
 	};
 
 	/*
-	// @class		Segment クラス
+	// @class		SegmentCollider クラス
 	// @content		線分
 	*/
-	class Segment : public Collider
+	class SegmentCollider : public Collider
 	{
 	public:
 		Vector3 start_;			// 始点
@@ -56,10 +56,10 @@ namespace GucchiLibrary
 	};
 
 	/*
-	// @class		Sphere クラス
+	// @class		SphereCollider クラス
 	// @content		球
 	*/
-	class Sphere : public Collider
+	class SphereCollider : public Collider
 	{
 	public:
 		Vector3 center_;		// 中心座標
@@ -67,7 +67,7 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		Sphere() : radius_(1.0f) {}
+		SphereCollider() : radius_(1.0f) {}
 
 		/*
 		// @method		Update
@@ -78,18 +78,18 @@ namespace GucchiLibrary
 	};
 
 	/*
-	// @class		Capsule クラス
+	// @class		CapsuleCollider クラス
 	// @content		カプセル
 	*/
-	class Capsule : public Collider
+	class CapsuleCollider : public Collider
 	{
 	public:
-		Segment segment_;		// 芯線
+		SegmentCollider segment_;		// 芯線
 		float radius_;			// 半径
 
 	public:
 		// コンストラクタ
-		Capsule() : radius_(1.0f)
+		CapsuleCollider() : radius_(1.0f)
 		{
 			segment_.start_ = Vector3(0.f, 0.f, 0.f);
 			segment_.end_ = Vector3(0.f, 1.f, 0.f);
@@ -104,10 +104,10 @@ namespace GucchiLibrary
 	};
 
 	/*
-	// @class		Plane クラス
+	// @class		PlaneCollider クラス
 	// @content		平面
 	*/
-	class Plane : public Collider
+	class PlaneCollider : public Collider
 	{
 	public:
 		Vector3 normal_;		// 法線ベクトル
@@ -115,7 +115,7 @@ namespace GucchiLibrary
 
 	public:
 		// コンストラクタ
-		Plane() : distance_(0.f) {}
+		PlaneCollider() : distance_(0.f) {}
 
 		/*
 		// @method		Update
@@ -126,10 +126,10 @@ namespace GucchiLibrary
 	};
 
 	/*
-	// @class		Triangle クラス
+	// @class		TriangleCollider クラス
 	// @content		三角形（反時計回り、法線付き）
 	*/
-	class Triangle : public Collider
+	class TriangleCollider : public Collider
 	{
 	public:
 		Vector3 p0_;			// １つ目の頂点
