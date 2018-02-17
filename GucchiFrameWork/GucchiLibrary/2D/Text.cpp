@@ -14,19 +14,19 @@ using namespace GucchiLibrary;
 using namespace std;
 
 // 静的メンバの定義
-const float Text::DEFAULT_FONT_SIZE = 18.0f;		// フォントサイズの初期設定（フォントを新規で作成する際は、フォントサイズを"18"で作ってください）
+const wstring	Text::DEFAULT_FONT		= L"default_font";		// デフォルトフォント
+const float		Text::DEFAULT_FONT_SIZE = 18.0f;				// フォントサイズの初期設定（フォントを新規で作成する際は、フォントサイズを"18"で作ってください）
 
 // メンバ関数の定義
 
 // コンストラクタ
-Text::Text(wstring str, const Vector2& pos, const Color& color, float fontSize, wstring font)
+Text::Text(const wstring& str, const Vector2& pos, const Color& color, float fontSize, const wstring& font)
 	: str_(str)
 	, pos_(pos)
 	, anchor_(ANCHOR_LM)
 	, color_(color)
 	, fontSize_(fontSize)
 	, font_(font)
-	, isActive_(true)
 {
 }
 
@@ -36,7 +36,7 @@ Text::Text(wstring str, const Vector2& pos, const Color& color, float fontSize, 
 //				既存のスプライトフォントをリセットする必要があるため、別途処理を行います
 // @return		なし
 ===============================================================*/
-void Text::SetFont(const wstring font)
+void Text::SetFont(const wstring& font)
 {
 	font_ = font;
 

@@ -34,7 +34,7 @@ namespace GucchiLibrary
 		// @param		データの種類数（int）
 		// @param		チップの属性（TIP_TYPE[]）
 		*/
-		MapTip2D(std::vector<std::vector<int>> data, const Vector2& spriteSize, std::wstring textureName, int typeNum, TipData::TIP_TYPE* type);
+		MapTip2D(std::vector<std::vector<int>> data, const Vector2& spriteSize, const std::wstring& textureName, int typeNum, TipData::TIP_TYPE* type);
 
 		/*
 		// @method		コンストラクタ（個々のテクスチャを読み込む）
@@ -56,7 +56,14 @@ namespace GucchiLibrary
 		void ResetData() override;
 
 		/*
-		// @method		ChangeTip（pure）
+		// @method		SetActive
+		// @content		マップのアクティブ状態の変更
+		// @param		アクティブ状態（bool）
+		*/
+		void SetActive(bool active) override;
+
+		/*
+		// @method		ChangeTip
 		// @content		マップチップデータの変更
 		// @param		変えたいデータの番号x（int）
 		// @param		変えたいデータの番号y（int）
@@ -117,6 +124,7 @@ namespace GucchiLibrary
 		inline const Vector2& GetSpritePos(int noX, int noY) const							{ return sprite_[noY][noX].GetPos(); }
 		inline float GetSpriteScale(int noX, int noY) const									{ return sprite_[noY][noX].GetScale(); }
 		inline float GetSpriteAngle(int noX, int noY) const									{ return sprite_[noY][noX].GetAngle(); }
+		inline bool GetSpriteActive(int noX, int noY) const									{ return sprite_[noY][noX].GetActive(); }
 		inline InterpolateDirector* GetSpriteInterpolateDirector(int noX, int noY) const	{ return sprite_[noY][noX].GetInterpolateDirector(); }
 	};
 }

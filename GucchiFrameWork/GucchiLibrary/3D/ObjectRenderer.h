@@ -7,11 +7,9 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <Effects.h>
 #include <list>
 #include <memory>
 #include <string>
-#include <wrl/client.h>
 #include "Object.h"
 
 namespace GucchiLibrary
@@ -115,7 +113,7 @@ namespace GucchiLibrary
 		// @param		モデルファイル名（拡張子を除く）（wstring）
 		// @return		オブジェクト（unique_ptr<Object>）
 		*/
-		std::unique_ptr<Object> CreateObjectFromFile(const std::wstring fileName);
+		std::unique_ptr<Object> CreateObjectFromFile(const std::wstring& fileName);
 
 		/* アクセッサ */
 

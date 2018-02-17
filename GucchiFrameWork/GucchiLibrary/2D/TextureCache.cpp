@@ -25,7 +25,7 @@ using namespace std;
 // @param		ファイル名（wstring）
 // @return		テクスチャ（Texture*）
 ===============================================================*/
-Texture* TextureCache::LoadTexture(const wstring fileName)
+Texture* TextureCache::LoadTexture(const wstring& fileName)
 {
 	// すでに読み込み済みなら読み込まない
 	if (textures_.count(fileName) == 0)

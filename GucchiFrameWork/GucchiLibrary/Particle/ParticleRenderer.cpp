@@ -132,7 +132,7 @@ void ParticleRenderer::Update()
 	// エミッター更新
 	for (auto& emitter : emitter_)
 	{
-		if (emitter.second)
+		if (emitter.second && emitter.second->GetActive())
 		{
 			emitter.second->Update();
 		}
@@ -197,7 +197,7 @@ void ParticleRenderer::Draw()
 	// エミッターの描画
 	for (auto& emitter : emitter_)
 	{
-		if (emitter.second)
+		if (emitter.second && emitter.second->GetActive())
 		{
 			emitter.second->Draw();
 		}

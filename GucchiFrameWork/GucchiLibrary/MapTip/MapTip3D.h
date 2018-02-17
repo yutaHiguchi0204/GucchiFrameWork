@@ -48,7 +48,14 @@ namespace GucchiLibrary
 		void ResetData() override;
 
 		/*
-		// @method		ChangeTip（pure）
+		// @method		SetActive
+		// @content		マップのアクティブ状態の変更
+		// @param		アクティブ状態（bool）
+		*/
+		void SetActive(bool active) override;
+
+		/*
+		// @method		ChangeTip
 		// @content		マップチップデータの変更
 		// @param		変えたいデータの番号x（int）
 		// @param		変えたいデータの番号y（int）

@@ -86,7 +86,6 @@ namespace GucchiLibrary
 
 		BLEND_MODE									blendMode_;					// ブレンドモード
 
-		bool										isActive_;					// アクティブ状態
 		bool										isUseQuaternion_;			// クォータニオンを使用するかどうか
 
 		std::unique_ptr<InterpolateDirector>		interpolateDirector_;		// 補間ステート
@@ -127,7 +126,6 @@ namespace GucchiLibrary
 		void SetRotate(const Vector3& rot)								{ rot_ = rot; }
 		void SetTranslate(const Vector3& trans)							{ trans_ = trans; }
 		void SetBlendMode(BLEND_MODE mode)								{ blendMode_ = mode; }
-		void SetActive(bool active)										{ isActive_ = active; }
 		void SetUseQuaternion(bool use)									{ isUseQuaternion_ = use; }
 
 		inline DirectX::EffectFactory* GetEffectFactory() const			{ return effectFactory_.get(); }
@@ -138,7 +136,6 @@ namespace GucchiLibrary
 		inline const Vector3& GetTranslate() const						{ return trans_; }
 		inline const Matrix& GetWorld() const							{ return world_; }
 		inline BLEND_MODE GetBlendMode() const							{ return blendMode_; }
-		inline bool GetActive()	const									{ return isActive_; }
 		inline bool GetUseQuaternion() const							{ return isUseQuaternion_; }
 		inline InterpolateDirector* GetInterpolateDirector() const		{ return interpolateDirector_.get(); }
 
@@ -157,7 +154,6 @@ namespace GucchiLibrary
 			world_                 = asset.world_;
 			blendStateSubtractive_ = asset.blendStateSubtractive_;
 			blendMode_             = asset.blendMode_;
-			isActive_              = asset.isActive_;
 			isUseQuaternion_       = asset.isUseQuaternion_;
 
 			return (*this);
@@ -173,7 +169,6 @@ namespace GucchiLibrary
 				trans_				== asset.trans_				&& 
 				world_				== asset.world_				&& 
 				blendMode_			== asset.blendMode_			&& 
-				isActive_			== asset.isActive_			&& 
 				isUseQuaternion_	== asset.isUseQuaternion_;
 		}
 	};

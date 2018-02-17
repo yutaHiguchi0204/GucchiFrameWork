@@ -86,29 +86,32 @@ void Emitter::Draw()
 
 	for (auto& particle : particle_)
 	{
-		// ブレンドステート設定
-		Asset3D::SetBlendState(particle->GetBlendMode());
-
-		// テクスチャ設定
-		context->PSSetShaderResources(0, 1, texture_->GetShaderResourceView().GetAddressOf());
-
-		// 座標の設定（ローカル＋エミッター）
-		VertexPositionColorTexture vertex = particle->GetVertexNow();
-		vertex.position = vertex.position + pos_;
-
-		// 親モデルが設定されていたら親モデルの座標も足す
-		if (parentObject_)
+		if (particle->GetActive())
 		{
-			Object* p = parentObject_;
-			while (p != nullptr)
-			{
-				vertex.position = vertex.position + p->GetTranslate();
-				p = p->GetParent();
-			}
-		}
+			// ブレンドステート設定
+			Asset3D::SetBlendState(particle->GetBlendMode());
 
-		// パーティクルの描画
-		primitiveBatch_->Draw(D3D_PRIMITIVE_TOPOLOGY_POINTLIST, &vertex, 1);
+			// テクスチャ設定
+			context->PSSetShaderResources(0, 1, texture_->GetShaderResourceView().GetAddressOf());
+
+			// 座標の設定（ローカル＋エミッター）
+			VertexPositionColorTexture vertex = particle->GetVertexNow();
+			vertex.position = vertex.position + pos_;
+
+			// 親モデルが設定されていたら親モデルの座標も足す
+			if (parentObject_)
+			{
+				Object* p = parentObject_;
+				while (p != nullptr)
+				{
+					vertex.position = vertex.position + p->GetTranslate();
+					p = p->GetParent();
+				}
+			}
+
+			// パーティクルの描画
+			primitiveBatch_->Draw(D3D_PRIMITIVE_TOPOLOGY_POINTLIST, &vertex, 1);
+		}
 	}
 
 	// バッチ処理終了
@@ -135,7 +138,7 @@ void Emitter::Entry(float exisTime, VertexPositionColorTexture vertexDataStart, 
 // @param		テクスチャファイル名（wstring）
 // @return		なし
 ===============================================================*/
-void Emitter::LoadTexture(const wstring fileName)
+void Emitter::LoadTexture(const wstring& fileName)
 {
 	TextureCache& textureCache = TextureCache::GetInstance();
 	texture_ = textureCache.LoadTexture(fileName);

@@ -125,7 +125,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @result		補間結果（T）
 		*/
-		T GetResult(std::wstring action)
+		T GetResult(const std::wstring& action)
 		{
 			if (state_[action] != INTERPOLATE_STATE::FINISH)
 			{
@@ -142,7 +142,7 @@ namespace GucchiLibrary
 		// @param		補間アクション名（wstring）
 		// @result		補間結果（T）
 		*/
-		Vector3 GetResult(std::wstring action, const Vector3& axis)
+		Vector3 GetResult(const std::wstring& action, const Vector3& axis)
 		{
 			if (state_[action] != INTERPOLATE_STATE::FINISH)
 			{
@@ -176,7 +176,7 @@ namespace GucchiLibrary
 		// @content		補間状態の取得（アクションが無ければNONEを返す）
 		// @result		補間状態（INTERPOLATE_STATE）
 		*/
-		INTERPOLATE_STATE GetState(std::wstring action)
+		INTERPOLATE_STATE GetState(const std::wstring& action)
 		{
 			if (state_.count(action) == 0)
 			{
@@ -202,9 +202,9 @@ namespace GucchiLibrary
 
 		/* アクセッサ */
 
-		void SetState(std::wstring action, INTERPOLATE_STATE state) { state_[action] = state; }
+		void SetState(const std::wstring& action, INTERPOLATE_STATE state)	{ state_[action] = state; }
 
-		inline float GetTimer(std::wstring action) { return timer_[action]; }
+		inline float GetTimer(const std::wstring& action)					{ return timer_[action]; }
 
 	private:
 		/*
@@ -218,7 +218,7 @@ namespace GucchiLibrary
 		// @param		補間ステート（InterpolateState<T>*）
 		// @result		補間値（T）
 		*/
-		T Interpolate(INTERPOLATE_MODE mode, const T& start, const T& end, float time, std::wstring action, InterpolateState<T>* state)
+		T Interpolate(INTERPOLATE_MODE mode, const T& start, const T& end, float time, const std::wstring& action, InterpolateState<T>* state)
 		{
 			// 補間中でないなら時間等を初期化
 			if (state->GetState(action) == INTERPOLATE_STATE::NONE)
@@ -255,7 +255,7 @@ namespace GucchiLibrary
 		// @param		補間ステート（InterpolateState<Vector3>*）
 		// @result		補間値（Vector3）
 		*/
-		Vector3 Interpolate(INTERPOLATE_MODE mode, const Vector3& start, const Vector3& end, const Vector3& axis, float time, std::wstring action, InterpolateState<Vector3>* state)
+		Vector3 Interpolate(INTERPOLATE_MODE mode, const Vector3& start, const Vector3& end, const Vector3& axis, float time, const std::wstring& action, InterpolateState<Vector3>* state)
 		{
 			// 補間中でないなら時間等を初期化
 			if (state->GetState(action) == INTERPOLATE_STATE::NONE)

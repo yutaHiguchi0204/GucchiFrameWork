@@ -53,7 +53,7 @@ namespace GucchiLibrary
 		// @param		ファイル名（wstring）
 		// @return		バイナリファイル（BinaryFile）
 		*/
-		static BinaryFile LoadBinaryFile(const std::wstring fileName);
+		static BinaryFile LoadBinaryFile(const std::wstring& fileName);
 
 		/*
 		// @method		LoadBinaryFile（static）
@@ -61,7 +61,7 @@ namespace GucchiLibrary
 		// @param		ファイル名（wstring）
 		// @return		バイナリファイル（BinaryFile）
 		*/
-		static BinaryFile LoadBinaryFile(const std::wstring fileName, int part);
+		static BinaryFile LoadBinaryFile(const std::wstring& fileName, int part);
 
 		/*
 		// @method		SaveBinaryFile（static）
@@ -69,6 +69,6 @@ namespace GucchiLibrary
 		// @param		ファイル名（wstring）
 		// @param		バイナリデータ（BinaryFile）
 		*/
-		static void SaveBinaryFile(const std::wstring fileName, const BinaryFile& data);
+		static void SaveBinaryFile(const std::wstring& fileName, const BinaryFile& data);
 	};
 }

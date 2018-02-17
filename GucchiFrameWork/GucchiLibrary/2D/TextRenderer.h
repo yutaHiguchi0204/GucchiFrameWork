@@ -43,7 +43,7 @@ namespace GucchiLibrary
 		// @param		フォントサイズ（float）　：　デフォルト（DEFAULT_FONT_SIZE）
 		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（L"default_font"）
 		*/
-		void RegisterText(std::wstring name, std::wstring str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = Text::DEFAULT_FONT_SIZE, std::wstring font = L"default_font");
+		void RegisterText(const std::wstring& name, const std::wstring& str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = Text::DEFAULT_FONT_SIZE, const std::wstring& font = Text::DEFAULT_FONT);
 
 		/*
 		// @method		RegisterText
@@ -51,7 +51,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		登録するテキスト（Text*）
 		*/
-		void RegisterText(std::wstring name, Text* text);
+		void RegisterText(const std::wstring& name, Text* text);
 
 		/*
 		// @method		SetString
@@ -59,7 +59,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		文字列（wstring）
 		*/
-		void SetString(std::wstring name, std::wstring str);
+		void SetString(const std::wstring& name, const std::wstring& str);
 
 		/*
 		// @method		SetPos
@@ -67,7 +67,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		表示位置（Vector2）
 		*/
-		void SetPos(std::wstring name, const Vector2& pos);
+		void SetPos(const std::wstring& name, const Vector2& pos);
 
 		/*
 		// @method		SetAnchor
@@ -75,7 +75,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		アンカーポイント（Vector2）
 		*/
-		void SetAnchor(std::wstring name, const Vector2& anchor);
+		void SetAnchor(const std::wstring& name, const Vector2& anchor);
 
 		/*
 		// @method		SetColor
@@ -83,7 +83,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		色（Color）
 		*/
-		void SetColor(std::wstring name, const Color& color);
+		void SetColor(const std::wstring& name, const Color& color);
 
 		/*
 		// @method		SetFontSize
@@ -91,7 +91,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		フォントサイズ（float）
 		*/
-		void SetFontSize(std::wstring name, float fontSize);
+		void SetFontSize(const std::wstring& name, float fontSize);
 
 		/*
 		// @method		SetFont
@@ -99,7 +99,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		フォント（wstring）
 		*/
-		void SetFont(std::wstring name, std::wstring font);
+		void SetFont(const std::wstring& name, const std::wstring& font);
 
 		/*
 		// @method		SetActive
@@ -107,7 +107,7 @@ namespace GucchiLibrary
 		// @param		テキスト名（wstring）
 		// @param		アクティブ状態（bool）
 		*/
-		void SetActive(std::wstring name, bool active);
+		void SetActive(const std::wstring& name, bool active);
 
 		/*
 		// @method		Draw

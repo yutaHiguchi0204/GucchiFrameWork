@@ -32,7 +32,9 @@ void PlayScene::Initialize()
 	test->AddComponent<AABB>();
 
 	textRenderer_.RegisterText(L"test", L"component: true", Vector2(0, 0));
+	textRenderer_.RegisterText(L"test2", L"collider view: true", Vector2(0, 32));
 	textRenderer_.SetAnchor(L"test", ANCHOR_LT);
+	textRenderer_.SetAnchor(L"test2", ANCHOR_LT);
 
 	pri = PrimitiveFactory::CreateSphere(test->GetBoundingSphere(), 16, Color(0, 1, 0, 1));
 	primitiveRenderer_.RegisterPrimitive(pri.get());
@@ -55,6 +57,10 @@ void PlayScene::Update()
 	{
 		test->RemoveComponent<AABB>();
 		textRenderer_.SetString(L"test", L"component: false");
+	}
+	else if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::V))
+	{
+		
 	}
 }
 

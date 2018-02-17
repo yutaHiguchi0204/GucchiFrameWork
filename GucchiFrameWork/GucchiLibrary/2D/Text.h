@@ -19,7 +19,8 @@ namespace GucchiLibrary
 	class Text : public Element
 	{
 	public:
-		static const float DEFAULT_FONT_SIZE;
+		static const std::wstring	DEFAULT_FONT;
+		static const float			DEFAULT_FONT_SIZE;
 
 	private:
 		std::wstring	str_;			// テキスト
@@ -28,7 +29,6 @@ namespace GucchiLibrary
 		Color			color_;			// 色
 		float			fontSize_;		// フォントサイズ
 		std::wstring	font_;			// 使用フォント
-		bool			isActive_;		// アクティブ状態
 
 	public:
 		/*
@@ -39,7 +39,7 @@ namespace GucchiLibrary
 		// @param		フォントサイズ（float）　：　デフォルト（DEFAULT_FONT_SIZE）
 		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（L"default_font"）
 		*/
-		Text(std::wstring str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = DEFAULT_FONT_SIZE, std::wstring font = L"default_font");
+		Text(const std::wstring& str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = DEFAULT_FONT_SIZE, const std::wstring& font = L"default_font");
 
 		// デストラクタ
 		virtual ~Text() = default;
@@ -55,23 +55,21 @@ namespace GucchiLibrary
 		// @content		フォントの変更
 		// @param		スプライトフォントハンドル（wstring）
 		*/
-		void SetFont(std::wstring font);
+		void SetFont(const std::wstring& font);
 
 		/* アクセッサ */
 
-		void SetString(std::wstring str)			{ str_ = str; }
-		void SetPos(const Vector2& pos)				{ pos_ = pos; }
-		void SetAnchor(const Vector2& anchor)		{ anchor_ = anchor; }
-		void SetColor(const Color& color)			{ color_ = color; }
-		void SetFontSize(float fontSize)			{ fontSize_ = fontSize; }
-		void SetActive(bool active)					{ isActive_ = active; }
+		void SetString(const std::wstring& str)			{ str_ = str; }
+		void SetPos(const Vector2& pos)					{ pos_ = pos; }
+		void SetAnchor(const Vector2& anchor)			{ anchor_ = anchor; }
+		void SetColor(const Color& color)				{ color_ = color; }
+		void SetFontSize(float fontSize)				{ fontSize_ = fontSize; }
 
-		inline std::wstring GetString() const		{ return str_; }
-		inline const Vector2& GetPos() const		{ return pos_; }
-		inline const Vector2& GetAnchor() const		{ return anchor_; }
-		inline const Color& GetColor() const		{ return color_; }
-		inline float GetFontSize() const			{ return fontSize_; }
-		inline std::wstring GetFont() const			{ return font_; }
-		inline bool GetActive() const				{ return isActive_; }
+		inline const std::wstring& GetString() const	{ return str_; }
+		inline const Vector2& GetPos() const			{ return pos_; }
+		inline const Vector2& GetAnchor() const			{ return anchor_; }
+		inline const Color& GetColor() const			{ return color_; }
+		inline float GetFontSize() const				{ return fontSize_; }
+		inline const std::wstring& GetFont() const		{ return font_; }
 	};
 }

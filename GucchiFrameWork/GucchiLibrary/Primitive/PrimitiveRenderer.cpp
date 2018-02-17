@@ -84,26 +84,29 @@ void PrimitiveRenderer::Draw()
 	// 描画処理
 	for (auto& primitive : primitiveList_)
 	{
-		// プリミティブタイプ
-		Primitive::PRIMITIVE_TYPE type = primitive->GetType();
-
-		// ２Ｄ変換
-		Primitive2D* primitive2D = dynamic_cast<Primitive2D*>(primitive);
-
-		// ２Ｄ描画
-		if (primitive2D)
+		if (primitive->GetActive())
 		{
-			Draw2D(primitive2D, type);
-			continue;
-		}
+			// プリミティブタイプ
+			Primitive::PRIMITIVE_TYPE type = primitive->GetType();
 
-		// ３Ｄ変換
-		Primitive3D* primitive3D = dynamic_cast<Primitive3D*>(primitive);
+			// ２Ｄ変換
+			Primitive2D* primitive2D = dynamic_cast<Primitive2D*>(primitive);
 
-		// ３Ｄ描画
-		if (primitive3D)
-		{
-			Draw3D(primitive3D);
+			// ２Ｄ描画
+			if (primitive2D)
+			{
+				Draw2D(primitive2D, type);
+				continue;
+			}
+
+			// ３Ｄ変換
+			Primitive3D* primitive3D = dynamic_cast<Primitive3D*>(primitive);
+
+			// ３Ｄ描画
+			if (primitive3D)
+			{
+				Draw3D(primitive3D);
+			}
 		}
 	}
 }
@@ -522,7 +525,7 @@ unique_ptr<Primitive3D> PrimitiveFactory::CreateBox(const Vector3& size, const C
 // @param		中心座標（Vector2）、半径（float）、分割数（int）、色（Color）、塗りつぶすかどうか（bool）
 // @return		プリミティブ（unique_ptr<Primitive>）
 ===============================================================*/
-std::unique_ptr<Primitive> PrimitiveFactory::CreateCircle(const Vector2& center, float radius, int div, const Color& color, bool isFill)
+unique_ptr<Primitive> PrimitiveFactory::CreateCircle(const Vector2& center, float radius, int div, const Color& color, bool isFill)
 {
 	unique_ptr<Circle> primitive = make_unique<Circle>();
 

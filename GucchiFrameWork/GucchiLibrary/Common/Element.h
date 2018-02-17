@@ -28,11 +28,15 @@ namespace GucchiLibrary
 		using Color = DirectX::SimpleMath::Color;
 
 	protected:
-		std::list<Component*> componentList_;			// コンポーネントリスト
+		std::list<Component*>	componentList_;			// コンポーネントリスト
+		bool					isActive_;				// アクティブ状態
 
 	public:
 		// コンストラクタ
-		Element() = default;
+		Element()
+			: isActive_(true)
+		{
+		}
 
 		// デストラクタ
 		virtual ~Element()
@@ -115,5 +119,11 @@ namespace GucchiLibrary
 
 			componentList_.clear();
 		}
+
+		/* アクセッサ */
+
+		virtual void SetActive(bool active)		{ isActive_ = active; }
+
+		inline virtual bool GetActive()	const	{ return isActive_; }
 	};
 }

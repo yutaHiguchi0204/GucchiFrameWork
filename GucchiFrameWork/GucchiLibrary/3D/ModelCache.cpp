@@ -21,7 +21,7 @@ using namespace std;
 // @param		ファイル名（wstring）、エフェクトファクトリ（EffectFactory*）
 // @return		モデル（Model*）
 ===============================================================*/
-Model* ModelCache::LoadModel(const wstring cmoFileName, EffectFactory* factory)
+Model* ModelCache::LoadModel(const wstring& cmoFileName, EffectFactory* factory)
 {
 	// すでに読み込み済みなら読み込まない
 	if (models_.count(cmoFileName) == 0)

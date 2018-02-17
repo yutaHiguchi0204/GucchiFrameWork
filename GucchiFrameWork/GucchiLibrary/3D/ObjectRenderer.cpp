@@ -131,7 +131,7 @@ void ObjectRenderer::DrawObject(Object* object)
 // @param		親オブジェクト（Object*）
 // @return		最終位置（Matrix）
 ===============================================================*/
-DirectX::SimpleMath::Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
+ObjectRenderer::Matrix ObjectRenderer::GetParentObjectMatrix(Object* object)
 {
 	Matrix worldMat = object->GetWorld();
 
@@ -202,7 +202,7 @@ void ObjectRenderer::DisableLighting(Model* model)
 // @param		ファイル名（wstring）
 // @return		オブジェクト（unique_ptr<Object>）
 ===============================================================*/
-unique_ptr<Object> ObjectFactory::CreateObjectFromFile(const wstring fileName)
+unique_ptr<Object> ObjectFactory::CreateObjectFromFile(const wstring& fileName)
 {
 	unique_ptr<Object> object = make_unique<Object>();
 

@@ -30,7 +30,6 @@ namespace GucchiLibrary
 		Vector2										anchor_;				// アンカーポイント
 		float										scale_;					// 拡大率
 		float										angle_;					// 回転角
-		bool										isActive_;				// アクティブ状態
 
 		Sprite*										parentSprite_;			// 親スプライト
 		std::vector<Sprite*>						childSprite_;			// 子スプライト
@@ -85,7 +84,6 @@ namespace GucchiLibrary
 		void SetAnchor(const Vector2& anchor)							{ anchor_ = anchor; }
 		void SetScale(float scale)										{ scale_ = scale; }
 		void SetAngle(float angle)										{ angle_ = angle; }
-		void SetActive(bool active)										{ isActive_ = active; }
 		void SetIsAction(bool isAction)									{ isAction_ = isAction; }
 
 		inline Texture* GetTexture() const								{ return texture_; }
@@ -95,7 +93,6 @@ namespace GucchiLibrary
 		inline const Vector2& GetAnchor() const							{ return anchor_; }
 		inline float GetScale() const									{ return scale_; }
 		inline float GetAngle() const									{ return angle_; }
-		inline bool GetActive() const									{ return isActive_; }
 		inline Sprite* GetParent() const								{ return parentSprite_; }
 		inline std::vector<Sprite*> GetChildren() const					{ return childSprite_; }
 		inline bool IsAction() const									{ return isAction_; }
@@ -112,7 +109,6 @@ namespace GucchiLibrary
 			anchor_       = sprite.anchor_;
 			scale_        = sprite.scale_;
 			angle_        = sprite.angle_;
-			isActive_     = sprite.isActive_;
 			parentSprite_ = sprite.parentSprite_;
 			childSprite_  = sprite.childSprite_;
 			isAction_     = sprite.isAction_;
@@ -131,7 +127,6 @@ namespace GucchiLibrary
 				anchor_			== sprite.anchor_		&& 
 				scale_			== sprite.scale_		&& 
 				angle_			== sprite.angle_		&& 
-				isActive_		== sprite.isActive_		&& 
 				parentSprite_	== sprite.parentSprite_	&& 
 				childSprite_	== sprite.childSprite_	&& 
 				isAction_		== sprite.isAction_;

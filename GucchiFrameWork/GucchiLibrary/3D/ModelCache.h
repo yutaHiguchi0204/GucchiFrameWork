@@ -24,7 +24,7 @@ namespace GucchiLibrary
 	{
 	private:
 		std::map<std::wstring, std::unique_ptr<DirectX::Model>> models_;
-		DirectX::EffectFactory* factory_;
+		DirectX::EffectFactory*									factory_;
 
 	private:
 		friend class SingletonDirector<ModelCache>;
@@ -39,6 +39,6 @@ namespace GucchiLibrary
 		// @param		エフェクトファクトリ（EffectFactory*）
 		// @return		モデル（Model*）
 		*/
-		DirectX::Model* LoadModel(const std::wstring cmoFileName, DirectX::EffectFactory* factory);
+		DirectX::Model* LoadModel(const std::wstring& cmoFileName, DirectX::EffectFactory* factory);
 	};
 }

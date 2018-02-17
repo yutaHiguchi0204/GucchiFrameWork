@@ -31,7 +31,7 @@ list<Node*>						AStar::openList_;					// オープンリスト
 vector<Node*>					AStar::shortestRoute_;				// 最短経路
 Node::Point						AStar::start_;						// 経路探索開始地点
 Node::Point						AStar::end_;						// 経路探索終了地点
-DirectX::SimpleMath::Vector3	AStar::mapPos_;						// マップ自体の座標
+AStar::Vector3					AStar::mapPos_;						// マップ自体の座標
 vector<unique_ptr<Object>>		AStar::routePlane_;					// 最短経路ナビゲーター
 
 // メンバ関数の定義

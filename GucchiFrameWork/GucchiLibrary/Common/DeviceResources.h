@@ -183,7 +183,7 @@ namespace GucchiLibrary
 		// @content		フォント変更
 		// @param		フォント名（拡張子を除く）（wstring）
 		*/
-		void SetFont(std::wstring fontName);
+		void SetFont(const std::wstring& fontName);
 
 		/* アクセッサ */
 

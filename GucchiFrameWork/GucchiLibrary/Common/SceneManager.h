@@ -155,7 +155,7 @@ namespace GucchiLibrary
 		// @param		シーン名（string）
 		// @param		シーンインスタンス（unique_ptr<IScene>）
 		*/
-		void RegisterScene(std::string scene, std::unique_ptr<IScene> newScene);
+		void RegisterScene(const std::string& scene, std::unique_ptr<IScene> newScene);
 
 		/*
 		// @method		ChangeScene
@@ -163,7 +163,7 @@ namespace GucchiLibrary
 		// @param		シーン名（string）
 		// @param		シーンインスタンス（unique_ptr<IScene>）
 		*/
-		void ChangeScene(std::string scene, std::unique_ptr<IScene> newScene);
+		void ChangeScene(const std::string& scene, std::unique_ptr<IScene> newScene);
 
 		/*
 		// @method		CheckScene

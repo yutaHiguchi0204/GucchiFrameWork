@@ -155,7 +155,7 @@ void SceneManager::Finalize()
 // @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
-void SceneManager::RegisterScene(string scene, unique_ptr<IScene> newScene)
+void SceneManager::RegisterScene(const string& scene, unique_ptr<IScene> newScene)
 {
 	if (sceneList_.count(scene) == 0)
 	{
@@ -168,7 +168,7 @@ void SceneManager::RegisterScene(string scene, unique_ptr<IScene> newScene)
 // @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
-void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
+void SceneManager::ChangeScene(const string& scene, unique_ptr<IScene> newScene)
 {
 	// 前フレームと同じシーンだった場合は無視する
 	if (scene == beforeScene_)

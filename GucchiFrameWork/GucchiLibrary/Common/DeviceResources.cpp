@@ -551,7 +551,7 @@ void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceConte
 }
 
 // フォント変更
-void DirectXToolKidResources::SetFont(wstring fontName)
+void DirectXToolKidResources::SetFont(const wstring& fontName)
 {
 	spriteFont_.reset(new SpriteFont(device_, fontName.c_str()));
 }

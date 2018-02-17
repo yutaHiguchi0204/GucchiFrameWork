@@ -16,7 +16,7 @@ using namespace std;
 // メンバ関数の定義
 
 // コンストラクタ
-Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, const Quaternion& quat, Asset3D::BLEND_MODE mode)
+Object::Object(const Vector3& trans, const Vector3& scale, const Vector3& rot, const Quaternion& quat, BLEND_MODE mode)
 	: Asset3D(trans, scale, rot, quat, mode)
 	, model_(nullptr)
 	, parentObject_(nullptr)
@@ -37,7 +37,6 @@ Object::Object(const Object& object)
 	world_                 = object.world_;
 	blendStateSubtractive_ = object.blendStateSubtractive_;
 	blendMode_             = object.blendMode_;
-	isActive_              = object.isActive_;
 	isUseQuaternion_       = object.isUseQuaternion_;
 	model_                 = object.model_;
 	parentObject_          = object.parentObject_;
@@ -58,7 +57,7 @@ void Object::Update()
 	Asset3D::Update();
 
 	// 子がいた場合は子も更新する
-	if (static_cast<int>(childObject_.size()) != 0)
+	if (!childObject_.empty())
 	{
 		for (auto& child : childObject_)
 		{

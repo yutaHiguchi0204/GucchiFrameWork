@@ -23,6 +23,12 @@ namespace GucchiLibrary
 		virtual ~Component() = default;
 
 		/*
+		// @method		Initialize
+		// @content		更新処理
+		*/
+		virtual void Initialize(Element* element) = 0;
+
+		/*
 		// @method		Update
 		// @content		更新処理
 		*/

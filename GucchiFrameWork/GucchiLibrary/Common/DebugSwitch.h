@@ -20,3 +20,6 @@
 
 // デフォルト天球の描画
 #define DRAW_DEFAULT_SKYDOME	(1)
+
+// 当たり判定を表すプリミティブを描画する（初期状態）
+#define DRAW_COLLIDER			(1)

@@ -22,6 +22,19 @@ namespace GucchiLibrary
 	{
 	public:
 		/*
+		// @method		IsDebugMode（static）
+		// @content		デバッグモードかどうか
+		// @return		デバッグモードかどうか（bool）
+		*/
+		static bool IsDebugMode()
+		{
+#if defined(MODE_DEBUG)
+			return true;
+#endif
+			return false;
+		}
+
+		/*
 		// @method		DebugLog（static）
 		// @content		ログ表示
 		// @param		メッセージ（wchar_t*）

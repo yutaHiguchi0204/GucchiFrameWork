@@ -257,7 +257,7 @@ Framework::Framework(HINSTANCE hInstance, int nCmdShow)
 
 	// ƒƒ‚ƒŠƒŠ[ƒNŒŸo€”õ
 #if defined(MODE_DEBUG)
-	SetUpMemoryLeakDetector();
+		SetUpMemoryLeakDetector();
 #endif
 }
 
