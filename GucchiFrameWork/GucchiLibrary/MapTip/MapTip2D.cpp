@@ -18,12 +18,12 @@ using namespace std;
 // メンバ関数の定義
 
 // コンストラクタ（テクスチャ１つから均等に矩形分割し、読み込む）
-MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring textureName, int typeNum, TipData::TIP_TYPE* type)
+MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, const wstring& textureName, int typeNum, TipData::TIP_TYPE* type)
 	: MapTip(data, typeNum)
 {
 	if (dataTypeNum_ <= 0)
 	{
-		DebugSystem::DebugLog(L"No sprite type. Please configuration \"typeNum\".");
+		DebugSystem::DebugLog(L"No sprite type. Please configuration \"typeNum\".", true);
 		assert(false);
 	}
 
@@ -70,7 +70,7 @@ MapTip2D::MapTip2D(vector<vector<int>> data, const Vector2& spriteSize, wstring*
 {
 	if (dataTypeNum_ <= 0)
 	{
-		DebugSystem::DebugLog(L"No sprite type. Please configuration \"typeNum\".");
+		DebugSystem::DebugLog(L"No sprite type. Please configuration \"typeNum\".", true);
 		assert(false);
 	}
 
@@ -131,6 +131,16 @@ void MapTip2D::ChangeTip(int noX, int noY, int newData)
 
 	// 新しいスプライトデータに書き換える
 	sprite_[noY][noX] = *masterSprite_[data_[noY][noX].GetData()].get();
+}
+
+/*==============================================================
+// @brief		マップのアクティブ状態の変更
+// @param		アクティブ状態（bool）
+// @return		なし
+===============================================================*/
+void MapTip2D::SetActive(bool active)
+{
+	dummySprite_->SetActive(active);
 }
 
 /*==============================================================

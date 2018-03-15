@@ -25,7 +25,6 @@ Sprite::Sprite(const Vector2& size, const Vector2& pos, RECT* rect, float scale,
 	, anchor_(ANCHOR_MM)
 	, scale_(scale)
 	, angle_(angle)
-	, isActive_(true)
 	, parentSprite_(nullptr)
 	, isAction_(false)
 {
@@ -43,7 +42,6 @@ Sprite::Sprite(const Sprite& sprite)
 	anchor_              = sprite.anchor_;
 	scale_               = sprite.scale_;
 	angle_               = sprite.angle_;
-	isActive_            = sprite.isActive_;
 	parentSprite_        = sprite.parentSprite_;
 	childSprite_         = sprite.childSprite_;
 	isAction_            = sprite.isAction_;
@@ -57,6 +55,9 @@ Sprite::Sprite(const Sprite& sprite)
 ===============================================================*/
 void Sprite::Update()
 {
+	// 基底クラスの更新
+	Element::Update();
+
 	// 補間ステートの更新
 	interpolateDirector_->Update();
 }

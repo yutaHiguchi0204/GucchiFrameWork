@@ -6,9 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include "../Common/SingletonDirector.h"
-#include <map>
 #include <vector>
+#include "../Common/Element.h"
 
 namespace GucchiLibrary
 {
@@ -61,12 +60,11 @@ namespace GucchiLibrary
 	// @class		MapTip クラス
 	// @content		マップチップクラス
 	*/
-	class MapTip
+	class MapTip : public Element
 	{
 	protected:
 		std::vector<std::vector<TipData>>	data_;				// データ
 		int									dataTypeNum_;		// データの種類数
-		bool								isActive_;			// アクティブ状態
 
 	public:
 		/*
@@ -94,8 +92,11 @@ namespace GucchiLibrary
 		*/
 		virtual void ChangeTip(int noX, int noY, int newData) = 0;
 
-		/* アクセッサ */
-
-		void SetActive(bool active) { isActive_ = active; }
+		/*
+		// @method		SetActive（pure）
+		// @content		マップのアクティブ状態の変更
+		// @param		アクティブ状態（bool）
+		*/
+		virtual void SetActive(bool active) override = 0;
 	};
 }

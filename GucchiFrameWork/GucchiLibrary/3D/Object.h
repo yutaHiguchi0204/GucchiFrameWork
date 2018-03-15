@@ -38,11 +38,11 @@ namespace GucchiLibrary
 		// @param		クォータニオン（Quaternion）　：　デフォルト（Quaternion::Identity）
 		// @param		ブレンドモード（BLEND_MODE）　：　デフォルト（ALPHA）
 		*/
-		Object(const Vector3& trans = Vector3::Zero, const Vector3& scale = Vector3::One, const Vector3& rot = Vector3::Zero, const Quaternion& quat = Quaternion::Identity, Asset3D::BLEND_MODE mode = Asset3D::BLEND_MODE::ALPHA);
+		Object(const Vector3& trans = Vector3::Zero, const Vector3& scale = Vector3::One, const Vector3& rot = Vector3::Zero, const Quaternion& quat = Quaternion::Identity, BLEND_MODE mode = BLEND_MODE::ALPHA);
 
 		// コピーコンストラクタ
 		Object(const Object& object);
-
+		
 		// デストラクタ
 		virtual ~Object() = default;
 
@@ -66,12 +66,26 @@ namespace GucchiLibrary
 		*/
 		void AddChild(Object* object);
 
+		/*
+		// @method		GetBoundingBox
+		// @content		オブジェクトのバウンディングボックスを取得
+		// @return		バウンディングボックス（Vector3）
+		*/
+		Vector3 GetBoundingBox();
+
+		/*
+		// @method		GetBoundingSphere
+		// @content		オブジェクトのバウンディングスフィアを取得
+		// @return		バウンディングスフィア（float）
+		*/
+		float GetBoundingSphere();
+
 		/* アクセッサ */
 
-		void SetModel(DirectX::Model* model) { model_ = model; }
+		void SetModel(DirectX::Model* model)			{ model_ = model; }
 
-		inline DirectX::Model* GetModel() const { return model_; }
-		inline Object* GetParent() const { return parentObject_; }
+		inline DirectX::Model* GetModel() const			{ return model_; }
+		inline Object* GetParent() const				{ return parentObject_; }
 		inline std::vector<Object*> GetChildren() const { return childObject_; }
 
 	public:
@@ -89,7 +103,6 @@ namespace GucchiLibrary
 			world_                 = object.world_;
 			blendStateSubtractive_ = object.blendStateSubtractive_;
 			blendMode_             = object.blendMode_;
-			isActive_              = object.isActive_;
 			isUseQuaternion_       = object.isUseQuaternion_;
 			model_                 = object.model_;
 			parentObject_          = object.parentObject_;
@@ -108,7 +121,6 @@ namespace GucchiLibrary
 				trans_           == object.trans_				&& 
 				world_           == object.world_				&& 
 				blendMode_       == object.blendMode_			&& 
-				isActive_        == object.isActive_			&& 
 				isUseQuaternion_ == object.isUseQuaternion_		&& 
 				model_           == object.model_				&& 
 				parentObject_    == object.parentObject_;

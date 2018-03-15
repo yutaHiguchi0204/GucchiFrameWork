@@ -194,6 +194,7 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Resources\Assets\ModelData\bomb.FBX" />
     <MeshContentTask Include="Resources\Assets\ModelData\skyDome.FBX" />
   </ItemGroup>
   <ItemGroup>

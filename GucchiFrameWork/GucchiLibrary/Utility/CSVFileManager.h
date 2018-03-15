@@ -12,7 +12,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "../Common/DebugSwitch.h"
 #include "../System/DebugSystem.h"
 
 namespace GucchiLibrary
@@ -34,7 +33,7 @@ namespace GucchiLibrary
 		// @param		CSVファイル名（wstring）
 		// @return		データ（vector<vector<int>>）
 		*/
-		static std::vector<std::vector<int>> LoadCSVFile(const std::wstring csvFile)
+		static std::vector<std::vector<int>> LoadCSVFile(const std::wstring& csvFile)
 		{
 			// ファイル読み込み
 			std::wstring fileName = FILE_PATH_DATA + csvFile + EXT_CSV;
@@ -43,7 +42,7 @@ namespace GucchiLibrary
 			// エラー処理
 			if (!ifs)
 			{
-				DebugSystem::DebugLog(L"CSV file load failed.");
+				DebugSystem::DebugLog(L"CSV file load failed.", true);
 				assert(ifs);
 			}
 

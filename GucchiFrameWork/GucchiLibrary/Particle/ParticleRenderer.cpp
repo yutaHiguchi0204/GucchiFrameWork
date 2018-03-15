@@ -51,21 +51,21 @@ void ParticleRenderer::Initialize()
 	// 頂点シェーダ作成
 	if (FAILED(device->CreateVertexShader(shaderVS.GetData(), shaderVS.GetSize(), NULL, vertexShader_.ReleaseAndGetAddressOf())))
 	{
-		DebugSystem::DebugLog(L"CreateVertexShader Failed.");
+		DebugSystem::DebugLog(L"CreateVertexShader Failed.", true);
 		return;
 	}
 
 	// ジオメトリシェーダ作成
 	if (FAILED(device->CreateGeometryShader(shaderGS.GetData(), shaderGS.GetSize(), NULL, geometryShader_.ReleaseAndGetAddressOf())))
 	{
-		DebugSystem::DebugLog(L"CreateGeometryShader Failed.");
+		DebugSystem::DebugLog(L"CreateGeometryShader Failed.", true);
 		return;
 	}
 
 	// ピクセルシェーダ作成
 	if (FAILED(device->CreatePixelShader(shaderPS.GetData(), shaderPS.GetSize(), NULL, pixelShader_.ReleaseAndGetAddressOf())))
 	{
-		DebugSystem::DebugLog(L"CreatePixelShader Failed.");
+		DebugSystem::DebugLog(L"CreatePixelShader Failed.", true);
 		return;
 	}
 
@@ -93,7 +93,7 @@ void ParticleRenderer::Initialize()
 	// コンスタントバッファの作成
 	if (FAILED(device->CreateBuffer(&cBuffer, nullptr, cBuffer_.ReleaseAndGetAddressOf())))
 	{
-		DebugSystem::DebugLog(L"CreateBuffer Failed.");
+		DebugSystem::DebugLog(L"CreateBuffer Failed.", true);
 		return;
 	}
 
@@ -108,7 +108,7 @@ void ParticleRenderer::Initialize()
 	// テクスチャサンプラーの作成
 	if (FAILED(device->CreateSamplerState(&sampler, sampler_.ReleaseAndGetAddressOf())))
 	{
-		DebugSystem::DebugLog(L"Create sampler state failed.");
+		DebugSystem::DebugLog(L"Create sampler state failed.", true);
 		return;
 	}
 }
@@ -132,7 +132,7 @@ void ParticleRenderer::Update()
 	// エミッター更新
 	for (auto& emitter : emitter_)
 	{
-		if (emitter.second)
+		if (emitter.second && emitter.second->GetActive())
 		{
 			emitter.second->Update();
 		}
@@ -147,7 +147,6 @@ void ParticleRenderer::Update()
 void ParticleRenderer::Draw()
 {
 	DeviceResources& deviceResources	= DeviceResources::GetInstance();
-	ID3D11Device* device				= deviceResources.GetD3DDevice();
 	ID3D11DeviceContext* context		= deviceResources.GetD3DDeviceContext();
 	CommonStates* states				= deviceResources.GetCommonStates();
 
@@ -198,7 +197,7 @@ void ParticleRenderer::Draw()
 	// エミッターの描画
 	for (auto& emitter : emitter_)
 	{
-		if (emitter.second)
+		if (emitter.second && emitter.second->GetActive())
 		{
 			emitter.second->Draw();
 		}

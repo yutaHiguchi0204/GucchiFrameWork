@@ -19,7 +19,7 @@ using namespace GucchiLibrary;
 // @param		スプライト（Sprite*）、移動にかける時間（float）、終点（Vector2）
 // @return		補間値（Vector2）
 ===============================================================*/
-DirectX::SimpleMath::Vector2 MoveTo::Action(Sprite* sprite, float time, const Vector2& pos)
+MoveTo::Vector2 MoveTo::Action(Sprite* sprite, float time, const Vector2& pos)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector2>* state = sprite->GetInterpolateDirector()->stateV2_.get();
@@ -45,7 +45,7 @@ DirectX::SimpleMath::Vector2 MoveTo::Action(Sprite* sprite, float time, const Ve
 // @param		オブジェクト（Object*）、移動にかける時間（float）、終点（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 MoveTo::Action(Object* object, float time, const Vector3& trans)
+MoveTo::Vector3 MoveTo::Action(Object* object, float time, const Vector3& trans)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();
@@ -71,7 +71,7 @@ DirectX::SimpleMath::Vector3 MoveTo::Action(Object* object, float time, const Ve
 // @param		スプライト（Sprite*）、移動にかける時間（float）、移動距離（Vector2）
 // @return		補間値（Vector2）
 ===============================================================*/
-DirectX::SimpleMath::Vector2 MoveBy::Action(Sprite* sprite, float time, const Vector2& distance)
+MoveBy::Vector2 MoveBy::Action(Sprite* sprite, float time, const Vector2& distance)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector2>* state = sprite->GetInterpolateDirector()->stateV2_.get();
@@ -97,7 +97,7 @@ DirectX::SimpleMath::Vector2 MoveBy::Action(Sprite* sprite, float time, const Ve
 // @param		オブジェクト（Object*）、移動にかける時間（float）、移動距離（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 MoveBy::Action(Object* object, float time, const Vector3& distance)
+MoveBy::Vector3 MoveBy::Action(Object* object, float time, const Vector3& distance)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();
@@ -149,7 +149,7 @@ float ScaleTo::Action(Sprite* sprite, float time, float scale)
 // @param		オブジェクト（Object*）、変化にかける時間（float）、スケール値（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 ScaleTo::Action(Object* object, float time, const Vector3& scale)
+ScaleTo::Vector3 ScaleTo::Action(Object* object, float time, const Vector3& scale)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();
@@ -201,7 +201,7 @@ float ScaleBy::Action(Sprite* sprite, float time, const float scale)
 // @param		オブジェクト（Object*）、変化にかける時間（float）、現在のスケールからの倍率（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 ScaleBy::Action(Object* object, float time, const Vector3& scale)
+ScaleBy::Vector3 ScaleBy::Action(Object* object, float time, const Vector3& scale)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();
@@ -253,7 +253,7 @@ float RotateTo::Action(Sprite* sprite, float time, float angle)
 // @param		オブジェクト（Object*）、回転にかける時間（float）、回転角（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 RotateTo::Action(Object* object, float time, const Vector3& rot)
+RotateTo::Vector3 RotateTo::Action(Object* object, float time, const Vector3& rot)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();
@@ -305,7 +305,7 @@ float RotateBy::Action(Sprite* sprite, float time, float angle)
 // @param		オブジェクト（Object*）、回転にかける時間（float）、現在の角度からの回転角（Vector3）
 // @return		補間値（Vector3）
 ===============================================================*/
-DirectX::SimpleMath::Vector3 RotateBy::Action(Object* object, float time, const Vector3& rot)
+RotateBy::Vector3 RotateBy::Action(Object* object, float time, const Vector3& rot)
 {
 	// 補間ステートの準備
 	InterpolateState<Vector3>* state = object->GetInterpolateDirector()->stateV3_.get();

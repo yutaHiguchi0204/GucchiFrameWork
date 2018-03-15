@@ -23,7 +23,7 @@ MapTip3D::MapTip3D(vector<vector<int>> data, const Vector3& tipSize, wstring* mo
 {
 	if (dataTypeNum_ <= 0)
 	{
-		DebugSystem::DebugLog(L"No object type. Please configuration \"typeNum\".");
+		DebugSystem::DebugLog(L"No object type. Please configuration \"typeNum\".", true);
 		assert(false);
 	}
 
@@ -91,6 +91,16 @@ void MapTip3D::ResetData()
 	}
 	data_.clear();
 	dummyObject_->SetTranslate(Vector3::Zero);
+}
+
+/*==============================================================
+// @brief		マップのアクティブ状態の変更
+// @param		アクティブ状態（bool）
+// @return		なし
+===============================================================*/
+void MapTip3D::SetActive(bool active)
+{
+	dummyObject_->SetActive(active);
 }
 
 /*==============================================================

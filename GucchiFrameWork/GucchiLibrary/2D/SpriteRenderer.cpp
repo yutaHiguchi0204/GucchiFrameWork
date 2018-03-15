@@ -31,7 +31,7 @@ void SpriteRenderer::RegisterSprite(Sprite* sprite, int order)
 		int orderNum = 0;
 		while (orderNum < order - 1)
 		{
-			itr++;
+			++itr;
 			orderNum++;
 		}
 
@@ -66,7 +66,7 @@ void SpriteRenderer::SetOrder(Sprite* sprite, int order)
 	int orderNum = 0;
 	while (orderNum <= order)
 	{
-		itr++;
+		++itr;
 		orderNum++;
 	}
 
@@ -146,7 +146,7 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 	dxtk.GetSpriteBatch()->Draw(sprite->GetTexture()->GetShaderResourceView().Get(), position, sprite->GetRect(), Colors::White, -sprite->GetAngle(), origin, sprite->GetScale());
 
 	// 子スプライトがいるなら子どもも描画
-	if (sprite->GetChildren().size() != 0)
+	if (!sprite->GetChildren().empty())
 	{
 		for (auto& child : sprite->GetChildren())
 		{
@@ -163,7 +163,7 @@ void SpriteRenderer::DrawSprite(Sprite* sprite)
 // @param		親スプライト（Sprite*）
 // @return		最終位置（Vector2）
 ===============================================================*/
-DirectX::SimpleMath::Vector2 SpriteRenderer::GetParentSpritePos(Sprite* sprite)
+SpriteRenderer::Vector2 SpriteRenderer::GetParentSpritePos(Sprite* sprite)
 {
 	Vector2 localPos = sprite->GetPos();
 
@@ -191,7 +191,7 @@ void SpriteRenderer::Reset()
 // @param		ファイル名（wstring）、画像サイズ（Vector2）、テクスチャの矩形（RECT*）
 // @return		スプライト（unique_ptr<Sprite>）
 ===============================================================*/
-unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring fileName, const Vector2& size, RECT* rect)
+unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring& fileName, const Vector2& size, RECT* rect)
 {
 	unique_ptr<Sprite> sprite = make_unique<Sprite>(size);
 

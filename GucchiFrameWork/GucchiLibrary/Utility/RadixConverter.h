@@ -87,7 +87,7 @@ namespace GucchiLibrary
 		// @param		値（string）
 		// @return		２進数（long）
 		*/
-		static long RadixTo2(std::string data)
+		static long RadixTo2(const std::string& data)
 		{
 			long radix10 = std::strtod(data.c_str(), nullptr);
 
@@ -100,7 +100,7 @@ namespace GucchiLibrary
 		// @param		値（string）
 		// @return		８進数（long）
 		*/
-		static long RadixTo8(std::string data)
+		static long RadixTo8(const std::string& data)
 		{
 			long radix10 = std::strtod(data.c_str(), nullptr);
 
@@ -113,7 +113,7 @@ namespace GucchiLibrary
 		// @param		値（string）
 		// @return		１０進数（long）
 		*/
-		static long RadixTo10(std::string data)
+		static long RadixTo10(const std::string& data)
 		{
 			return std::strtod(data.c_str(), nullptr);
 		}
@@ -124,7 +124,7 @@ namespace GucchiLibrary
 		// @param		値（string）
 		// @return		１６進数（long）
 		*/
-		static long RadixTo16(std::string data)
+		static long RadixTo16(const std::string& data)
 		{
 			long radix10 = std::strtod(data.c_str(), nullptr);
 

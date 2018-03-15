@@ -19,7 +19,7 @@ namespace GucchiLibrary
 	// @class		Emitter クラス
 	// @content		パーティクルエミッター
 	*/
-	class Emitter
+	class Emitter : public Element
 	{
 	private:
 		using Vector2 = DirectX::SimpleMath::Vector2;
@@ -87,7 +87,7 @@ namespace GucchiLibrary
 		// @content		テクスチャの読み込み
 		// @param		テクスチャファイル名（wstring）
 		*/
-		void LoadTexture(const std::wstring fileName);
+		void LoadTexture(const std::wstring& fileName);
 
 		/* アクセッサ */
 

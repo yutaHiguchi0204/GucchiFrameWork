@@ -44,7 +44,7 @@ void BinaryFile::ResetData()
 // @param		ファイル名（wstring）
 // @return		バイナリファイル（BinaryFile）
 ===============================================================*/
-BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
+BinaryFile BinaryFileManager::LoadBinaryFile(const wstring& fileName)
 {
 	BinaryFile bin;
 
@@ -57,7 +57,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
 	// エラー処理
 	if (!ifs)
 	{
-		DebugSystem::DebugLog(L"BinaryFile opening failed.");
+		DebugSystem::DebugLog(L"BinaryFile opening failed.", true);
 		assert(ifs);
 	}
 
@@ -86,7 +86,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName)
 // @param		ファイル名（wstring）
 // @return		バイナリファイル（BinaryFile）
 ===============================================================*/
-BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
+BinaryFile BinaryFileManager::LoadBinaryFile(const wstring& fileName, int part)
 {
 	BinaryFile bin;
 
@@ -99,7 +99,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
 	// エラー処理
 	if (!ifs)
 	{
-		DebugSystem::DebugLog(L"BinaryFile opening failed.");
+		DebugSystem::DebugLog(L"BinaryFile opening failed.", true);
 		assert(ifs);
 	}
 
@@ -124,7 +124,7 @@ BinaryFile BinaryFileManager::LoadBinaryFile(const wstring fileName, int part)
 // @param		ファイル名（wstring）、バイナリデータ（BinaryFile）
 // @return		なし
 ===============================================================*/
-void BinaryFileManager::SaveBinaryFile(const wstring fileName, const BinaryFile& data)
+void BinaryFileManager::SaveBinaryFile(const wstring& fileName, const BinaryFile& data)
 {
 	// ファイル読み込み準備
 	ifstream ifs;
@@ -135,7 +135,7 @@ void BinaryFileManager::SaveBinaryFile(const wstring fileName, const BinaryFile&
 	// エラー処理
 	if (!ifs)
 	{
-		DebugSystem::DebugLog(L"BinaryFile opening failed.");
+		DebugSystem::DebugLog(L"BinaryFile opening failed.", true);
 		assert(ifs);
 	}
 }

@@ -79,8 +79,8 @@ void Game::Render()
 	// ライブラリインタフェースでの描画処理
 	objectRenderer_.Draw();				// オブジェクト
 	particleRenderer_.Draw();			// パーティクル
-	spriteRenderer_.Draw();				// スプライト
 	primitiveRenderer_.Draw();			// プリミティブ
+	spriteRenderer_.Draw();				// スプライト
 	textRenderer_.Draw();				// テキスト
 
     // ゲーム内関連の描画処理はGameMainの描画に書いてください（基本的にここはいじらない）

@@ -28,6 +28,7 @@ void IScene::CommonInitialize()
 	camera_ = make_unique<DefaultCamera>(WINDOW_WIDTH, WINDOW_HEIGHT);
 	objectFactory_.SetCamera(camera_.get());
 	particleRenderer_.SetCamera(camera_.get());
+	primitiveRenderer_.SetCamera(camera_.get());
 
 #if DRAW_DEFAULT_SKYDOME == 1
 	// 天球の生成
@@ -80,8 +81,8 @@ void IScene::ResetDevice()
 	// 全てのライブラリインタフェースをリセット
 	objectRenderer_.Reset();
 	particleRenderer_.Reset();
-	spriteRenderer_.Reset();
 	primitiveRenderer_.Reset();
+	spriteRenderer_.Reset();
 	textRenderer_.Reset();
 }
 
@@ -154,7 +155,7 @@ void SceneManager::Finalize()
 // @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
-void SceneManager::RegisterScene(string scene, unique_ptr<IScene> newScene)
+void SceneManager::RegisterScene(const string& scene, unique_ptr<IScene> newScene)
 {
 	if (sceneList_.count(scene) == 0)
 	{
@@ -167,7 +168,7 @@ void SceneManager::RegisterScene(string scene, unique_ptr<IScene> newScene)
 // @param		シーン名（string）、シーンインスタンス（unique_ptr<IScene>）
 // @return		なし
 ===============================================================*/
-void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
+void SceneManager::ChangeScene(const string& scene, unique_ptr<IScene> newScene)
 {
 	// 前フレームと同じシーンだった場合は無視する
 	if (scene == beforeScene_)
@@ -203,5 +204,5 @@ void SceneManager::ChangeScene(string scene, unique_ptr<IScene> newScene)
 bool SceneManager::CheckScene()
 {
 	// 前フレームと異なるシーンの場合は描画しない
-	return nowScene_ == beforeScene_ ? true : false;
+	return nowScene_ == beforeScene_;
 }

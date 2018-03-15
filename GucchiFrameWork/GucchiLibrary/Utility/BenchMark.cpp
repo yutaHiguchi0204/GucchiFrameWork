@@ -29,7 +29,7 @@ void BenchMark::Begin()
 	if (!QueryPerformanceFrequency(&frequency_))
 	{
 		// 計測不能
-		DebugSystem::DebugLog(L"Sorry, I can't count.");
+		DebugSystem::DebugLog(L"Sorry, I can't count.", true);
 		return;
 	}
 
@@ -37,7 +37,7 @@ void BenchMark::Begin()
 	if (!QueryPerformanceCounter(&begin_))
 	{
 		// 計測不能
-		DebugSystem::DebugLog(L"Sorry, I can't count.");
+		DebugSystem::DebugLog(L"Sorry, I can't count.", true);
 		return;
 	}
 
@@ -56,7 +56,7 @@ void BenchMark::End()
 	if (!QueryPerformanceCounter(&end_))
 	{
 		// 計測不能
-		DebugSystem::DebugLog(L"Sorry, I can't count.");
+		DebugSystem::DebugLog(L"Sorry, I can't count.", true);
 		return;
 	}
 

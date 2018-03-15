@@ -31,7 +31,7 @@ list<Node*>						AStar::openList_;					// オープンリスト
 vector<Node*>					AStar::shortestRoute_;				// 最短経路
 Node::Point						AStar::start_;						// 経路探索開始地点
 Node::Point						AStar::end_;						// 経路探索終了地点
-DirectX::SimpleMath::Vector3	AStar::mapPos_;						// マップ自体の座標
+AStar::Vector3					AStar::mapPos_;						// マップ自体の座標
 vector<unique_ptr<Object>>		AStar::routePlane_;					// 最短経路ナビゲーター
 
 // メンバ関数の定義
@@ -108,7 +108,7 @@ void AStar::Initialize(vector<vector<int>> map)
 	// スタートもしくはゴールが設定されていなかったらエラー
 	if (start_.posX == -1 || start_.posY == -1 || end_.posX == -1 || end_.posY == -1)
 	{
-		DebugSystem::DebugLog(L"Map data error.");
+		DebugSystem::DebugLog(L"Map data error.", true);
 		assert(false);
 	}
 
@@ -180,7 +180,7 @@ vector<Node*> AStar::GetShortestRoute()
 	// 経路探索が終わっていなければエラー
 	if (mapData_[start_.posY][start_.posX]->GetState() != Node::STATE::CLOSED)
 	{
-		DebugSystem::DebugLog(L"Don't finish search.");
+		DebugSystem::DebugLog(L"Don't finish search.", true);
 		assert(false);
 	}
 

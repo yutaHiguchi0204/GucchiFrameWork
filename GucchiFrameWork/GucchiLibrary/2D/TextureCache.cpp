@@ -25,7 +25,7 @@ using namespace std;
 // @param		ファイル名（wstring）
 // @return		テクスチャ（Texture*）
 ===============================================================*/
-Texture* TextureCache::LoadTexture(const wstring fileName)
+Texture* TextureCache::LoadTexture(const wstring& fileName)
 {
 	// すでに読み込み済みなら読み込まない
 	if (textures_.count(fileName) == 0)
@@ -50,7 +50,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-			DebugSystem::DebugLog(L"Texture loading failed.");
+			DebugSystem::DebugLog(L"Texture loading failed.", true);
 			assert(false);
 		}
 
@@ -60,7 +60,7 @@ Texture* TextureCache::LoadTexture(const wstring fileName)
 		// エラー処理
 		if (FAILED(res))
 		{
-			DebugSystem::DebugLog(L"This resource is not texture.");
+			DebugSystem::DebugLog(L"This resource is not texture.", true);
 			assert(false);
 		}
 

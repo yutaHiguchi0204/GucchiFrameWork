@@ -8,6 +8,7 @@
 // ヘッダファイルのインクルード
 #include <vector>
 #include "TextureCache.h"
+#include "../Common/Element.h"
 #include "../Utility/Interpolater.h"
 
 namespace GucchiLibrary
@@ -19,11 +20,8 @@ namespace GucchiLibrary
 	// @use			テクスチャはTextureCacheによって管理される（SpriteFactory内）
 	// @use			SpriteRendererに登録することで描画可能（この時オーダー値を変えることで描画順を変更可能）
 	*/
-	class Sprite
+	class Sprite : public Element
 	{
-	private:
-		using Vector2 = DirectX::SimpleMath::Vector2;
-
 	private:
 		Texture*									texture_;				// テクスチャハンドル
 		Vector2										pos_;					// 位置
@@ -32,7 +30,6 @@ namespace GucchiLibrary
 		Vector2										anchor_;				// アンカーポイント
 		float										scale_;					// 拡大率
 		float										angle_;					// 回転角
-		bool										isActive_;				// アクティブ状態
 
 		Sprite*										parentSprite_;			// 親スプライト
 		std::vector<Sprite*>						childSprite_;			// 子スプライト
@@ -62,7 +59,7 @@ namespace GucchiLibrary
 		// @method		Update
 		// @content		更新処理
 		*/
-		void Update();
+		void Update() override;
 
 		/*
 		// @method		SetParent
@@ -87,7 +84,6 @@ namespace GucchiLibrary
 		void SetAnchor(const Vector2& anchor)							{ anchor_ = anchor; }
 		void SetScale(float scale)										{ scale_ = scale; }
 		void SetAngle(float angle)										{ angle_ = angle; }
-		void SetActive(bool active)										{ isActive_ = active; }
 		void SetIsAction(bool isAction)									{ isAction_ = isAction; }
 
 		inline Texture* GetTexture() const								{ return texture_; }
@@ -97,7 +93,6 @@ namespace GucchiLibrary
 		inline const Vector2& GetAnchor() const							{ return anchor_; }
 		inline float GetScale() const									{ return scale_; }
 		inline float GetAngle() const									{ return angle_; }
-		inline bool GetActive() const									{ return isActive_; }
 		inline Sprite* GetParent() const								{ return parentSprite_; }
 		inline std::vector<Sprite*> GetChildren() const					{ return childSprite_; }
 		inline bool IsAction() const									{ return isAction_; }
@@ -114,7 +109,6 @@ namespace GucchiLibrary
 			anchor_       = sprite.anchor_;
 			scale_        = sprite.scale_;
 			angle_        = sprite.angle_;
-			isActive_     = sprite.isActive_;
 			parentSprite_ = sprite.parentSprite_;
 			childSprite_  = sprite.childSprite_;
 			isAction_     = sprite.isAction_;
@@ -133,7 +127,6 @@ namespace GucchiLibrary
 				anchor_			== sprite.anchor_		&& 
 				scale_			== sprite.scale_		&& 
 				angle_			== sprite.angle_		&& 
-				isActive_		== sprite.isActive_		&& 
 				parentSprite_	== sprite.parentSprite_	&& 
 				childSprite_	== sprite.childSprite_	&& 
 				isAction_		== sprite.isAction_;

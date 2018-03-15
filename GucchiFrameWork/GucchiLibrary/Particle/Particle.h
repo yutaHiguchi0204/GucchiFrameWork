@@ -15,7 +15,7 @@ namespace GucchiLibrary
 	// @class		Particle クラス
 	// @content		パーティクル
 	*/
-	class Particle
+	class Particle : public Element
 	{
 	private:
 		using Vector2 = DirectX::SimpleMath::Vector2;

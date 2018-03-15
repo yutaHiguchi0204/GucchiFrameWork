@@ -16,7 +16,6 @@ using namespace std;
 // コンストラクタ
 MapTip::MapTip(vector<vector<int>> data, int dataTypeNum)
 	: dataTypeNum_(dataTypeNum)
-	, isActive_(true)
 {
 	// チップデータに挿入
 	for (int i = 0; i < static_cast<int>(data.size()); i++)

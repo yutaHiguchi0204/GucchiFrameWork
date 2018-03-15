@@ -22,19 +22,16 @@ using namespace std;
 // @param		テキスト名（wstring）、文字列（wstring）、表示位置（Vector2）、フォントの色（Color）、フォントサイズ（float）、フォント名（拡張子を除く）（wstring）
 // @return		なし
 ===============================================================*/
-void TextRenderer::RegisterText(std::wstring name, std::wstring str, const Vector2& pos, const Color& color, float fontSize, std::wstring font)
+void TextRenderer::RegisterText(const std::wstring& name, const std::wstring& str, const Vector2& pos, const Color& color, float fontSize, const std::wstring& font)
 {
-	// スタック領域変数
-	static Text text(str, pos);
-
+	Text* text = new Text(str, pos);
+	
 	// 初期設定
-	text.SetString(str);
-	text.SetPos(pos);
-	text.SetColor(color);
-	text.SetFontSize(fontSize);
-	text.SetFont(font);
+	text->SetColor(color);
+	text->SetFontSize(fontSize);
+	text->SetFont(font);
 
-	textList_[name] = &text;
+	textList_[name] = text;
 }
 
 /*==============================================================
@@ -42,7 +39,7 @@ void TextRenderer::RegisterText(std::wstring name, std::wstring str, const Vecto
 // @param		テキスト名（wstring）、テキスト（Text*）
 // @return		なし
 ===============================================================*/
-void TextRenderer::RegisterText(wstring name, Text* text)
+void TextRenderer::RegisterText(const std::wstring& name, Text* text)
 {
 	textList_[name] = text;
 }
@@ -52,7 +49,7 @@ void TextRenderer::RegisterText(wstring name, Text* text)
 // @param		テキスト名（wstring）、文字列（wstring）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetString(std::wstring name, std::wstring str)
+void TextRenderer::SetString(const std::wstring& name, const std::wstring& str)
 {
 	textList_[name]->SetString(str);
 }
@@ -62,7 +59,7 @@ void TextRenderer::SetString(std::wstring name, std::wstring str)
 // @param		テキスト名（wstring）、表示位置（Vector2）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetPos(std::wstring name, const Vector2& pos)
+void TextRenderer::SetPos(const std::wstring& name, const Vector2& pos)
 {
 	textList_[name]->SetPos(pos);
 }
@@ -72,7 +69,7 @@ void TextRenderer::SetPos(std::wstring name, const Vector2& pos)
 // @param		テキスト名（wstring）、アンカーポイント（Vector2）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetAnchor(std::wstring name, const Vector2& anchor)
+void TextRenderer::SetAnchor(const std::wstring& name, const Vector2& anchor)
 {
 	textList_[name]->SetAnchor(anchor);
 }
@@ -82,7 +79,7 @@ void TextRenderer::SetAnchor(std::wstring name, const Vector2& anchor)
 // @param		テキスト名（wstring）、色（Color）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetColor(std::wstring name, const Color& color)
+void TextRenderer::SetColor(const std::wstring& name, const Color& color)
 {
 	textList_[name]->SetColor(color);
 }
@@ -92,7 +89,7 @@ void TextRenderer::SetColor(std::wstring name, const Color& color)
 // @param		テキスト名（wstring）、フォントサイズ（float）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetFontSize(std::wstring name, float fontSize)
+void TextRenderer::SetFontSize(const std::wstring& name, float fontSize)
 {
 	textList_[name]->SetFontSize(fontSize);
 }
@@ -102,7 +99,7 @@ void TextRenderer::SetFontSize(std::wstring name, float fontSize)
 // @param		テキスト名（wstring）、フォント（wstring）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetFont(std::wstring name, std::wstring font)
+void TextRenderer::SetFont(const std::wstring& name, const std::wstring& font)
 {
 	textList_[name]->SetFont(font);
 }
@@ -112,7 +109,7 @@ void TextRenderer::SetFont(std::wstring name, std::wstring font)
 // @param		テキスト名（wstring）、アクティブ状態（bool）
 // @return		なし
 ===============================================================*/
-void TextRenderer::SetActive(wstring name, bool active)
+void TextRenderer::SetActive(const std::wstring& name, bool active)
 {
 	textList_[name]->SetActive(active);
 }
@@ -156,5 +153,10 @@ void TextRenderer::Draw()
 ===============================================================*/
 void TextRenderer::Reset()
 {
+	for (auto& text : textList_)
+	{
+		delete text.second;
+	}
+
 	textList_.clear();
 }

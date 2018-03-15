@@ -114,6 +114,6 @@ namespace GucchiLibrary
 		// @param		テクスチャの矩形（RECT*）
 		// @return		スプライト（std::unique_ptr<Sprite>）
 		*/
-		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring fileName, const Vector2& size, RECT* rect = nullptr);
+		std::unique_ptr<Sprite> CreateSpriteFromFile(const std::wstring& fileName, const Vector2& size, RECT* rect = nullptr);
 	};
 }

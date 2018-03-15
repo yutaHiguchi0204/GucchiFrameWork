@@ -30,7 +30,6 @@ Asset3D::Asset3D(const Vector3& trans, const Vector3& scale, const Vector3& rot,
 	, trans_(trans)
 	, world_(Matrix::Identity)
 	, blendMode_(mode)
-	, isActive_(true)
 	, isUseQuaternion_(false)
 {
 	DeviceResources& deviceResources = DeviceResources::GetInstance();
@@ -80,7 +79,6 @@ Asset3D::Asset3D(const Asset3D& asset)
 	world_                 = asset.world_;
 	blendStateSubtractive_ = asset.blendStateSubtractive_;
 	blendMode_             = asset.blendMode_;
-	isActive_              = asset.isActive_;
 	isUseQuaternion_       = asset.isUseQuaternion_;
 	interpolateDirector_   = make_unique<InterpolateDirector>();
 }
@@ -143,7 +141,7 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 	ID3D11BlendState* blendState;
 	if (FAILED(deviceResources.GetD3DDevice()->CreateBlendState(&desc, &blendState)))
 	{
-		DebugSystem::DebugLog(L"Create blend state is failed.");
+		DebugSystem::DebugLog(L"Create blend state is failed.", true);
 		assert(false);
 	}
 
@@ -157,6 +155,9 @@ ID3D11BlendState* Asset3D::SetSubtractive()
 ===============================================================*/
 void Asset3D::Update()
 {
+	// 基底クラスの更新
+	Element::Update();
+
 	// 補間ステートの更新
 	interpolateDirector_->Update();
 

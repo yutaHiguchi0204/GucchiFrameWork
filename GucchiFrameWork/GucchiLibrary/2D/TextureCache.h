@@ -59,6 +59,6 @@ namespace GucchiLibrary
 		// @param		テクスチャファイル名（wstring）
 		// @return		テクスチャ（Texture*）
 		*/
-		Texture* LoadTexture(const std::wstring fileName);
+		Texture* LoadTexture(const std::wstring& fileName);
 	};
 }
