@@ -7,14 +7,10 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <d3d11_1.h>
 #include <map>
-#include <memory>
 #include <PrimitiveBatch.h>
-#include <SimpleMath.h>
 #include <vector>
 #include <VertexTypes.h>
-#include <wrl/client.h>
 #include "Emitter.h"
 #include "../Camera/Camera.h"
 

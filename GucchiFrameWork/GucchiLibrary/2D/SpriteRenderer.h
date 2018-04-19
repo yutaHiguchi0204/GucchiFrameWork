@@ -7,7 +7,6 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <list>
 #include "Sprite.h"
 
 namespace GucchiLibrary

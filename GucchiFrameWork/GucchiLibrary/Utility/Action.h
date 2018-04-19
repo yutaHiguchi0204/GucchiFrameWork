@@ -6,8 +6,6 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <d3d11_1.h>
-#include <SimpleMath.h>
 #include "../2D/Sprite.h"
 #include "../3D/Object.h"
 

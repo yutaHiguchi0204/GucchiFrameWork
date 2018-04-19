@@ -48,11 +48,11 @@ namespace GucchiLibrary
 		};
 
 	protected:
-		PRIMITIVE_TYPE											type_;			// プリミティブタイプ
+		PRIMITIVE_TYPE	type_;			// プリミティブタイプ
 
 	public:
-		Vector3													pos_;			// 座標
-		bool													isFill_;		// 塗りつぶしするかどうか
+		Vector3			pos_;			// 座標
+		bool			isFill_;		// 塗りつぶしするかどうか
 
 	public:
 		// コンストラクタ
@@ -137,5 +137,16 @@ namespace GucchiLibrary
 	public:
 		float	radius_;		// 半径
 		int		div_;			// 分割数
+
+	public:
+		// コンストラクタ
+		Circle()
+			: radius_(1.0f)
+			, div_(16)
+		{
+		}
+
+		// デストラクタ
+		virtual ~Circle() = default;
 	};
 }

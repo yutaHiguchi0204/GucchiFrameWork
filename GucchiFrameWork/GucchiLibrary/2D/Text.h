@@ -37,9 +37,9 @@ namespace GucchiLibrary
 		// @param		表示位置（Vector2）
 		// @param		フォントの色（Color）　：　デフォルト（Color(1, 1, 1)）
 		// @param		フォントサイズ（float）　：　デフォルト（DEFAULT_FONT_SIZE）
-		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（L"default_font"）
+		// @param		フォント名（拡張子を除く）（wstring）　：　デフォルト（DEFAULT_FONT）
 		*/
-		Text(const std::wstring& str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = DEFAULT_FONT_SIZE, const std::wstring& font = L"default_font");
+		Text(const std::wstring& str, const Vector2& pos, const Color& color = Color(1, 1, 1), float fontSize = DEFAULT_FONT_SIZE, const std::wstring& font = DEFAULT_FONT);
 
 		// デストラクタ
 		virtual ~Text() = default;

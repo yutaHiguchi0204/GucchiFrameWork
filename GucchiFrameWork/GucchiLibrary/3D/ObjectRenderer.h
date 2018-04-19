@@ -7,8 +7,6 @@
 
 // ヘッダファイルのインクルード
 #include "../Common/SingletonDirector.h"
-#include <list>
-#include <memory>
 #include <string>
 #include "Object.h"
 

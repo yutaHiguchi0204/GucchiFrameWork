@@ -41,7 +41,10 @@ void TextRenderer::RegisterText(const std::wstring& name, const std::wstring& st
 ===============================================================*/
 void TextRenderer::RegisterText(const std::wstring& name, Text* text)
 {
-	textList_[name] = text;
+	if (textList_.count(name))
+	{
+		textList_[name] = text;
+	}
 }
 
 /*==============================================================
@@ -51,7 +54,10 @@ void TextRenderer::RegisterText(const std::wstring& name, Text* text)
 ===============================================================*/
 void TextRenderer::SetString(const std::wstring& name, const std::wstring& str)
 {
-	textList_[name]->SetString(str);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetString(str);
+	}
 }
 
 /*==============================================================
@@ -61,7 +67,10 @@ void TextRenderer::SetString(const std::wstring& name, const std::wstring& str)
 ===============================================================*/
 void TextRenderer::SetPos(const std::wstring& name, const Vector2& pos)
 {
-	textList_[name]->SetPos(pos);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetPos(pos);
+	}
 }
 
 /*==============================================================
@@ -71,7 +80,10 @@ void TextRenderer::SetPos(const std::wstring& name, const Vector2& pos)
 ===============================================================*/
 void TextRenderer::SetAnchor(const std::wstring& name, const Vector2& anchor)
 {
-	textList_[name]->SetAnchor(anchor);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetAnchor(anchor);
+	}
 }
 
 /*==============================================================
@@ -81,7 +93,10 @@ void TextRenderer::SetAnchor(const std::wstring& name, const Vector2& anchor)
 ===============================================================*/
 void TextRenderer::SetColor(const std::wstring& name, const Color& color)
 {
-	textList_[name]->SetColor(color);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetColor(color);
+	}
 }
 
 /*==============================================================
@@ -91,7 +106,10 @@ void TextRenderer::SetColor(const std::wstring& name, const Color& color)
 ===============================================================*/
 void TextRenderer::SetFontSize(const std::wstring& name, float fontSize)
 {
-	textList_[name]->SetFontSize(fontSize);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetFontSize(fontSize);
+	}
 }
 
 /*==============================================================
@@ -101,7 +119,10 @@ void TextRenderer::SetFontSize(const std::wstring& name, float fontSize)
 ===============================================================*/
 void TextRenderer::SetFont(const std::wstring& name, const std::wstring& font)
 {
-	textList_[name]->SetFont(font);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetFont(font);
+	}
 }
 
 /*==============================================================
@@ -111,7 +132,10 @@ void TextRenderer::SetFont(const std::wstring& name, const std::wstring& font)
 ===============================================================*/
 void TextRenderer::SetActive(const std::wstring& name, bool active)
 {
-	textList_[name]->SetActive(active);
+	if (textList_.count(name))
+	{
+		textList_[name]->SetActive(active);
+	}
 }
 
 /*==============================================================

@@ -8,6 +8,7 @@
 // ヘッダファイルのインクルード
 #include <d3d11_1.h>
 #include <list>
+#include <memory>
 #include <SimpleMath.h>
 #include "Component.h"
 
@@ -28,8 +29,8 @@ namespace GucchiLibrary
 		using Color = DirectX::SimpleMath::Color;
 
 	protected:
-		std::list<Component*>	componentList_;			// コンポーネントリスト
-		bool					isActive_;				// アクティブ状態
+		std::list<std::unique_ptr<Component>>	componentList_;			// コンポーネントリスト
+		bool									isActive_;				// アクティブ状態
 
 	public:
 		// コンストラクタ
@@ -63,10 +64,10 @@ namespace GucchiLibrary
 		*/
 		template <class C> void AddComponent()
 		{
-			componentList_.emplace_back(new C);
+			componentList_.emplace_back(std::make_unique<C>());
 
-			// 重複防止
-			componentList_.unique();
+			// 初期化
+			componentList_.back()->Initialize(this);
 		}
 
 		/*
@@ -77,10 +78,9 @@ namespace GucchiLibrary
 		{
 			for (auto& component : componentList_)
 			{
-				C* type = dynamic_cast<C*>(component);
-
-				if (type)
+				if (dynamic_cast<C*>(component.get()))
 				{
+					component->Finalize();
 					componentList_.remove(component);
 					break;
 				}
@@ -95,11 +95,9 @@ namespace GucchiLibrary
 		{
 			for (auto& component : componentList_)
 			{
-				C* type = dynamic_cast<C*>(component);
-
-				if (type)
+				if (C* c = dynamic_cast<C*>(component.get()))
 				{
-					return type;
+					return c;
 				}
 			}
 
@@ -112,18 +110,13 @@ namespace GucchiLibrary
 		*/
 		void Clear()
 		{
-			for (auto& component : componentList_)
-			{
-				delete component;
-			}
-
 			componentList_.clear();
 		}
 
 		/* アクセッサ */
 
-		virtual void SetActive(bool active)		{ isActive_ = active; }
+		virtual void SetActive(bool active) { isActive_ = active; }
 
-		inline virtual bool GetActive()	const	{ return isActive_; }
+		inline virtual bool GetActive()	const { return isActive_; }
 	};
 }

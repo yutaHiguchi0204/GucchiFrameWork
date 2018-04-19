@@ -6,11 +6,8 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <d3d11_1.h>
 #include <map>
 #include <memory>
-#include <SimpleMath.h>
-#include <string>
 #include "../Common/Constant.h"
 
 namespace GucchiLibrary

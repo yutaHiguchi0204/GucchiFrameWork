@@ -6,10 +6,24 @@
 
 // ヘッダファイルのインクルード
 #include "Collider.h"
+#include "../3D/Object.h"
 #include "../System/DebugSystem.h"
 
 // 名前空間
 using namespace GucchiLibrary;
+using namespace std;
+
+/*==============================================================
+// @brief		終了処理
+// @param		なし
+// @return		なし
+===============================================================*/
+void Collider::Finalize()
+{
+	PrimitiveRenderer::GetInstance().DisposePrimitive(primitive_.get());
+	primitive_.release();
+	primitive_ = nullptr;
+}
 
 /*==============================================================
 // @brief		初期化処理
@@ -32,7 +46,13 @@ void Collider::SetPrimitiveActive(bool active)
 ===============================================================*/
 void SegmentCollider::Initialize(Element* element)
 {
+	/* ３Ｄ要素であれば紐づけ可能 */
+
+	// オブジェクト
 	
+	// エミッター
+
+	// パーティクル
 }
 
 /*==============================================================
@@ -52,7 +72,24 @@ void SegmentCollider::Update(Element* element)
 ===============================================================*/
 void SphereCollider::Initialize(Element* element)
 {
+	/* ３Ｄ要素であれば紐づけ可能 */
 
+	// オブジェクト
+	Object* object = dynamic_cast<Object*>(element);
+
+	if (object)
+	{
+		// 当たり判定
+		float diameter = object->GetBoundingSphere();
+
+		// プリミティブ作成
+		primitive_ = PrimitiveFactory::CreateSphere(diameter, 16, Color(0.3f, 1, 0.3f));
+		PrimitiveRenderer::GetInstance().RegisterPrimitive(primitive_.get());
+	}
+
+	// エミッター
+
+	// パーティクル
 }
 
 /*==============================================================
@@ -102,7 +139,26 @@ void SphereCollider::Update(Element* element)
 ===============================================================*/
 void AABB::Initialize(Element* element)
 {
+	/* ３Ｄ要素であれば紐づけ可能 */
 
+	// オブジェクト
+	Object* object = dynamic_cast<Object*>(element);
+
+	if (object)
+	{
+		// 当たり判定
+		Vector3 boundingBox = object->GetBoundingBox();
+
+		// プリミティブ作成
+		primitive_ = PrimitiveFactory::CreateBox(boundingBox, Color(0.3f, 1, 0.3f));
+		//PrimitiveRenderer::GetInstance().RegisterPrimitive(primitive_.get());
+
+		return;
+	}
+
+	// エミッター
+
+	// パーティクル
 }
 
 /*==============================================================

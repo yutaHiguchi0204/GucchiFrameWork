@@ -89,7 +89,7 @@ namespace GucchiLibrary
 		// @method		Update
 		// @content		XVˆ—
 		*/
-		void Update();
+		void Update() override;
 
 		/*
 		// @method		Reset

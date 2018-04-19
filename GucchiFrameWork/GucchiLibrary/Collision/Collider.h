@@ -6,7 +6,6 @@
 #pragma once
 
 // ヘッダファイルのインクルード
-#include <memory>
 #include "../Common/Component.h"
 #include "../Primitive/PrimitiveRenderer.h"
 
@@ -20,9 +19,10 @@ namespace GucchiLibrary
 	{
 	protected:
 		using Vector3 = DirectX::SimpleMath::Vector3;
+		using Color = DirectX::SimpleMath::Color;
 
 	protected:
-		std::unique_ptr<Primitive>	primitive_;				// 当たり判定用プリミティブ
+		std::unique_ptr<Primitive> primitive_;				// 当たり判定用プリミティブ
 
 	public:
 		// コンストラクタ
@@ -46,11 +46,21 @@ namespace GucchiLibrary
 		virtual void Update(Element* element) override = 0;
 
 		/*
-		// @method		SetPrimitiveActive（static）
+		// @method		Finalize
+		// @content		終了処理
+		*/
+		virtual void Finalize() override;
+
+		/*
+		// @method		SetPrimitiveActive
 		// @content		当たり判定のアクティブ状態の変更
 		// @param		アクティブ状態（bool）
 		*/
 		void SetPrimitiveActive(bool active);
+
+		/* アクセッサ */
+
+		inline bool GetPrimitiveActive() const { return primitive_->GetActive(); }
 	};
 
 	/*
@@ -64,6 +74,12 @@ namespace GucchiLibrary
 		Vector3 end_;			// 終点
 
 	public:
+		// コンストラクタ
+		SegmentCollider() = default;
+
+		// デストラクタ
+		virtual ~SegmentCollider() = default;
+
 		/*
 		// @method		Initialize
 		// @content		初期化処理
@@ -92,6 +108,9 @@ namespace GucchiLibrary
 	public:
 		// コンストラクタ
 		SphereCollider() : radius_(1.0f) {}
+
+		// デストラクタ
+		virtual ~SphereCollider() = default;
 
 		/*
 		// @method		Initialize
@@ -126,6 +145,9 @@ namespace GucchiLibrary
 	//		segment_.end_ = Vector3(0.f, 1.f, 0.f);
 	//	}
 
+	//	// デストラクタ
+	//	virtual ~CapsuleCollider() = default;
+
 	//	/*
 	//	// @method		Initialize
 	//	// @content		初期化処理
@@ -155,6 +177,9 @@ namespace GucchiLibrary
 	//	// コンストラクタ
 	//	PlaneCollider() : distance_(0.f) {}
 
+	//	// デストラクタ
+	//	virtual ~PlaneCollider() = default;
+
 	//	/*
 	//	// @method		Initialize
 	//	// @content		初期化処理
@@ -183,6 +208,12 @@ namespace GucchiLibrary
 	//	Vector3 normal_;		// 法線ベクトル
 
 	//public:
+	//	// コンストラクタ
+	//	TriangleCollider() = default;
+
+	//	// デストラクタ
+	//	virtual ~TriangleCollider() = default;
+
 	//	/*
 	//	// @method		Initialize
 	//	// @content		初期化処理
@@ -209,6 +240,12 @@ namespace GucchiLibrary
 		Vector3 max_;			// 最大座標
 
 	public:
+		// コンストラクタ
+		AABB() = default;
+
+		// デストラクタ
+		virtual ~AABB() = default;
+
 		/*
 		// @method		Initialize
 		// @content		初期化処理
@@ -236,6 +273,12 @@ namespace GucchiLibrary
 	//	Vector3 size_;			// サイズ
 
 	//public:
+	//	// コンストラクタ
+	//	OBB() = default;
+
+	//	// デストラクタ
+	//	virtual ~OBB() = default;
+
 	//	/*
 	//	// @method		Initialize
 	//	// @content		初期化処理

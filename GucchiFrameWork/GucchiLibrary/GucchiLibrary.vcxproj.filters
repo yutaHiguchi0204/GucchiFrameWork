@@ -273,14 +273,14 @@
     <ClInclude Include="Common\Component.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common\Element.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Primitive\Primitive.h">
       <Filter>Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Primitive\PrimitiveRenderer.h">
       <Filter>Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Element.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

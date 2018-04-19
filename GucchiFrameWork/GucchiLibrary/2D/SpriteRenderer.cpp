@@ -206,5 +206,5 @@ unique_ptr<Sprite> SpriteFactory::CreateSpriteFromFile(const wstring& fileName, 
 		sprite->SetRect(rect);
 	}
 
-	return move(sprite);
+	return sprite;
 }

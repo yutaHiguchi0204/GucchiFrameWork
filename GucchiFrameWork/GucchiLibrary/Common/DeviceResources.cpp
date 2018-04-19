@@ -7,6 +7,7 @@
 // ヘッダファイルのインクルード
 #include "DeviceResources.h"
 #include "Constant.h"
+#include "../2D/Text.h"
 
 // 名前空間
 using namespace DirectX;
@@ -546,7 +547,7 @@ void DirectXToolKidResources::Initialize(ID3D11Device* device, ID3D11DeviceConte
 	spriteBatch_ = make_unique<SpriteBatch>(context_);
 
 	// スプライトフォント
-	wstring defaultFont = FILE_PATH_FONT + L"default_font" + EXT_SPRITEFONT;
+	wstring defaultFont = FILE_PATH_FONT + Text::DEFAULT_FONT + EXT_SPRITEFONT;
 	spriteFont_ = make_unique<SpriteFont>(device_, defaultFont.c_str());
 }
 

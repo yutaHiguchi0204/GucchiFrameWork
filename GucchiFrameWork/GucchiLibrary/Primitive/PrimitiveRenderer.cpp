@@ -188,7 +188,7 @@ void PrimitiveRenderer::Draw3D(Primitive3D* primitive)
 	Matrix proj = camera_->GetProjection();
 
 	// プリミティブの描画
-	primitive->geometry_->Draw(world, view, proj, primitive->color_, nullptr, !primitive->isFill_);
+	//primitive->geometry_->Draw(world, view, proj, primitive->color_, nullptr, !primitive->isFill_);
 }
 
 /*==============================================================
@@ -336,6 +336,16 @@ void PrimitiveRenderer::DrawCircle(map<string, VertexPositionColor> vertices, in
 void PrimitiveRenderer::RegisterPrimitive(Primitive* primitive)
 {
 	primitiveList_.emplace_back(primitive);
+}
+
+/*==============================================================
+// @brief		プリミティブの解放
+// @param		プリミティブ（Primitive*）
+// @return		なし
+===============================================================*/
+void PrimitiveRenderer::DisposePrimitive(Primitive* primitive)
+{
+	primitiveList_.remove(primitive);
 }
 
 /*==============================================================
@@ -517,7 +527,7 @@ unique_ptr<Primitive3D> PrimitiveFactory::CreateBox(const Vector3& size, const C
 	// プリミティブタイプを"直方体"に設定
 	primitive->SetType(Primitive::PRIMITIVE_TYPE::BOX);
 
-	return move(primitive);
+	return primitive;
 }
 
 /*==============================================================
@@ -575,7 +585,7 @@ unique_ptr<Primitive3D> PrimitiveFactory::CreateSphere(float diameter, int div, 
 	ID3D11DeviceContext* context = DeviceResources::GetInstance().GetD3DDeviceContext();
 
 	// 球プリミティブの登録
-	primitive->geometry_ = GeometricPrimitive::CreateSphere(context, diameter, div);
+	//primitive->geometry_ = GeometricPrimitive::CreateSphere(context, diameter, div);
 
 	// 色設定
 	primitive->color_ = color;
@@ -586,5 +596,5 @@ unique_ptr<Primitive3D> PrimitiveFactory::CreateSphere(float diameter, int div, 
 	// プリミティブタイプを"球"に設定
 	primitive->SetType(Primitive::PRIMITIVE_TYPE::SPHERE);
 
-	return move(primitive);
+	return primitive;
 }

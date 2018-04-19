@@ -131,6 +131,13 @@ namespace GucchiLibrary
 		void RegisterPrimitive(Primitive* primitive);
 
 		/*
+		// @method		DisposePrimitive
+		// @content		プリミティブの解放
+		// @param		解放するプリミティブ（Primitive*）
+		*/
+		void DisposePrimitive(Primitive* primitive);
+
+		/*
 		// @method		Reset
 		// @content		登録されたプリミティブのリストをリセット
 		*/

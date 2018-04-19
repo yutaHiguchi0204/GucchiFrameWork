@@ -7,7 +7,6 @@
 
 // ヘッダファイルのインクルード
 #include <Effects.h>
-#include <memory>
 #include <wrl/client.h>
 #include "../Camera/Camera.h"
 #include "../Common/Element.h"

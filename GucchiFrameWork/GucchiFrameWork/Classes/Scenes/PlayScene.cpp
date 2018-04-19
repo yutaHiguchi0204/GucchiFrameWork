@@ -29,15 +29,12 @@ void PlayScene::Initialize()
 	test->SetTranslate(Vector3(0, -1.5f, 0));
 	objectRenderer_.RegisterObject(test.get());
 
-	test->AddComponent<AABB>();
+	test->AddComponent<SphereCollider>();
 
 	textRenderer_.RegisterText(L"test", L"component: true", Vector2(0, 0));
 	textRenderer_.RegisterText(L"test2", L"collider view: true", Vector2(0, 32));
 	textRenderer_.SetAnchor(L"test", ANCHOR_LT);
 	textRenderer_.SetAnchor(L"test2", ANCHOR_LT);
-
-	pri = PrimitiveFactory::CreateSphere(test->GetBoundingSphere(), 16, Color(0, 1, 0, 1));
-	primitiveRenderer_.RegisterPrimitive(pri.get());
 }
 
 /*==============================================================
@@ -55,12 +52,19 @@ void PlayScene::Update()
 	KeyboardUtil& keyboard = KeyboardUtil::GetInstance();
 	if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::Space))
 	{
-		test->RemoveComponent<AABB>();
+ 		test->RemoveComponent<SphereCollider>();
 		textRenderer_.SetString(L"test", L"component: false");
 	}
 	else if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::V))
 	{
-		
+		auto component = test->GetComponent<SphereCollider>();
+
+		if (component)
+		{
+			bool active = component->GetPrimitiveActive();
+			component->SetPrimitiveActive(!active);
+			textRenderer_.SetString(L"test2", L"collider view: false");
+		}
 	}
 }
 

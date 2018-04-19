@@ -7,7 +7,6 @@
 
 // ヘッダファイルのインクルード
 #include <d3d11_1.h>
-#include <list>
 #include <SimpleMath.h>
 #include <vector>
 #include "MapTip2D.h"
