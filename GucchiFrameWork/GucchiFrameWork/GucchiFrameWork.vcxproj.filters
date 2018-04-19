@@ -17,6 +17,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{a764e76d-6bfd-40b6-af89-cfdb399d5663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sounds">
+      <UniqueIdentifier>{2fc813f7-725d-44ed-981f-c3d271e553fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -76,5 +79,10 @@
     <FxCompile Include="Shaders\ParticleVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Classes\Sounds\空フォルダ防止用（サウンドを入れる際に削除してください）.txt">
+      <Filter>Sounds</Filter>
+    </Text>
   </ItemGroup>
 </Project>
