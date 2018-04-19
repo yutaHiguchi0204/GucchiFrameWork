@@ -25,16 +25,6 @@ void PlayScene::Initialize()
 	IScene::CommonInitialize();
 
 	// TODO: このシーンの初期化処理
-	test = objectFactory_.CreateObjectFromFile(L"bomb");
-	test->SetTranslate(Vector3(0, -1.5f, 0));
-	objectRenderer_.RegisterObject(test.get());
-
-	test->AddComponent<SphereCollider>();
-
-	textRenderer_.RegisterText(L"test", L"component: true", Vector2(0, 0));
-	textRenderer_.RegisterText(L"test2", L"collider view: true", Vector2(0, 32));
-	textRenderer_.SetAnchor(L"test", ANCHOR_LT);
-	textRenderer_.SetAnchor(L"test2", ANCHOR_LT);
 }
 
 /*==============================================================
@@ -48,24 +38,6 @@ void PlayScene::Update()
 	IScene::CommonUpdate();
 
 	// TODO: このシーンの更新処理
-
-	KeyboardUtil& keyboard = KeyboardUtil::GetInstance();
-	if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::Space))
-	{
- 		test->RemoveComponent<SphereCollider>();
-		textRenderer_.SetString(L"test", L"component: false");
-	}
-	else if (keyboard.GetTracker().IsKeyPressed(Keyboard::Keys::V))
-	{
-		auto component = test->GetComponent<SphereCollider>();
-
-		if (component)
-		{
-			bool active = component->GetPrimitiveActive();
-			component->SetPrimitiveActive(!active);
-			textRenderer_.SetString(L"test2", L"collider view: false");
-		}
-	}
 }
 
 /*==============================================================
